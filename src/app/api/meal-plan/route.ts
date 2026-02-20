@@ -45,13 +45,28 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No macro targets found. Generate macros first.' }, { status: 404 });
     }
 
+    // Determine goal context for the prompt
+    const goalContext = onboarding.goal === 'cut'
+      ? `This client is CUTTING (fat loss). Calorie target is below TDEE. Prioritize high-protein, high-volume, satiating foods. Favor lean proteins, vegetables, and high-fiber carbs.`
+      : onboarding.goal === 'bulk'
+      ? `This client is BULKING (muscle gain). Calorie target is above TDEE. Include calorie-dense but nutritious foods. Carb-heavy around workouts.`
+      : `This client is doing a RECOMPOSITION (maintain weight, improve body composition). Calorie target is near TDEE. Prioritize high protein intake and nutrient timing around workouts.`;
+
+    const weightLbs = Math.round(onboarding.weightKg * 2.205);
+
     const userPrompt = `Create a 7-day meal plan for this client:
+
+CLIENT BODY STATS:
+- Weight: ${onboarding.weightKg} kg (${weightLbs} lbs)
+- Goal: ${onboarding.goal} (${goalContext})
+- Height: ${onboarding.heightCm} cm
 
 DAILY MACRO TARGETS:
 - Calories: ${macros.calorieTarget} kcal
-- Protein: ${macros.proteinG}g
+- Protein: ${macros.proteinG}g (${Math.round(macros.proteinG / onboarding.weightKg * 10) / 10}g/kg bodyweight)
 - Carbs: ${macros.carbsG}g
 - Fat: ${macros.fatG}g
+${macros.explanation ? `- Rationale: ${macros.explanation}` : ''}
 
 CLIENT PREFERENCES:
 - Diet type: ${onboarding.dietType}
@@ -63,8 +78,12 @@ CLIENT PREFERENCES:
 - Budget: ${onboarding.budget}
 - Restaurant frequency: ${onboarding.restaurantFrequency || 'Rarely'}
 
-Each meal needs 2 swap options with similar macros.
-Include a grocery list organized by category (produce, protein, dairy, grains, pantry, etc).
+REQUIREMENTS:
+- Each meal needs exactly 2 swap options. Swaps must match the original within ±5% protein and ±10% calories.
+- Sum of all meal macros must equal day_totals within ±3%.
+- Vary protein sources across meals — no single protein source in more than 2 meals per day.
+- Use realistic portion sizes (1 can tuna = 142g, 1 large egg = 50g, 1 scoop whey = 30g).
+- Include a consolidated grocery list organized by category.
 
 Respond with ONLY valid JSON matching this schema: ${JSON.stringify(MEAL_PLAN_SCHEMA)}
 
@@ -79,25 +98,25 @@ The complete response JSON should be: { "days": [...], "grocery_list": [...] }`;
         { role: 'user', content: userPrompt },
       ],
       response_format: { type: 'json_object' },
-      temperature: 0.7,
+      temperature: 0.4,
       max_tokens: 16000,
     });
 
     const content = response.choices[0]?.message?.content;
     if (!content) {
-      return NextResponse.json({ error: 'No response from AI' }, { status: 500 });
+      return NextResponse.json({ error: 'Failed to generate plan. Please try again.' }, { status: 500 });
     }
 
     let planData;
     try {
       planData = JSON.parse(content);
     } catch {
-      return NextResponse.json({ error: 'Invalid AI response format' }, { status: 500 });
+      return NextResponse.json({ error: 'Invalid response format. Please try again.' }, { status: 500 });
     }
 
     // Validate basic structure
     if (!planData.days || !Array.isArray(planData.days) || planData.days.length !== 7) {
-      return NextResponse.json({ error: 'AI generated incomplete plan' }, { status: 500 });
+      return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
     }
 
     // Get current version

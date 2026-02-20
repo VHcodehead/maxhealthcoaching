@@ -252,7 +252,7 @@ export default function ToolsPage() {
             <CardContent className="flex flex-col items-center justify-center h-full text-center p-8">
               <h3 className="text-xl font-bold mb-2">Want the full picture?</h3>
               <p className="text-zinc-400 text-sm mb-4">
-                Get a complete AI-generated meal plan, training program, and personalized macro targets — all tailored to your body and goals.
+                Get a complete custom meal plan, training program, and personalized macro targets — all tailored to your body and goals.
               </p>
               <Button asChild className="bg-emerald-600 hover:bg-emerald-700">
                 <a href="/pricing">Start Your Plan <ArrowRight className="w-4 h-4 ml-1" /></a>

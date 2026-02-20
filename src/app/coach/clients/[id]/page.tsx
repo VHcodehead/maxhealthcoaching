@@ -29,6 +29,7 @@ import {
   Ruler,
   Moon,
   Footprints,
+  Pencil,
 } from 'lucide-react'
 import type {
   Profile,
@@ -38,7 +39,13 @@ import type {
   TrainingPlan,
   CheckIn,
   ProgressPhoto,
+  Meal,
+  TrainingDay,
 } from '@/types/database'
+import { EditMealDialog } from '@/components/coach/edit-meal-dialog'
+import { EditExerciseDialog } from '@/components/coach/edit-exercise-dialog'
+import { MacroOverrideForm } from '@/components/coach/macro-override-form'
+import { CoachNotes } from '@/components/coach/coach-notes'
 
 interface CheckInWithPhotos extends CheckIn {
   progress_photos: (ProgressPhoto & { url?: string })[]
@@ -61,6 +68,20 @@ export default function ClientDetailPage() {
 
   const [regeneratingMeal, setRegeneratingMeal] = useState(false)
   const [regeneratingTraining, setRegeneratingTraining] = useState(false)
+
+  // Editing state
+  const [editingMeal, setEditingMeal] = useState<{
+    dayIndex: number
+    mealIndex: number
+    meal: Meal
+  } | null>(null)
+  const [editingExercise, setEditingExercise] = useState<{
+    weekIndex: number
+    dayIndex: number
+    day: TrainingDay
+  } | null>(null)
+  const [savingMealEdit, setSavingMealEdit] = useState(false)
+  const [savingTrainingEdit, setSavingTrainingEdit] = useState(false)
 
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     onboarding: false,
@@ -167,6 +188,108 @@ export default function ClientDetailPage() {
     } finally {
       setRegeneratingTraining(false)
     }
+  }
+
+  const handleSaveMealEdit = async (
+    dayIndex: number,
+    mealIndex: number,
+    updatedMeal: Meal
+  ) => {
+    if (!mealPlan) return
+    setSavingMealEdit(true)
+    try {
+      const updatedDays = [...mealPlan.plan_data.days]
+      const updatedMeals = [...updatedDays[dayIndex].meals]
+      updatedMeals[mealIndex] = updatedMeal
+      updatedDays[dayIndex] = { ...updatedDays[dayIndex], meals: updatedMeals }
+      const updatedPlanData = { days: updatedDays }
+
+      const res = await fetch('/api/admin/meal-plan', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id: clientId,
+          plan_data: updatedPlanData,
+          grocery_list: mealPlan.grocery_list,
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Failed to save meal edit')
+      }
+
+      setMealPlan((prev) =>
+        prev ? { ...prev, plan_data: updatedPlanData } : prev
+      )
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to save meal edit')
+    } finally {
+      setSavingMealEdit(false)
+    }
+  }
+
+  const handleSaveExerciseEdit = async (
+    weekIndex: number,
+    dayIndex: number,
+    updatedDay: TrainingDay
+  ) => {
+    if (!trainingPlan) return
+    setSavingTrainingEdit(true)
+    try {
+      const updatedWeeks = [...trainingPlan.plan_data.weeks]
+      const updatedDays = [...updatedWeeks[weekIndex].days]
+      updatedDays[dayIndex] = updatedDay
+      updatedWeeks[weekIndex] = { ...updatedWeeks[weekIndex], days: updatedDays }
+      const updatedPlanData = { ...trainingPlan.plan_data, weeks: updatedWeeks }
+
+      const res = await fetch('/api/admin/training-plan', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id: clientId,
+          plan_data: updatedPlanData,
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Failed to save training edit')
+      }
+
+      setTrainingPlan((prev) =>
+        prev ? { ...prev, plan_data: updatedPlanData } : prev
+      )
+    } catch (err) {
+      alert(
+        err instanceof Error ? err.message : 'Failed to save training edit'
+      )
+    } finally {
+      setSavingTrainingEdit(false)
+    }
+  }
+
+  const handleMacroOverrideSaved = (overriddenMacros: {
+    calorie_target: number
+    protein_g: number
+    carbs_g: number
+    fat_g: number
+    formula_used: string
+    version: number
+  }) => {
+    setMacros((prev) =>
+      prev
+        ? {
+            ...prev,
+            calorie_target: overriddenMacros.calorie_target,
+            protein_g: overriddenMacros.protein_g,
+            carbs_g: overriddenMacros.carbs_g,
+            fat_g: overriddenMacros.fat_g,
+            formula_used: overriddenMacros.formula_used as MacroTargets['formula_used'],
+            version: overriddenMacros.version,
+          }
+        : prev
+    )
   }
 
   function formatDate(dateStr: string) {
@@ -594,6 +717,15 @@ export default function ClientDetailPage() {
                 {macros.explanation}
               </p>
             )}
+
+            <MacroOverrideForm
+              clientId={clientId}
+              currentCalories={macros.calorie_target}
+              currentProtein={macros.protein_g}
+              currentCarbs={macros.carbs_g}
+              currentFat={macros.fat_g}
+              onSaved={handleMacroOverrideSaved}
+            />
           </CardContent>
         )}
 
@@ -667,9 +799,23 @@ export default function ClientDetailPage() {
                     >
                       <div className="flex items-center justify-between">
                         <span className="font-medium">{meal.name}</span>
-                        <span className="text-xs text-muted-foreground">
-                          {meal.macro_totals.calories} kcal
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-muted-foreground">
+                            {meal.macro_totals.calories} kcal | P:{meal.macro_totals.protein}g C:{meal.macro_totals.carbs}g F:{meal.macro_totals.fat}g
+                          </span>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="size-6"
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              setEditingMeal({ dayIndex, mealIndex, meal })
+                            }}
+                            disabled={savingMealEdit}
+                          >
+                            <Pencil className="size-3" />
+                          </Button>
+                        </div>
                       </div>
                       <p className="text-muted-foreground">
                         {meal.recipe_title}
@@ -763,30 +909,48 @@ export default function ClientDetailPage() {
                   )}
                 </h4>
                 <div className="space-y-2">
-                  {week.days.map((day, dayIndex) => (
-                    <div
-                      key={dayIndex}
-                      className="rounded bg-muted/50 p-3 text-sm"
-                    >
-                      <div className="mb-1 font-medium">
-                        {day.day}: {day.name}
-                      </div>
-                      <div className="space-y-1">
-                        {day.exercises.map((ex, exIndex) => (
-                          <div
-                            key={exIndex}
-                            className="flex items-center justify-between text-xs text-muted-foreground"
+                  {week.days.map((day, dayIndex) => {
+                    const weekIndex = trainingPlan.plan_data.weeks.indexOf(week)
+                    return (
+                      <div
+                        key={dayIndex}
+                        className="rounded bg-muted/50 p-3 text-sm"
+                      >
+                        <div className="mb-1 flex items-center justify-between">
+                          <span className="font-medium">
+                            {day.day}: {day.name}
+                          </span>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="size-6"
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              setEditingExercise({ weekIndex, dayIndex, day })
+                            }}
+                            disabled={savingTrainingEdit}
                           >
-                            <span>{ex.name}</span>
-                            <span>
-                              {ex.sets}x{ex.reps}
-                              {ex.rpe ? ` @RPE${ex.rpe}` : ''}
-                            </span>
-                          </div>
-                        ))}
+                            <Pencil className="size-3" />
+                          </Button>
+                        </div>
+                        <div className="space-y-1">
+                          {day.exercises.map((ex, exIndex) => (
+                            <div
+                              key={exIndex}
+                              className="flex items-center justify-between text-xs text-muted-foreground"
+                            >
+                              <span>{ex.name}</span>
+                              <span>
+                                {ex.sets}x{ex.reps}
+                                {ex.rpe ? ` @RPE${ex.rpe}` : ''}
+                                {ex.rest_seconds ? ` | ${ex.rest_seconds}s rest` : ''}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             ))}
@@ -912,6 +1076,9 @@ export default function ClientDetailPage() {
           </CardContent>
         )}
       </Card>
+
+      {/* Coach Notes */}
+      <CoachNotes clientId={clientId} />
 
       {/* Photo Comparison */}
       {checkInsWithPhotos.length > 0 && (
@@ -1065,6 +1232,32 @@ export default function ClientDetailPage() {
             </CardContent>
           )}
         </Card>
+      )}
+      {/* Edit Dialogs */}
+      {editingMeal && (
+        <EditMealDialog
+          open={!!editingMeal}
+          onOpenChange={(open) => {
+            if (!open) setEditingMeal(null)
+          }}
+          meal={editingMeal.meal}
+          dayIndex={editingMeal.dayIndex}
+          mealIndex={editingMeal.mealIndex}
+          onSave={handleSaveMealEdit}
+        />
+      )}
+
+      {editingExercise && (
+        <EditExerciseDialog
+          open={!!editingExercise}
+          onOpenChange={(open) => {
+            if (!open) setEditingExercise(null)
+          }}
+          day={editingExercise.day}
+          weekIndex={editingExercise.weekIndex}
+          dayIndex={editingExercise.dayIndex}
+          onSave={handleSaveExerciseEdit}
+        />
       )}
     </div>
   )

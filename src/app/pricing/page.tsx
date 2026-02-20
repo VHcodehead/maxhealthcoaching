@@ -12,12 +12,12 @@ const plans = [
   {
     key: 'basic',
     name: 'Basic',
-    price: 49,
+    price: 149,
     period: 'month',
     description: 'Everything you need to get started on your fitness journey.',
     features: [
       'Personalized macro & calorie targets',
-      'AI-generated 7-day meal plan',
+      'Custom 7-day meal plan with recipes',
       'Custom training program',
       'Weekly check-in tracking',
       'Progress photo storage',
@@ -28,7 +28,7 @@ const plans = [
   {
     key: 'pro',
     name: 'Pro',
-    price: 99,
+    price: 299,
     period: 'month',
     popular: true,
     description: 'The most popular choice for serious results.',
@@ -46,7 +46,7 @@ const plans = [
   {
     key: 'elite',
     name: 'Elite',
-    price: 199,
+    price: 499,
     period: 'month',
     description: 'White-glove coaching for maximum results.',
     features: [
@@ -118,8 +118,8 @@ export default function PricingPage() {
             Invest in Your Transformation
           </h1>
           <p className="text-lg text-zinc-500 max-w-2xl mx-auto">
-            Choose the plan that fits your goals. All plans include AI-powered meal and training plans,
-            personalized to your body and preferences. Cancel anytime.
+            Choose the plan that fits your goals. All plans include personalized meal and training plans,
+            tailored to your body and preferences. Cancel anytime.
           </p>
         </div>
 

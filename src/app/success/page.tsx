@@ -65,7 +65,7 @@ export default function SuccessPage() {
             </li>
             <li className="flex gap-2">
               <span className="font-semibold text-emerald-600">3.</span>
-              AI generates your custom meal plan & training program
+              Your coach builds your custom meal plan & training program
             </li>
             <li className="flex gap-2">
               <span className="font-semibold text-emerald-600">4.</span>

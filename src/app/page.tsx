@@ -86,7 +86,7 @@ export default function HomePage() {
 
   const features = [
     { icon: Calculator, title: 'Custom Macro Targets', desc: 'Science-based calorie and macro calculations using your body composition, activity, and goals.' },
-    { icon: UtensilsCrossed, title: 'AI Meal Plans', desc: '7-day meal plans with recipes, grocery lists, and swap options — tailored to your diet and preferences.' },
+    { icon: UtensilsCrossed, title: 'Custom Meal Plans', desc: '7-day meal plans with recipes, grocery lists, and swap options — tailored to your diet and preferences.' },
     { icon: Dumbbell, title: 'Training Programs', desc: 'Periodized workout plans matched to your experience, equipment, injuries, and schedule.' },
     { icon: TrendingUp, title: 'Progress Tracking', desc: 'Track weight, measurements, adherence, and see your trends over time with visual analytics.' },
     { icon: Camera, title: 'Photo Comparisons', desc: 'Secure progress photo storage with side-by-side comparisons to see your transformation.' },
@@ -96,13 +96,13 @@ export default function HomePage() {
   const steps = [
     { num: '01', title: 'Choose Your Plan', desc: 'Pick the coaching tier that fits your goals and budget.' },
     { num: '02', title: 'Complete Your Profile', desc: '5-minute onboarding quiz about your body, goals, diet, training, and lifestyle.' },
-    { num: '03', title: 'Get Your Custom Plans', desc: 'Receive personalized macro targets, AI meal plan, and training program instantly.' },
+    { num: '03', title: 'Get Your Custom Plans', desc: 'Receive personalized macro targets, a custom meal plan, and training program built for you.' },
     { num: '04', title: 'Weekly Check-ins', desc: 'Track progress, upload photos, and get plan adjustments based on your results.' },
   ];
 
   const faqs = [
-    { q: "What's included in my plan?", a: "Every plan includes personalized macro targets calculated from your body composition, an AI-generated 7-day meal plan with recipes and grocery lists, a custom training program matched to your experience and equipment, and weekly check-in tracking. Higher tiers add coach review, plan adjustments, and direct messaging." },
-    { q: "How does the AI meal plan work?", a: "After you complete onboarding, our AI analyzes your macro targets, dietary restrictions, allergies, cooking skill, budget, and preferences to generate a complete 7-day meal plan. Each meal includes full recipes, ingredient amounts, and macro breakdowns. Every meal also comes with 2 swap alternatives." },
+    { q: "What's included in my plan?", a: "Every plan includes personalized macro targets calculated from your body composition, a custom 7-day meal plan with recipes and grocery lists, a training program matched to your experience and equipment, and weekly check-in tracking. Higher tiers add coach review, plan adjustments, and direct messaging." },
+    { q: "How does the meal plan work?", a: "After you complete onboarding, your coach builds a plan around your macro targets, dietary restrictions, allergies, cooking skill, budget, and preferences. You get a complete 7-day meal plan with full recipes, ingredient amounts, and macro breakdowns. Every meal also comes with 2 swap alternatives." },
     { q: "Can I cancel anytime?", a: "Yes, absolutely. There are no contracts or commitments. You can cancel your subscription at any time through your billing portal, and you'll retain access until the end of your current billing period." },
     { q: "What if I have dietary restrictions?", a: "We support a wide range of dietary preferences including standard, keto, vegan, vegetarian, paleo, gluten-free, dairy-free, halal, and kosher. You can also specify individual food allergies and disliked foods during onboarding." },
     { q: "How are training plans customized?", a: "Your training plan is built based on your experience level, available equipment, injury history, preferred split, session duration, workout frequency, and goals. Beginners get simple progressions with technique focus, while advanced lifters get periodized programs with intensity techniques." },
@@ -112,9 +112,9 @@ export default function HomePage() {
   ];
 
   const plans = [
-    { name: 'Basic', price: 49, features: ['Macro targets', 'AI meal plan', 'Training program', 'Check-in tracking', 'Photo storage'] },
-    { name: 'Pro', price: 99, popular: true, features: ['Everything in Basic', 'Bi-weekly adjustments', 'Priority coach review', 'Meal swaps', 'Analytics', 'Grocery lists'] },
-    { name: 'Elite', price: 199, features: ['Everything in Pro', 'Weekly 1-on-1', 'Unlimited regenerations', 'Direct messaging', 'Supplement guidance'] },
+    { name: 'Basic', price: 149, features: ['Macro targets', 'Custom meal plan', 'Training program', 'Check-in tracking', 'Photo storage'] },
+    { name: 'Pro', price: 299, popular: true, features: ['Everything in Basic', 'Bi-weekly adjustments', 'Priority coach review', 'Meal swaps', 'Analytics', 'Grocery lists'] },
+    { name: 'Elite', price: 499, features: ['Everything in Pro', 'Weekly 1-on-1', 'Unlimited regenerations', 'Direct messaging', 'Supplement guidance'] },
   ];
 
   return (
@@ -158,13 +158,13 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-emerald-50/30" />
         <div className="relative max-w-5xl mx-auto px-4 text-center py-20">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <Badge variant="secondary" className="mb-6 text-xs">AI-Powered Personal Training</Badge>
+            <Badge variant="secondary" className="mb-6 text-xs">Expert Personal Training & Nutrition</Badge>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
               Transform Your Body<br />
               <span className="text-emerald-600">With Science-Backed Coaching</span>
             </h1>
             <p className="text-lg md:text-xl text-zinc-500 max-w-2xl mx-auto mb-8 leading-relaxed">
-              AI-powered meal plans, custom training programs, and weekly accountability — all personalized to your body, goals, and lifestyle.
+              Personalized meal plans, custom training programs, and weekly accountability — all tailored to your body, goals, and lifestyle.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
               <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-base px-8" asChild>
@@ -175,7 +175,7 @@ export default function HomePage() {
               </Button>
             </div>
             <p className="text-sm text-zinc-400">
-              500+ clients transformed &bull; AI-powered plans &bull; Cancel anytime
+              500+ clients transformed &bull; Personalized plans &bull; Cancel anytime
             </p>
           </motion.div>
         </div>
@@ -284,7 +284,7 @@ export default function HomePage() {
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: 'Alex M.', stat: 'Lost 25 lbs in 12 weeks', quote: 'The AI meal plan made it so easy. I never felt like I was dieting.' },
+              { name: 'Alex M.', stat: 'Lost 25 lbs in 12 weeks', quote: 'The meal plan made it so easy. I never felt like I was dieting.' },
               { name: 'Sarah K.', stat: 'Lost 18 lbs in 8 weeks', quote: 'Perfect for my home gym setup. Results within the first month.' },
               { name: 'James R.', stat: 'Gained 12 lbs muscle in 12 weeks', quote: 'Finally having the right calories made all the difference.' },
             ].map((t, i) => (
@@ -423,7 +423,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-2">
               <span className="text-lg font-bold tracking-tight">Max<span className="text-emerald-600">Health</span> Coaching</span>
-              <p className="text-sm text-zinc-500 mt-2 max-w-sm">AI-powered personal training and nutrition coaching. Science-backed programs tailored to your goals.</p>
+              <p className="text-sm text-zinc-500 mt-2 max-w-sm">Expert personal training and nutrition coaching. Science-backed programs tailored to your goals.</p>
               <div className="mt-4">
                 {footerSubmitted ? (
                   <p className="text-sm text-emerald-600">Subscribed!</p>

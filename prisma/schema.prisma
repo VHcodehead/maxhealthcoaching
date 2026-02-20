@@ -27,6 +27,8 @@ model User {
   transformations     Transformation[]
   coachSettings       CoachSettings?
   notifications       Notification[]
+  clientNotes         CoachNote[]     @relation("clientNotes")
+  coachNotes          CoachNote[]     @relation("coachNotes")
 
   @@map("users")
 }
@@ -262,4 +264,18 @@ model Notification {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("notifications")
+}
+
+model CoachNote {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  coachId   String   @map("coach_id")
+  category  String   // "general", "nutrition", "training", "check_in"
+  content   String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user  User @relation("clientNotes", fields: [userId], references: [id], onDelete: Cascade)
+  coach User @relation("coachNotes", fields: [coachId], references: [id], onDelete: Cascade)
+
+  @@map("coach_notes")
 }

@@ -14,12 +14,12 @@ export function stripe(): Stripe {
 export const PLANS = {
   basic: {
     name: 'Basic',
-    price: '$49/mo',
-    priceAmount: 4900,
+    price: '$149/mo',
+    priceAmount: 14900,
     priceId: process.env.STRIPE_PRICE_BASIC!,
     features: [
       'Personalized macro targets',
-      'AI-generated 7-day meal plan',
+      'Custom 7-day meal plan with recipes',
       'Custom training program',
       'Weekly check-in tracking',
       'Progress photo storage',
@@ -28,8 +28,8 @@ export const PLANS = {
   },
   pro: {
     name: 'Pro',
-    price: '$99/mo',
-    priceAmount: 9900,
+    price: '$299/mo',
+    priceAmount: 29900,
     priceId: process.env.STRIPE_PRICE_PRO!,
     popular: true,
     features: [
@@ -44,8 +44,8 @@ export const PLANS = {
   },
   elite: {
     name: 'Elite',
-    price: '$199/mo',
-    priceAmount: 19900,
+    price: '$499/mo',
+    priceAmount: 49900,
     priceId: process.env.STRIPE_PRICE_ELITE!,
     features: [
       'Everything in Pro',

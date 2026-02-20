@@ -1,3 +1,4 @@
+export type CoachNoteCategory = 'general' | 'nutrition' | 'training' | 'check_in';
 export type UserRole = 'client' | 'coach' | 'admin';
 export type SubscriptionStatus = 'none' | 'active' | 'past_due' | 'canceled' | 'trialing';
 export type Goal = 'bulk' | 'cut' | 'recomp';
@@ -84,7 +85,7 @@ export interface MacroTargets {
   protein_g: number;
   fat_g: number;
   carbs_g: number;
-  formula_used: 'katch_mcardle' | 'mifflin_st_jeor';
+  formula_used: 'katch_mcardle' | 'mifflin_st_jeor' | 'coach_override';
   explanation: string;
   created_at: string;
 }
@@ -273,5 +274,14 @@ export interface Notification {
   title: string;
   message: string;
   read: boolean;
+  created_at: string;
+}
+
+export interface CoachNote {
+  id: string;
+  user_id: string;
+  coach_id: string;
+  category: CoachNoteCategory;
+  content: string;
   created_at: string;
 }

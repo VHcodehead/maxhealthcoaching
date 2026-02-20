@@ -24,7 +24,7 @@ const placeholderTransformations: TransformationData[] = [
     client_name: 'Alex M.',
     weight_lost: 'Lost 25 lbs',
     duration: '12 weeks',
-    quote: 'The AI meal plan made it so easy to stay on track. I never felt like I was dieting.',
+    quote: 'The meal plan made it so easy to stay on track. I never felt like I was dieting.',
   },
   {
     id: '2',
