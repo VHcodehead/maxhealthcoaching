@@ -1,0 +1,265 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  passwordHash  String    @map("password_hash")
+  emailVerified Boolean   @default(false) @map("email_verified")
+  createdAt     DateTime  @default(now()) @map("created_at")
+
+  profile             Profile?
+  onboardingResponses OnboardingResponse[]
+  macroTargets        MacroTarget[]
+  mealPlans           MealPlan[]
+  trainingPlans       TrainingPlan[]
+  checkIns            CheckIn[]
+  progressPhotos      ProgressPhoto[]
+  referralsMade       Referral[]        @relation("referrer")
+  referralsReceived   Referral[]        @relation("referred")
+  blogPosts           BlogPost[]
+  transformations     Transformation[]
+  coachSettings       CoachSettings?
+  notifications       Notification[]
+
+  @@map("users")
+}
+
+model Profile {
+  id                   String    @id @default(uuid())
+  userId               String    @unique @map("user_id")
+  email                String
+  fullName             String    @default("") @map("full_name")
+  role                 String    @default("client")
+  avatarUrl            String?   @map("avatar_url")
+  subscriptionStatus   String    @default("none") @map("subscription_status")
+  stripeCustomerId     String?   @map("stripe_customer_id")
+  stripeSubscriptionId String?   @map("stripe_subscription_id")
+  currentPeriodEnd     DateTime? @map("current_period_end")
+  referralCode         String?   @unique @map("referral_code")
+  referredBy           String?   @map("referred_by")
+  onboardingCompleted  Boolean   @default(false) @map("onboarding_completed")
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model OnboardingResponse {
+  id                 String   @id @default(uuid())
+  userId             String   @map("user_id")
+  version            Int      @default(1)
+  age                Int
+  sex                String
+  heightCm           Float    @map("height_cm")
+  weightKg           Float    @map("weight_kg")
+  goal               String
+  goalWeightKg       Float    @map("goal_weight_kg")
+  activityLevel      String   @map("activity_level")
+  bodyFatPercentage  Float?   @map("body_fat_percentage")
+  bodyFatUnsure      Boolean  @default(false) @map("body_fat_unsure")
+  dietType           String   @default("no_restrictions") @map("diet_type")
+  dislikedFoods      String[] @default([]) @map("disliked_foods")
+  allergies          String[] @default([])
+  mealsPerDay        Int      @default(3) @map("meals_per_day")
+  mealTimingWindow   String?  @default("") @map("meal_timing_window")
+  cookingSkill       String   @default("medium") @map("cooking_skill")
+  budget             String   @default("medium")
+  restaurantFrequency String? @default("") @map("restaurant_frequency")
+  injuries           String[] @default([])
+  injuryNotes        String?  @default("") @map("injury_notes")
+  workoutFrequency   Int      @default(3) @map("workout_frequency")
+  workoutLocation    String   @default("gym") @map("workout_location")
+  experienceLevel    String   @default("beginner") @map("experience_level")
+  homeEquipment      String[] @default([]) @map("home_equipment")
+  splitPreference    String   @default("full_body") @map("split_preference")
+  timePerSession     Int      @default(60) @map("time_per_session")
+  cardioPreference   String   @default("moderate") @map("cardio_preference")
+  planDurationWeeks  Int      @default(4) @map("plan_duration_weeks")
+  averageSteps       Int?     @default(8000) @map("average_steps")
+  sleepHours         Float?   @default(7) @map("sleep_hours")
+  stressLevel        String?  @default("medium") @map("stress_level")
+  jobType            String?  @default("desk") @map("job_type")
+  createdAt          DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("onboarding_responses")
+}
+
+model MacroTarget {
+  id            String   @id @default(uuid())
+  userId        String   @map("user_id")
+  version       Int      @default(1)
+  bmr           Float
+  tdee          Float
+  calorieTarget Float    @map("calorie_target")
+  proteinG      Float    @map("protein_g")
+  fatG          Float    @map("fat_g")
+  carbsG        Float    @map("carbs_g")
+  formulaUsed   String   @map("formula_used")
+  explanation   String?  @default("")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("macro_targets")
+}
+
+model MealPlan {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  version     Int      @default(1)
+  planData    Json     @map("plan_data")
+  groceryList Json     @default("[]") @map("grocery_list")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("meal_plans")
+}
+
+model TrainingPlan {
+  id            String   @id @default(uuid())
+  userId        String   @map("user_id")
+  version       Int      @default(1)
+  durationWeeks Int      @default(4) @map("duration_weeks")
+  planData      Json     @map("plan_data")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("training_plans")
+}
+
+model CheckIn {
+  id              String   @id @default(uuid())
+  userId          String   @map("user_id")
+  weekNumber      Int      @map("week_number")
+  weightKg        Float    @map("weight_kg")
+  waistCm         Float?   @map("waist_cm")
+  adherenceRating Int      @map("adherence_rating")
+  stepsAvg        Int?     @default(0) @map("steps_avg")
+  sleepAvg        Float?   @default(7) @map("sleep_avg")
+  notes           String?  @default("")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  progressPhotos ProgressPhoto[]
+
+  @@map("check_ins")
+}
+
+model ProgressPhoto {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  checkInId   String   @map("check_in_id")
+  photoType   String   @map("photo_type")
+  storagePath String   @map("storage_path")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  checkIn CheckIn @relation(fields: [checkInId], references: [id], onDelete: Cascade)
+
+  @@map("progress_photos")
+}
+
+model Lead {
+  id          String   @id @default(uuid())
+  email       String
+  source      String   @default("website")
+  quizAnswers Json?    @map("quiz_answers")
+  converted   Boolean  @default(false)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("leads")
+}
+
+model Referral {
+  id              String   @id @default(uuid())
+  referrerId      String   @map("referrer_id")
+  referredId      String?  @map("referred_id")
+  code            String   @unique
+  discountPercent Int      @default(10) @map("discount_percent")
+  status          String   @default("pending")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  referrer User  @relation("referrer", fields: [referrerId], references: [id], onDelete: Cascade)
+  referred User? @relation("referred", fields: [referredId], references: [id], onDelete: SetNull)
+
+  @@map("referrals")
+}
+
+model BlogPost {
+  id            String   @id @default(uuid())
+  title         String
+  slug          String   @unique
+  content       String   @default("")
+  excerpt       String   @default("")
+  published     Boolean  @default(false)
+  authorId      String   @map("author_id")
+  featuredImage String?  @map("featured_image")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("blog_posts")
+}
+
+model Transformation {
+  id          String   @id @default(uuid())
+  clientId    String?  @map("client_id")
+  clientName  String   @default("") @map("client_name")
+  beforePhoto String?  @map("before_photo")
+  afterPhoto  String?  @map("after_photo")
+  weightLost  String?  @default("") @map("weight_lost")
+  duration    String?  @default("")
+  quote       String?  @default("")
+  featured    Boolean  @default(false)
+  approved    Boolean  @default(false)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  client User? @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@map("transformations")
+}
+
+model CoachSettings {
+  id                   String    @id @default(uuid())
+  coachId              String    @unique @map("coach_id")
+  maxClients           Int       @default(20) @map("max_clients")
+  spotsRemaining       Int       @default(20) @map("spots_remaining")
+  promoActive          Boolean   @default(false) @map("promo_active")
+  promoEnd             DateTime? @map("promo_end")
+  promoDiscountPercent Int       @default(0) @map("promo_discount_percent")
+  welcomeMessage       String?   @default("Welcome to MaxHealth Coaching! I'm excited to work with you on your fitness journey.") @map("welcome_message")
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  coach User @relation(fields: [coachId], references: [id], onDelete: Cascade)
+
+  @@map("coach_settings")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  type      String
+  title     String
+  message   String   @default("")
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}

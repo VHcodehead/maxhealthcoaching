@@ -1,0 +1,13 @@
+import 'dotenv/config';
+import { defineConfig } from 'prisma/config';
+
+export default defineConfig({
+  schema: 'prisma/schema.prisma',
+  migrations: {
+    path: 'prisma/migrations',
+  },
+  datasource: {
+    // Railway provides this automatically from the PostgreSQL plugin
+    url: process.env.DATABASE_URL || 'postgresql://localhost:5432/placeholder',
+  },
+});
