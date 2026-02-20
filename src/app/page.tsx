@@ -184,20 +184,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Social Proof Bar */}
-      <section className="py-8 border-y bg-zinc-50/50">
-        <div className="max-w-6xl mx-auto px-4">
-          <p className="text-center text-xs text-zinc-400 uppercase tracking-widest mb-4">As Featured In</p>
-          <div className="flex justify-center items-center gap-8 md:gap-12 flex-wrap">
-            {["Men's Health", 'Shape', 'Muscle & Fitness', 'Healthline', 'GQ'].map((name) => (
-              <div key={name} className="h-8 px-4 bg-zinc-200/50 rounded flex items-center justify-center">
-                <span className="text-xs font-medium text-zinc-400">{name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Features */}
       <section id="features" className="py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4">
@@ -279,33 +265,38 @@ export default function HomePage() {
       <section id="results" className="py-20 md:py-28 bg-zinc-50">
         <div className="max-w-6xl mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
-            <Badge variant="secondary" className="mb-4">Transformations</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Real People. Real Results.</h2>
+            <Badge variant="secondary" className="mb-4">Proven Results</Badge>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Hundreds of Clients Transformed</h2>
+            <p className="text-lg text-zinc-500 max-w-2xl mx-auto">
+              From fat loss to muscle gain, our science-backed coaching system has helped hundreds of people
+              completely transform their bodies and build lasting habits.
+            </p>
           </AnimatedSection>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { name: 'Alex M.', stat: 'Lost 25 lbs in 12 weeks', quote: 'The meal plan made it so easy. I never felt like I was dieting.' },
-              { name: 'Sarah K.', stat: 'Lost 18 lbs in 8 weeks', quote: 'Perfect for my home gym setup. Results within the first month.' },
-              { name: 'James R.', stat: 'Gained 12 lbs muscle in 12 weeks', quote: 'Finally having the right calories made all the difference.' },
-            ].map((t, i) => (
-              <AnimatedSection key={i}>
-                <Card>
-                  <div className="grid grid-cols-2">
-                    <div className="aspect-[3/4] bg-zinc-100 flex items-center justify-center text-xs text-zinc-400">Before</div>
-                    <div className="aspect-[3/4] bg-emerald-50 flex items-center justify-center text-xs text-emerald-600">After</div>
-                  </div>
-                  <CardContent className="p-5">
-                    <p className="font-semibold">{t.name}</p>
-                    <p className="text-sm text-emerald-600 font-medium mb-2">{t.stat}</p>
-                    <p className="text-sm text-zinc-500 italic">&ldquo;{t.quote}&rdquo;</p>
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
-            ))}
+          <div className="grid md:grid-cols-3 gap-8">
+            <AnimatedSection>
+              <div className="text-center p-8 rounded-2xl bg-white border">
+                <p className="text-5xl font-bold text-emerald-600 mb-2">500+</p>
+                <p className="text-zinc-500">Clients Coached</p>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection>
+              <div className="text-center p-8 rounded-2xl bg-white border">
+                <p className="text-5xl font-bold text-emerald-600 mb-2">10k+</p>
+                <p className="text-zinc-500">Custom Plans Delivered</p>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection>
+              <div className="text-center p-8 rounded-2xl bg-white border">
+                <p className="text-5xl font-bold text-emerald-600 mb-2">95%</p>
+                <p className="text-zinc-500">Client Satisfaction</p>
+              </div>
+            </AnimatedSection>
           </div>
-          <p className="text-center text-xs text-zinc-400 mt-6">Results vary. Individual outcomes depend on adherence and starting point.</p>
+          <p className="text-center text-xs text-zinc-400 mt-8">Results vary. Individual outcomes depend on adherence and starting point.</p>
           <div className="text-center mt-6">
-            <Button variant="outline" asChild><Link href="/results">See All Transformations <ArrowRight className="w-3 h-3 ml-1" /></Link></Button>
+            <Button className="bg-emerald-600 hover:bg-emerald-700" size="lg" asChild>
+              <Link href="/pricing">Start Your Transformation <ArrowRight className="w-4 h-4 ml-2" /></Link>
+            </Button>
           </div>
         </div>
       </section>

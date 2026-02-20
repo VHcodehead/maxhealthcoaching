@@ -1,68 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Quote } from 'lucide-react';
+import { ArrowRight, Users, Target, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
-interface TransformationData {
-  id: string;
-  client_name: string;
-  before_photo?: string;
-  after_photo?: string;
-  weight_lost: string;
-  duration: string;
-  quote: string;
-}
-
-// Placeholder transformations for demo
-const placeholderTransformations: TransformationData[] = [
-  {
-    id: '1',
-    client_name: 'Alex M.',
-    weight_lost: 'Lost 25 lbs',
-    duration: '12 weeks',
-    quote: 'The meal plan made it so easy to stay on track. I never felt like I was dieting.',
-  },
-  {
-    id: '2',
-    client_name: 'Sarah K.',
-    weight_lost: 'Lost 18 lbs',
-    duration: '8 weeks',
-    quote: 'The training program was perfect for my home gym setup. I saw results within the first month.',
-  },
-  {
-    id: '3',
-    client_name: 'James R.',
-    weight_lost: 'Gained 12 lbs muscle',
-    duration: '12 weeks',
-    quote: 'As a hard gainer, finally having a structured plan with the right calories made all the difference.',
-  },
-  {
-    id: '4',
-    client_name: 'Maria L.',
-    weight_lost: 'Lost 30 lbs',
-    duration: '16 weeks',
-    quote: 'The weekly check-ins and photo tracking kept me accountable. Best investment in myself.',
-  },
-];
-
 export default function ResultsPage() {
-  const [transformations, setTransformations] = useState<TransformationData[]>(placeholderTransformations);
-
-  useEffect(() => {
-    // Try to fetch real transformations
-    fetch('/api/admin/clients')
-      .then(() => {
-        // If we had a public transformations endpoint we'd use it here
-      })
-      .catch(() => {
-        // Use placeholders
-      });
-  }, []);
-
   return (
     <div className="min-h-screen bg-white">
       <header className="border-b">
@@ -78,74 +22,73 @@ export default function ResultsPage() {
 
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Success Stories</Badge>
+          <Badge variant="secondary" className="mb-4">Proven Results</Badge>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            Real People. Real Results.
+            Hundreds of Clients Transformed
           </h1>
           <p className="text-lg text-zinc-500 max-w-2xl mx-auto">
-            Every transformation starts with a decision. Here are some of the incredible results
-            our clients have achieved with MaxHealth Coaching.
+            From fat loss to muscle gain, our science-backed coaching system delivers real results
+            through personalized nutrition and training — not cookie-cutter templates.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {transformations.map((t, i) => (
-            <motion.div
-              key={t.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <Card className="overflow-hidden">
-                {/* Before/After Photos */}
-                <div className="grid grid-cols-2">
-                  <div className="aspect-[3/4] bg-zinc-100 flex items-center justify-center relative">
-                    {t.before_photo ? (
-                      <img src={t.before_photo} alt="Before" className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="text-center text-zinc-400">
-                        <p className="text-sm font-medium">Before</p>
-                        <p className="text-xs">Photo placeholder</p>
-                      </div>
-                    )}
-                    <Badge className="absolute top-2 left-2 bg-zinc-900/70 text-white text-xs">Before</Badge>
-                  </div>
-                  <div className="aspect-[3/4] bg-emerald-50 flex items-center justify-center relative">
-                    {t.after_photo ? (
-                      <img src={t.after_photo} alt="After" className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="text-center text-emerald-600">
-                        <p className="text-sm font-medium">After</p>
-                        <p className="text-xs">Photo placeholder</p>
-                      </div>
-                    )}
-                    <Badge className="absolute top-2 left-2 bg-emerald-600 text-white text-xs">After</Badge>
-                  </div>
-                </div>
+        {/* Stats */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {[
+            { icon: Users, stat: '500+', label: 'Clients Coached', desc: 'Men and women of all experience levels' },
+            { icon: Target, stat: '10k+', label: 'Custom Plans Delivered', desc: 'Meal plans, training programs, and macro targets' },
+            { icon: TrendingUp, stat: '95%', label: 'Client Satisfaction', desc: 'Clients who hit their goals and stay consistent' },
+          ].map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <Card>
+                  <CardContent className="p-8 text-center">
+                    <Icon className="w-8 h-8 text-emerald-600 mx-auto mb-4" />
+                    <p className="text-4xl font-bold text-emerald-600 mb-1">{item.stat}</p>
+                    <p className="font-semibold mb-1">{item.label}</p>
+                    <p className="text-sm text-zinc-500">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </div>
 
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center font-semibold text-sm">
-                      {t.client_name.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="font-semibold">{t.client_name}</p>
-                      <p className="text-sm text-emerald-600 font-medium">{t.weight_lost} in {t.duration}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-2 items-start">
-                    <Quote className="w-4 h-4 text-zinc-300 shrink-0 mt-0.5" />
-                    <p className="text-sm text-zinc-600 italic">{t.quote}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+        {/* What clients achieve */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold text-center mb-8">What Our Clients Achieve</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              { title: 'Fat Loss', desc: 'Sustainable calorie deficits with high-protein meal plans that keep you full. No crash diets, no extreme restrictions — just consistent, trackable progress.' },
+              { title: 'Muscle Gain', desc: 'Structured surplus nutrition paired with periodized training programs. Progressive overload, proper recovery, and the right calories to build lean mass.' },
+              { title: 'Body Recomposition', desc: 'For clients who want to lose fat and build muscle simultaneously. Precision macros and strategic training to reshape your physique.' },
+              { title: 'Lifestyle Transformation', desc: 'Better sleep, more energy, sustainable habits. Our coaching goes beyond the gym — we build systems that fit your real life.' },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <Card>
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
+                    <p className="text-sm text-zinc-500">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Disclaimer */}
-        <div className="mt-12 text-center text-xs text-zinc-400 max-w-2xl mx-auto">
+        <div className="text-center text-xs text-zinc-400 max-w-2xl mx-auto">
           <p>
             Results vary. Individual outcomes depend on adherence to the program, starting point,
             genetics, and other factors. These results are not guaranteed. Always consult a physician
@@ -155,9 +98,10 @@ export default function ResultsPage() {
 
         {/* CTA */}
         <div className="mt-16 text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to Write Your Success Story?</h2>
+          <h2 className="text-2xl font-bold mb-4">Ready to Start Your Transformation?</h2>
+          <p className="text-zinc-500 mb-6">Join hundreds of clients who have transformed their bodies with personalized coaching.</p>
           <Button asChild size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-            <a href="/pricing">Start Your Transformation <ArrowRight className="w-4 h-4 ml-2" /></a>
+            <a href="/pricing">Get Started <ArrowRight className="w-4 h-4 ml-2" /></a>
           </Button>
         </div>
       </div>
