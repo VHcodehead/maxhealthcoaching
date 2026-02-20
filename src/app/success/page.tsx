@@ -1,28 +1,50 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 import { motion } from 'framer-motion';
-import { CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { CheckCircle, ArrowRight, Sparkles, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export default function SuccessPage() {
-  const router = useRouter();
-  const [countdown, setCountdown] = useState(5);
+function SuccessContent() {
+  const searchParams = useSearchParams();
+  const sessionId = searchParams.get('session_id');
+  const [verified, setVerified] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown((c) => {
-        if (c <= 1) {
-          clearInterval(timer);
-          router.push('/onboarding');
-          return 0;
+    if (!sessionId) return;
+
+    async function verifyAndRefresh() {
+      try {
+        // Activate subscription in DB immediately (don't wait for webhook)
+        const res = await fetch('/api/checkout/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_id: sessionId }),
+        });
+
+        if (!res.ok) {
+          setError(true);
+          return;
         }
-        return c - 1;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [router]);
+
+        // Force NextAuth to refresh the JWT with updated subscription status
+        await signIn('credentials', { redirect: false });
+
+        setVerified(true);
+      } catch {
+        setError(true);
+      }
+    }
+
+    verifyAndRefresh();
+  }, [sessionId]);
+
+  const handleContinue = () => {
+    window.location.href = '/onboarding';
+  };
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center px-4">
@@ -74,18 +96,37 @@ export default function SuccessPage() {
           </ol>
         </div>
 
-        <Button
-          size="lg"
-          className="bg-emerald-600 hover:bg-emerald-700"
-          onClick={() => router.push('/onboarding')}
-        >
-          Start Onboarding <ArrowRight className="w-4 h-4 ml-2" />
-        </Button>
-
-        <p className="text-xs text-zinc-400 mt-4">
-          Redirecting automatically in {countdown}s...
-        </p>
+        {error ? (
+          <p className="text-sm text-zinc-500 mb-4">
+            If you&apos;re not redirected,{' '}
+            <a href="/onboarding" className="text-emerald-600 underline">click here to continue</a>.
+          </p>
+        ) : !verified ? (
+          <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700" disabled>
+            <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Activating your account...
+          </Button>
+        ) : (
+          <Button
+            size="lg"
+            className="bg-emerald-600 hover:bg-emerald-700"
+            onClick={handleContinue}
+          >
+            Start Onboarding <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
+        )}
       </motion.div>
     </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
+      </div>
+    }>
+      <SuccessContent />
+    </Suspense>
   );
 }
