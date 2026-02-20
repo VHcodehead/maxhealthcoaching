@@ -11,35 +11,27 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid data' }, { status: 400 });
     }
 
-    // Generate teaser result based on quiz answers
-    const { goal, experience } = parsed.data;
+    const { goal, biggest_struggle } = parsed.data;
 
-    let teaserCalories: number;
-    let teaserProtein: number;
+    // Recommend a plan tier based on answers
+    let recommendedPlan: string;
+    let recommendation: string;
 
-    // Very rough estimates for teaser
-    if (goal === 'lose_fat') {
-      teaserCalories = experience === 'beginner' ? 1800 : 2000;
-      teaserProtein = 150;
-    } else if (goal === 'build_muscle') {
-      teaserCalories = experience === 'beginner' ? 2500 : 2800;
-      teaserProtein = 180;
+    if (biggest_struggle === 'accountability' || biggest_struggle === 'consistency') {
+      recommendedPlan = 'elite';
+      recommendation = "Based on your answers, you'd benefit most from hands-on coaching with regular check-ins to keep you accountable. Our Elite plan includes weekly 1-on-1 sessions and direct messaging with your coach.";
+    } else if (goal === 'build_muscle' || goal === 'recomp') {
+      recommendedPlan = 'pro';
+      recommendation = "Your goal requires precise nutrition and progressive training adjustments. Our Pro plan includes bi-weekly plan updates and priority coach review to keep your progress on track.";
     } else {
-      teaserCalories = 2200;
-      teaserProtein = 160;
+      recommendedPlan = 'basic';
+      recommendation = "You're ready to get started with a structured plan. Our Basic plan gives you everything you need — custom meal plan, training program, and weekly check-in tracking.";
     }
 
     return NextResponse.json({
       success: true,
-      teaser: {
-        estimated_calories: teaserCalories,
-        estimated_protein: teaserProtein,
-        recommendation: goal === 'lose_fat'
-          ? "Based on your answers, you'd benefit from a structured cut with controlled calorie reduction and high protein to preserve muscle."
-          : goal === 'build_muscle'
-          ? "You're in a great position to build muscle. A moderate calorie surplus with progressive training will get you there."
-          : "Body recomposition is perfect for your situation. Eating at maintenance with high protein and progressive training will transform your physique.",
-      },
+      recommendedPlan,
+      recommendation,
     });
   } catch (error) {
     console.error('Quiz error:', error);

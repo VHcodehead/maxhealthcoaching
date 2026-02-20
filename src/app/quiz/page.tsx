@@ -61,9 +61,8 @@ export default function QuizPage() {
   const [showResults, setShowResults] = useState(false);
   const [showEmailCapture, setShowEmailCapture] = useState(false);
   const [email, setEmail] = useState('');
-  const [teaser, setTeaser] = useState<{
-    estimated_calories: number;
-    estimated_protein: number;
+  const [result, setResult] = useState<{
+    recommendedPlan: string;
     recommendation: string;
   } | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -84,8 +83,8 @@ export default function QuizPage() {
           body: JSON.stringify(newAnswers),
         });
         const data = await res.json();
-        if (data.teaser) {
-          setTeaser(data.teaser);
+        if (data.recommendedPlan) {
+          setResult({ recommendedPlan: data.recommendedPlan, recommendation: data.recommendation });
         }
       } catch {
         // Show results even if API fails
@@ -125,27 +124,23 @@ export default function QuizPage() {
             <Sparkles className="w-8 h-8 text-emerald-600" />
           </div>
 
-          <h1 className="text-3xl font-bold tracking-tight mb-4">Your Quick Assessment</h1>
+          <h1 className="text-3xl font-bold tracking-tight mb-4">Your Recommendation</h1>
 
-          {teaser && (
+          {result && (
             <div className="bg-zinc-50 rounded-xl p-6 text-left mb-6">
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div className="bg-white rounded-lg p-4 text-center">
-                  <p className="text-3xl font-bold text-emerald-600">{teaser.estimated_calories}</p>
-                  <p className="text-xs text-zinc-500">Est. Daily Calories</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 text-center">
-                  <p className="text-3xl font-bold text-emerald-600">{teaser.estimated_protein}g</p>
-                  <p className="text-xs text-zinc-500">Est. Daily Protein</p>
-                </div>
+              <div className="mb-4 text-center">
+                <Badge className="bg-emerald-100 text-emerald-700 text-sm px-3 py-1">
+                  Recommended: {result.recommendedPlan.charAt(0).toUpperCase() + result.recommendedPlan.slice(1)} Plan
+                </Badge>
               </div>
-              <p className="text-sm text-zinc-600">{teaser.recommendation}</p>
+              <p className="text-sm text-zinc-600">{result.recommendation}</p>
             </div>
           )}
 
           <p className="text-zinc-500 text-sm mb-6">
-            This is a rough estimate. For precise targets based on your body composition,
-            activity level, and goals, get your full custom plan.
+            Want to know your exact calorie and macro targets? Try our{' '}
+            <a href="/tools" className="text-emerald-600 underline">free calculators</a>, or get
+            a complete custom plan built for you.
           </p>
 
           {!showEmailCapture ? (

@@ -11,15 +11,20 @@ import { Badge } from '@/components/ui/badge';
 
 function TDEECalculator() {
   const [form, setForm] = useState({ age: '', sex: 'male', weight: '', height: '', activity: '1.55' });
+  const [units, setUnits] = useState<'lbs' | 'kg'>('lbs');
+  const [heightUnit, setHeightUnit] = useState<'in' | 'cm'>('in');
   const [result, setResult] = useState<{ bmr: number; tdee: number } | null>(null);
 
   const calculate = () => {
     const age = parseFloat(form.age);
-    const weight = parseFloat(form.weight);
-    const height = parseFloat(form.height);
+    const rawWeight = parseFloat(form.weight);
+    const rawHeight = parseFloat(form.height);
     const activity = parseFloat(form.activity);
 
-    if (!age || !weight || !height) return;
+    if (!age || !rawWeight || !rawHeight) return;
+
+    const weight = units === 'lbs' ? rawWeight / 2.205 : rawWeight;
+    const height = heightUnit === 'in' ? rawHeight * 2.54 : rawHeight;
 
     let bmr: number;
     if (form.sex === 'male') {
@@ -56,12 +61,32 @@ function TDEECalculator() {
             </select>
           </div>
           <div>
-            <Label>Weight (kg)</Label>
-            <Input type="number" value={form.weight} onChange={(e) => setForm({ ...form, weight: e.target.value })} placeholder="75" />
+            <div className="flex items-center justify-between mb-1">
+              <Label>Weight</Label>
+              <select
+                className="h-6 rounded border px-1 text-xs"
+                value={units}
+                onChange={(e) => setUnits(e.target.value as 'lbs' | 'kg')}
+              >
+                <option value="lbs">lbs</option>
+                <option value="kg">kg</option>
+              </select>
+            </div>
+            <Input type="number" value={form.weight} onChange={(e) => setForm({ ...form, weight: e.target.value })} placeholder={units === 'lbs' ? '165' : '75'} />
           </div>
           <div>
-            <Label>Height (cm)</Label>
-            <Input type="number" value={form.height} onChange={(e) => setForm({ ...form, height: e.target.value })} placeholder="175" />
+            <div className="flex items-center justify-between mb-1">
+              <Label>Height</Label>
+              <select
+                className="h-6 rounded border px-1 text-xs"
+                value={heightUnit}
+                onChange={(e) => setHeightUnit(e.target.value as 'in' | 'cm')}
+              >
+                <option value="in">inches</option>
+                <option value="cm">cm</option>
+              </select>
+            </div>
+            <Input type="number" value={form.height} onChange={(e) => setForm({ ...form, height: e.target.value })} placeholder={heightUnit === 'in' ? '69' : '175'} />
           </div>
         </div>
         <div>
@@ -94,14 +119,15 @@ function TDEECalculator() {
 
 function MacroCalculator() {
   const [form, setForm] = useState({ calories: '', weight: '', goal: 'cut' });
+  const [units, setUnits] = useState<'lbs' | 'kg'>('lbs');
   const [result, setResult] = useState<{ protein: number; fat: number; carbs: number } | null>(null);
 
   const calculate = () => {
     const calories = parseFloat(form.calories);
-    const weight = parseFloat(form.weight);
-    if (!calories || !weight) return;
+    const rawWeight = parseFloat(form.weight);
+    if (!calories || !rawWeight) return;
 
-    const weightLbs = weight * 2.205;
+    const weightLbs = units === 'lbs' ? rawWeight : rawWeight * 2.205;
     const proteinPerLb = form.goal === 'cut' ? 1.1 : form.goal === 'bulk' ? 0.9 : 1.0;
     const protein = Math.round(weightLbs * proteinPerLb);
     const fat = Math.round((calories * 0.27) / 9);
@@ -124,8 +150,18 @@ function MacroCalculator() {
             <Input type="number" value={form.calories} onChange={(e) => setForm({ ...form, calories: e.target.value })} placeholder="2200" />
           </div>
           <div>
-            <Label>Weight (kg)</Label>
-            <Input type="number" value={form.weight} onChange={(e) => setForm({ ...form, weight: e.target.value })} placeholder="75" />
+            <div className="flex items-center justify-between mb-1">
+              <Label>Weight</Label>
+              <select
+                className="h-6 rounded border px-1 text-xs"
+                value={units}
+                onChange={(e) => setUnits(e.target.value as 'lbs' | 'kg')}
+              >
+                <option value="lbs">lbs</option>
+                <option value="kg">kg</option>
+              </select>
+            </div>
+            <Input type="number" value={form.weight} onChange={(e) => setForm({ ...form, weight: e.target.value })} placeholder={units === 'lbs' ? '165' : '75'} />
           </div>
         </div>
         <div>
@@ -167,6 +203,7 @@ function MacroCalculator() {
 
 function OneRMCalculator() {
   const [form, setForm] = useState({ weight: '', reps: '' });
+  const [units, setUnits] = useState<'lbs' | 'kg'>('lbs');
   const [result, setResult] = useState<number | null>(null);
 
   const calculate = () => {
@@ -174,10 +211,12 @@ function OneRMCalculator() {
     const reps = parseFloat(form.reps);
     if (!weight || !reps || reps < 1) return;
 
-    // Epley formula
+    // Epley formula — works the same regardless of unit, result stays in input unit
     const oneRM = reps === 1 ? weight : Math.round(weight * (1 + reps / 30));
     setResult(oneRM);
   };
+
+  const unitLabel = units === 'lbs' ? 'lbs' : 'kg';
 
   return (
     <Card>
@@ -189,8 +228,18 @@ function OneRMCalculator() {
       <CardContent className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label>Weight Lifted (kg)</Label>
-            <Input type="number" value={form.weight} onChange={(e) => setForm({ ...form, weight: e.target.value })} placeholder="100" />
+            <div className="flex items-center justify-between mb-1">
+              <Label>Weight Lifted</Label>
+              <select
+                className="h-6 rounded border px-1 text-xs"
+                value={units}
+                onChange={(e) => { setUnits(e.target.value as 'lbs' | 'kg'); setResult(null); }}
+              >
+                <option value="lbs">lbs</option>
+                <option value="kg">kg</option>
+              </select>
+            </div>
+            <Input type="number" value={form.weight} onChange={(e) => setForm({ ...form, weight: e.target.value })} placeholder={units === 'lbs' ? '225' : '100'} />
           </div>
           <div>
             <Label>Reps Completed</Label>
@@ -202,12 +251,12 @@ function OneRMCalculator() {
         {result && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-emerald-50 rounded-lg p-4 text-center">
             <p className="text-sm text-zinc-600">Estimated One-Rep Max</p>
-            <p className="text-3xl font-bold text-emerald-600">{result} kg</p>
+            <p className="text-3xl font-bold text-emerald-600">{result} {unitLabel}</p>
             <div className="grid grid-cols-4 gap-2 mt-3 text-xs text-zinc-500">
-              <div><span className="font-semibold">{Math.round(result * 0.85)}kg</span><br />85% (5 reps)</div>
-              <div><span className="font-semibold">{Math.round(result * 0.75)}kg</span><br />75% (8 reps)</div>
-              <div><span className="font-semibold">{Math.round(result * 0.65)}kg</span><br />65% (12 reps)</div>
-              <div><span className="font-semibold">{Math.round(result * 0.50)}kg</span><br />50% (20 reps)</div>
+              <div><span className="font-semibold">{Math.round(result * 0.85)} {unitLabel}</span><br />85% (5 reps)</div>
+              <div><span className="font-semibold">{Math.round(result * 0.75)} {unitLabel}</span><br />75% (8 reps)</div>
+              <div><span className="font-semibold">{Math.round(result * 0.65)} {unitLabel}</span><br />65% (12 reps)</div>
+              <div><span className="font-semibold">{Math.round(result * 0.50)} {unitLabel}</span><br />50% (20 reps)</div>
             </div>
           </motion.div>
         )}
