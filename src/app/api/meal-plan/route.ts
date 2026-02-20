@@ -99,23 +99,41 @@ The complete response JSON should be: { "days": [...], "grocery_list": [...] }`;
       ],
       response_format: { type: 'json_object' },
       temperature: 0.4,
-      max_tokens: 16000,
+      max_tokens: 32000,
     });
+
+    console.log('OpenAI finish_reason:', response.choices[0]?.finish_reason);
+    console.log('OpenAI usage:', JSON.stringify(response.usage));
 
     const content = response.choices[0]?.message?.content;
     if (!content) {
+      console.error('No content in OpenAI response');
       return NextResponse.json({ error: 'Failed to generate plan. Please try again.' }, { status: 500 });
+    }
+
+    // If the response was cut off, the JSON will be incomplete
+    if (response.choices[0]?.finish_reason === 'length') {
+      console.error('OpenAI response truncated — hit max_tokens limit');
+      return NextResponse.json({ error: 'Plan generation was cut short. Please try again.' }, { status: 500 });
     }
 
     let planData;
     try {
       planData = JSON.parse(content);
-    } catch {
+    } catch (e) {
+      console.error('JSON parse error:', e);
+      console.error('Raw content (first 500 chars):', content.substring(0, 500));
       return NextResponse.json({ error: 'Invalid response format. Please try again.' }, { status: 500 });
     }
 
     // Validate basic structure
-    if (!planData.days || !Array.isArray(planData.days) || planData.days.length !== 7) {
+    if (!planData.days || !Array.isArray(planData.days)) {
+      console.error('Missing days array. Keys:', Object.keys(planData));
+      return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
+    }
+
+    if (planData.days.length !== 7) {
+      console.error('Expected 7 days, got:', planData.days.length);
       return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
     }
 

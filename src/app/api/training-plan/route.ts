@@ -115,22 +115,34 @@ Respond with ONLY valid JSON matching this schema: ${JSON.stringify(TRAINING_PLA
       ],
       response_format: { type: 'json_object' },
       temperature: 0.4,
-      max_tokens: 16000,
+      max_tokens: 32000,
     });
+
+    console.log('Training OpenAI finish_reason:', response.choices[0]?.finish_reason);
+    console.log('Training OpenAI usage:', JSON.stringify(response.usage));
 
     const content = response.choices[0]?.message?.content;
     if (!content) {
+      console.error('No content in training plan response');
       return NextResponse.json({ error: 'Failed to generate plan. Please try again.' }, { status: 500 });
+    }
+
+    if (response.choices[0]?.finish_reason === 'length') {
+      console.error('Training plan response truncated — hit max_tokens limit');
+      return NextResponse.json({ error: 'Plan generation was cut short. Please try again.' }, { status: 500 });
     }
 
     let planData;
     try {
       planData = JSON.parse(content);
-    } catch {
+    } catch (e) {
+      console.error('Training plan JSON parse error:', e);
+      console.error('Raw content (first 500 chars):', content.substring(0, 500));
       return NextResponse.json({ error: 'Invalid response format. Please try again.' }, { status: 500 });
     }
 
     if (!planData.weeks || !Array.isArray(planData.weeks)) {
+      console.error('Missing weeks array. Keys:', Object.keys(planData));
       return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
     }
 
