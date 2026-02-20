@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Link from 'next/link';
 import { toast } from 'sonner';
-import { Loader2, Dumbbell, CheckCircle2 } from 'lucide-react';
+import { Loader2, Dumbbell } from 'lucide-react';
 import { signIn } from 'next-auth/react';
 
 import { signUpSchema } from '@/lib/validations';
@@ -25,7 +25,6 @@ type SignUpFormData = z.infer<typeof signUpSchema>;
 
 export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const {
     register,
@@ -67,7 +66,7 @@ export default function SignupPage() {
         return;
       }
 
-      setIsSubmitted(true);
+      window.location.href = '/onboarding';
     } catch {
       toast.error('Something went wrong. Please try again.');
     } finally {
@@ -90,24 +89,7 @@ export default function SignupPage() {
           </p>
         </div>
 
-        {isSubmitted ? (
-          <Card>
-            <CardContent className="flex flex-col items-center py-10 text-center">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                <CheckCircle2 className="h-6 w-6 text-green-600" />
-              </div>
-              <h2 className="text-lg font-semibold">Check your email</h2>
-              <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-                We&apos;ve sent a confirmation link to your email address.
-                Please click the link to verify your account and get started.
-              </p>
-              <Link href="/login" className="mt-6">
-                <Button variant="outline">Back to sign in</Button>
-              </Link>
-            </CardContent>
-          </Card>
-        ) : (
-          <Card>
+        <Card>
             <CardHeader className="text-center">
               <CardTitle className="text-xl">Create your account</CardTitle>
               <CardDescription>
@@ -181,7 +163,6 @@ export default function SignupPage() {
               </div>
             </CardContent>
           </Card>
-        )}
       </div>
     </div>
   );
