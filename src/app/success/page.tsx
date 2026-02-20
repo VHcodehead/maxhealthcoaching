@@ -2,7 +2,6 @@
 
 import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { signIn } from 'next-auth/react';
 import { motion } from 'framer-motion';
 import { CheckCircle, ArrowRight, Sparkles, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -29,9 +28,6 @@ function SuccessContent() {
           setError(true);
           return;
         }
-
-        // Force NextAuth to refresh the JWT with updated subscription status
-        await signIn('credentials', { redirect: false });
 
         setVerified(true);
       } catch {

@@ -42,7 +42,10 @@ export default auth((req) => {
   }
 
   // Client routes that require active subscription
-  const paidRoutes = ['/onboarding', '/dashboard', '/checkin', '/generating'];
+  // Note: /onboarding and /generating are excluded — they're part of the
+  // post-checkout flow and the JWT may not have the updated subscription yet.
+  // The real gate is /dashboard and /checkin.
+  const paidRoutes = ['/dashboard', '/checkin'];
   const requiresPayment = paidRoutes.some(route => path.startsWith(route));
 
   if (requiresPayment && role === 'client') {
