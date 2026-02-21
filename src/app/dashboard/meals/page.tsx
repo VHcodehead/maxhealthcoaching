@@ -340,13 +340,57 @@ export default function MealsPage() {
         const data = await res.json()
 
         if (data.mealPlan) {
-          // plan_data is mapped by the API from planData
-          const planData = data.mealPlan.plan_data
-          if (Array.isArray(planData)) {
-            setMeals(planData)
+          let planData = data.mealPlan.plan_data
+          if (typeof planData === 'string') {
+            try { planData = JSON.parse(planData) } catch { /* ignore */ }
           }
 
-          // grocery_list is mapped by the API from groceryList
+          // planData is { days: [{ day: "Monday", meals: [...] }] }
+          const days = planData?.days || planData
+          if (Array.isArray(days)) {
+            const flatMeals: Meal[] = []
+            for (const dayObj of days) {
+              const dayNum = DAY_MAP[dayObj.day] ?? 0
+              if (Array.isArray(dayObj.meals)) {
+                for (const m of dayObj.meals) {
+                  flatMeals.push({
+                    id: `${dayObj.day}-${m.name}`,
+                    day_of_week: dayNum,
+                    meal_name: m.name || m.meal_name || 'Meal',
+                    recipe_title: m.recipe_title || '',
+                    ingredients: Array.isArray(m.ingredients)
+                      ? m.ingredients.map((ing: any) =>
+                          typeof ing === 'string' ? ing : `${ing.amount} ${ing.unit} ${ing.name}`
+                        )
+                      : m.ingredients,
+                    instructions: m.instructions,
+                    calories: m.macro_totals?.calories || m.calories || 0,
+                    protein: m.macro_totals?.protein || m.protein || 0,
+                    carbs: m.macro_totals?.carbs || m.carbs || 0,
+                    fat: m.macro_totals?.fat || m.fat || 0,
+                    swap_options: Array.isArray(m.swap_options)
+                      ? m.swap_options.map((s: any) => ({
+                          recipe_title: s.recipe_title || '',
+                          ingredients: Array.isArray(s.ingredients)
+                            ? s.ingredients.map((ing: any) =>
+                                typeof ing === 'string' ? ing : `${ing.amount} ${ing.unit} ${ing.name}`
+                              )
+                            : s.ingredients,
+                          instructions: s.instructions,
+                          calories: s.macro_totals?.calories || s.calories || 0,
+                          protein: s.macro_totals?.protein || s.protein || 0,
+                          carbs: s.macro_totals?.carbs || s.carbs || 0,
+                          fat: s.macro_totals?.fat || s.fat || 0,
+                        }))
+                      : null,
+                  })
+                }
+              }
+            }
+            setMeals(flatMeals)
+          }
+
+          // grocery_list
           const groceryList = data.mealPlan.grocery_list
           if (Array.isArray(groceryList)) {
             setGroceryItems(groceryList)

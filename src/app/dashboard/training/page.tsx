@@ -261,9 +261,33 @@ export default function TrainingPage() {
         const data = await res.json()
 
         if (data.trainingPlan?.plan_data) {
-          const planData = data.trainingPlan.plan_data
-          if (Array.isArray(planData)) {
-            setTrainingData(planData)
+          let planData = data.trainingPlan.plan_data
+          if (typeof planData === 'string') {
+            try { planData = JSON.parse(planData) } catch { /* ignore */ }
+          }
+
+          // planData is { weeks: [...], overview, program_name, progression_rules }
+          const weeks = planData?.weeks || planData
+          if (Array.isArray(weeks)) {
+            const flat: TrainingPlanData[] = []
+            for (const week of weeks) {
+              const weekNum = week.week || week.week_number || 1
+              const days = week.days || []
+              for (const day of days) {
+                flat.push({
+                  id: `w${weekNum}-${day.day_name || day.day}`,
+                  user_id: '',
+                  week_number: weekNum,
+                  day_name: day.day_name || day.day || '',
+                  workout_name: day.session_name || day.workout_name || 'Training',
+                  warmup: day.warmup || null,
+                  exercises: day.exercises || null,
+                  program_overview: planData.overview || null,
+                  progression_rules: planData.progression_rules || null,
+                })
+              }
+            }
+            setTrainingData(flat)
           }
         }
       } catch (err) {
