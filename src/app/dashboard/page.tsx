@@ -192,13 +192,19 @@ export default function DashboardOverview() {
 
         // Meal plan - planData is { days: [{ day: "Monday", meals: [...] }] }
         if (data.mealPlan?.planData) {
-          const planData = data.mealPlan.planData
+          let planData = data.mealPlan.planData
+          // Handle case where planData is a JSON string
+          if (typeof planData === 'string') {
+            try { planData = JSON.parse(planData) } catch { /* ignore */ }
+          }
           const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
           const todayName = dayNames[new Date().getDay()]
           const days = planData.days || planData
+          console.log('Meal plan days:', days?.length, 'Looking for:', todayName, 'Available days:', days?.map?.((d: any) => d.day))
           if (Array.isArray(days)) {
             const todayPlan = days.find((d: any) => d.day === todayName)
             if (todayPlan?.meals) {
+              console.log('Found today meals:', todayPlan.meals.length)
               setTodayMeals(todayPlan.meals.map((m: any) => ({
                 day_of_week: new Date().getDay(),
                 meal_name: m.name || m.meal_name,
@@ -208,14 +214,22 @@ export default function DashboardOverview() {
                 carbs: m.macro_totals?.carbs || m.carbs || 0,
                 fat: m.macro_totals?.fat || m.fat || 0,
               })))
+            } else {
+              console.log('No todayPlan found for', todayName)
             }
           }
+        } else {
+          console.log('No mealPlan in dashboard response')
         }
 
         // Training plan - planData is { weeks: [{ week: 1, days: [...] }] }
         if (data.trainingPlan?.planData) {
-          const planData = data.trainingPlan.planData
+          let planData = data.trainingPlan.planData
+          if (typeof planData === 'string') {
+            try { planData = JSON.parse(planData) } catch { /* ignore */ }
+          }
           const weeks = planData.weeks || planData
+          console.log('Training weeks:', weeks?.length, 'First week days:', weeks?.[0]?.days?.length)
           if (Array.isArray(weeks) && weeks.length > 0) {
             const week1 = weeks[0]
             const days = week1.days || []
