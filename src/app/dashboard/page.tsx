@@ -190,32 +190,39 @@ export default function DashboardOverview() {
           })
         }
 
-        // Meal plan - planData is a JSON blob containing daily meals
+        // Meal plan - planData is { days: [{ day: "Monday", meals: [...] }] }
         if (data.mealPlan?.planData) {
           const planData = data.mealPlan.planData
-          const today = new Date().getDay()
-          // planData could be an array of meals with day_of_week
-          if (Array.isArray(planData)) {
-            const meals = planData.filter(
-              (m: any) => m.day_of_week === today
-            )
-            setTodayMeals(meals)
+          const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+          const todayName = dayNames[new Date().getDay()]
+          const days = planData.days || planData
+          if (Array.isArray(days)) {
+            const todayPlan = days.find((d: any) => d.day === todayName)
+            if (todayPlan?.meals) {
+              setTodayMeals(todayPlan.meals.map((m: any) => ({
+                day_of_week: new Date().getDay(),
+                meal_name: m.name || m.meal_name,
+                recipe_title: m.recipe_title,
+                calories: m.macro_totals?.calories || m.calories || 0,
+                protein: m.macro_totals?.protein || m.protein || 0,
+                carbs: m.macro_totals?.carbs || m.carbs || 0,
+                fat: m.macro_totals?.fat || m.fat || 0,
+              })))
+            }
           }
         }
 
-        // Training plan - planData is a JSON blob containing training days
+        // Training plan - planData is { weeks: [{ week: 1, days: [...] }] }
         if (data.trainingPlan?.planData) {
           const planData = data.trainingPlan.planData
-          if (Array.isArray(planData)) {
-            // Get unique entries for week 1 (current week display)
-            const week1 = planData.filter(
-              (t: any) => t.week_number === 1
-            )
-            // Deduplicate by day_name
-            const uniqueDays = Array.from(
-              new Map(week1.map((d: any) => [d.day_name, d])).values()
-            ) as TrainingPlanDay[]
-            setTrainingDays(uniqueDays)
+          const weeks = planData.weeks || planData
+          if (Array.isArray(weeks) && weeks.length > 0) {
+            const week1 = weeks[0]
+            const days = week1.days || []
+            setTrainingDays(days.map((d: any) => ({
+              day_name: d.day_name || d.day,
+              workout_name: d.session_name || d.workout_name || 'Training',
+            })))
           }
         }
 
