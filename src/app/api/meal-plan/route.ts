@@ -79,17 +79,16 @@ CLIENT PREFERENCES:
 - Restaurant frequency: ${onboarding.restaurantFrequency || 'Rarely'}
 
 REQUIREMENTS:
-- Each meal needs exactly 2 swap options. Swaps must match the original within ±5% protein and ±10% calories.
+- Each meal needs exactly 1 swap option. The swap must match the original within ±5% protein and ±10% calories. Keep swap ingredients and instructions concise.
 - Sum of all meal macros must equal day_totals within ±3%.
 - Vary protein sources across meals — no single protein source in more than 2 meals per day.
 - Use realistic portion sizes (1 can tuna = 142g, 1 large egg = 50g, 1 scoop whey = 30g).
-- Include a consolidated grocery list organized by category.
+- Keep instructions brief — 2-4 short steps max per meal. No verbose descriptions.
+- Do NOT include a grocery list — just the days array.
 
-Respond with ONLY valid JSON matching this schema: ${JSON.stringify(MEAL_PLAN_SCHEMA)}
-
-Add a "grocery_list" array at the top level with objects: { "category": string, "items": [{ "name": string, "amount": string }] }
-
-The complete response JSON should be: { "days": [...], "grocery_list": [...] }`;
+Respond with ONLY valid JSON: { "days": [...] }
+Each day: { "day": "Monday", "meals": [...], "day_totals": { "calories": N, "protein": N, "carbs": N, "fat": N } }
+Each meal: { "name": "Meal 1", "recipe_title": "...", "ingredients": [{ "name": "...", "amount": "...", "unit": "..." }], "instructions": ["..."], "macro_totals": { "calories": N, "protein": N, "carbs": N, "fat": N }, "swap_options": [ONE swap with same structure: recipe_title, ingredients, instructions, macro_totals] }`;
 
     const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4o',
@@ -99,7 +98,7 @@ The complete response JSON should be: { "days": [...], "grocery_list": [...] }`;
       ],
       response_format: { type: 'json_object' },
       temperature: 0.4,
-      max_tokens: 32000,
+      max_tokens: 16384,
     });
 
     console.log('OpenAI finish_reason:', response.choices[0]?.finish_reason);
@@ -151,7 +150,7 @@ The complete response JSON should be: { "days": [...], "grocery_list": [...] }`;
         userId: targetUserId,
         version,
         planData: { days: planData.days },
-        groceryList: planData.grocery_list || [],
+        groceryList: [],
       },
     });
 

@@ -115,7 +115,7 @@ Respond with ONLY valid JSON matching this schema: ${JSON.stringify(TRAINING_PLA
       ],
       response_format: { type: 'json_object' },
       temperature: 0.4,
-      max_tokens: 32000,
+      max_tokens: 16384,
     });
 
     console.log('Training OpenAI finish_reason:', response.choices[0]?.finish_reason);
