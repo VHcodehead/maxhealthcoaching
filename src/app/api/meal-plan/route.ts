@@ -54,41 +54,41 @@ export async function POST(request: NextRequest) {
 
     const weightLbs = Math.round(onboarding.weightKg * 2.205);
 
-    const userPrompt = `Create a 7-day meal plan for this client:
+    const userPrompt = `Create a COMPLETE 7-day meal plan (Monday through Sunday — all 7 days) for this client. You MUST output all 7 days in the "days" array. Do not stop early.
 
-CLIENT BODY STATS:
-- Weight: ${onboarding.weightKg} kg (${weightLbs} lbs)
-- Goal: ${onboarding.goal} (${goalContext})
-- Height: ${onboarding.heightCm} cm
+CLIENT STATS: ${onboarding.weightKg}kg (${weightLbs}lbs), ${onboarding.heightCm}cm, goal: ${onboarding.goal}. ${goalContext}
 
-DAILY MACRO TARGETS:
-- Calories: ${macros.calorieTarget} kcal
-- Protein: ${macros.proteinG}g (${Math.round(macros.proteinG / onboarding.weightKg * 10) / 10}g/kg bodyweight)
-- Carbs: ${macros.carbsG}g
-- Fat: ${macros.fatG}g
-${macros.explanation ? `- Rationale: ${macros.explanation}` : ''}
+DAILY TARGETS: ${macros.calorieTarget}kcal, ${macros.proteinG}g protein, ${macros.carbsG}g carbs, ${macros.fatG}g fat.
 
-CLIENT PREFERENCES:
-- Diet type: ${onboarding.dietType}
-- Disliked foods: ${onboarding.dislikedFoods.length > 0 ? onboarding.dislikedFoods.join(', ') : 'None'}
-- Allergies: ${onboarding.allergies.length > 0 ? onboarding.allergies.join(', ') : 'None'}
-- Meals per day: ${onboarding.mealsPerDay}
-- Meal timing: ${onboarding.mealTimingWindow || 'Flexible'}
-- Cooking skill: ${onboarding.cookingSkill}
-- Budget: ${onboarding.budget}
-- Restaurant frequency: ${onboarding.restaurantFrequency || 'Rarely'}
+PREFERENCES: ${onboarding.dietType} diet, ${onboarding.mealsPerDay} meals/day, cooking skill: ${onboarding.cookingSkill}, budget: ${onboarding.budget}${onboarding.dislikedFoods.length > 0 ? `, dislikes: ${onboarding.dislikedFoods.join(', ')}` : ''}${onboarding.allergies.length > 0 ? `, allergies: ${onboarding.allergies.join(', ')}` : ''}.
 
-REQUIREMENTS:
-- Each meal needs exactly 1 swap option. The swap must match the original within ±5% protein and ±10% calories. Keep swap ingredients and instructions concise.
-- Sum of all meal macros must equal day_totals within ±3%.
-- Vary protein sources across meals — no single protein source in more than 2 meals per day.
-- Use realistic portion sizes (1 can tuna = 142g, 1 large egg = 50g, 1 scoop whey = 30g).
-- Keep instructions brief — 2-4 short steps max per meal. No verbose descriptions.
-- Do NOT include a grocery list — just the days array.
+OUTPUT FORMAT — valid JSON, no markdown:
+{
+  "days": [
+    {
+      "day": "Monday",
+      "meals": [
+        {
+          "name": "Meal 1",
+          "recipe_title": "Chicken & Rice Bowl",
+          "ingredients": [{"name": "chicken breast", "amount": "150", "unit": "g"}],
+          "instructions": ["Cook chicken", "Serve over rice"],
+          "macro_totals": {"calories": 500, "protein": 40, "carbs": 50, "fat": 12},
+          "swap_options": [{"recipe_title": "Turkey & Rice Bowl", "ingredients": [{"name": "ground turkey", "amount": "150", "unit": "g"}], "instructions": ["Brown turkey", "Serve over rice"], "macro_totals": {"calories": 490, "protein": 38, "carbs": 50, "fat": 13}}]
+        }
+      ],
+      "day_totals": {"calories": ${macros.calorieTarget}, "protein": ${macros.proteinG}, "carbs": ${macros.carbsG}, "fat": ${macros.fatG}}
+    }
+  ]
+}
 
-Respond with ONLY valid JSON: { "days": [...] }
-Each day: { "day": "Monday", "meals": [...], "day_totals": { "calories": N, "protein": N, "carbs": N, "fat": N } }
-Each meal: { "name": "Meal 1", "recipe_title": "...", "ingredients": [{ "name": "...", "amount": "...", "unit": "..." }], "instructions": ["..."], "macro_totals": { "calories": N, "protein": N, "carbs": N, "fat": N }, "swap_options": [ONE swap with same structure: recipe_title, ingredients, instructions, macro_totals] }`;
+RULES:
+- EXACTLY 7 days (Monday-Sunday), each with ${onboarding.mealsPerDay} meals
+- 1 swap option per meal
+- 2-3 ingredients per meal, 1-2 instruction steps — keep it concise
+- Day totals must be within 3% of targets
+- Vary protein sources across the day
+- Output ONLY the JSON object, nothing else`;
 
     const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4o',
