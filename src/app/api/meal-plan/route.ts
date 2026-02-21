@@ -80,9 +80,10 @@ OUTPUT — valid JSON only:
 
 RULES:
 - EXACTLY 7 days, each with EXACTLY ${mealsPerDay} meals
+- List ALL ingredients needed to make the recipe — cooking fats, seasonings, sauces, liquids, binders, everything. Every recipe must be complete enough to shop for and cook without guessing. Examples: a stir-fry needs oil, soy sauce, garlic, ginger — not just "chicken and vegetables." Baked salmon needs olive oil, lemon, salt, pepper, herbs. Pancakes need eggs, milk, cooking oil — not just the dry mix.
 - Every ingredient needs an exact numeric amount + unit (g, oz, cups, tbsp, tsp, count). No vague amounts.
-- 3-5 ingredients per meal
-- 1 swap per meal (same portion format)
+- Instructions must be real cooking steps with heat levels, cook times, and technique (e.g., "Sear salmon in olive oil over medium-high heat, 4 min per side" — not just "cook salmon"). Each meal should read like a real recipe.
+- 1 swap per meal (same complete ingredient list)
 - Day totals = sum of meal macros, within 3% of ${macros.calorieTarget} kcal
 - Vary protein sources across the day`;
 

@@ -20,7 +20,8 @@ RULES:
 - Vary protein sources — no single source in more than 2 meals/day.
 - Practical portions: 1 can tuna=142g, 1 egg=50g, 1 scoop whey=30g, 1 cup rice=186g cooked.
 - 1 swap per meal. Swap must match original within ±5% protein, ±10% calories, using different ingredients.
-- Keep instructions to 1-2 short steps. Keep ingredients to 2-4 per meal.
+- List EVERY ingredient needed to actually make the recipe — cooking fats, seasonings, liquids, binders, everything. A recipe's ingredient list should be complete enough that someone could shop and cook it without guessing. Examples: a stir-fry needs the oil, soy sauce, garlic, and any sauce components — not just "chicken and rice." An omelet needs eggs, butter/oil for the pan, salt, and all fillings. Pancakes need eggs, milk, oil for cooking — not just dry ingredients.
+- Instructions: 2-4 clear cooking steps per meal. Include heat levels, cook times, and technique (e.g., "Heat skillet over medium-high, sear chicken thighs 5 min per side until golden" — not just "cook chicken"). Every meal should read like a real recipe someone can follow.
 - Budget "low": chicken thigh, ground turkey, eggs, rice, oats, frozen veg, canned beans, tuna, PB, milk.
 - Budget "medium": adds salmon, lean beef, Greek yogurt, berries, avocado, sweet potatoes.
 - Cooking skill "low": max 5 ingredients, max 20 min prep, one-pan meals.
