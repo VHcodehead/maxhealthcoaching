@@ -71,10 +71,10 @@ OUTPUT FORMAT — valid JSON, no markdown:
         {
           "name": "Meal 1",
           "recipe_title": "Chicken & Rice Bowl",
-          "ingredients": [{"name": "chicken breast", "amount": "150", "unit": "g"}],
-          "instructions": ["Cook chicken", "Serve over rice"],
-          "macro_totals": {"calories": 500, "protein": 40, "carbs": 50, "fat": 12},
-          "swap_options": [{"recipe_title": "Turkey & Rice Bowl", "ingredients": [{"name": "ground turkey", "amount": "150", "unit": "g"}], "instructions": ["Brown turkey", "Serve over rice"], "macro_totals": {"calories": 490, "protein": 38, "carbs": 50, "fat": 13}}]
+          "ingredients": [{"name": "chicken breast", "amount": "150", "unit": "g"}, {"name": "white rice (cooked)", "amount": "200", "unit": "g"}, {"name": "olive oil", "amount": "1", "unit": "tsp"}, {"name": "broccoli", "amount": "100", "unit": "g"}],
+          "instructions": ["Season and grill chicken breast 6 min per side", "Serve over rice with steamed broccoli"],
+          "macro_totals": {"calories": 520, "protein": 42, "carbs": 55, "fat": 11},
+          "swap_options": [{"recipe_title": "Turkey & Sweet Potato Plate", "ingredients": [{"name": "ground turkey 93/7", "amount": "170", "unit": "g"}, {"name": "sweet potato", "amount": "200", "unit": "g"}, {"name": "green beans", "amount": "80", "unit": "g"}], "instructions": ["Brown turkey in skillet", "Bake sweet potato, serve together"], "macro_totals": {"calories": 510, "protein": 40, "carbs": 52, "fat": 12}}]
         }
       ],
       "day_totals": {"calories": ${macros.calorieTarget}, "protein": ${macros.proteinG}, "carbs": ${macros.carbsG}, "fat": ${macros.fatG}}
@@ -82,13 +82,14 @@ OUTPUT FORMAT — valid JSON, no markdown:
   ]
 }
 
-RULES:
-- EXACTLY 7 days (Monday-Sunday), each with ${onboarding.mealsPerDay} meals
-- 1 swap option per meal
-- 2-3 ingredients per meal, 1-2 instruction steps — keep it concise
-- Day totals must be within 3% of targets
-- Vary protein sources across the day
-- Output ONLY the JSON object, nothing else`;
+CRITICAL RULES:
+- EXACTLY 7 days (Monday-Sunday), each with ${onboarding.mealsPerDay} meals. Do NOT stop before Sunday.
+- Every ingredient MUST have an exact numeric amount and unit (grams, oz, cups, tbsp, tsp, or count). Never use vague amounts like "some", "a handful", "to taste", or "as needed". Even cooking oil and seasoning needs a measured amount.
+- Use 3-5 ingredients per meal — enough to be a real meal with accurate macros.
+- 1 swap option per meal with the same exact portion format.
+- Day totals must be within 3% of targets.
+- Vary protein sources across the day.
+- Output ONLY the JSON object, nothing else.`;
 
     const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4o',
