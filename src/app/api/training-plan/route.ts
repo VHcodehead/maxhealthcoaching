@@ -67,45 +67,59 @@ export async function POST(request: NextRequest) {
       }).join('\n');
     }
 
-    const userPrompt = `Create a ${durationWeeks}-week training program for this client:
+    // Determine minimum exercises per session based on split
+    const splitExerciseMin: Record<string, number> = {
+      bro_split: 8,
+      ppl: 6,
+      upper_lower: 7,
+      full_body: 6,
+      strength: 5,
+    };
+    const minExercises = splitExerciseMin[onboarding.splitPreference] || 6;
 
-CLIENT BODY STATS:
-- Weight: ${onboarding.weightKg} kg (${weightLbs} lbs)
-- Height: ${onboarding.heightCm} cm
-${onboarding.bodyFatPercentage ? `- Body fat: ~${onboarding.bodyFatPercentage}%` : '- Body fat: Unknown'}
-- Experience level: ${onboarding.experienceLevel}
+    const userPrompt = `Create a ${durationWeeks}-week training program. Each session MUST have ${minExercises}-10 working exercises (not counting warmup). This is a REAL program, not a template.
 
-CLIENT PROFILE:
-- Goal: ${onboarding.goal}
-- Workout frequency: ${onboarding.workoutFrequency} days/week
-- Location: ${onboarding.workoutLocation}
-- Split preference: ${splitDescriptions[onboarding.splitPreference] || onboarding.splitPreference}
+CLIENT: ${onboarding.weightKg}kg (${weightLbs}lbs), ${onboarding.heightCm}cm, ${onboarding.experienceLevel} level, goal: ${onboarding.goal}.
+${onboarding.bodyFatPercentage ? `Body fat: ~${onboarding.bodyFatPercentage}%` : ''}
+
+TRAINING SETUP:
+- Split: ${splitDescriptions[onboarding.splitPreference] || onboarding.splitPreference}
+- Frequency: ${onboarding.workoutFrequency} days/week
 - Time per session: ${onboarding.timePerSession} minutes
-- Cardio preference: ${onboarding.cardioPreference}
-${onboarding.workoutLocation === 'home' ? `- Available equipment: ${onboarding.homeEquipment.length > 0 ? onboarding.homeEquipment.join(', ') : 'Bodyweight only'}` : '- Full gym access'}
+- Location: ${onboarding.workoutLocation}${onboarding.workoutLocation === 'home' ? ` (equipment: ${onboarding.homeEquipment.length > 0 ? onboarding.homeEquipment.join(', ') : 'bodyweight only'})` : ' (full gym access)'}
+- Cardio: ${onboarding.cardioPreference}
 
-VOLUME TARGETS (weekly working sets, scale to ${levelMultiplier} end of ranges):
-- Chest: 10-20 sets | Back: 10-20 sets | Quads: 10-16 sets
-- Hamstrings: 6-12 sets | Shoulders: 6-16 sets | Biceps: 6-12 sets | Triceps: 6-12 sets
+${onboarding.splitPreference === 'bro_split' ? `BRO SPLIT STRUCTURE (bodybuilding style):
+- Day 1: Chest (8-10 exercises — flat/incline/decline pressing, flyes, cables, dips)
+- Day 2: Back (8-10 exercises — rows, pulldowns, deadlifts, pullovers, rear delts)
+- Day 3: Shoulders + Traps (8-10 exercises — overhead press, lateral raises, front raises, face pulls, shrugs)
+- Day 4: Legs (8-10 exercises — squats, leg press, lunges, extensions, curls, calves)
+- Day 5: Arms (8-10 exercises — bicep curls, tricep extensions, hammers, cables, close-grip bench)
+Each session: start heavy compounds, progress to moderate rep isolation, finish with pump/burnout sets (15-20 reps).` : ''}
+${onboarding.splitPreference === 'ppl' ? `PPL STRUCTURE:
+- Push: chest + shoulders + triceps (6-8 exercises). Start bench/OHP, end with lateral raises and tricep isolation.
+- Pull: back + biceps + rear delts (6-8 exercises). Start deadlift/rows, end with curls and face pulls.
+- Legs: quads + hamstrings + glutes + calves (6-8 exercises). Start squat/leg press, end with curls and calf raises.` : ''}
 
-INJURIES — EXPLICIT AVOIDANCE LIST:
+VOLUME: Scale to ${levelMultiplier} end — Chest 10-20 sets/week, Back 10-20, Quads 10-16, Hamstrings 6-12, Shoulders 6-16, Biceps 6-12, Triceps 6-12.
+
+INJURIES:
 ${injurySection}
-${onboarding.injuryNotes ? `Additional notes: ${onboarding.injuryNotes}` : ''}
+${onboarding.injuryNotes ? `Notes: ${onboarding.injuryNotes}` : ''}
 
 REQUIREMENTS:
-- Program must be exactly ${durationWeeks} weeks long
-- ${onboarding.workoutFrequency} training days per week
-- Each session within ${onboarding.timePerSession} minutes
-- Include 3-5 warmup items per session (general cardio, dynamic stretching, activation)
-- Compound movements: 2-3 min rest. Isolation movements: 60-90 sec rest. Always specify rest_seconds.
-- Only prescribe tempo when it serves a purpose (slow eccentrics, pauses). Default is "controlled".
-${onboarding.experienceLevel === 'beginner' ? '- LINEAR progression: add 2.5-5 lbs when all reps completed. Focus on compound movements and technique. No deload weeks needed.' : ''}
-${onboarding.experienceLevel === 'intermediate' ? '- DOUBLE progression: hit top of rep range for all sets, then increase weight. Every 4th week is a deload (40% volume reduction, same intensity). Include rep range variety.' : ''}
-${onboarding.experienceLevel === 'advanced' ? '- RPE-based progression with periodized volume blocks. Every 4th week is a deload (40% volume reduction, same intensity). Include intensity techniques and wave loading.' : ''}
-- If the split preference conflicts with the frequency (e.g., PPL with 4 days, bro split for beginner), override to a better split and explain why in the overview.
-${onboarding.cardioPreference !== 'none' ? `- Include ${onboarding.cardioPreference} cardio recommendations in session notes` : ''}
+- ${durationWeeks} weeks, ${onboarding.workoutFrequency} days/week
+- ${minExercises}-10 exercises per session (MINIMUM ${minExercises}). Do NOT output sessions with only 3-4 exercises.
+- Each exercise: 3-4 working sets. Vary rep ranges (4-6, 8-12, 12-20).
+- Warmup: 3-5 items per session
+- Rest: compounds 120-180s, isolation 60-90s. Always specify rest_seconds as a number.
+${onboarding.experienceLevel === 'beginner' ? '- Linear progression. No deloads.' : ''}
+${onboarding.experienceLevel === 'intermediate' ? '- Double progression. Deload every 4th week (40% volume reduction).' : ''}
+${onboarding.experienceLevel === 'advanced' ? '- RPE/RIR based. Deload every 4th week. Include drop sets, rest-pause on isolation work.' : ''}
+${onboarding.cardioPreference !== 'none' ? `- Add ${onboarding.cardioPreference} cardio in session notes.` : ''}
 
-Respond with ONLY valid JSON matching this schema: ${JSON.stringify(TRAINING_PLAN_SCHEMA)}`;
+OUTPUT — valid JSON only:
+{"program_name":"...","overview":"...","progression_rules":"...","weeks":[{"week":1,"days":[{"day_name":"Monday","session_name":"Chest","warmup":["5 min incline walk","Arm circles","Band pull-aparts"],"exercises":[{"name":"Barbell Bench Press","sets":4,"reps":"6-8","rpe":8,"rest_seconds":150,"tempo":"controlled","substitution":"","notes":""},{"name":"Incline Dumbbell Press","sets":3,"reps":"8-10","rpe":7,"rest_seconds":120,"tempo":"controlled","substitution":"","notes":""}]}]}]}`;
 
     const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4o',

@@ -54,42 +54,37 @@ export async function POST(request: NextRequest) {
 
     const weightLbs = Math.round(onboarding.weightKg * 2.205);
 
-    const userPrompt = `Create a COMPLETE 7-day meal plan (Monday through Sunday — all 7 days) for this client. You MUST output all 7 days in the "days" array. Do not stop early.
+    const mealsPerDay = onboarding.mealsPerDay;
+    const calPerMeal = Math.round(macros.calorieTarget / mealsPerDay);
+    const protPerMeal = Math.round(macros.proteinG / mealsPerDay);
+    const carbsPerMeal = Math.round(macros.carbsG / mealsPerDay);
+    const fatPerMeal = Math.round(macros.fatG / mealsPerDay);
 
-CLIENT STATS: ${onboarding.weightKg}kg (${weightLbs}lbs), ${onboarding.heightCm}cm, goal: ${onboarding.goal}. ${goalContext}
+    const userPrompt = `Create a COMPLETE 7-day meal plan (Monday through Sunday — all 7 days). You MUST output all 7 days. Do not stop early.
 
-DAILY TARGETS: ${macros.calorieTarget}kcal, ${macros.proteinG}g protein, ${macros.carbsG}g carbs, ${macros.fatG}g fat.
+CLIENT: ${onboarding.weightKg}kg (${weightLbs}lbs), ${onboarding.heightCm}cm, goal: ${onboarding.goal}. ${goalContext}
 
-PREFERENCES: ${onboarding.dietType} diet, ${onboarding.mealsPerDay} meals/day, cooking skill: ${onboarding.cookingSkill}, budget: ${onboarding.budget}${onboarding.dislikedFoods.length > 0 ? `, dislikes: ${onboarding.dislikedFoods.join(', ')}` : ''}${onboarding.allergies.length > 0 ? `, allergies: ${onboarding.allergies.join(', ')}` : ''}.
+DAILY TARGETS (MANDATORY — each day MUST hit these):
+- Total: ${macros.calorieTarget} kcal | ${macros.proteinG}g protein | ${macros.carbsG}g carbs | ${macros.fatG}g fat
+- Per meal average (${mealsPerDay} meals): ~${calPerMeal} kcal | ~${protPerMeal}g protein | ~${carbsPerMeal}g carbs | ~${fatPerMeal}g fat
 
-OUTPUT FORMAT — valid JSON, no markdown:
-{
-  "days": [
-    {
-      "day": "Monday",
-      "meals": [
-        {
-          "name": "Meal 1",
-          "recipe_title": "Chicken & Rice Bowl",
-          "ingredients": [{"name": "chicken breast", "amount": "150", "unit": "g"}, {"name": "white rice (cooked)", "amount": "200", "unit": "g"}, {"name": "olive oil", "amount": "1", "unit": "tsp"}, {"name": "broccoli", "amount": "100", "unit": "g"}],
-          "instructions": ["Season and grill chicken breast 6 min per side", "Serve over rice with steamed broccoli"],
-          "macro_totals": {"calories": 520, "protein": 42, "carbs": 55, "fat": 11},
-          "swap_options": [{"recipe_title": "Turkey & Sweet Potato Plate", "ingredients": [{"name": "ground turkey 93/7", "amount": "170", "unit": "g"}, {"name": "sweet potato", "amount": "200", "unit": "g"}, {"name": "green beans", "amount": "80", "unit": "g"}], "instructions": ["Brown turkey in skillet", "Bake sweet potato, serve together"], "macro_totals": {"calories": 510, "protein": 40, "carbs": 52, "fat": 12}}]
-        }
-      ],
-      "day_totals": {"calories": ${macros.calorieTarget}, "protein": ${macros.proteinG}, "carbs": ${macros.carbsG}, "fat": ${macros.fatG}}
-    }
-  ]
-}
+PREFERENCES: ${onboarding.dietType} diet, ${mealsPerDay} meals/day, cooking: ${onboarding.cookingSkill}, budget: ${onboarding.budget}${onboarding.dislikedFoods.length > 0 ? `, dislikes: ${onboarding.dislikedFoods.join(', ')}` : ''}${onboarding.allergies.length > 0 ? `, allergies: ${onboarding.allergies.join(', ')}` : ''}.
 
-CRITICAL RULES:
-- EXACTLY 7 days (Monday-Sunday), each with ${onboarding.mealsPerDay} meals. Do NOT stop before Sunday.
-- Every ingredient MUST have an exact numeric amount and unit (grams, oz, cups, tbsp, tsp, or count). Never use vague amounts like "some", "a handful", "to taste", or "as needed". Even cooking oil and seasoning needs a measured amount.
-- Use 3-5 ingredients per meal — enough to be a real meal with accurate macros.
-- 1 swap option per meal with the same exact portion format.
-- Day totals must be within 3% of targets.
-- Vary protein sources across the day.
-- Output ONLY the JSON object, nothing else.`;
+CALORIE MATH CHECK — do this for every meal before outputting:
+1. Add up: (protein × 4) + (carbs × 4) + (fat × 9) = calories
+2. Each meal should be close to ${calPerMeal} kcal. Some meals can be higher/lower but the day total MUST be within 3% of ${macros.calorieTarget}.
+3. If your day total is under, increase portion sizes. If over, decrease them. Do NOT just set day_totals to the target — the actual meal macros must add up.
+
+OUTPUT — valid JSON only:
+{"days":[{"day":"Monday","meals":[{"name":"Meal 1","recipe_title":"...","ingredients":[{"name":"...","amount":"150","unit":"g"}],"instructions":["..."],"macro_totals":{"calories":${calPerMeal},"protein":${protPerMeal},"carbs":${carbsPerMeal},"fat":${fatPerMeal}},"swap_options":[{"recipe_title":"...","ingredients":[{"name":"...","amount":"150","unit":"g"}],"instructions":["..."],"macro_totals":{"calories":${calPerMeal},"protein":${protPerMeal},"carbs":${carbsPerMeal},"fat":${fatPerMeal}}}]}],"day_totals":{"calories":${macros.calorieTarget},"protein":${macros.proteinG},"carbs":${macros.carbsG},"fat":${macros.fatG}}}]}
+
+RULES:
+- EXACTLY 7 days, each with EXACTLY ${mealsPerDay} meals
+- Every ingredient needs an exact numeric amount + unit (g, oz, cups, tbsp, tsp, count). No vague amounts.
+- 3-5 ingredients per meal
+- 1 swap per meal (same portion format)
+- Day totals = sum of meal macros, within 3% of ${macros.calorieTarget} kcal
+- Vary protein sources across the day`;
 
     const response = await getOpenAI().chat.completions.create({
       model: 'gpt-4o',
@@ -135,6 +130,15 @@ CRITICAL RULES:
     if (planData.days.length !== 7) {
       console.error('Expected 7 days, got:', planData.days.length);
       return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
+    }
+
+    // Validate calorie totals — sum actual meal macros per day
+    for (const day of planData.days) {
+      if (!Array.isArray(day.meals)) continue;
+      const actualCals = day.meals.reduce((sum: number, m: any) => sum + (m.macro_totals?.calories || 0), 0);
+      const target = macros.calorieTarget;
+      const diff = Math.abs(actualCals - target) / target;
+      console.log(`${day.day}: ${actualCals} kcal (target: ${target}, diff: ${Math.round(diff * 100)}%)`);
     }
 
     // Get current version
