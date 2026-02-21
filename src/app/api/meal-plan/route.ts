@@ -1,11 +1,73 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-import { getOpenAI, MEAL_PLAN_SYSTEM_PROMPT, MEAL_PLAN_SCHEMA } from '@/lib/openai';
+import { getOpenAI, MEAL_PLAN_SYSTEM_PROMPT, MACRO_VALIDATION_SYSTEM_PROMPT, MEAL_PLAN_SCHEMA } from '@/lib/openai';
 
 // Simple in-memory rate limit
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_WINDOW = 60000; // 1 minute
+
+// Compile a weekly grocery list from the corrected plan
+function compileGroceryList(days: any[]): { category: string; item: string }[] {
+  const ingredientMap = new Map<string, { amount: number; unit: string }>();
+
+  for (const day of days) {
+    if (!Array.isArray(day.meals)) continue;
+    for (const meal of day.meals) {
+      if (!Array.isArray(meal.ingredients)) continue;
+      for (const ing of meal.ingredients) {
+        const name = (ing.name || '').toLowerCase().trim();
+        if (!name) continue;
+        const amount = parseFloat(ing.amount) || 0;
+        const unit = (ing.unit || '').toLowerCase().trim();
+        const key = `${name}|${unit}`;
+
+        const existing = ingredientMap.get(key);
+        if (existing) {
+          existing.amount += amount;
+        } else {
+          ingredientMap.set(key, { amount, unit });
+        }
+      }
+    }
+  }
+
+  const proteinKW = ['chicken', 'turkey', 'beef', 'steak', 'salmon', 'cod', 'tuna', 'shrimp', 'fish', 'egg white', 'egg', 'whey', 'pork', 'tilapia', 'ground meat'];
+  const dairyKW = ['milk', 'yogurt', 'cheese', 'feta', 'mozzarella', 'cheddar', 'cottage', 'butter', 'cream'];
+  const grainKW = ['rice', 'oat', 'quinoa', 'pasta', 'bread', 'tortilla', 'potato', 'sweet potato', 'noodle', 'wrap'];
+  const produceKW = ['spinach', 'broccoli', 'banana', 'berr', 'avocado', 'onion', 'garlic', 'tomato', 'lettuce', 'pepper', 'cucumber', 'carrot', 'celery', 'mushroom', 'zucchini', 'asparagus', 'kale', 'apple', 'lemon', 'lime', 'ginger', 'cilantro', 'parsley', 'basil', 'green bean', 'corn', 'cabbage'];
+  const oilKW = ['olive oil', 'coconut oil', 'cooking oil', 'oil', 'peanut butter', 'almond butter', 'almonds', 'walnuts', 'nuts', 'seeds'];
+
+  function categorize(name: string): string {
+    for (const kw of proteinKW) { if (name.includes(kw)) return 'Protein'; }
+    for (const kw of dairyKW) { if (name.includes(kw)) return 'Dairy'; }
+    for (const kw of grainKW) { if (name.includes(kw)) return 'Grains & Carbs'; }
+    for (const kw of produceKW) { if (name.includes(kw)) return 'Produce'; }
+    for (const kw of oilKW) { if (name.includes(kw)) return 'Oils & Fats'; }
+    return 'Pantry';
+  }
+
+  const result: { category: string; item: string }[] = [];
+
+  for (const [key, data] of ingredientMap) {
+    const [name] = key.split('|');
+    let displayAmount: string;
+    if (data.amount >= 1000 && data.unit === 'g') {
+      displayAmount = `${(data.amount / 1000).toFixed(1)} kg`;
+    } else {
+      displayAmount = `${Math.round(data.amount)} ${data.unit}`;
+    }
+    const label = name.charAt(0).toUpperCase() + name.slice(1);
+    result.push({
+      category: categorize(name),
+      item: `${label} — ${displayAmount}`,
+    });
+  }
+
+  // Sort by category then by item name
+  result.sort((a, b) => a.category.localeCompare(b.category) || a.item.localeCompare(b.item));
+  return result;
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -133,13 +195,108 @@ RULES:
       return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
     }
 
-    // Validate calorie totals — sum actual meal macros per day
+    // Log first-pass macros before validation
+    console.log('=== FIRST PASS (pre-validation) ===');
     for (const day of planData.days) {
       if (!Array.isArray(day.meals)) continue;
       const actualCals = day.meals.reduce((sum: number, m: any) => sum + (m.macro_totals?.calories || 0), 0);
-      const target = macros.calorieTarget;
-      const diff = Math.abs(actualCals - target) / target;
-      console.log(`${day.day}: ${actualCals} kcal (target: ${target}, diff: ${Math.round(diff * 100)}%)`);
+      console.log(`${day.day}: ${actualCals} kcal (target: ${macros.calorieTarget})`);
+    }
+
+    // === SECOND PASS: Macro validation and correction ===
+    console.log('Starting macro validation pass...');
+
+    // Build compact version of plan for validation (strip swap_options to save tokens)
+    const planForValidation = planData.days.map((day: any) => ({
+      day: day.day,
+      meals: day.meals.map((meal: any, idx: number) => ({
+        meal_index: idx,
+        recipe_title: meal.recipe_title,
+        ingredients: meal.ingredients,
+        macro_totals: meal.macro_totals,
+      })),
+      day_totals: day.day_totals,
+    }));
+
+    const validationPrompt = `Here is a 7-day meal plan. Daily targets: ${macros.calorieTarget} kcal | ${macros.proteinG}g protein | ${macros.carbsG}g carbs | ${macros.fatG}g fat.
+
+Review EVERY ingredient against USDA data. Calculate real macros from the actual portions listed. Adjust portions so each day hits the targets within 3%. If a meal claims carbs but has no carb source, ADD one (rice, oats, sweet potato, etc).
+
+CURRENT PLAN:
+${JSON.stringify(planForValidation)}
+
+Return corrected data as JSON with this structure:
+{"days":[{"day":"Monday","meals":[{"meal_index":0,"ingredients":[{"name":"...","amount":"...","unit":"g"}],"macro_totals":{"calories":0,"protein":0,"carbs":0,"fat":0}}],"day_totals":{"calories":0,"protein":0,"carbs":0,"fat":0}}]}
+
+IMPORTANT:
+- Return ALL 7 days, ALL meals per day
+- Keep same recipes — only adjust portions or add missing ingredients
+- Every macro_totals MUST be calculated from actual USDA data for the listed ingredients
+- Calories = (protein×4)+(carbs×4)+(fat×9) — verify this for every meal
+- Each day total within 3% of ${macros.calorieTarget} kcal`;
+
+    const validationResponse = await getOpenAI().chat.completions.create({
+      model: 'gpt-4o',
+      messages: [
+        { role: 'system', content: MACRO_VALIDATION_SYSTEM_PROMPT },
+        { role: 'user', content: validationPrompt },
+      ],
+      response_format: { type: 'json_object' },
+      temperature: 0.2,
+      max_tokens: 16384,
+    });
+
+    console.log('Validation finish_reason:', validationResponse.choices[0]?.finish_reason);
+    console.log('Validation usage:', JSON.stringify(validationResponse.usage));
+
+    const validationContent = validationResponse.choices[0]?.message?.content;
+    let correctedPlan = planData;
+
+    if (validationContent && validationResponse.choices[0]?.finish_reason !== 'length') {
+      try {
+        const corrections = JSON.parse(validationContent);
+
+        if (corrections.days && Array.isArray(corrections.days) && corrections.days.length === 7) {
+          // Merge corrections into original plan
+          for (const correctedDay of corrections.days) {
+            const originalDay = planData.days.find((d: any) => d.day === correctedDay.day);
+            if (!originalDay || !Array.isArray(correctedDay.meals)) continue;
+
+            for (const correctedMeal of correctedDay.meals) {
+              const mealIdx = correctedMeal.meal_index;
+              if (mealIdx == null || !originalDay.meals[mealIdx]) continue;
+
+              // Update ingredients and macros from validation pass
+              if (correctedMeal.ingredients) {
+                originalDay.meals[mealIdx].ingredients = correctedMeal.ingredients;
+              }
+              if (correctedMeal.macro_totals) {
+                originalDay.meals[mealIdx].macro_totals = correctedMeal.macro_totals;
+              }
+            }
+
+            // Update day totals
+            if (correctedDay.day_totals) {
+              originalDay.day_totals = correctedDay.day_totals;
+            }
+          }
+
+          correctedPlan = planData;
+          console.log('=== SECOND PASS (post-validation) ===');
+          for (const day of correctedPlan.days) {
+            if (!Array.isArray(day.meals)) continue;
+            const actualCals = day.meals.reduce((sum: number, m: any) => sum + (m.macro_totals?.calories || 0), 0);
+            const diff = Math.abs(actualCals - macros.calorieTarget) / macros.calorieTarget;
+            console.log(`${day.day}: ${actualCals} kcal (target: ${macros.calorieTarget}, diff: ${Math.round(diff * 100)}%)`);
+          }
+        } else {
+          console.warn('Validation returned invalid structure, using first-pass plan');
+        }
+      } catch (e) {
+        console.error('Validation JSON parse error, using first-pass plan:', e);
+      }
+    } else {
+      console.warn('Validation pass failed or truncated, using first-pass plan');
     }
 
     // Get current version
@@ -151,12 +308,16 @@ RULES:
 
     const version = existing ? existing.version + 1 : 1;
 
+    // Compile weekly grocery list from corrected ingredients
+    const groceryList = compileGroceryList(correctedPlan.days);
+    console.log(`Grocery list: ${groceryList.length} items`);
+
     const mealPlan = await prisma.mealPlan.create({
       data: {
         userId: targetUserId,
         version,
-        planData: { days: planData.days },
-        groceryList: [],
+        planData: { days: correctedPlan.days },
+        groceryList,
       },
     });
 
