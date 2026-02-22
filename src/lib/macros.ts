@@ -98,15 +98,15 @@ export function calculateMacros(
 ): { protein: number; fat: number; carbs: number; explanation: string } {
   const weightLbs = weightKg * 2.205;
 
-  // Protein: 0.8-1.2g per lb depending on goal
+  // Protein: 0.8-1.0g per lb depending on goal
   let proteinPerLb: number;
   if (goal === 'cut') {
-    proteinPerLb = 1.1; // higher protein on a cut to preserve muscle
-    if (bodyFatPercentage && bodyFatPercentage < 15) proteinPerLb = 1.2;
+    proteinPerLb = 1.0; // preserve muscle on a cut
+    if (bodyFatPercentage && bodyFatPercentage < 15) proteinPerLb = 1.1;
   } else if (goal === 'bulk') {
-    proteinPerLb = 0.9;
+    proteinPerLb = 0.8;
   } else {
-    proteinPerLb = 1.0; // recomp
+    proteinPerLb = 0.9; // recomp
   }
 
   const protein = Math.round(weightLbs * proteinPerLb);

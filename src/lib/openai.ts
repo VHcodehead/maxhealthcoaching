@@ -14,14 +14,36 @@ export const openai = { get instance() { return getOpenAI(); } };
 
 export const MEAL_PLAN_SYSTEM_PROMPT = `You are an elite sports nutritionist. You MUST respond with valid JSON only — no markdown, no commentary. You MUST generate ALL 7 days (Monday through Sunday) in a single response. Never stop early.
 
+CRITICAL — PER-INGREDIENT MACROS:
+For EVERY ingredient, you MUST include a "macros" object with calories, protein, carbs, and fat for that specific portion. Calculate as: (USDA value per 100g) × (amount / 100). We compute meal and day totals server-side by summing your ingredient macros. Do NOT include "macro_totals" or "day_totals" — only per-ingredient macros.
+
+USDA REFERENCE (per 100g raw/cooked as noted):
+Chicken breast: 165cal 31P 0C 3.6F | Chicken thigh: 177cal 20P 0C 10.2F
+Ground turkey 93%: 143cal 19.5P 0C 7.1F | Ground beef 90%: 176cal 20P 0C 10F
+Salmon: 208cal 20P 0C 13F | Cod: 82cal 18P 0C 0.7F | Tuna canned: 116cal 26P 0C 0.8F
+Shrimp: 85cal 20P 0C 0.5F | Egg whites: 52cal 11P 0.7C 0.2F
+Whole egg (1 large 50g): 72cal 6.3P 0.4C 4.8F | Whey scoop (30g): 120cal 24P 3C 1.5F
+Greek yogurt 0%: 59cal 10P 3.6C 0.4F | Cottage cheese 2%: 81cal 11P 3.6C 2.3F
+Rice cooked: 130cal 2.7P 28C 0.3F | Oats dry: 389cal 17P 66C 7F
+Quinoa cooked: 120cal 4.4P 21C 1.9F | Sweet potato: 90cal 2P 21C 0.1F
+Pasta cooked: 131cal 5P 25C 1.1F | Bread whole wheat: 247cal 13P 41C 3.4F
+Tortilla flour (64g): 200cal 5.3P 33C 5.1F | Potato: 93cal 2.5P 21C 0.1F
+Olive oil: 884cal 0P 0C 100F | Butter: 717cal 0.9P 0.1C 81F
+Peanut butter: 588cal 25P 20C 50F | Almonds: 579cal 21P 22C 50F
+Avocado: 160cal 2P 9C 15F | Banana (118g): 105cal 1.3P 27C 0.4F
+Mixed berries: 57cal 0.7P 14C 0.3F | Feta: 264cal 14P 4C 21F
+Cheddar: 403cal 25P 1.3C 33F | Milk whole: 61cal 3.2P 4.8C 3.3F
+Kidney beans canned: 82cal 7.3P 21C 0.5F | Black beans canned: 91cal 6.7P 16C 0.3F
+Broccoli: 34cal 2.8P 7C 0.4F | Spinach: 23cal 2.9P 3.6C 0.4F
+Soy sauce (15ml): 8cal 1.3P 1C 0F | Honey (21g): 64cal 0P 17C 0F
+
 RULES:
-- Use real foods from standard US grocery stores with realistic USDA macros.
-- Day totals must match targets within ±3%. Calories = (protein×4)+(carbs×4)+(fat×9) within ±3%.
+- Use real foods from standard US grocery stores.
 - Vary protein sources — no single source in more than 2 meals/day.
 - Practical portions: 1 can tuna=142g, 1 egg=50g, 1 scoop whey=30g, 1 cup rice=186g cooked.
-- 1 swap per meal. Swap must match original within ±5% protein, ±10% calories, using different ingredients.
-- List EVERY ingredient needed to actually make the recipe — cooking fats, seasonings, liquids, binders, everything. A recipe's ingredient list should be complete enough that someone could shop and cook it without guessing. Examples: a stir-fry needs the oil, soy sauce, garlic, and any sauce components — not just "chicken and rice." An omelet needs eggs, butter/oil for the pan, salt, and all fillings. Pancakes need eggs, milk, oil for cooking — not just dry ingredients.
-- Instructions: 2-4 clear cooking steps per meal. Include heat levels, cook times, and technique (e.g., "Heat skillet over medium-high, sear chicken thighs 5 min per side until golden" — not just "cook chicken"). Every meal should read like a real recipe someone can follow.
+- 1 swap per meal. Swap ingredients must also include per-ingredient macros.
+- List EVERY ingredient — cooking fats, seasonings, liquids, binders, everything. A recipe must be complete enough to shop and cook without guessing.
+- Instructions: 2-4 clear cooking steps with heat levels, cook times, and technique.
 - Budget "low": chicken thigh, ground turkey, eggs, rice, oats, frozen veg, canned beans, tuna, PB, milk.
 - Budget "medium": adds salmon, lean beef, Greek yogurt, berries, avocado, sweet potatoes.
 - Cooking skill "low": max 5 ingredients, max 20 min prep, one-pan meals.
@@ -68,75 +90,6 @@ SPLIT VALIDATION:
 INJURY HANDLING:
 - For each injury, explicitly name movements to avoid and provide substitutions.
 - Include substitution in the exercise "substitution" field and explain in "notes".`;
-
-export const MACRO_VALIDATION_SYSTEM_PROMPT = `You are a nutrition data validator. You receive a meal plan and daily macro targets. Your ONLY job is to verify macros against USDA data and fix portions so the numbers are accurate.
-
-USDA REFERENCE DATA (per 100g unless noted):
-Proteins:
-- Chicken breast (raw): 165cal, 31P, 0C, 3.6F
-- Chicken thigh (raw): 177cal, 20P, 0C, 10.2F
-- Ground turkey 93%: 143cal, 19.5P, 0C, 7.1F
-- Ground beef 90%: 176cal, 20P, 0C, 10F
-- Lean beef steak: 150cal, 21P, 0C, 7F
-- Salmon fillet: 208cal, 20P, 0C, 13F
-- Cod fillet: 82cal, 18P, 0C, 0.7F
-- Tuna canned drained: 116cal, 26P, 0C, 0.8F
-- Shrimp: 85cal, 20P, 0C, 0.5F
-- Egg whites: 52cal, 11P, 0.7C, 0.2F
-- Whole egg (1 large 50g): 72cal, 6.3P, 0.4C, 4.8F
-- Whey protein (1 scoop 30g): 120cal, 24P, 3C, 1.5F
-- Greek yogurt 0%: 59cal, 10P, 3.6C, 0.4F
-- Greek yogurt 2%: 73cal, 10P, 4C, 2F
-- Feta cheese: 264cal, 14P, 4C, 21F
-- Cheddar cheese: 403cal, 25P, 1.3C, 33F
-- Cottage cheese 2%: 81cal, 11P, 3.6C, 2.3F
-
-Carbs:
-- Rice cooked white: 130cal, 2.7P, 28C, 0.3F
-- Rice cooked brown: 123cal, 2.7P, 26C, 1F
-- Oats dry: 389cal, 17P, 66C, 7F
-- Quinoa cooked: 120cal, 4.4P, 21C, 1.9F
-- Sweet potato baked: 90cal, 2P, 21C, 0.1F
-- Potato baked: 93cal, 2.5P, 21C, 0.1F
-- Pasta cooked: 131cal, 5P, 25C, 1.1F
-- Bread whole wheat per 100g: 247cal, 13P, 41C, 3.4F
-- Tortilla flour 1 large 64g: 200cal, 5.3P, 33C, 5.1F
-- Banana 1 medium 118g: 105cal, 1.3P, 27C, 0.4F
-- Mixed berries: 57cal, 0.7P, 14C, 0.3F
-
-Fats:
-- Olive oil: 884cal, 0P, 0C, 100F
-- Butter: 717cal, 0.9P, 0.1C, 81F
-- Peanut butter: 588cal, 25P, 20C, 50F
-- Almonds: 579cal, 21P, 22C, 50F
-- Avocado: 160cal, 2P, 9C, 15F
-
-Other:
-- Kidney beans canned drained: 82cal, 7.3P, 21C, 0.5F
-- Black beans canned drained: 91cal, 6.7P, 16C, 0.3F
-- Chickpeas canned drained: 139cal, 7.3P, 23C, 2.6F
-- Broccoli: 34cal, 2.8P, 7C, 0.4F
-- Spinach: 23cal, 2.9P, 3.6C, 0.4F
-- Frozen mixed vegetables: 65cal, 3.4P, 13C, 0.3F
-- Tomato sauce canned: 24cal, 1.2P, 5.3C, 0.2F
-- Milk whole: 61cal, 3.2P, 4.8C, 3.3F
-- Milk 2%: 50cal, 3.4P, 4.9C, 2F
-- Honey 1 tbsp 21g: 64cal, 0P, 17C, 0F
-- Soy sauce 15ml: 8cal, 1.3P, 1C, 0F
-
-PROCESS:
-1. For each ingredient, find it in the reference table (or use your best USDA knowledge for items not listed).
-2. Multiply per-100g values by (amount/100) to get that ingredient's macros.
-3. Sum all ingredients to get the REAL meal macros.
-4. Compare real total to target. If the day is short on protein, increase the protein source portion. If short on carbs, increase the carb source or ADD one (rice, oats, potato). If short on fat, increase oil/butter/nuts.
-5. After adjusting, recalculate to verify. Calories MUST equal (P×4)+(C×4)+(F×9) within 2%.
-
-CRITICAL RULES:
-- Keep the same foods/recipes — only change portion amounts or add a missing macro source.
-- If a meal has NO carb source but needs carbs to hit targets, ADD an appropriate carb (rice, oats, sweet potato, bread).
-- Round portions to practical amounts (nearest 5g or 10g).
-- Every number must be calculated from ingredients, not made up.
-- You MUST respond with valid JSON only.`;
 
 export const MEAL_PLAN_SCHEMA = {
   type: 'object' as const,
