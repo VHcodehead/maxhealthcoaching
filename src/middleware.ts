@@ -41,6 +41,13 @@ export default auth((req) => {
     return NextResponse.next();
   }
 
+  // Coach/admin hitting client dashboard -> redirect to coach dashboard
+  if (path.startsWith('/dashboard') && (role === 'coach' || role === 'admin')) {
+    const url = req.nextUrl.clone();
+    url.pathname = '/coach';
+    return NextResponse.redirect(url);
+  }
+
   // Client routes that require active subscription
   // Note: /onboarding and /generating are excluded — they're part of the
   // post-checkout flow and the JWT may not have the updated subscription yet.

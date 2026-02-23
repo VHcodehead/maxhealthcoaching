@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 import { Loader2, Dumbbell } from 'lucide-react';
-import { signIn, getSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 
 import { loginSchema } from '@/lib/validations';
 import { Button } from '@/components/ui/button';
@@ -62,18 +62,6 @@ function LoginContent() {
       }
 
       toast.success('Welcome back!');
-
-      // Redirect coaches/admins to coach dashboard, clients to client dashboard
-      if (!searchParams.get('redirect')) {
-        const session = await getSession();
-        const role = session?.user?.role;
-        if (role === 'coach' || role === 'admin') {
-          router.push('/coach');
-          router.refresh();
-          return;
-        }
-      }
-
       router.push(redirectTo);
       router.refresh();
     } catch {
