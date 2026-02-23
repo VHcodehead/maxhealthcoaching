@@ -1,33 +1,91 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
-import { Camera, Upload, CheckCircle, ArrowLeft, Scale, Ruler, Star, Footprints, Moon, FileText } from 'lucide-react';
+import { Camera, Upload, CheckCircle, ArrowLeft, Scale, Ruler, Star, Footprints, Moon, FileText, CalendarCheck, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { checkInSchema } from '@/lib/validations';
+import { isWithinCheckInWindow, getNextWindowOpens, hasCheckedInThisWeek } from '@/lib/checkin-schedule';
 import { toast } from 'sonner';
 import type { z } from 'zod';
 
 type CheckInData = z.infer<typeof checkInSchema>;
 
+function formatCountdown(target: Date): string {
+  const now = new Date();
+  const diff = target.getTime() - now.getTime();
+  if (diff <= 0) return 'now';
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const days = Math.floor(hours / 24);
+  const remainingHours = hours % 24;
+  if (days > 0) return `${days}d ${remainingHours}h`;
+  return `${hours}h`;
+}
+
+type PageState = 'loading' | 'window-closed' | 'already-done' | 'form' | 'photos' | 'done';
+
 export default function CheckInPage() {
   const router = useRouter();
-  const [step, setStep] = useState<'form' | 'photos' | 'done'>('form');
+  const [step, setStep] = useState<PageState>('loading');
   const [checkInId, setCheckInId] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [pendingAdjustment, setPendingAdjustment] = useState(false);
+  const [oldCalories, setOldCalories] = useState(0);
+  const [newCalories, setNewCalories] = useState(0);
   const [photos, setPhotos] = useState<Record<string, File | null>>({
     front: null,
     side: null,
     back: null,
   });
   const [photoPreviews, setPhotoPreviews] = useState<Record<string, string>>({});
+
+  // Check window status and existing check-ins on mount
+  useEffect(() => {
+    async function checkStatus() {
+      try {
+        const res = await fetch('/api/checkin');
+        if (!res.ok) {
+          setStep('form');
+          return;
+        }
+        const data = await res.json();
+        const checkIns = data.checkIns || [];
+        const isFirstCheckIn = checkIns.length === 0;
+
+        // First-ever check-in bypasses window check
+        if (isFirstCheckIn) {
+          setStep('form');
+          return;
+        }
+
+        // Check if already checked in this week
+        const lastCheckInDate = checkIns[0]?.createdAt;
+        if (hasCheckedInThisWeek(lastCheckInDate)) {
+          setStep('already-done');
+          return;
+        }
+
+        // Check if within window
+        if (!isWithinCheckInWindow()) {
+          setStep('window-closed');
+          return;
+        }
+
+        setStep('form');
+      } catch {
+        // On error, show the form and let the server handle validation
+        setStep('form');
+      }
+    }
+    checkStatus();
+  }, []);
 
   const {
     register,
@@ -58,10 +116,23 @@ export default function CheckInPage() {
       const result = await res.json();
 
       if (!res.ok) {
+        if (res.status === 403) {
+          setStep('window-closed');
+          return;
+        }
+        if (res.status === 409) {
+          setStep('already-done');
+          return;
+        }
         throw new Error(result.error || 'Failed to submit check-in');
       }
 
       setCheckInId(result.checkIn.id);
+      if (result.pendingAdjustment) {
+        setPendingAdjustment(true);
+        setOldCalories(result.oldCalories);
+        setNewCalories(result.newCalories);
+      }
       setStep('photos');
       toast.success('Check-in data saved!');
     } catch (error) {
@@ -108,6 +179,64 @@ export default function CheckInPage() {
     }
   };
 
+  // Loading state
+  if (step === 'loading') {
+    return (
+      <div className="min-h-screen bg-zinc-50 flex items-center justify-center px-4">
+        <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
+      </div>
+    );
+  }
+
+  // Window closed state
+  if (step === 'window-closed') {
+    const nextOpens = getNextWindowOpens();
+    return (
+      <div className="min-h-screen bg-zinc-50 flex items-center justify-center px-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="text-center max-w-md"
+        >
+          <div className="w-16 h-16 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CalendarCheck className="w-8 h-8 text-zinc-400" />
+          </div>
+          <h2 className="text-2xl font-bold mb-2">Check-In Window Closed</h2>
+          <p className="text-zinc-500 mb-6">
+            Check-ins are accepted from Saturday evening through Tuesday. The next window opens in <span className="font-semibold text-zinc-700">{formatCountdown(nextOpens)}</span>.
+          </p>
+          <Button onClick={() => router.push('/dashboard')} className="bg-emerald-600 hover:bg-emerald-700">
+            Back to Dashboard
+          </Button>
+        </motion.div>
+      </div>
+    );
+  }
+
+  // Already checked in this week
+  if (step === 'already-done') {
+    return (
+      <div className="min-h-screen bg-zinc-50 flex items-center justify-center px-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="text-center max-w-md"
+        >
+          <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle className="w-8 h-8 text-emerald-600" />
+          </div>
+          <h2 className="text-2xl font-bold mb-2">Already Checked In</h2>
+          <p className="text-zinc-500 mb-6">
+            You&apos;ve already submitted your check-in this week. See you next Sunday!
+          </p>
+          <Button onClick={() => router.push('/dashboard')} className="bg-emerald-600 hover:bg-emerald-700">
+            Back to Dashboard
+          </Button>
+        </motion.div>
+      </div>
+    );
+  }
+
   if (step === 'done') {
     return (
       <div className="min-h-screen bg-zinc-50 flex items-center justify-center px-4">
@@ -120,12 +249,35 @@ export default function CheckInPage() {
             <CheckCircle className="w-8 h-8 text-emerald-600" />
           </div>
           <h2 className="text-2xl font-bold mb-2">Check-In Complete!</h2>
-          <p className="text-zinc-500 mb-6">
-            Great job staying consistent. Your coach will review your check-in shortly.
-          </p>
-          <Button onClick={() => router.push('/dashboard')} className="bg-emerald-600 hover:bg-emerald-700">
-            Back to Dashboard
-          </Button>
+
+          {pendingAdjustment ? (
+            <>
+              <p className="text-zinc-500 mb-4">
+                Your weight change has been logged. Your coach will review your nutrition targets before any changes are applied.
+              </p>
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6 text-left">
+                <p className="text-sm font-semibold text-amber-900 mb-1">Macro Adjustment Pending Review</p>
+                <p className="text-sm text-amber-700">
+                  Suggested change: {oldCalories} → {newCalories} kcal
+                </p>
+                <p className="text-xs text-amber-600 mt-1">
+                  Your coach will review this and update your targets when ready.
+                </p>
+              </div>
+              <Button onClick={() => router.push('/dashboard')} className="w-full bg-emerald-600 hover:bg-emerald-700">
+                Back to Dashboard
+              </Button>
+            </>
+          ) : (
+            <>
+              <p className="text-zinc-500 mb-6">
+                Great job staying consistent. Your coach will review your check-in shortly.
+              </p>
+              <Button onClick={() => router.push('/dashboard')} className="bg-emerald-600 hover:bg-emerald-700">
+                Back to Dashboard
+              </Button>
+            </>
+          )}
         </motion.div>
       </div>
     );

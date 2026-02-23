@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+import { isClientOverdue } from '@/lib/checkin-schedule';
 
 export async function GET() {
   try {
@@ -23,7 +24,7 @@ export async function GET() {
     // Get check-in data for each client
     const clientsWithData = await Promise.all(
       clients.map(async (client) => {
-        const [lastCheckIn, checkInCount, macros, onboarding] = await Promise.all([
+        const [lastCheckIn, checkInCount, macros, onboarding, pendingAdjustmentCount] = await Promise.all([
           prisma.checkIn.findFirst({
             where: { userId: client.userId },
             orderBy: { createdAt: 'desc' },
@@ -39,15 +40,17 @@ export async function GET() {
             where: { userId: client.userId },
             orderBy: { version: 'desc' },
           }),
+          prisma.pendingMacroAdjustment.count({
+            where: { userId: client.userId, status: 'pending' },
+          }),
         ]);
 
         // Determine status
         let status = 'pending';
         if (client.onboardingCompleted) {
           status = 'active';
-          if (lastCheckIn) {
-            const daysSince = (Date.now() - lastCheckIn.createdAt.getTime()) / (1000 * 60 * 60 * 24);
-            if (daysSince > 10) status = 'overdue';
+          if (isClientOverdue(lastCheckIn?.createdAt ?? null, true)) {
+            status = 'overdue';
           }
         }
 
@@ -58,6 +61,7 @@ export async function GET() {
           check_in_count: checkInCount,
           macros,
           onboarding,
+          pending_adjustment_count: pendingAdjustmentCount,
         };
       })
     );

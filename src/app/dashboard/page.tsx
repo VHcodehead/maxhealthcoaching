@@ -24,6 +24,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
+import { isWithinCheckInWindow, getNextWindowOpens, hasCheckedInThisWeek } from '@/lib/checkin-schedule'
 
 interface Profile {
   fullName: string
@@ -240,23 +241,40 @@ export default function DashboardOverview() {
           }
         }
 
-        // Calculate next check-in (7 days from last check-in)
+        // Calculate next check-in based on Sunday schedule
         if (data.checkIns && data.checkIns.length > 0) {
-          const lastDate = new Date(data.checkIns[0].createdAt)
-          const nextDate = new Date(lastDate)
-          nextDate.setDate(nextDate.getDate() + 7)
-          const daysUntil = Math.ceil(
-            (nextDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
-          )
-          setNextCheckIn(
-            daysUntil <= 0
-              ? 'Today'
-              : daysUntil === 1
-                ? 'Tomorrow'
-                : `In ${daysUntil} days`
-          )
+          const lastCheckInDate = data.checkIns[0].createdAt
+          if (hasCheckedInThisWeek(lastCheckInDate)) {
+            // Already done this week — show countdown to next window
+            const nextOpens = getNextWindowOpens()
+            const daysUntil = Math.ceil(
+              (nextOpens.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
+            )
+            setNextCheckIn(
+              daysUntil <= 0
+                ? 'Today'
+                : daysUntil === 1
+                  ? 'Tomorrow'
+                  : `In ${daysUntil} days`
+            )
+          } else if (isWithinCheckInWindow()) {
+            setNextCheckIn('Open now')
+          } else {
+            // Window closed, not yet checked in — show countdown to next window
+            const nextOpens = getNextWindowOpens()
+            const daysUntil = Math.ceil(
+              (nextOpens.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
+            )
+            setNextCheckIn(
+              daysUntil <= 0
+                ? 'Today'
+                : daysUntil === 1
+                  ? 'Tomorrow'
+                  : `In ${daysUntil} days`
+            )
+          }
         } else {
-          setNextCheckIn('Not scheduled')
+          setNextCheckIn('Available now')
         }
       } catch (err) {
         setError('Failed to load dashboard data. Please try again.')
