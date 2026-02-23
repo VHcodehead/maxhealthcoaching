@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+import { toSnakeCase } from '@/lib/serialize';
 
 export async function GET(
   request: NextRequest,
@@ -18,7 +19,7 @@ export async function GET(
 
     const { id: clientUserId } = await params;
 
-    const [profile, onboarding, macros, mealPlan, trainingPlan, checkIns] = await Promise.all([
+    const [profile, onboarding, macros, mealPlan, trainingPlan, checkIns, pendingAdjustments] = await Promise.all([
       prisma.profile.findUnique({ where: { userId: clientUserId } }),
       prisma.onboardingResponse.findFirst({
         where: { userId: clientUserId },
@@ -41,28 +42,33 @@ export async function GET(
         include: { progressPhotos: true },
         orderBy: { weekNumber: 'desc' },
       }),
+      prisma.pendingMacroAdjustment.findMany({
+        where: { userId: clientUserId, status: 'pending' },
+        orderBy: { createdAt: 'desc' },
+      }),
     ]);
 
     if (!profile) {
       return NextResponse.json({ error: 'Client not found' }, { status: 404 });
     }
 
-    // Generate photo URLs
+    // Generate photo URLs and serialize
     const checkInsWithPhotos = checkIns.map(ci => ({
-      ...ci,
-      progressPhotos: ci.progressPhotos.map(p => ({
-        ...p,
+      ...toSnakeCase(ci),
+      progress_photos: ci.progressPhotos.map(p => ({
+        ...toSnakeCase(p),
         url: `/api/photos/${p.storagePath}`,
       })),
     }));
 
     return NextResponse.json({
-      profile,
-      onboarding,
-      macros,
-      mealPlan,
-      trainingPlan,
+      profile: toSnakeCase(profile),
+      onboarding: toSnakeCase(onboarding),
+      macros: toSnakeCase(macros),
+      mealPlan: toSnakeCase(mealPlan),
+      trainingPlan: toSnakeCase(trainingPlan),
       checkIns: checkInsWithPhotos,
+      pendingAdjustments: pendingAdjustments.map(toSnakeCase),
     });
   } catch (error) {
     console.error('Client detail error:', error);

@@ -29,8 +29,11 @@ export async function GET() {
     });
 
     const activity = recentCheckIns.map(ci => ({
-      ...ci,
+      clientId: ci.userId,
       client_name: ci.user.profile?.fullName || ci.user.profile?.email || 'Unknown',
+      weekNumber: ci.weekNumber,
+      createdAt: ci.createdAt,
+      adherenceRating: ci.adherenceRating,
     }));
 
     return NextResponse.json({ activity });

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { isClientOverdue } from '@/lib/checkin-schedule';
+import { toSnakeCase } from '@/lib/serialize';
 
 export async function GET() {
   try {
@@ -55,12 +56,12 @@ export async function GET() {
         }
 
         return {
-          ...client,
+          ...toSnakeCase(client),
           status,
-          last_check_in: lastCheckIn,
+          last_check_in: toSnakeCase(lastCheckIn),
           check_in_count: checkInCount,
-          macros,
-          onboarding,
+          macros: toSnakeCase(macros),
+          onboarding: toSnakeCase(onboarding),
           pending_adjustment_count: pendingAdjustmentCount,
         };
       })
