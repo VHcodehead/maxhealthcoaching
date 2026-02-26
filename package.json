@@ -39,7 +39,7 @@
     "zod": "^4.3.6"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.12"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
