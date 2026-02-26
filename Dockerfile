@@ -1,21 +1,12 @@
 FROM node:22-alpine AS base
 
-# Install dependencies
-FROM base AS deps
-WORKDIR /app
-COPY package.json package-lock.json* ./
-COPY prisma ./prisma/
-COPY prisma.config.ts ./
-ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder"
-RUN npm ci
-
 # Build the application
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/generated ./generated
-COPY . .
 ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder"
+COPY . .
+RUN npm ci
+RUN npx prisma generate
 RUN npm run build
 
 # Production image
