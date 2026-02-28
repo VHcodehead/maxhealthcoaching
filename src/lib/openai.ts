@@ -15,7 +15,7 @@ export const openai = { get instance() { return getOpenAI(); } };
 export const MEAL_PLAN_SYSTEM_PROMPT = `You are an elite sports nutritionist. You MUST respond with valid JSON only — no markdown, no commentary. You MUST generate ALL 7 days (Monday through Sunday) in a single response. Never stop early.
 
 CRITICAL — PER-INGREDIENT MACROS:
-For EVERY ingredient, you MUST include a "macros" object with calories, protein, carbs, and fat for that specific portion. Calculate as: (USDA value per 100g) × (amount / 100). We compute meal and day totals server-side by summing your ingredient macros. Do NOT include "macro_totals" or "day_totals" — only per-ingredient macros.
+For EVERY ingredient, you MUST include a "macros" object with calories, protein, carbs, and fat for that specific portion. Calculate as: (USDA value per 100g) × (amount / 100). We verify totals server-side by summing your ingredient macros — if the per-ingredient values don't add up to the daily target, the plan will be rejected and regenerated.
 
 USDA REFERENCE (per 100g raw/cooked as noted):
 Chicken breast: 165cal 31P 0C 3.6F | Chicken thigh: 177cal 20P 0C 10.2F
@@ -97,6 +97,32 @@ INJURY HANDLING:
 - For each injury, explicitly name movements to avoid and provide substitutions.
 - Include substitution in the exercise "substitution" field and explain in "notes".`;
 
+// Macro object reused across ingredient definitions
+const MACRO_OBJECT = {
+  type: 'object' as const,
+  properties: {
+    calories: { type: 'number' as const },
+    protein: { type: 'number' as const },
+    carbs: { type: 'number' as const },
+    fat: { type: 'number' as const },
+  },
+  required: ['calories', 'protein', 'carbs', 'fat'],
+  additionalProperties: false,
+};
+
+// Ingredient with required macros
+const INGREDIENT_WITH_MACROS = {
+  type: 'object' as const,
+  properties: {
+    name: { type: 'string' as const },
+    amount: { type: 'string' as const },
+    unit: { type: 'string' as const },
+    macros: MACRO_OBJECT,
+  },
+  required: ['name', 'amount', 'unit', 'macros'],
+  additionalProperties: false,
+};
+
 export const MEAL_PLAN_SCHEMA = {
   type: 'object' as const,
   properties: {
@@ -116,27 +142,10 @@ export const MEAL_PLAN_SCHEMA = {
                 recipe_title: { type: 'string' as const },
                 ingredients: {
                   type: 'array' as const,
-                  items: {
-                    type: 'object' as const,
-                    properties: {
-                      name: { type: 'string' as const },
-                      amount: { type: 'string' as const },
-                      unit: { type: 'string' as const },
-                    },
-                    required: ['name', 'amount', 'unit'],
-                  },
+                  items: INGREDIENT_WITH_MACROS,
                 },
                 instructions: { type: 'array' as const, items: { type: 'string' as const } },
-                macro_totals: {
-                  type: 'object' as const,
-                  properties: {
-                    calories: { type: 'number' as const },
-                    protein: { type: 'number' as const },
-                    carbs: { type: 'number' as const },
-                    fat: { type: 'number' as const },
-                  },
-                  required: ['calories', 'protein', 'carbs', 'fat'],
-                },
+                macro_totals: MACRO_OBJECT,
                 swap_options: {
                   type: 'array' as const,
                   items: {
@@ -145,51 +154,29 @@ export const MEAL_PLAN_SCHEMA = {
                       recipe_title: { type: 'string' as const },
                       ingredients: {
                         type: 'array' as const,
-                        items: {
-                          type: 'object' as const,
-                          properties: {
-                            name: { type: 'string' as const },
-                            amount: { type: 'string' as const },
-                            unit: { type: 'string' as const },
-                          },
-                          required: ['name', 'amount', 'unit'],
-                        },
+                        items: INGREDIENT_WITH_MACROS,
                       },
                       instructions: { type: 'array' as const, items: { type: 'string' as const } },
-                      macro_totals: {
-                        type: 'object' as const,
-                        properties: {
-                          calories: { type: 'number' as const },
-                          protein: { type: 'number' as const },
-                          carbs: { type: 'number' as const },
-                          fat: { type: 'number' as const },
-                        },
-                        required: ['calories', 'protein', 'carbs', 'fat'],
-                      },
+                      macro_totals: MACRO_OBJECT,
                     },
                     required: ['recipe_title', 'ingredients', 'instructions', 'macro_totals'],
+                    additionalProperties: false,
                   },
                 },
               },
-              required: ['name', 'recipe_title', 'ingredients', 'instructions', 'macro_totals', 'swap_options'],
+              required: ['name', 'time', 'recipe_title', 'ingredients', 'instructions', 'macro_totals', 'swap_options'],
+              additionalProperties: false,
             },
           },
-          day_totals: {
-            type: 'object' as const,
-            properties: {
-              calories: { type: 'number' as const },
-              protein: { type: 'number' as const },
-              carbs: { type: 'number' as const },
-              fat: { type: 'number' as const },
-            },
-            required: ['calories', 'protein', 'carbs', 'fat'],
-          },
+          day_totals: MACRO_OBJECT,
         },
         required: ['day', 'meals', 'day_totals'],
+        additionalProperties: false,
       },
     },
   },
   required: ['days'],
+  additionalProperties: false,
 };
 
 export const TRAINING_PLAN_SCHEMA = {

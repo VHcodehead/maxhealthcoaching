@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-import { getOpenAI, MEAL_PLAN_SYSTEM_PROMPT } from '@/lib/openai';
+import { getOpenAI, MEAL_PLAN_SYSTEM_PROMPT, MEAL_PLAN_SCHEMA } from '@/lib/openai';
 
 // Simple in-memory rate limit
 const rateLimitMap = new Map<string, number>();
@@ -104,6 +104,30 @@ function computeMacroTotals(days: any[]): void {
     }
 
     day.day_totals = dayTotals;
+
+    // Also compute swap macro totals from per-ingredient macros
+    for (const meal of day.meals) {
+      if (Array.isArray(meal.swap_options)) {
+        for (const swap of meal.swap_options) {
+          const swapTotals = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+          if (Array.isArray(swap.ingredients)) {
+            for (const ing of swap.ingredients) {
+              if (ing.macros) {
+                swapTotals.calories += ing.macros.calories || 0;
+                swapTotals.protein += ing.macros.protein || 0;
+                swapTotals.carbs += ing.macros.carbs || 0;
+                swapTotals.fat += ing.macros.fat || 0;
+              }
+            }
+          }
+          swapTotals.calories = Math.round(swapTotals.calories);
+          swapTotals.protein = Math.round(swapTotals.protein);
+          swapTotals.carbs = Math.round(swapTotals.carbs);
+          swapTotals.fat = Math.round(swapTotals.fat);
+          swap.macro_totals = swapTotals;
+        }
+      }
+    }
   }
 }
 
@@ -165,7 +189,7 @@ ${macros.calorieTarget} kcal | ${macros.proteinG}g protein | ${macros.carbsG}g c
 
 PREFERENCES: ${onboarding.dietType} diet, ${mealsPerDay} meals/day, cooking: ${onboarding.cookingSkill}, budget: ${onboarding.budget}${onboarding.dislikedFoods.length > 0 ? `, dislikes: ${onboarding.dislikedFoods.join(', ')}` : ''}${onboarding.allergies.length > 0 ? `, allergies: ${onboarding.allergies.join(', ')}` : ''}.
 
-OUTPUT — valid JSON only. Every ingredient MUST have a "macros" object. Do NOT include "macro_totals" or "day_totals" — we calculate those server-side.
+OUTPUT — valid JSON only. Every ingredient MUST have a "macros" object. Include "macro_totals" per meal and "day_totals" per day.
 {"days":[{"day":"Monday","meals":[{"name":"Meal 1","recipe_title":"Chicken & Rice Bowl","ingredients":[{"name":"Chicken breast","amount":"200","unit":"g","macros":{"calories":330,"protein":62,"carbs":0,"fat":7.2}},{"name":"White rice, cooked","amount":"200","unit":"g","macros":{"calories":260,"protein":5.4,"carbs":56,"fat":0.6}},{"name":"Olive oil","amount":"10","unit":"ml","macros":{"calories":88,"protein":0,"carbs":0,"fat":10}},{"name":"Broccoli","amount":"100","unit":"g","macros":{"calories":34,"protein":2.8,"carbs":7,"fat":0.4}}],"instructions":["Season chicken with salt and pepper.","Heat olive oil in skillet over medium-high heat, cook chicken 5-6 min per side until internal temp reaches 165°F.","Steam broccoli for 4 minutes until bright green and tender-crisp.","Serve chicken sliced over rice with broccoli on the side."],"swap_options":[{"recipe_title":"Turkey & Rice Bowl","ingredients":[{"name":"Ground turkey 93%","amount":"200","unit":"g","macros":{"calories":286,"protein":39,"carbs":0,"fat":14.2}},{"name":"White rice, cooked","amount":"200","unit":"g","macros":{"calories":260,"protein":5.4,"carbs":56,"fat":0.6}},{"name":"Olive oil","amount":"5","unit":"ml","macros":{"calories":44,"protein":0,"carbs":0,"fat":5}},{"name":"Broccoli","amount":"100","unit":"g","macros":{"calories":34,"protein":2.8,"carbs":7,"fat":0.4}}],"instructions":["Brown turkey in skillet over medium heat, breaking apart, about 5-7 min.","Steam broccoli for 4 minutes.","Serve turkey over rice with broccoli."]}]}]}]}
 
 RULES:
@@ -189,7 +213,14 @@ RULES:
       const response = await getOpenAI().chat.completions.create({
         model: 'gpt-4o',
         messages,
-        response_format: { type: 'json_object' },
+        response_format: {
+          type: 'json_schema' as const,
+          json_schema: {
+            name: 'meal_plan',
+            strict: true,
+            schema: MEAL_PLAN_SCHEMA as Record<string, unknown>,
+          },
+        },
         temperature: 0.3,
         max_tokens: 16384,
       });
@@ -237,6 +268,21 @@ RULES:
         const diff = Math.abs(dt.calories - macros.calorieTarget) / macros.calorieTarget;
         console.log(`${day.day}: ${dt.calories} kcal | ${dt.protein}P | ${dt.carbs}C | ${dt.fat}F (target: ${macros.calorieTarget}, diff: ${Math.round(diff * 100)}%)`);
       }
+
+      // Diagnostic: count ingredients with/without macros
+      let totalIngredients = 0;
+      let missingMacros = 0;
+      for (const day of planData.days) {
+        if (!Array.isArray(day.meals)) continue;
+        for (const meal of day.meals) {
+          if (!Array.isArray(meal.ingredients)) continue;
+          for (const ing of meal.ingredients) {
+            totalIngredients++;
+            if (!ing.macros || !ing.macros.calories) missingMacros++;
+          }
+        }
+      }
+      console.log(`Ingredient macros coverage: ${totalIngredients - missingMacros}/${totalIngredients} (${missingMacros} missing)`);
 
       // Check if all days are within 10% of calorie target
       const offDays = planData.days.filter((day: any) => {
