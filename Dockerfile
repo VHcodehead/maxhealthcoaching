@@ -3,10 +3,8 @@ FROM node:22-alpine AS base
 # Build the application
 FROM base AS builder
 WORKDIR /app
-ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder"
 COPY . .
-RUN npm ci
-RUN npx prisma generate
+RUN npm ci --ignore-scripts
 RUN npm run build
 
 # Production image
