@@ -159,9 +159,9 @@ export async function POST(request: NextRequest) {
 
 CLIENT: ${onboarding.weightKg}kg (${weightLbs}lbs), ${onboarding.heightCm}cm, goal: ${onboarding.goal}. ${goalContext}
 
-DAILY TARGETS — size portions so each day's ingredients roughly sum to:
+DAILY TARGETS — size portions so each day's ingredients MUST total within ±5% of:
 ${macros.calorieTarget} kcal | ${macros.proteinG}g protein | ${macros.carbsG}g carbs | ${macros.fatG}g fat
-(Split across ${mealsPerDay} meals — each meal should be roughly even, but some variation is fine)
+(Split across ${mealsPerDay} meals — ~${Math.round(macros.calorieTarget / mealsPerDay)} kcal per meal)
 
 PREFERENCES: ${onboarding.dietType} diet, ${mealsPerDay} meals/day, cooking: ${onboarding.cookingSkill}, budget: ${onboarding.budget}${onboarding.dislikedFoods.length > 0 ? `, dislikes: ${onboarding.dislikedFoods.join(', ')}` : ''}${onboarding.allergies.length > 0 ? `, allergies: ${onboarding.allergies.join(', ')}` : ''}.
 
@@ -171,66 +171,94 @@ OUTPUT — valid JSON only. Every ingredient MUST have a "macros" object. Do NOT
 RULES:
 - EXACTLY 7 days, each with EXACTLY ${mealsPerDay} meals
 - Every ingredient MUST have a "macros" object calculated from USDA data for that portion: (per-100g value × amount/100)
-- Ensure every meal has a protein source, a carb source, and a fat source so macros are balanced
+- EVERY meal MUST have a substantial protein source (chicken, turkey, beef, fish, eggs, Greek yogurt, cottage cheese, whey). Aim for at least 30-50g protein per meal. A "quinoa and bean salad" is NOT a protein-forward meal — it needs grilled chicken, shrimp, or another protein added
 - List ALL ingredients — cooking fats, seasonings, sauces, liquids, binders, everything
 - Instructions: 2-4 real cooking steps with heat levels, cook times, and technique
 - 1 swap per meal — swap ingredients must also include per-ingredient macros
 - Vary protein sources across the day`;
 
-    const response = await getOpenAI().chat.completions.create({
-      model: 'gpt-4o',
-      messages: [
-        { role: 'system', content: MEAL_PLAN_SYSTEM_PROMPT },
-        { role: 'user', content: userPrompt },
-      ],
-      response_format: { type: 'json_object' },
-      temperature: 0.4,
-      max_tokens: 16384,
-    });
+    const MAX_RETRIES = 2;
+    const messages: { role: 'system' | 'user' | 'assistant'; content: string }[] = [
+      { role: 'system', content: MEAL_PLAN_SYSTEM_PROMPT },
+      { role: 'user', content: userPrompt },
+    ];
 
-    console.log('OpenAI finish_reason:', response.choices[0]?.finish_reason);
-    console.log('OpenAI usage:', JSON.stringify(response.usage));
+    let planData: any = null;
 
-    const content = response.choices[0]?.message?.content;
-    if (!content) {
-      console.error('No content in OpenAI response');
-      return NextResponse.json({ error: 'Failed to generate plan. Please try again.' }, { status: 500 });
-    }
+    for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+      const response = await getOpenAI().chat.completions.create({
+        model: 'gpt-4o',
+        messages,
+        response_format: { type: 'json_object' },
+        temperature: 0.3,
+        max_tokens: 16384,
+      });
 
-    if (response.choices[0]?.finish_reason === 'length') {
-      console.error('OpenAI response truncated — hit max_tokens limit');
-      return NextResponse.json({ error: 'Plan generation was cut short. Please try again.' }, { status: 500 });
-    }
+      console.log(`Attempt ${attempt + 1} — finish_reason:`, response.choices[0]?.finish_reason);
+      console.log(`Attempt ${attempt + 1} — usage:`, JSON.stringify(response.usage));
 
-    let planData;
-    try {
-      planData = JSON.parse(content);
-    } catch (e) {
-      console.error('JSON parse error:', e);
-      console.error('Raw content (first 500 chars):', content.substring(0, 500));
-      return NextResponse.json({ error: 'Invalid response format. Please try again.' }, { status: 500 });
-    }
+      const content = response.choices[0]?.message?.content;
+      if (!content) {
+        console.error('No content in OpenAI response');
+        return NextResponse.json({ error: 'Failed to generate plan. Please try again.' }, { status: 500 });
+      }
 
-    // Validate basic structure
-    if (!planData.days || !Array.isArray(planData.days)) {
-      console.error('Missing days array. Keys:', Object.keys(planData));
-      return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
-    }
+      if (response.choices[0]?.finish_reason === 'length') {
+        console.error('OpenAI response truncated — hit max_tokens limit');
+        return NextResponse.json({ error: 'Plan generation was cut short. Please try again.' }, { status: 500 });
+      }
 
-    if (planData.days.length !== 7) {
-      console.error('Expected 7 days, got:', planData.days.length);
-      return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
-    }
+      try {
+        planData = JSON.parse(content);
+      } catch (e) {
+        console.error('JSON parse error:', e);
+        console.error('Raw content (first 500 chars):', content.substring(0, 500));
+        return NextResponse.json({ error: 'Invalid response format. Please try again.' }, { status: 500 });
+      }
 
-    // Server-side: compute macro totals from per-ingredient macros
-    computeMacroTotals(planData.days);
+      // Validate basic structure
+      if (!planData.days || !Array.isArray(planData.days)) {
+        console.error('Missing days array. Keys:', Object.keys(planData));
+        return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
+      }
 
-    // Log computed totals
-    console.log('=== SERVER-COMPUTED MACRO TOTALS ===');
-    for (const day of planData.days) {
-      const dt = day.day_totals;
-      const diff = Math.abs(dt.calories - macros.calorieTarget) / macros.calorieTarget;
-      console.log(`${day.day}: ${dt.calories} kcal | ${dt.protein}P | ${dt.carbs}C | ${dt.fat}F (target: ${macros.calorieTarget}, diff: ${Math.round(diff * 100)}%)`);
+      if (planData.days.length !== 7) {
+        console.error('Expected 7 days, got:', planData.days.length);
+        return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
+      }
+
+      // Server-side: compute macro totals from per-ingredient macros
+      computeMacroTotals(planData.days);
+
+      // Log computed totals
+      console.log(`=== SERVER-COMPUTED MACRO TOTALS (attempt ${attempt + 1}) ===`);
+      for (const day of planData.days) {
+        const dt = day.day_totals;
+        const diff = Math.abs(dt.calories - macros.calorieTarget) / macros.calorieTarget;
+        console.log(`${day.day}: ${dt.calories} kcal | ${dt.protein}P | ${dt.carbs}C | ${dt.fat}F (target: ${macros.calorieTarget}, diff: ${Math.round(diff * 100)}%)`);
+      }
+
+      // Check if all days are within 10% of calorie target
+      const offDays = planData.days.filter((day: any) => {
+        const diff = Math.abs(day.day_totals.calories - macros.calorieTarget) / macros.calorieTarget;
+        return diff > 0.10;
+      });
+
+      if (offDays.length === 0) {
+        console.log(`Plan passed validation on attempt ${attempt + 1}`);
+        break;
+      }
+
+      if (attempt < MAX_RETRIES) {
+        const feedback = offDays.map((d: any) =>
+          `${d.day}: got ${d.day_totals.calories} kcal (target: ${macros.calorieTarget})`
+        ).join(', ');
+        console.log(`Attempt ${attempt + 1} failed validation. Off days: ${feedback}. Retrying...`);
+        messages.push({ role: 'assistant', content });
+        messages.push({ role: 'user', content: `Some days are off-target: ${feedback}. Regenerate the COMPLETE 7-day plan with ALL days within ±5% of ${macros.calorieTarget} kcal. Adjust portion sizes to hit the target precisely.` });
+      } else {
+        console.warn('Plan accepted after max retries with deviations');
+      }
     }
 
     // Get current version
