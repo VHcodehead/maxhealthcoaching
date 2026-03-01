@@ -179,6 +179,13 @@ export async function POST(request: NextRequest) {
 
     const weightLbs = Math.round(onboarding.weightKg * 2.205);
     const mealsPerDay = onboarding.mealsPerDay;
+    const proteinPerMeal = Math.round(macros.proteinG / mealsPerDay);
+
+    // Diet-specific protein guidance
+    const isVegetarian = ['vegetarian', 'vegan'].includes((onboarding.dietType || '').toLowerCase());
+    const proteinGuidance = isVegetarian
+      ? `PROTEIN-FIRST (VEGETARIAN): Every meal MUST hit ≥${proteinPerMeal}g protein using LARGE portions of: egg whites (200-300g per meal), whole eggs (3-4), Greek yogurt 0% (300-400g), cottage cheese 2% (250-350g), whey protein (1-2 scoops). These are your PRIMARY protein sources — use them generously. Beans, lentils, chickpeas, tofu, and quinoa are SIDES that add 5-10g extra, not the main protein. Example: "Greek Yogurt Protein Bowl" with 400g yogurt + 1 scoop whey + berries = 64g protein. NOT "Chickpea Salad" with 26g protein.`
+      : `PROTEIN-FIRST: Every meal MUST be built around a dense animal protein (chicken breast, ground turkey, beef, salmon, cod, tuna, shrimp, tilapia, eggs) providing ≥${proteinPerMeal}g protein. Use 150-250g meat/fish per meal. Beans, lentils, chickpeas are sides NOT protein anchors. Bad: "Quinoa Salad", "Lentil Curry". Good: "Grilled Chicken Quinoa Bowl", "Salmon Lentil Curry".`;
 
     const userPrompt = `Create a COMPLETE 7-day meal plan (Monday through Sunday — all 7 days). You MUST output all 7 days. Do not stop early.
 
@@ -196,7 +203,7 @@ OUTPUT — valid JSON only. Every ingredient MUST have a "macros" object. Includ
 RULES:
 - EXACTLY 7 days, each with EXACTLY ${mealsPerDay} meals
 - Every ingredient MUST have a "macros" object calculated from USDA data for that portion: (per-100g value × amount/100)
-- PROTEIN-FIRST: Every meal MUST be built around a dense protein source (chicken, turkey, beef, fish, eggs, Greek yogurt, cottage cheese, whey) providing ≥30g protein. Tofu, beans, lentils, chickpeas are sides NOT protein anchors. Bad: "Quinoa Salad", "Veggie Stir-fry with Tofu". Good: "Grilled Chicken Quinoa Bowl", "Shrimp Stir-fry". Distribute protein evenly: ~${Math.round(macros.proteinG / mealsPerDay)}g per meal
+- ${proteinGuidance}
 - List ALL ingredients — cooking fats, seasonings, sauces, liquids, binders, everything
 - Instructions: 2-4 real cooking steps with heat levels, cook times, and technique
 - 1 swap per meal — swap ingredients must also include per-ingredient macros

@@ -45,17 +45,19 @@ PORTION SIZING — THIS IS CRITICAL:
 - Common mistakes: using portions that are too small (e.g., 100g chicken = not enough), forgetting cooking oil, underestimating carb portions.
 
 PROTEIN-FIRST RULE (NON-NEGOTIABLE):
-Every single meal MUST contain one of these high-density protein sources providing ≥30g protein: chicken breast, chicken thigh, ground turkey, ground beef, steak, salmon, cod, tuna, shrimp, tilapia, eggs/egg whites (≥4 eggs or 200g whites), Greek yogurt (≥300g), cottage cheese (≥250g), or whey protein (1-2 scoops). No exceptions.
+Every single meal MUST contain a high-density protein source providing ≥30g protein.
 
-REJECTED MEALS (these will cause regeneration):
-- "Lentil Curry" / "Lentil Soup" without meat → add 150g chicken or turkey
-- "Chickpea Sandwich" / "Chickpea Salad" without meat → add 150g grilled chicken
-- "Oatmeal with Fruit" without protein → add 1 scoop whey or 200g egg whites
-- "Avocado Toast" without protein → add 3-4 eggs or 150g smoked salmon
-- "Vegetable Stir-fry with Tofu" → replace with chicken/shrimp stir-fry
-- Any meal where beans, lentils, chickpeas, tofu, or oats are the ONLY protein source
+For omnivore/standard diets: chicken breast, chicken thigh, ground turkey, ground beef, steak, salmon, cod, tuna, shrimp, tilapia (150-250g per meal). Eggs, Greek yogurt, cottage cheese, and whey are acceptable for 1-2 meals/day.
 
-Every meal title must name its protein source (e.g., "Chicken Lentil Curry", "Salmon Avocado Toast").
+For vegetarian diets: egg whites (200-300g), whole eggs (3-4), Greek yogurt 0% (300-400g), cottage cheese 2% (250-350g), or whey protein (1-2 scoops). Use LARGE portions — these are lower density than meat so you need more volume. Combine 2 protein sources per meal to hit ≥30g (e.g., 200g Greek yogurt + 1 scoop whey = 44g protein).
+
+REJECTED MEALS (any diet):
+- Any meal where beans, lentils, chickpeas, tofu, quinoa, or oats are the ONLY protein source
+- "Oatmeal" without whey or egg whites mixed in
+- "Avocado Toast" without eggs or smoked salmon
+- Plain salads/wraps without a protein anchor
+
+Every meal title must name its protein source.
 
 RULES:
 - Use real foods from standard US grocery stores.
