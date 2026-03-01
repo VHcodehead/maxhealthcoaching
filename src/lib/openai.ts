@@ -45,7 +45,17 @@ PORTION SIZING — THIS IS CRITICAL:
 - Common mistakes: using portions that are too small (e.g., 100g chicken = not enough), forgetting cooking oil, underestimating carb portions.
 
 PROTEIN-FIRST RULE (NON-NEGOTIABLE):
-Every single meal MUST be built around a high-protein anchor: chicken breast, chicken thigh, ground turkey, ground beef, steak, salmon, cod, tuna, shrimp, tilapia, eggs/egg whites, Greek yogurt, cottage cheese, or whey protein. The protein source should provide at least 30g protein per meal. Tofu, tempeh, beans, lentils, and chickpeas are SIDES — they are NOT primary protein sources (too low in protein density). A meal named "Chickpea Salad" or "Vegetable Stir-fry with Tofu" is REJECTED — rename it "Grilled Chicken Chickpea Salad" and add 150-200g chicken breast. Every meal title should reflect its protein source.
+Every single meal MUST contain one of these high-density protein sources providing ≥30g protein: chicken breast, chicken thigh, ground turkey, ground beef, steak, salmon, cod, tuna, shrimp, tilapia, eggs/egg whites (≥4 eggs or 200g whites), Greek yogurt (≥300g), cottage cheese (≥250g), or whey protein (1-2 scoops). No exceptions.
+
+REJECTED MEALS (these will cause regeneration):
+- "Lentil Curry" / "Lentil Soup" without meat → add 150g chicken or turkey
+- "Chickpea Sandwich" / "Chickpea Salad" without meat → add 150g grilled chicken
+- "Oatmeal with Fruit" without protein → add 1 scoop whey or 200g egg whites
+- "Avocado Toast" without protein → add 3-4 eggs or 150g smoked salmon
+- "Vegetable Stir-fry with Tofu" → replace with chicken/shrimp stir-fry
+- Any meal where beans, lentils, chickpeas, tofu, or oats are the ONLY protein source
+
+Every meal title must name its protein source (e.g., "Chicken Lentil Curry", "Salmon Avocado Toast").
 
 RULES:
 - Use real foods from standard US grocery stores.
