@@ -37,11 +37,12 @@ Kidney beans canned: 82cal 7.3P 21C 0.5F | Black beans canned: 91cal 6.7P 16C 0.
 Broccoli: 34cal 2.8P 7C 0.4F | Spinach: 23cal 2.9P 3.6C 0.4F
 Soy sauce (15ml): 8cal 1.3P 1C 0F | Honey (21g): 64cal 0P 17C 0F
 
-ACCURACY — THIS IS CRITICAL:
-- Each day's total calories MUST be within ±5% of the target. If target is 1700, every day must land between 1615-1785 kcal.
-- Calculate each ingredient's macros precisely: (USDA per 100g) × (portion grams / 100). Do NOT round or estimate.
-- Cross-check: after building each day's meals, mentally sum the calories. If off-target, adjust portion sizes before moving to the next day.
-- Common mistakes: forgetting cooking oil adds ~88kcal per tablespoon, underestimating rice/oat portions, using raw vs cooked weights incorrectly.
+PORTION SIZING — THIS IS CRITICAL:
+- Size portions so each day is close to the calorie target. Use the USDA reference above.
+- All ingredient amounts MUST be in grams (unit: "g"). Exceptions: eggs (unit: "large"), whey protein (unit: "scoop").
+- Use substantial portions: 150-250g protein source per meal, 150-250g carb source, 100-200g vegetables. Do NOT use tiny portions.
+- We recalculate macros server-side using USDA data and adjust portions to hit the target precisely, so focus on realistic portion sizes and food variety.
+- Common mistakes: using portions that are too small (e.g., 100g chicken = not enough), forgetting cooking oil, underestimating carb portions.
 
 RULES:
 - Use real foods from standard US grocery stores.

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { getOpenAI, MEAL_PLAN_SYSTEM_PROMPT, MEAL_PLAN_SCHEMA } from '@/lib/openai';
+import { correctIngredientMacros, scaleDayToTarget } from '@/lib/usda';
 
 // Simple in-memory rate limit
 const rateLimitMap = new Map<string, number>();
@@ -201,110 +202,86 @@ RULES:
 - 1 swap per meal — swap ingredients must also include per-ingredient macros
 - Vary protein sources across the day`;
 
-    const MAX_RETRIES = 2;
-    const messages: { role: 'system' | 'user' | 'assistant'; content: string }[] = [
-      { role: 'system', content: MEAL_PLAN_SYSTEM_PROMPT },
-      { role: 'user', content: userPrompt },
-    ];
-
-    let planData: any = null;
-
-    for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-      const response = await getOpenAI().chat.completions.create({
-        model: 'gpt-4o',
-        messages,
-        response_format: {
-          type: 'json_schema' as const,
-          json_schema: {
-            name: 'meal_plan',
-            strict: true,
-            schema: MEAL_PLAN_SCHEMA as Record<string, unknown>,
-          },
+    const response = await getOpenAI().chat.completions.create({
+      model: 'gpt-4o',
+      messages: [
+        { role: 'system', content: MEAL_PLAN_SYSTEM_PROMPT },
+        { role: 'user', content: userPrompt },
+      ],
+      response_format: {
+        type: 'json_schema' as const,
+        json_schema: {
+          name: 'meal_plan',
+          strict: true,
+          schema: MEAL_PLAN_SCHEMA as Record<string, unknown>,
         },
-        temperature: 0.3,
-        max_tokens: 16384,
-      });
+      },
+      temperature: 0.3,
+      max_tokens: 16384,
+    });
 
-      console.log(`Attempt ${attempt + 1} — finish_reason:`, response.choices[0]?.finish_reason);
-      console.log(`Attempt ${attempt + 1} — usage:`, JSON.stringify(response.usage));
+    console.log('OpenAI finish_reason:', response.choices[0]?.finish_reason);
+    console.log('OpenAI usage:', JSON.stringify(response.usage));
 
-      const content = response.choices[0]?.message?.content;
-      if (!content) {
-        console.error('No content in OpenAI response');
-        return NextResponse.json({ error: 'Failed to generate plan. Please try again.' }, { status: 500 });
-      }
+    const content = response.choices[0]?.message?.content;
+    if (!content) {
+      console.error('No content in OpenAI response');
+      return NextResponse.json({ error: 'Failed to generate plan. Please try again.' }, { status: 500 });
+    }
 
-      if (response.choices[0]?.finish_reason === 'length') {
-        console.error('OpenAI response truncated — hit max_tokens limit');
-        return NextResponse.json({ error: 'Plan generation was cut short. Please try again.' }, { status: 500 });
-      }
+    if (response.choices[0]?.finish_reason === 'length') {
+      console.error('OpenAI response truncated — hit max_tokens limit');
+      return NextResponse.json({ error: 'Plan generation was cut short. Please try again.' }, { status: 500 });
+    }
 
-      try {
-        planData = JSON.parse(content);
-      } catch (e) {
-        console.error('JSON parse error:', e);
-        console.error('Raw content (first 500 chars):', content.substring(0, 500));
-        return NextResponse.json({ error: 'Invalid response format. Please try again.' }, { status: 500 });
-      }
+    let planData: any;
+    try {
+      planData = JSON.parse(content);
+    } catch (e) {
+      console.error('JSON parse error:', e);
+      console.error('Raw content (first 500 chars):', content.substring(0, 500));
+      return NextResponse.json({ error: 'Invalid response format. Please try again.' }, { status: 500 });
+    }
 
-      // Validate basic structure
-      if (!planData.days || !Array.isArray(planData.days)) {
-        console.error('Missing days array. Keys:', Object.keys(planData));
-        return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
-      }
+    // Validate basic structure
+    if (!planData.days || !Array.isArray(planData.days)) {
+      console.error('Missing days array. Keys:', Object.keys(planData));
+      return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
+    }
 
-      if (planData.days.length !== 7) {
-        console.error('Expected 7 days, got:', planData.days.length);
-        return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
-      }
+    if (planData.days.length !== 7) {
+      console.error('Expected 7 days, got:', planData.days.length);
+      return NextResponse.json({ error: 'Incomplete plan generated. Please try again.' }, { status: 500 });
+    }
 
-      // Server-side: compute macro totals from per-ingredient macros
-      computeMacroTotals(planData.days);
+    // === SERVER-SIDE MACRO CORRECTION PIPELINE ===
 
-      // Log computed totals
-      console.log(`=== SERVER-COMPUTED MACRO TOTALS (attempt ${attempt + 1}) ===`);
-      for (const day of planData.days) {
-        const dt = day.day_totals;
-        const diff = Math.abs(dt.calories - macros.calorieTarget) / macros.calorieTarget;
-        console.log(`${day.day}: ${dt.calories} kcal | ${dt.protein}P | ${dt.carbs}C | ${dt.fat}F (target: ${macros.calorieTarget}, diff: ${Math.round(diff * 100)}%)`);
-      }
+    // Step 1: Override GPT's macros with USDA-calculated values
+    const stats = correctIngredientMacros(planData.days);
+    console.log(`USDA correction: ${stats.matched}/${stats.total} ingredients matched`);
+    if (stats.unmatched.length > 0) {
+      console.log(`Unmatched ingredients (using GPT macros): ${stats.unmatched.join(', ')}`);
+    }
 
-      // Diagnostic: count ingredients with/without macros
-      let totalIngredients = 0;
-      let missingMacros = 0;
-      for (const day of planData.days) {
-        if (!Array.isArray(day.meals)) continue;
-        for (const meal of day.meals) {
-          if (!Array.isArray(meal.ingredients)) continue;
-          for (const ing of meal.ingredients) {
-            totalIngredients++;
-            if (!ing.macros || !ing.macros.calories) missingMacros++;
-          }
-        }
-      }
-      console.log(`Ingredient macros coverage: ${totalIngredients - missingMacros}/${totalIngredients} (${missingMacros} missing)`);
+    // Step 2: Compute totals from corrected ingredient macros
+    computeMacroTotals(planData.days);
 
-      // Check if all days are within 10% of calorie target
-      const offDays = planData.days.filter((day: any) => {
-        const diff = Math.abs(day.day_totals.calories - macros.calorieTarget) / macros.calorieTarget;
-        return diff > 0.10;
-      });
+    // Step 3: Scale each day's portions to hit calorie target
+    console.log('=== PRE-SCALING TOTALS ===');
+    for (const day of planData.days) {
+      console.log(`${day.day}: ${day.day_totals.calories} kcal (target: ${macros.calorieTarget})`);
+      scaleDayToTarget(day, macros.calorieTarget);
+    }
 
-      if (offDays.length === 0) {
-        console.log(`Plan passed validation on attempt ${attempt + 1}`);
-        break;
-      }
+    // Step 4: Recompute totals after scaling
+    computeMacroTotals(planData.days);
 
-      if (attempt < MAX_RETRIES) {
-        const feedback = offDays.map((d: any) =>
-          `${d.day}: got ${d.day_totals.calories} kcal (target: ${macros.calorieTarget})`
-        ).join(', ');
-        console.log(`Attempt ${attempt + 1} failed validation. Off days: ${feedback}. Retrying...`);
-        messages.push({ role: 'assistant', content });
-        messages.push({ role: 'user', content: `Some days are off-target: ${feedback}. Regenerate the COMPLETE 7-day plan with ALL days within ±5% of ${macros.calorieTarget} kcal. Adjust portion sizes to hit the target precisely.` });
-      } else {
-        console.warn('Plan accepted after max retries with deviations');
-      }
+    // Step 5: Log final results
+    console.log('=== FINAL MACRO TOTALS ===');
+    for (const day of planData.days) {
+      const dt = day.day_totals;
+      const diff = Math.abs(dt.calories - macros.calorieTarget) / macros.calorieTarget;
+      console.log(`${day.day}: ${dt.calories} kcal | ${dt.protein}P | ${dt.carbs}C | ${dt.fat}F (diff: ${Math.round(diff * 100)}%)`);
     }
 
     // Get current version
