@@ -257,7 +257,7 @@ RULES:
     // === SERVER-SIDE MACRO CORRECTION PIPELINE ===
 
     // Step 1: Override GPT's macros with USDA-calculated values
-    const stats = correctIngredientMacros(planData.days);
+    const stats = await correctIngredientMacros(planData.days);
     console.log(`USDA correction: ${stats.matched}/${stats.total} ingredients matched`);
     if (stats.unmatched.length > 0) {
       console.log(`Unmatched ingredients (using GPT macros): ${stats.unmatched.join(', ')}`);

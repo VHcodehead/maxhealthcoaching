@@ -202,10 +202,10 @@ function toGrams(name: string, amount: number, unit: string): number | null {
   return null;
 }
 
-// Match an ingredient name to a USDA table entry.
+// Match an ingredient name to the static USDA table.
 // Uses keyword matching: all words of a USDA key must appear in the ingredient name.
 // Picks the longest (most specific) match.
-export function matchIngredient(name: string): UsdaEntry | null {
+function matchFromTable(name: string): UsdaEntry | null {
   const normalized = name.toLowerCase().replace(/[,.()\-]/g, ' ').replace(/\s+/g, ' ').trim();
 
   let bestMatch: string | null = null;
@@ -223,16 +223,73 @@ export function matchIngredient(name: string): UsdaEntry | null {
   return bestMatch ? USDA_TABLE[bestMatch] : null;
 }
 
+// Module-level cache for API results within a request lifecycle
+const apiCache = new Map<string, UsdaEntry | null>();
+
+// Fetch from USDA FoodData Central API
+async function fetchFromUSDA(ingredientName: string): Promise<UsdaEntry | null> {
+  const apiKey = process.env.USDA_API_KEY;
+  if (!apiKey) return null;
+
+  const url = new URL('https://api.nal.usda.gov/fdc/v1/foods/search');
+  url.searchParams.set('query', ingredientName);
+  url.searchParams.set('api_key', apiKey);
+  url.searchParams.set('dataType', 'SR Legacy,Foundation');
+  url.searchParams.set('pageSize', '1');
+
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
+    const res = await fetch(url.toString(), { signal: controller.signal });
+    clearTimeout(timeout);
+
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    const food = data.foods?.[0];
+    if (!food) return null;
+
+    const nutrients = food.foodNutrients || [];
+    const get = (id: number) =>
+      nutrients.find((n: any) => n.nutrientId === id)?.value ?? 0;
+
+    return {
+      calories: get(1008),
+      protein: get(1003),
+      carbs: get(1005),
+      fat: get(1004),
+    };
+  } catch {
+    return null;
+  }
+}
+
+// 3-tier lookup: static table → API cache → live USDA API
+export async function matchIngredient(name: string): Promise<UsdaEntry | null> {
+  // Tier 1: Static table (instant, handles ~100 common ingredients)
+  const staticResult = matchFromTable(name);
+  if (staticResult) return staticResult;
+
+  // Tier 2: API cache (avoids duplicate API calls)
+  const normalized = name.toLowerCase().trim();
+  if (apiCache.has(normalized)) return apiCache.get(normalized) ?? null;
+
+  // Tier 3: USDA API
+  const apiResult = await fetchFromUSDA(normalized);
+  apiCache.set(normalized, apiResult);
+  return apiResult;
+}
+
 // Override GPT's per-ingredient macros with server-calculated USDA values.
 // Returns stats about matching coverage.
-export function correctIngredientMacros(days: any[]): { total: number; matched: number; unmatched: string[] } {
+export async function correctIngredientMacros(days: any[]): Promise<{ total: number; matched: number; unmatched: string[] }> {
   let total = 0;
   let matched = 0;
   const unmatchedSet = new Set<string>();
 
-  function processIngredient(ing: any) {
+  async function processIngredient(ing: any) {
     total++;
-    const usda = matchIngredient(ing.name || '');
+    const usda = await matchIngredient(ing.name || '');
     if (!usda) {
       unmatchedSet.add(ing.name || 'unknown');
       return;
@@ -255,20 +312,23 @@ export function correctIngredientMacros(days: any[]): { total: number; matched: 
     matched++;
   }
 
+  // Process day-by-day to limit concurrency, but parallelize within each day
   for (const day of days) {
     if (!Array.isArray(day.meals)) continue;
+    const promises: Promise<void>[] = [];
     for (const meal of day.meals) {
       if (Array.isArray(meal.ingredients)) {
-        for (const ing of meal.ingredients) processIngredient(ing);
+        for (const ing of meal.ingredients) promises.push(processIngredient(ing));
       }
       if (Array.isArray(meal.swap_options)) {
         for (const swap of meal.swap_options) {
           if (Array.isArray(swap.ingredients)) {
-            for (const ing of swap.ingredients) processIngredient(ing);
+            for (const ing of swap.ingredients) promises.push(processIngredient(ing));
           }
         }
       }
     }
+    await Promise.all(promises);
   }
 
   return { total, matched, unmatched: [...unmatchedSet] };
