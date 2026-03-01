@@ -266,11 +266,18 @@ RULES:
     // Step 2: Compute totals from corrected ingredient macros
     computeMacroTotals(planData.days);
 
-    // Step 3: Scale each day's portions to hit calorie target
+    // Step 3: Scale each day's portions to hit macro targets
+    const macroTargets = {
+      calories: macros.calorieTarget,
+      protein: macros.proteinG,
+      carbs: macros.carbsG,
+      fat: macros.fatG,
+    };
     console.log('=== PRE-SCALING TOTALS ===');
     for (const day of planData.days) {
-      console.log(`${day.day}: ${day.day_totals.calories} kcal (target: ${macros.calorieTarget})`);
-      scaleDayToTarget(day, macros.calorieTarget);
+      const dt = day.day_totals;
+      console.log(`${day.day}: ${dt.calories} kcal | ${dt.protein}P | ${dt.carbs}C | ${dt.fat}F`);
+      scaleDayToTarget(day, macroTargets);
     }
 
     // Step 4: Recompute totals after scaling
