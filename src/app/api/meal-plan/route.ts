@@ -196,7 +196,7 @@ OUTPUT — valid JSON only. Every ingredient MUST have a "macros" object. Includ
 RULES:
 - EXACTLY 7 days, each with EXACTLY ${mealsPerDay} meals
 - Every ingredient MUST have a "macros" object calculated from USDA data for that portion: (per-100g value × amount/100)
-- EVERY meal MUST have a substantial protein source (chicken, turkey, beef, fish, eggs, Greek yogurt, cottage cheese, whey). Aim for at least 30-50g protein per meal. A "quinoa and bean salad" is NOT a protein-forward meal — it needs grilled chicken, shrimp, or another protein added
+- PROTEIN-FIRST: Every meal MUST be built around a dense protein source (chicken, turkey, beef, fish, eggs, Greek yogurt, cottage cheese, whey) providing ≥30g protein. Tofu, beans, lentils, chickpeas are sides NOT protein anchors. Bad: "Quinoa Salad", "Veggie Stir-fry with Tofu". Good: "Grilled Chicken Quinoa Bowl", "Shrimp Stir-fry". Distribute protein evenly: ~${Math.round(macros.proteinG / mealsPerDay)}g per meal
 - List ALL ingredients — cooking fats, seasonings, sauces, liquids, binders, everything
 - Instructions: 2-4 real cooking steps with heat levels, cook times, and technique
 - 1 swap per meal — swap ingredients must also include per-ingredient macros

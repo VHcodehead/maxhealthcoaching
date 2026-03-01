@@ -354,79 +354,93 @@ function dominantMacro(ing: any): 'protein' | 'carbs' | 'fat' | null {
   return 'fat';
 }
 
+// Apply a scale factor to an ingredient's amount and macros.
+function scaleIngredient(ing: any, factor: number): void {
+  const amount = parseFloat(ing.amount) || 0;
+  ing.amount = String(Math.round(amount * factor));
+  ing.macros.calories = Math.round(ing.macros.calories * factor * 10) / 10;
+  ing.macros.protein = Math.round(ing.macros.protein * factor * 10) / 10;
+  ing.macros.carbs = Math.round(ing.macros.carbs * factor * 10) / 10;
+  ing.macros.fat = Math.round(ing.macros.fat * factor * 10) / 10;
+}
+
 // Scale a day's ingredient portions so total macros hit the targets.
-// Groups ingredients by dominant macro and scales each group independently.
-// Ingredients contributing ≤30 kcal (seasonings/condiments) are left alone.
+// Step 1: Gentle per-macro scaling (capped at 0.7–1.4) to nudge distribution.
+// Step 2: Uniform calorie pass to nail the calorie target.
 export function scaleDayToTarget(day: any, targets: MacroTargets): void {
   if (!Array.isArray(day.meals)) return;
 
-  // Collect scalable ingredients by dominant macro
+  // Collect all scalable ingredients (>30 kcal) grouped by dominant macro
   const groups: Record<string, any[]> = { protein: [], carbs: [], fat: [] };
-  const fixedMacros = { protein: 0, carbs: 0, fat: 0 };
+  const allScalable: any[] = [];
 
   for (const meal of day.meals) {
     if (!Array.isArray(meal.ingredients)) continue;
     for (const ing of meal.ingredients) {
       const cal = ing.macros?.calories || 0;
-      if (cal <= 30) {
-        // Fixed ingredient — count its macro contribution but don't scale
-        fixedMacros.protein += ing.macros?.protein || 0;
-        fixedMacros.carbs += ing.macros?.carbs || 0;
-        fixedMacros.fat += ing.macros?.fat || 0;
-        continue;
-      }
+      if (cal <= 30) continue;
+      allScalable.push(ing);
       const dom = dominantMacro(ing);
       if (dom) groups[dom].push(ing);
     }
   }
 
-  // Calculate current totals per group
-  const groupTotals: Record<string, { protein: number; carbs: number; fat: number }> = {
-    protein: { protein: 0, carbs: 0, fat: 0 },
-    carbs: { protein: 0, carbs: 0, fat: 0 },
-    fat: { protein: 0, carbs: 0, fat: 0 },
-  };
+  if (allScalable.length === 0) return;
+
+  // --- Step 1: Gentle per-macro scaling (capped) ---
+  const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+
   for (const key of ['protein', 'carbs', 'fat'] as const) {
+    if (groups[key].length === 0) continue;
+
+    // Sum this group's contribution to its dominant macro
+    let groupMacro = 0;
     for (const ing of groups[key]) {
-      groupTotals[key].protein += ing.macros?.protein || 0;
-      groupTotals[key].carbs += ing.macros?.carbs || 0;
-      groupTotals[key].fat += ing.macros?.fat || 0;
+      groupMacro += ing.macros?.[key] || 0;
     }
-  }
+    if (groupMacro <= 0) continue;
 
-  // Compute scale factor for each group based on its dominant macro target
-  const scalableProtein = groupTotals.protein.protein;
-  const scalableCarbs = groupTotals.carbs.carbs;
-  const scalableFat = groupTotals.fat.fat;
+    const rawFactor = targets[key] / groupMacro;
+    const factor = clamp(rawFactor, 0.7, 1.4);
 
-  const targetProtein = targets.protein - fixedMacros.protein;
-  const targetCarbs = targets.carbs - fixedMacros.carbs;
-  const targetFat = targets.fat - fixedMacros.fat;
-
-  const proteinScale = scalableProtein > 0 && targetProtein > 0 ? targetProtein / scalableProtein : 1;
-  const carbsScale = scalableCarbs > 0 && targetCarbs > 0 ? targetCarbs / scalableCarbs : 1;
-  const fatScale = scalableFat > 0 && targetFat > 0 ? targetFat / scalableFat : 1;
-
-  const scaleMap: Record<string, number> = {
-    protein: proteinScale,
-    carbs: carbsScale,
-    fat: fatScale,
-  };
-
-  // Apply scale factors
-  for (const key of ['protein', 'carbs', 'fat'] as const) {
-    const factor = scaleMap[key];
-    // Skip if already within 5%
     if (Math.abs(factor - 1) <= 0.05) continue;
 
     for (const ing of groups[key]) {
-      const amount = parseFloat(ing.amount) || 0;
-      ing.amount = String(Math.round(amount * factor));
+      scaleIngredient(ing, factor);
+    }
+  }
 
-      ing.macros.calories = Math.round(ing.macros.calories * factor * 10) / 10;
-      ing.macros.protein = Math.round(ing.macros.protein * factor * 10) / 10;
-      ing.macros.carbs = Math.round(ing.macros.carbs * factor * 10) / 10;
-      ing.macros.fat = Math.round(ing.macros.fat * factor * 10) / 10;
+  // --- Step 2: Uniform calorie reconciliation ---
+  let scalableCalories = 0;
+  let fixedCalories = 0;
+
+  for (const meal of day.meals) {
+    if (!Array.isArray(meal.ingredients)) continue;
+    for (const ing of meal.ingredients) {
+      const cal = ing.macros?.calories || 0;
+      if (cal > 30) {
+        scalableCalories += cal;
+      } else {
+        fixedCalories += cal;
+      }
+    }
+  }
+
+  const currentTotal = scalableCalories + fixedCalories;
+  if (scalableCalories === 0 || currentTotal === 0) return;
+
+  const deviation = Math.abs(currentTotal - targets.calories) / targets.calories;
+  if (deviation <= 0.05) return;
+
+  const targetScalable = targets.calories - fixedCalories;
+  if (targetScalable <= 0) return;
+  const calFactor = targetScalable / scalableCalories;
+
+  for (const meal of day.meals) {
+    if (!Array.isArray(meal.ingredients)) continue;
+    for (const ing of meal.ingredients) {
+      if ((ing.macros?.calories || 0) <= 30) continue;
+      scaleIngredient(ing, calFactor);
     }
   }
 }

@@ -44,6 +44,9 @@ PORTION SIZING — THIS IS CRITICAL:
 - We recalculate macros server-side using USDA data and adjust portions to hit the target precisely, so focus on realistic portion sizes and food variety.
 - Common mistakes: using portions that are too small (e.g., 100g chicken = not enough), forgetting cooking oil, underestimating carb portions.
 
+PROTEIN-FIRST RULE (NON-NEGOTIABLE):
+Every single meal MUST be built around a high-protein anchor: chicken breast, chicken thigh, ground turkey, ground beef, steak, salmon, cod, tuna, shrimp, tilapia, eggs/egg whites, Greek yogurt, cottage cheese, or whey protein. The protein source should provide at least 30g protein per meal. Tofu, tempeh, beans, lentils, and chickpeas are SIDES — they are NOT primary protein sources (too low in protein density). A meal named "Chickpea Salad" or "Vegetable Stir-fry with Tofu" is REJECTED — rename it "Grilled Chicken Chickpea Salad" and add 150-200g chicken breast. Every meal title should reflect its protein source.
+
 RULES:
 - Use real foods from standard US grocery stores.
 - Vary protein sources — no single source in more than 2 meals/day.
