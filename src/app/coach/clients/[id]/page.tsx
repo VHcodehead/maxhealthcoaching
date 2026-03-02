@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import {
@@ -39,13 +40,17 @@ import type {
   TrainingPlan,
   CheckIn,
   ProgressPhoto,
+  PendingMacroAdjustment,
   Meal,
   TrainingDay,
 } from '@/types/database'
 import { EditMealDialog } from '@/components/coach/edit-meal-dialog'
-import { EditExerciseDialog } from '@/components/coach/edit-exercise-dialog'
+import { EditTrainingDayDialog } from '@/components/coach/edit-training-day-dialog'
+import { InlineEditableText } from '@/components/coach/inline-editable-text'
 import { MacroOverrideForm } from '@/components/coach/macro-override-form'
+import { PendingMacroReview } from '@/components/coach/pending-macro-review'
 import { CoachNotes } from '@/components/coach/coach-notes'
+import { CoachSupplements } from '@/components/coach/coach-supplements'
 
 interface CheckInWithPhotos extends CheckIn {
   progress_photos: (ProgressPhoto & { url?: string })[]
@@ -65,6 +70,7 @@ export default function ClientDetailPage() {
   const [mealPlan, setMealPlan] = useState<MealPlan | null>(null)
   const [trainingPlan, setTrainingPlan] = useState<TrainingPlan | null>(null)
   const [checkIns, setCheckIns] = useState<CheckInWithPhotos[]>([])
+  const [pendingAdjustments, setPendingAdjustments] = useState<PendingMacroAdjustment[]>([])
 
   const [regeneratingMeal, setRegeneratingMeal] = useState(false)
   const [regeneratingTraining, setRegeneratingTraining] = useState(false)
@@ -118,6 +124,7 @@ export default function ClientDetailPage() {
       setMealPlan(data.mealPlan || null)
       setTrainingPlan(data.trainingPlan || null)
       setCheckIns((data.checkIns as CheckInWithPhotos[]) || [])
+      setPendingAdjustments(data.pendingAdjustments || [])
 
       // Set default comparison weeks if check-ins have photos
       const checkInsData = (data.checkIns as CheckInWithPhotos[]) || []
@@ -289,6 +296,61 @@ export default function ClientDetailPage() {
             version: overriddenMacros.version,
           }
         : prev
+    )
+  }
+
+  const handleSaveProgramField = async (
+    field: 'program_name' | 'overview' | 'progression_rules',
+    value: string
+  ) => {
+    if (!trainingPlan) return
+    const updatedPlanData = { ...trainingPlan.plan_data, [field]: value }
+
+    const res = await fetch('/api/admin/training-plan', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: clientId,
+        plan_data: updatedPlanData,
+      }),
+    })
+
+    if (!res.ok) {
+      const data = await res.json()
+      throw new Error(data.error || 'Failed to save')
+    }
+
+    setTrainingPlan((prev) =>
+      prev ? { ...prev, plan_data: updatedPlanData } : prev
+    )
+  }
+
+  const handleSaveWeekField = async (
+    weekIndex: number,
+    field: 'phase_name' | 'theme',
+    value: string
+  ) => {
+    if (!trainingPlan) return
+    const updatedWeeks = [...trainingPlan.plan_data.weeks]
+    updatedWeeks[weekIndex] = { ...updatedWeeks[weekIndex], [field]: value }
+    const updatedPlanData = { ...trainingPlan.plan_data, weeks: updatedWeeks }
+
+    const res = await fetch('/api/admin/training-plan', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: clientId,
+        plan_data: updatedPlanData,
+      }),
+    })
+
+    if (!res.ok) {
+      const data = await res.json()
+      throw new Error(data.error || 'Failed to save')
+    }
+
+    setTrainingPlan((prev) =>
+      prev ? { ...prev, plan_data: updatedPlanData } : prev
     )
   }
 
@@ -643,6 +705,17 @@ export default function ClientDetailPage() {
         </Card>
       )}
 
+      {/* Pending Macro Adjustments */}
+      {pendingAdjustments.length > 0 && pendingAdjustments.map((adj) => (
+        <PendingMacroReview
+          key={adj.id}
+          adjustment={adj}
+          clientGoal={onboarding?.goal}
+          clientBodyFatPercentage={onboarding?.body_fat_percentage}
+          onResolved={() => loadData()}
+        />
+      ))}
+
       {/* Macro Targets */}
       <Card>
         <CardHeader
@@ -882,44 +955,75 @@ export default function ClientDetailPage() {
 
         {expandedSections.trainingPlan && trainingPlan && (
           <CardContent className="space-y-4">
-            {trainingPlan.plan_data.overview && (
-              <p className="text-sm text-muted-foreground">
-                {trainingPlan.plan_data.overview}
-              </p>
-            )}
-            {trainingPlan.plan_data.progression_rules && (
-              <div className="rounded-lg bg-emerald-50 p-3">
-                <p className="text-sm font-medium text-emerald-700">
-                  Progression Rules
-                </p>
-                <p className="text-sm text-emerald-600">
-                  {trainingPlan.plan_data.progression_rules}
-                </p>
-              </div>
-            )}
+            <div>
+              <Label className="text-xs text-muted-foreground">Program Name</Label>
+              <InlineEditableText
+                value={trainingPlan.plan_data.program_name}
+                onSave={(v) => handleSaveProgramField('program_name', v)}
+                placeholder="Program name"
+                className="text-base font-semibold"
+              />
+            </div>
+            <div>
+              <Label className="text-xs text-muted-foreground">Overview</Label>
+              <InlineEditableText
+                value={trainingPlan.plan_data.overview}
+                onSave={(v) => handleSaveProgramField('overview', v)}
+                placeholder="Program overview"
+                multiline
+              />
+            </div>
+            <div className="rounded-lg bg-emerald-50 p-3">
+              <Label className="text-xs font-medium text-emerald-700">
+                Progression Rules
+              </Label>
+              <InlineEditableText
+                value={trainingPlan.plan_data.progression_rules}
+                onSave={(v) => handleSaveProgramField('progression_rules', v)}
+                placeholder="Progression rules"
+                multiline
+                className="text-emerald-600"
+              />
+            </div>
 
-            {trainingPlan.plan_data.weeks.map((week) => (
+            {trainingPlan.plan_data.weeks.map((week, wIdx) => (
               <div key={week.week} className="rounded-lg border p-4">
-                <h4 className="mb-2 font-semibold">
-                  Week {week.week}
-                  {week.theme && (
-                    <span className="ml-2 font-normal text-muted-foreground">
-                      - {week.theme}
-                    </span>
-                  )}
-                </h4>
+                <div className="mb-2 flex flex-wrap items-center gap-2">
+                  <h4 className="font-semibold">Week {week.week}</h4>
+                  <InlineEditableText
+                    value={week.phase_name || ''}
+                    onSave={(v) => handleSaveWeekField(wIdx, 'phase_name', v)}
+                    placeholder="Phase"
+                    className="text-xs"
+                  />
+                  <InlineEditableText
+                    value={week.theme || ''}
+                    onSave={(v) => handleSaveWeekField(wIdx, 'theme', v)}
+                    placeholder="Theme"
+                    className="text-sm text-muted-foreground"
+                  />
+                </div>
                 <div className="space-y-2">
                   {week.days.map((day, dayIndex) => {
-                    const weekIndex = trainingPlan.plan_data.weeks.indexOf(week)
+                    const weekIndex = wIdx
+                    const dayLabel = day.day_name || day.day || ''
+                    const sessionLabel = day.session_name || day.name || ''
                     return (
                       <div
                         key={dayIndex}
                         className="rounded bg-muted/50 p-3 text-sm"
                       >
                         <div className="mb-1 flex items-center justify-between">
-                          <span className="font-medium">
-                            {day.day}: {day.name}
-                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium">
+                              {dayLabel}: {sessionLabel}
+                            </span>
+                            {day.muscle_groups && day.muscle_groups.length > 0 && (
+                              <span className="text-xs text-muted-foreground">
+                                ({day.muscle_groups.join(', ')})
+                              </span>
+                            )}
+                          </div>
                           <Button
                             variant="ghost"
                             size="icon"
@@ -939,10 +1043,18 @@ export default function ClientDetailPage() {
                               key={exIndex}
                               className="flex items-center justify-between text-xs text-muted-foreground"
                             >
-                              <span>{ex.name}</span>
+                              <span>
+                                {ex.name}
+                                {ex.intensity_technique && ex.intensity_technique !== 'none' && (
+                                  <Badge variant="outline" className="ml-1 text-[10px] px-1 py-0">
+                                    {ex.intensity_technique.replace(/_/g, ' ')}
+                                  </Badge>
+                                )}
+                              </span>
                               <span>
                                 {ex.sets}x{ex.reps}
                                 {ex.rpe ? ` @RPE${ex.rpe}` : ''}
+                                {ex.rir !== undefined && ex.rir > 0 ? ` RIR${ex.rir}` : ''}
                                 {ex.rest_seconds ? ` | ${ex.rest_seconds}s rest` : ''}
                               </span>
                             </div>
@@ -1079,6 +1191,9 @@ export default function ClientDetailPage() {
 
       {/* Coach Notes */}
       <CoachNotes clientId={clientId} />
+
+      {/* Supplements */}
+      <CoachSupplements clientId={clientId} />
 
       {/* Photo Comparison */}
       {checkInsWithPhotos.length > 0 && (
@@ -1248,7 +1363,7 @@ export default function ClientDetailPage() {
       )}
 
       {editingExercise && (
-        <EditExerciseDialog
+        <EditTrainingDayDialog
           open={!!editingExercise}
           onOpenChange={(open) => {
             if (!open) setEditingExercise(null)
