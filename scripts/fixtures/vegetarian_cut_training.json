@@ -1,0 +1,3567 @@
+{
+  "program_name": "8-Week Cutting Program",
+  "overview": "This program is designed for an intermediate lifter aiming to cut body fat while maintaining muscle mass. The program follows an Upper/Lower split with 4 training days per week. Each phase focuses on different aspects of training, with a deload week to ensure recovery and prevent overtraining. Due to knee pain, exercises that could exacerbate the condition are avoided or modified.",
+  "progression_rules": "Double progression model: aim to hit the top of the rep range for all sets before increasing weight. RPE 6-8 for compounds, RIR 2-4; RPE 6-8 for isolation, RIR 1-3.",
+  "weeks": [
+    {
+      "week": 1,
+      "phase_name": "Accumulation",
+      "theme": "Building volume and endurance",
+      "days": [
+        {
+          "day_name": "Day 1",
+          "session_name": "Upper Body A",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic shoulder circles",
+            "Band pull-aparts",
+            "Scapular push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Incline Barbell Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows at 45°",
+                "Drive through heels",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Pull-Up",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Engage lats",
+                "Keep core tight",
+                "Full range of motion"
+              ],
+              "notes": "",
+              "substitution": "Assisted Pull-Up"
+            },
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": "8-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Press overhead",
+                "Avoid arching back",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Row",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squeeze shoulder blades",
+                "Pull to lower rib"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Tricep Pushdown",
+              "sets": 3,
+              "reps": "10-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows close",
+                "Extend fully",
+                "Control the return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Bicep Curl",
+              "sets": 3,
+              "reps": "10-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows stationary",
+                "Curl to shoulder",
+                "Squeeze at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Focus on maintaining good form and control throughout each rep."
+        },
+        {
+          "day_name": "Day 2",
+          "session_name": "Lower Body A",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Leg swings",
+            "Bodyweight squats",
+            "Glute bridges"
+          ],
+          "exercises": [
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Feet shoulder-width",
+                "Drive through heels",
+                "Avoid locking knees"
+              ],
+              "notes": "Avoid deep knee flexion due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Keep back straight",
+                "Slight knee bend"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Lying Leg Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep hips down",
+                "Curl to glutes",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Focus on controlled movements to protect the knees."
+        },
+        {
+          "day_name": "Day 3",
+          "session_name": "Upper Body B",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Band pull-aparts",
+            "Arm circles",
+            "Push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep wrists neutral",
+                "Press in arc",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Bent Over Row",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Pull to waist",
+                "Keep back flat"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Lift to shoulder height",
+                "Slight bend in elbows",
+                "Control down"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Face Pull",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Pull to forehead",
+                "Elbows high",
+                "Squeeze rear delts"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Tricep Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Elbows stationary",
+                "Extend fully",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Neutral grip",
+                "Curl to shoulder",
+                "Control descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Emphasize form over weight to maximize muscle engagement."
+        },
+        {
+          "day_name": "Day 4",
+          "session_name": "Lower Body B",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic leg swings",
+            "Bodyweight lunges",
+            "Hip circles"
+          ],
+          "exercises": [
+            {
+              "name": "Goblet Squat",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squat to parallel",
+                "Drive through heels"
+              ],
+              "notes": "Modify depth to comfort due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Glute Bridge",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Drive through heels",
+                "Squeeze glutes",
+                "Hold at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Control up and down",
+                "Avoid locking knees",
+                "Squeeze at top"
+              ],
+              "notes": "Light weight to avoid knee strain.",
+              "substitution": ""
+            },
+            {
+              "name": "Seated Calf Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Maintain a focus on knee-friendly exercises and movements."
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "phase_name": "Accumulation",
+      "theme": "Building volume and endurance",
+      "days": [
+        {
+          "day_name": "Day 1",
+          "session_name": "Upper Body A",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic shoulder circles",
+            "Band pull-aparts",
+            "Scapular push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Incline Barbell Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows at 45°",
+                "Drive through heels",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Pull-Up",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Engage lats",
+                "Keep core tight",
+                "Full range of motion"
+              ],
+              "notes": "",
+              "substitution": "Assisted Pull-Up"
+            },
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": "8-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Press overhead",
+                "Avoid arching back",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Row",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squeeze shoulder blades",
+                "Pull to lower rib"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Tricep Pushdown",
+              "sets": 3,
+              "reps": "10-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows close",
+                "Extend fully",
+                "Control the return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Bicep Curl",
+              "sets": 3,
+              "reps": "10-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows stationary",
+                "Curl to shoulder",
+                "Squeeze at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Focus on maintaining good form and control throughout each rep."
+        },
+        {
+          "day_name": "Day 2",
+          "session_name": "Lower Body A",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Leg swings",
+            "Bodyweight squats",
+            "Glute bridges"
+          ],
+          "exercises": [
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Feet shoulder-width",
+                "Drive through heels",
+                "Avoid locking knees"
+              ],
+              "notes": "Avoid deep knee flexion due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Keep back straight",
+                "Slight knee bend"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Lying Leg Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep hips down",
+                "Curl to glutes",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Focus on controlled movements to protect the knees."
+        },
+        {
+          "day_name": "Day 3",
+          "session_name": "Upper Body B",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Band pull-aparts",
+            "Arm circles",
+            "Push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep wrists neutral",
+                "Press in arc",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Bent Over Row",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Pull to waist",
+                "Keep back flat"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Lift to shoulder height",
+                "Slight bend in elbows",
+                "Control down"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Face Pull",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Pull to forehead",
+                "Elbows high",
+                "Squeeze rear delts"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Tricep Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Elbows stationary",
+                "Extend fully",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Neutral grip",
+                "Curl to shoulder",
+                "Control descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Emphasize form over weight to maximize muscle engagement."
+        },
+        {
+          "day_name": "Day 4",
+          "session_name": "Lower Body B",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic leg swings",
+            "Bodyweight lunges",
+            "Hip circles"
+          ],
+          "exercises": [
+            {
+              "name": "Goblet Squat",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squat to parallel",
+                "Drive through heels"
+              ],
+              "notes": "Modify depth to comfort due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Glute Bridge",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Drive through heels",
+                "Squeeze glutes",
+                "Hold at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Control up and down",
+                "Avoid locking knees",
+                "Squeeze at top"
+              ],
+              "notes": "Light weight to avoid knee strain.",
+              "substitution": ""
+            },
+            {
+              "name": "Seated Calf Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Maintain a focus on knee-friendly exercises and movements."
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "phase_name": "Accumulation",
+      "theme": "Building volume and endurance",
+      "days": [
+        {
+          "day_name": "Day 1",
+          "session_name": "Upper Body A",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic shoulder circles",
+            "Band pull-aparts",
+            "Scapular push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Incline Barbell Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows at 45°",
+                "Drive through heels",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Pull-Up",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Engage lats",
+                "Keep core tight",
+                "Full range of motion"
+              ],
+              "notes": "",
+              "substitution": "Assisted Pull-Up"
+            },
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": "8-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Press overhead",
+                "Avoid arching back",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Row",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squeeze shoulder blades",
+                "Pull to lower rib"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Tricep Pushdown",
+              "sets": 3,
+              "reps": "10-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows close",
+                "Extend fully",
+                "Control the return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Bicep Curl",
+              "sets": 3,
+              "reps": "10-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows stationary",
+                "Curl to shoulder",
+                "Squeeze at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Focus on maintaining good form and control throughout each rep."
+        },
+        {
+          "day_name": "Day 2",
+          "session_name": "Lower Body A",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Leg swings",
+            "Bodyweight squats",
+            "Glute bridges"
+          ],
+          "exercises": [
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Feet shoulder-width",
+                "Drive through heels",
+                "Avoid locking knees"
+              ],
+              "notes": "Avoid deep knee flexion due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Keep back straight",
+                "Slight knee bend"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Lying Leg Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep hips down",
+                "Curl to glutes",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Focus on controlled movements to protect the knees."
+        },
+        {
+          "day_name": "Day 3",
+          "session_name": "Upper Body B",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Band pull-aparts",
+            "Arm circles",
+            "Push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep wrists neutral",
+                "Press in arc",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Bent Over Row",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Pull to waist",
+                "Keep back flat"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Lift to shoulder height",
+                "Slight bend in elbows",
+                "Control down"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Face Pull",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Pull to forehead",
+                "Elbows high",
+                "Squeeze rear delts"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Tricep Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Elbows stationary",
+                "Extend fully",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Neutral grip",
+                "Curl to shoulder",
+                "Control descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Emphasize form over weight to maximize muscle engagement."
+        },
+        {
+          "day_name": "Day 4",
+          "session_name": "Lower Body B",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic leg swings",
+            "Bodyweight lunges",
+            "Hip circles"
+          ],
+          "exercises": [
+            {
+              "name": "Goblet Squat",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squat to parallel",
+                "Drive through heels"
+              ],
+              "notes": "Modify depth to comfort due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Glute Bridge",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Drive through heels",
+                "Squeeze glutes",
+                "Hold at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Control up and down",
+                "Avoid locking knees",
+                "Squeeze at top"
+              ],
+              "notes": "Light weight to avoid knee strain.",
+              "substitution": ""
+            },
+            {
+              "name": "Seated Calf Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "rpe": 7,
+              "rir": 3,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Maintain a focus on knee-friendly exercises and movements."
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "phase_name": "Intensification",
+      "theme": "Increasing intensity and focus",
+      "days": [
+        {
+          "day_name": "Day 1",
+          "session_name": "Upper Body A",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic shoulder circles",
+            "Band pull-aparts",
+            "Scapular push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Incline Barbell Press",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows at 45°",
+                "Drive through heels",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Pull-Up",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Engage lats",
+                "Keep core tight",
+                "Full range of motion"
+              ],
+              "notes": "",
+              "substitution": "Assisted Pull-Up"
+            },
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Press overhead",
+                "Avoid arching back",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Row",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squeeze shoulder blades",
+                "Pull to lower rib"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Tricep Pushdown",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows close",
+                "Extend fully",
+                "Control the return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Bicep Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows stationary",
+                "Curl to shoulder",
+                "Squeeze at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Increase intensity while maintaining form."
+        },
+        {
+          "day_name": "Day 2",
+          "session_name": "Lower Body A",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Leg swings",
+            "Bodyweight squats",
+            "Glute bridges"
+          ],
+          "exercises": [
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Feet shoulder-width",
+                "Drive through heels",
+                "Avoid locking knees"
+              ],
+              "notes": "Avoid deep knee flexion due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Keep back straight",
+                "Slight knee bend"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Lying Leg Curl",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep hips down",
+                "Curl to glutes",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Focus on controlled movements to protect the knees."
+        },
+        {
+          "day_name": "Day 3",
+          "session_name": "Upper Body B",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Band pull-aparts",
+            "Arm circles",
+            "Push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Press",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep wrists neutral",
+                "Press in arc",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Bent Over Row",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Pull to waist",
+                "Keep back flat"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Lift to shoulder height",
+                "Slight bend in elbows",
+                "Control down"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Face Pull",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Pull to forehead",
+                "Elbows high",
+                "Squeeze rear delts"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Tricep Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Elbows stationary",
+                "Extend fully",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Neutral grip",
+                "Curl to shoulder",
+                "Control descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Emphasize form over weight to maximize muscle engagement."
+        },
+        {
+          "day_name": "Day 4",
+          "session_name": "Lower Body B",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic leg swings",
+            "Bodyweight lunges",
+            "Hip circles"
+          ],
+          "exercises": [
+            {
+              "name": "Goblet Squat",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squat to parallel",
+                "Drive through heels"
+              ],
+              "notes": "Modify depth to comfort due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Glute Bridge",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Drive through heels",
+                "Squeeze glutes",
+                "Hold at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Control up and down",
+                "Avoid locking knees",
+                "Squeeze at top"
+              ],
+              "notes": "Light weight to avoid knee strain.",
+              "substitution": ""
+            },
+            {
+              "name": "Seated Calf Raise",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Maintain a focus on knee-friendly exercises and movements."
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "phase_name": "Intensification",
+      "theme": "Increasing intensity and focus",
+      "days": [
+        {
+          "day_name": "Day 1",
+          "session_name": "Upper Body A",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic shoulder circles",
+            "Band pull-aparts",
+            "Scapular push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Incline Barbell Press",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows at 45°",
+                "Drive through heels",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Pull-Up",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Engage lats",
+                "Keep core tight",
+                "Full range of motion"
+              ],
+              "notes": "",
+              "substitution": "Assisted Pull-Up"
+            },
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Press overhead",
+                "Avoid arching back",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Row",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squeeze shoulder blades",
+                "Pull to lower rib"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Tricep Pushdown",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows close",
+                "Extend fully",
+                "Control the return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Bicep Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows stationary",
+                "Curl to shoulder",
+                "Squeeze at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Increase intensity while maintaining form."
+        },
+        {
+          "day_name": "Day 2",
+          "session_name": "Lower Body A",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Leg swings",
+            "Bodyweight squats",
+            "Glute bridges"
+          ],
+          "exercises": [
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Feet shoulder-width",
+                "Drive through heels",
+                "Avoid locking knees"
+              ],
+              "notes": "Avoid deep knee flexion due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Keep back straight",
+                "Slight knee bend"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Lying Leg Curl",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep hips down",
+                "Curl to glutes",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Focus on controlled movements to protect the knees."
+        },
+        {
+          "day_name": "Day 3",
+          "session_name": "Upper Body B",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Band pull-aparts",
+            "Arm circles",
+            "Push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Press",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep wrists neutral",
+                "Press in arc",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Bent Over Row",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Pull to waist",
+                "Keep back flat"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Lift to shoulder height",
+                "Slight bend in elbows",
+                "Control down"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Face Pull",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Pull to forehead",
+                "Elbows high",
+                "Squeeze rear delts"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Tricep Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Elbows stationary",
+                "Extend fully",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Neutral grip",
+                "Curl to shoulder",
+                "Control descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Emphasize form over weight to maximize muscle engagement."
+        },
+        {
+          "day_name": "Day 4",
+          "session_name": "Lower Body B",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic leg swings",
+            "Bodyweight lunges",
+            "Hip circles"
+          ],
+          "exercises": [
+            {
+              "name": "Goblet Squat",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squat to parallel",
+                "Drive through heels"
+              ],
+              "notes": "Modify depth to comfort due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Glute Bridge",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Drive through heels",
+                "Squeeze glutes",
+                "Hold at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Control up and down",
+                "Avoid locking knees",
+                "Squeeze at top"
+              ],
+              "notes": "Light weight to avoid knee strain.",
+              "substitution": ""
+            },
+            {
+              "name": "Seated Calf Raise",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Maintain a focus on knee-friendly exercises and movements."
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "phase_name": "Intensification",
+      "theme": "Increasing intensity and focus",
+      "days": [
+        {
+          "day_name": "Day 1",
+          "session_name": "Upper Body A",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic shoulder circles",
+            "Band pull-aparts",
+            "Scapular push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Incline Barbell Press",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows at 45°",
+                "Drive through heels",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Pull-Up",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Engage lats",
+                "Keep core tight",
+                "Full range of motion"
+              ],
+              "notes": "",
+              "substitution": "Assisted Pull-Up"
+            },
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Press overhead",
+                "Avoid arching back",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Row",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squeeze shoulder blades",
+                "Pull to lower rib"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Tricep Pushdown",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows close",
+                "Extend fully",
+                "Control the return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Bicep Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows stationary",
+                "Curl to shoulder",
+                "Squeeze at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Increase intensity while maintaining form."
+        },
+        {
+          "day_name": "Day 2",
+          "session_name": "Lower Body A",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Leg swings",
+            "Bodyweight squats",
+            "Glute bridges"
+          ],
+          "exercises": [
+            {
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Feet shoulder-width",
+                "Drive through heels",
+                "Avoid locking knees"
+              ],
+              "notes": "Avoid deep knee flexion due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Keep back straight",
+                "Slight knee bend"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Lying Leg Curl",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep hips down",
+                "Curl to glutes",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Focus on controlled movements to protect the knees."
+        },
+        {
+          "day_name": "Day 3",
+          "session_name": "Upper Body B",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Band pull-aparts",
+            "Arm circles",
+            "Push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Press",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep wrists neutral",
+                "Press in arc",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Bent Over Row",
+              "sets": 3,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Pull to waist",
+                "Keep back flat"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Lift to shoulder height",
+                "Slight bend in elbows",
+                "Control down"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Face Pull",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Pull to forehead",
+                "Elbows high",
+                "Squeeze rear delts"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Tricep Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Elbows stationary",
+                "Extend fully",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Neutral grip",
+                "Curl to shoulder",
+                "Control descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Emphasize form over weight to maximize muscle engagement."
+        },
+        {
+          "day_name": "Day 4",
+          "session_name": "Lower Body B",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic leg swings",
+            "Bodyweight lunges",
+            "Hip circles"
+          ],
+          "exercises": [
+            {
+              "name": "Goblet Squat",
+              "sets": 3,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squat to parallel",
+                "Drive through heels"
+              ],
+              "notes": "Modify depth to comfort due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Glute Bridge",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Drive through heels",
+                "Squeeze glutes",
+                "Hold at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Control up and down",
+                "Avoid locking knees",
+                "Squeeze at top"
+              ],
+              "notes": "Light weight to avoid knee strain.",
+              "substitution": ""
+            },
+            {
+              "name": "Seated Calf Raise",
+              "sets": 3,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Maintain a focus on knee-friendly exercises and movements."
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "phase_name": "Deload",
+      "theme": "Recovery and maintenance",
+      "days": [
+        {
+          "day_name": "Day 1",
+          "session_name": "Upper Body A",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic shoulder circles",
+            "Band pull-aparts",
+            "Scapular push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Incline Barbell Press",
+              "sets": 2,
+              "reps": "8-10",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows at 45°",
+                "Drive through heels",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Pull-Up",
+              "sets": 2,
+              "reps": "6-8",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Engage lats",
+                "Keep core tight",
+                "Full range of motion"
+              ],
+              "notes": "",
+              "substitution": "Assisted Pull-Up"
+            },
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "sets": 2,
+              "reps": "8-12",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Press overhead",
+                "Avoid arching back",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Row",
+              "sets": 2,
+              "reps": "10-12",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squeeze shoulder blades",
+                "Pull to lower rib"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Tricep Pushdown",
+              "sets": 2,
+              "reps": "10-15",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows close",
+                "Extend fully",
+                "Control the return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Bicep Curl",
+              "sets": 2,
+              "reps": "10-15",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows stationary",
+                "Curl to shoulder",
+                "Squeeze at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Focus on recovery and maintaining form."
+        },
+        {
+          "day_name": "Day 2",
+          "session_name": "Lower Body A",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Leg swings",
+            "Bodyweight squats",
+            "Glute bridges"
+          ],
+          "exercises": [
+            {
+              "name": "Leg Press",
+              "sets": 2,
+              "reps": "10-12",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Feet shoulder-width",
+                "Drive through heels",
+                "Avoid locking knees"
+              ],
+              "notes": "Avoid deep knee flexion due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 2,
+              "reps": "8-10",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Keep back straight",
+                "Slight knee bend"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Lying Leg Curl",
+              "sets": 2,
+              "reps": "10-12",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep hips down",
+                "Curl to glutes",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 2,
+              "reps": "12-15",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Focus on controlled movements to protect the knees."
+        },
+        {
+          "day_name": "Day 3",
+          "session_name": "Upper Body B",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Band pull-aparts",
+            "Arm circles",
+            "Push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Press",
+              "sets": 2,
+              "reps": "8-10",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep wrists neutral",
+                "Press in arc",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Bent Over Row",
+              "sets": 2,
+              "reps": "8-10",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Pull to waist",
+                "Keep back flat"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "sets": 2,
+              "reps": "12-15",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Lift to shoulder height",
+                "Slight bend in elbows",
+                "Control down"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Face Pull",
+              "sets": 2,
+              "reps": "12-15",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Pull to forehead",
+                "Elbows high",
+                "Squeeze rear delts"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Tricep Extension",
+              "sets": 2,
+              "reps": "10-12",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Elbows stationary",
+                "Extend fully",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 2,
+              "reps": "10-12",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Neutral grip",
+                "Curl to shoulder",
+                "Control descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Emphasize form over weight to maximize muscle engagement."
+        },
+        {
+          "day_name": "Day 4",
+          "session_name": "Lower Body B",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic leg swings",
+            "Bodyweight lunges",
+            "Hip circles"
+          ],
+          "exercises": [
+            {
+              "name": "Goblet Squat",
+              "sets": 2,
+              "reps": "10-12",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squat to parallel",
+                "Drive through heels"
+              ],
+              "notes": "Modify depth to comfort due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Glute Bridge",
+              "sets": 2,
+              "reps": "12-15",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Drive through heels",
+                "Squeeze glutes",
+                "Hold at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 2,
+              "reps": "12-15",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Control up and down",
+                "Avoid locking knees",
+                "Squeeze at top"
+              ],
+              "notes": "Light weight to avoid knee strain.",
+              "substitution": ""
+            },
+            {
+              "name": "Seated Calf Raise",
+              "sets": 2,
+              "reps": "12-15",
+              "rpe": 6,
+              "rir": 4,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Maintain a focus on knee-friendly exercises and movements."
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "phase_name": "Peak",
+      "theme": "Maximizing performance",
+      "days": [
+        {
+          "day_name": "Day 1",
+          "session_name": "Upper Body A",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic shoulder circles",
+            "Band pull-aparts",
+            "Scapular push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Incline Barbell Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows at 45°",
+                "Drive through heels",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Pull-Up",
+              "sets": 4,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Engage lats",
+                "Keep core tight",
+                "Full range of motion"
+              ],
+              "notes": "",
+              "substitution": "Assisted Pull-Up"
+            },
+            {
+              "name": "Seated Dumbbell Shoulder Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Press overhead",
+                "Avoid arching back",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Row",
+              "sets": 4,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squeeze shoulder blades",
+                "Pull to lower rib"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Tricep Pushdown",
+              "sets": 4,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows close",
+                "Extend fully",
+                "Control the return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Bicep Curl",
+              "sets": 4,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep elbows stationary",
+                "Curl to shoulder",
+                "Squeeze at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Push intensity while maintaining form."
+        },
+        {
+          "day_name": "Day 2",
+          "session_name": "Lower Body A",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Leg swings",
+            "Bodyweight squats",
+            "Glute bridges"
+          ],
+          "exercises": [
+            {
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Feet shoulder-width",
+                "Drive through heels",
+                "Avoid locking knees"
+              ],
+              "notes": "Avoid deep knee flexion due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Romanian Deadlift",
+              "sets": 4,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Keep back straight",
+                "Slight knee bend"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Lying Leg Curl",
+              "sets": 4,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep hips down",
+                "Curl to glutes",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Standing Calf Raise",
+              "sets": 4,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Focus on controlled movements to protect the knees."
+        },
+        {
+          "day_name": "Day 3",
+          "session_name": "Upper Body B",
+          "muscle_groups": [
+            "Chest",
+            "Back",
+            "Shoulders",
+            "Biceps",
+            "Triceps"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Band pull-aparts",
+            "Arm circles",
+            "Push-ups"
+          ],
+          "exercises": [
+            {
+              "name": "Flat Dumbbell Press",
+              "sets": 4,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep wrists neutral",
+                "Press in arc",
+                "Control the descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Bent Over Row",
+              "sets": 4,
+              "reps": "6-8",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 120,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Hinge at hips",
+                "Pull to waist",
+                "Keep back flat"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Dumbbell Lateral Raise",
+              "sets": 4,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Lift to shoulder height",
+                "Slight bend in elbows",
+                "Control down"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Face Pull",
+              "sets": 4,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Pull to forehead",
+                "Elbows high",
+                "Squeeze rear delts"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Cable Tricep Extension",
+              "sets": 4,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Elbows stationary",
+                "Extend fully",
+                "Control return"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Hammer Curl",
+              "sets": 4,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Neutral grip",
+                "Curl to shoulder",
+                "Control descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch chest, back, and shoulders",
+          "notes": "Emphasize form over weight to maximize muscle engagement."
+        },
+        {
+          "day_name": "Day 4",
+          "session_name": "Lower Body B",
+          "muscle_groups": [
+            "Quads",
+            "Hamstrings",
+            "Glutes",
+            "Calves"
+          ],
+          "warmup": [
+            "5 min light cardio",
+            "Dynamic leg swings",
+            "Bodyweight lunges",
+            "Hip circles"
+          ],
+          "exercises": [
+            {
+              "name": "Goblet Squat",
+              "sets": 4,
+              "reps": "8-10",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 90,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Keep chest up",
+                "Squat to parallel",
+                "Drive through heels"
+              ],
+              "notes": "Modify depth to comfort due to knee pain.",
+              "substitution": ""
+            },
+            {
+              "name": "Glute Bridge",
+              "sets": 4,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Drive through heels",
+                "Squeeze glutes",
+                "Hold at top"
+              ],
+              "notes": "",
+              "substitution": ""
+            },
+            {
+              "name": "Leg Extension",
+              "sets": 4,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Control up and down",
+                "Avoid locking knees",
+                "Squeeze at top"
+              ],
+              "notes": "Light weight to avoid knee strain.",
+              "substitution": ""
+            },
+            {
+              "name": "Seated Calf Raise",
+              "sets": 4,
+              "reps": "10-12",
+              "rpe": 8,
+              "rir": 2,
+              "rest_seconds": 60,
+              "tempo": "2010",
+              "intensity_technique": "none",
+              "form_cues": [
+                "Full range of motion",
+                "Pause at top",
+                "Slow descent"
+              ],
+              "notes": "",
+              "substitution": ""
+            }
+          ],
+          "cardio": {
+            "type": "incline walk",
+            "duration_minutes": 25
+          },
+          "cooldown": "Stretch quads, hamstrings, and calves",
+          "notes": "Maintain a focus on knee-friendly exercises and movements."
+        }
+      ]
+    }
+  ]
+}

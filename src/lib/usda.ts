@@ -366,13 +366,15 @@ function scaleIngredient(ing: any, factor: number): void {
 
 // Scale a day's ingredient portions so total macros hit the targets.
 // Step 1: Gentle per-macro scaling (capped at 0.7–1.4) to nudge distribution.
-// Step 2: Uniform calorie pass to nail the calorie target.
+// Step 2: Calorie reconciliation — scale only non-protein ingredients to avoid pushing protein back up.
+// Step 3: If protein still >10% over target, reduce protein-dominant ingredients.
 export function scaleDayToTarget(day: any, targets: MacroTargets): void {
   if (!Array.isArray(day.meals)) return;
 
   // Collect all scalable ingredients (>30 kcal) grouped by dominant macro
   const groups: Record<string, any[]> = { protein: [], carbs: [], fat: [] };
   const allScalable: any[] = [];
+  const proteinIngSet = new Set<any>();
 
   for (const meal of day.meals) {
     if (!Array.isArray(meal.ingredients)) continue;
@@ -381,7 +383,10 @@ export function scaleDayToTarget(day: any, targets: MacroTargets): void {
       if (cal <= 30) continue;
       allScalable.push(ing);
       const dom = dominantMacro(ing);
-      if (dom) groups[dom].push(ing);
+      if (dom) {
+        groups[dom].push(ing);
+        if (dom === 'protein') proteinIngSet.add(ing);
+      }
     }
   }
 
@@ -410,37 +415,120 @@ export function scaleDayToTarget(day: any, targets: MacroTargets): void {
     }
   }
 
-  // --- Step 2: Uniform calorie reconciliation ---
-  let scalableCalories = 0;
+  // --- Step 2: Calorie reconciliation (prefer scaling non-protein ingredients) ---
+  let nonProteinCal = 0;
+  let proteinCal = 0;
   let fixedCalories = 0;
 
   for (const meal of day.meals) {
     if (!Array.isArray(meal.ingredients)) continue;
     for (const ing of meal.ingredients) {
       const cal = ing.macros?.calories || 0;
-      if (cal > 30) {
-        scalableCalories += cal;
-      } else {
+      if (cal <= 30) {
         fixedCalories += cal;
+      } else if (proteinIngSet.has(ing)) {
+        proteinCal += cal;
+      } else {
+        nonProteinCal += cal;
       }
     }
   }
 
-  const currentTotal = scalableCalories + fixedCalories;
-  if (scalableCalories === 0 || currentTotal === 0) return;
+  const currentTotal = proteinCal + nonProteinCal + fixedCalories;
+  if (currentTotal === 0) return;
 
   const deviation = Math.abs(currentTotal - targets.calories) / targets.calories;
   if (deviation <= 0.05) return;
 
-  const targetScalable = targets.calories - fixedCalories;
-  if (targetScalable <= 0) return;
-  const calFactor = targetScalable / scalableCalories;
+  // Try to reconcile calories by scaling only non-protein ingredients
+  const calDeficit = targets.calories - (proteinCal + fixedCalories);
+  if (nonProteinCal > 0 && calDeficit > 0) {
+    const nonProtFactor = calDeficit / nonProteinCal;
+    // Cap the factor to avoid unrealistic portions
+    const cappedFactor = clamp(nonProtFactor, 0.6, 1.6);
 
+    for (const meal of day.meals) {
+      if (!Array.isArray(meal.ingredients)) continue;
+      for (const ing of meal.ingredients) {
+        if ((ing.macros?.calories || 0) <= 30) continue;
+        if (proteinIngSet.has(ing)) continue;
+        scaleIngredient(ing, cappedFactor);
+      }
+    }
+  } else {
+    // Fallback: uniform scaling if non-protein budget is weird
+    const totalScalable = proteinCal + nonProteinCal;
+    if (totalScalable > 0) {
+      const calFactor = (targets.calories - fixedCalories) / totalScalable;
+      for (const meal of day.meals) {
+        if (!Array.isArray(meal.ingredients)) continue;
+        for (const ing of meal.ingredients) {
+          if ((ing.macros?.calories || 0) <= 30) continue;
+          scaleIngredient(ing, calFactor);
+        }
+      }
+    }
+  }
+
+  // --- Step 3: Final protein correction if still over target ---
+  let totalProtein = 0;
   for (const meal of day.meals) {
     if (!Array.isArray(meal.ingredients)) continue;
     for (const ing of meal.ingredients) {
-      if ((ing.macros?.calories || 0) <= 30) continue;
-      scaleIngredient(ing, calFactor);
+      totalProtein += ing.macros?.protein || 0;
+    }
+  }
+
+  const proteinOver = totalProtein / targets.protein;
+  if (proteinOver > 1.10 && groups.protein.length > 0) {
+    // Scale protein-dominant ingredients down to hit target (with 5% headroom)
+    let protGroupProtein = 0;
+    for (const ing of groups.protein) {
+      protGroupProtein += ing.macros?.protein || 0;
+    }
+
+    const excessProtein = totalProtein - targets.protein * 1.05;
+    const reductionFactor = Math.max(0.6, 1 - (excessProtein / protGroupProtein));
+
+    for (const ing of groups.protein) {
+      scaleIngredient(ing, reductionFactor);
+    }
+
+    // --- Step 4: Re-reconcile calories after protein reduction ---
+    // Protein reduction lowered total calories — scale carb/fat ingredients up to compensate
+    let postTotalCal = 0;
+    let postNonProtCal = 0;
+    let postFixedCal = 0;
+    for (const meal of day.meals) {
+      if (!Array.isArray(meal.ingredients)) continue;
+      for (const ing of meal.ingredients) {
+        const cal = ing.macros?.calories || 0;
+        if (cal <= 30) {
+          postFixedCal += cal;
+        } else if (proteinIngSet.has(ing)) {
+          postTotalCal += cal;
+        } else {
+          postNonProtCal += cal;
+          postTotalCal += cal;
+        }
+      }
+    }
+    postTotalCal += postFixedCal;
+
+    const postDeviation = Math.abs(postTotalCal - targets.calories) / targets.calories;
+    if (postDeviation > 0.05 && postNonProtCal > 0) {
+      const calNeeded = targets.calories - (postTotalCal - postNonProtCal);
+      if (calNeeded > 0) {
+        const reCalFactor = clamp(calNeeded / postNonProtCal, 0.7, 1.5);
+        for (const meal of day.meals) {
+          if (!Array.isArray(meal.ingredients)) continue;
+          for (const ing of meal.ingredients) {
+            if ((ing.macros?.calories || 0) <= 30) continue;
+            if (proteinIngSet.has(ing)) continue;
+            scaleIngredient(ing, reCalFactor);
+          }
+        }
+      }
     }
   }
 }

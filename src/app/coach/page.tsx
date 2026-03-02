@@ -16,7 +16,7 @@ import {
   Users,
   UserCheck,
   AlertTriangle,
-  DollarSign,
+  Target,
   ArrowRight,
   Clock,
   Loader2,
@@ -44,15 +44,17 @@ export default function CoachOverviewPage() {
   const [error, setError] = useState<string | null>(null)
   const [clients, setClients] = useState<ClientWithData[]>([])
   const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([])
+  const [pendingAdjustmentCount, setPendingAdjustmentCount] = useState(0)
 
   useEffect(() => {
     async function loadDashboard() {
       try {
         setLoading(true)
 
-        const [clientsRes, activityRes] = await Promise.all([
+        const [clientsRes, activityRes, adjustmentsRes] = await Promise.all([
           fetch('/api/admin/clients'),
           fetch('/api/coach/activity'),
+          fetch('/api/admin/macro-adjustments?status=pending'),
         ])
 
         if (!clientsRes.ok) {
@@ -79,6 +81,11 @@ export default function CoachOverviewPage() {
           )
           setRecentActivity(activities)
         }
+
+        if (adjustmentsRes.ok) {
+          const adjustmentsData = await adjustmentsRes.json()
+          setPendingAdjustmentCount(adjustmentsData.adjustments?.length ?? 0)
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load dashboard')
       } finally {
@@ -92,9 +99,6 @@ export default function CoachOverviewPage() {
   const totalClients = clients.length
   const activeClients = clients.filter((c) => c.status === 'active').length
   const overdueClients = clients.filter((c) => c.status === 'overdue').length
-  // Placeholder MRR (would be calculated from Stripe in production)
-  const mrr = activeClients * 149
-
   function formatDate(dateStr: string) {
     return new Date(dateStr).toLocaleDateString('en-US', {
       month: 'short',
@@ -170,14 +174,14 @@ export default function CoachOverviewPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardDescription>Monthly Revenue</CardDescription>
-            <DollarSign className="size-4 text-muted-foreground" />
+            <CardDescription>Pending Macro Reviews</CardDescription>
+            <Target className="size-4 text-amber-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              ${mrr.toLocaleString()}
+            <div className={`text-2xl font-bold ${pendingAdjustmentCount > 0 ? 'text-amber-500' : ''}`}>
+              {pendingAdjustmentCount}
             </div>
-            <p className="text-xs text-muted-foreground">Estimated MRR</p>
+            <p className="text-xs text-muted-foreground">Awaiting approval</p>
           </CardContent>
         </Card>
       </div>
@@ -272,6 +276,20 @@ export default function CoachOverviewPage() {
               </span>
               <ArrowRight className="size-4" />
             </Button>
+
+            {pendingAdjustmentCount > 0 && (
+              <Button
+                variant="outline"
+                className="w-full justify-between border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 hover:text-amber-800"
+                onClick={() => router.push('/coach/clients')}
+              >
+                <span className="flex items-center gap-2">
+                  <Target className="size-4" />
+                  {pendingAdjustmentCount} Macro Adjustment{pendingAdjustmentCount !== 1 ? 's' : ''} to Review
+                </span>
+                <ArrowRight className="size-4" />
+              </Button>
+            )}
 
             {overdueClients > 0 && (
               <Button

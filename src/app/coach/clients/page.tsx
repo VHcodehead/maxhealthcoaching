@@ -34,6 +34,7 @@ interface ClientWithData extends Profile {
   check_in_count: number
   macros: MacroTargets | null
   onboarding: OnboardingResponse | null
+  pending_adjustment_count: number
 }
 
 type StatusFilter = 'all' | 'active' | 'overdue' | 'pending'
@@ -268,7 +269,14 @@ function ClientsContent() {
                       }
                     >
                       <TableCell className="font-medium">
-                        {client.full_name}
+                        <span className="flex items-center gap-2">
+                          {client.full_name}
+                          {client.pending_adjustment_count > 0 && (
+                            <Badge className="bg-amber-100 text-amber-700 hover:bg-amber-100 text-[10px] px-1.5 py-0">
+                              Macro Review
+                            </Badge>
+                          )}
+                        </span>
                       </TableCell>
                       <TableCell className="text-muted-foreground">
                         {client.email}

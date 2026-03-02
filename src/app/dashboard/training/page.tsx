@@ -39,7 +39,11 @@ interface Exercise {
   sets: string | number
   reps: string | number
   rpe: string | number | null
+  rir: string | number | null
   rest: string | null
+  rest_seconds: number | null
+  intensity_technique: string | null
+  form_cues: string[] | null
   notes: string | null
 }
 
@@ -47,18 +51,23 @@ interface TrainingDay {
   id: string
   day_name: string
   workout_name: string
+  muscle_groups: string[] | null
   warmup: string[] | string | null
   exercises: Exercise[] | string | null
+  cardio: { type: string; duration_minutes: number } | null
 }
 
 interface TrainingPlanData {
   id: string
   user_id: string
   week_number: number
+  phase_name: string | null
   day_name: string
   workout_name: string
+  muscle_groups: string[] | null
   warmup: string[] | string | null
   exercises: Exercise[] | string | null
+  cardio: { type: string; duration_minutes: number } | null
   program_overview: string | null
   progression_rules: string | null
 }
@@ -115,7 +124,14 @@ function TrainingDayCard({
               </div>
               <div>
                 <CardTitle className="text-base">{day.day_name}</CardTitle>
-                <CardDescription>{day.workout_name}</CardDescription>
+                <CardDescription>
+                  {day.workout_name}
+                  {day.muscle_groups && day.muscle_groups.length > 0 && (
+                    <span className="ml-1 text-xs">
+                      ({day.muscle_groups.join(', ')})
+                    </span>
+                  )}
+                </CardDescription>
               </div>
             </div>
             <Badge
@@ -154,6 +170,21 @@ function TrainingDayCard({
             </div>
           )}
 
+          {/* Cardio */}
+          {day.cardio && (
+            <div>
+              <div className="mb-2 flex items-center gap-2">
+                <Timer className="h-4 w-4 text-blue-500" />
+                <p className="text-sm font-semibold">Cardio</p>
+              </div>
+              <div className="rounded-lg border border-blue-100 bg-blue-50/50 p-3">
+                <p className="text-sm text-muted-foreground">
+                  {day.cardio.type} — {day.cardio.duration_minutes} min
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* Exercise Table */}
           {exercises.length > 0 && (
             <div>
@@ -178,6 +209,9 @@ function TrainingDayCard({
                         RPE
                       </TableHead>
                       <TableHead className="text-center text-xs font-semibold">
+                        RIR
+                      </TableHead>
+                      <TableHead className="text-center text-xs font-semibold">
                         Rest
                       </TableHead>
                       <TableHead className="text-xs font-semibold">
@@ -193,7 +227,19 @@ function TrainingDayCard({
                             <span className="flex h-5 w-5 items-center justify-center rounded bg-emerald-100 text-[10px] font-bold text-emerald-700">
                               {i + 1}
                             </span>
-                            {ex.name}
+                            <div>
+                              <span>{ex.name}</span>
+                              {ex.intensity_technique && ex.intensity_technique !== 'none' && (
+                                <Badge variant="outline" className="ml-1 text-[10px] px-1 py-0">
+                                  {ex.intensity_technique.replace(/_/g, ' ')}
+                                </Badge>
+                              )}
+                              {ex.form_cues && ex.form_cues.length > 0 && (
+                                <p className="mt-0.5 text-[10px] text-muted-foreground">
+                                  {ex.form_cues.join(' · ')}
+                                </p>
+                              )}
+                            </div>
                           </div>
                         </TableCell>
                         <TableCell className="text-center">
@@ -220,10 +266,19 @@ function TrainingDayCard({
                           )}
                         </TableCell>
                         <TableCell className="text-center">
-                          {ex.rest ? (
+                          {ex.rir !== null && ex.rir !== undefined ? (
+                            <span className="text-xs">{ex.rir}</span>
+                          ) : (
+                            <span className="text-xs text-muted-foreground">
+                              --
+                            </span>
+                          )}
+                        </TableCell>
+                        <TableCell className="text-center">
+                          {ex.rest || ex.rest_seconds ? (
                             <span className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
                               <Timer className="h-3 w-3" />
-                              {ex.rest}
+                              {ex.rest || `${ex.rest_seconds}s`}
                             </span>
                           ) : (
                             <span className="text-xs text-muted-foreground">
@@ -278,10 +333,13 @@ export default function TrainingPage() {
                   id: `w${weekNum}-${day.day_name || day.day}`,
                   user_id: '',
                   week_number: weekNum,
+                  phase_name: week.phase_name || null,
                   day_name: day.day_name || day.day || '',
-                  workout_name: day.session_name || day.workout_name || 'Training',
+                  workout_name: day.session_name || day.workout_name || day.name || 'Training',
+                  muscle_groups: day.muscle_groups || null,
                   warmup: day.warmup || null,
                   exercises: day.exercises || null,
+                  cardio: day.cardio || null,
                   program_overview: planData.overview || null,
                   progression_rules: planData.progression_rules || null,
                 })
@@ -478,15 +536,27 @@ export default function TrainingPage() {
       <Tabs value={activeWeek} onValueChange={setActiveWeek}>
         <ScrollArea className="w-full">
           <TabsList className="mb-6 w-full justify-start">
-            {weeks.map((week) => (
-              <TabsTrigger
-                key={week}
-                value={String(week)}
-                className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
-              >
-                Week {week}
-              </TabsTrigger>
-            ))}
+            {weeks.map((week) => {
+              const phaseInfo = trainingData.find(
+                (d) => d.week_number === week && d.phase_name
+              )
+              return (
+                <TabsTrigger
+                  key={week}
+                  value={String(week)}
+                  className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+                >
+                  <div className="flex flex-col items-center">
+                    <span>Week {week}</span>
+                    {phaseInfo?.phase_name && (
+                      <span className="text-[10px] opacity-70">
+                        {phaseInfo.phase_name}
+                      </span>
+                    )}
+                  </div>
+                </TabsTrigger>
+              )
+            })}
           </TabsList>
         </ScrollArea>
 

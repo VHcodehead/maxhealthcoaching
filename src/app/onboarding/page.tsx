@@ -14,6 +14,8 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { UnitToggle } from '@/components/ui/unit-toggle';
+import { useUnits } from '@/hooks/use-units';
 import { toast } from 'sonner';
 
 const TOTAL_STEPS = 9;
@@ -83,9 +85,16 @@ function TagInput({ tags, setTags, placeholder }: { tags: string[]; setTags: (t:
 
 export default function OnboardingPage() {
   const router = useRouter();
+  const units = useUnits();
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1);
   const [submitting, setSubmitting] = useState(false);
+  // Imperial height fields (feet + inches)
+  const [heightFeet, setHeightFeet] = useState(0);
+  const [heightInches, setHeightInches] = useState(0);
+  // Imperial weight display values
+  const [weightLbs, setWeightLbs] = useState(0);
+  const [goalWeightLbs, setGoalWeightLbs] = useState(0);
 
   const [form, setForm] = useState<FormData>({
     age: 0, sex: 'male', height_cm: 0, weight_kg: 0,
@@ -148,8 +157,6 @@ export default function OnboardingPage() {
   const toggleArray = (arr: string[], item: string) =>
     arr.includes(item) ? arr.filter(i => i !== item) : [...arr, item];
 
-  const cmToFtIn = (cm: number) => { const inches = cm / 2.54; return `${Math.floor(inches / 12)}'${Math.round(inches % 12)}"`; };
-  const kgToLbs = (kg: number) => `${Math.round(kg * 2.205)} lbs`;
 
   return (
     <div className="min-h-screen bg-zinc-50">
@@ -179,7 +186,21 @@ export default function OnboardingPage() {
             {/* STEP 1: Personal Info */}
             {step === 1 && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold">Tell us about yourself</h2>
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-bold">Tell us about yourself</h2>
+                  <UnitToggle system={units.system} onToggle={s => {
+                    // Sync display values when toggling
+                    if (s === 'imperial' && form.weight_kg > 0) {
+                      setWeightLbs(Math.round(units.kgToLbs(form.weight_kg) * 10) / 10);
+                    }
+                    if (s === 'imperial' && form.height_cm > 0) {
+                      const ftIn = units.cmToFtIn(form.height_cm);
+                      setHeightFeet(ftIn.feet);
+                      setHeightInches(ftIn.inches);
+                    }
+                    units.setSystem(s);
+                  }} />
+                </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label>Age</Label>
@@ -198,14 +219,51 @@ export default function OnboardingPage() {
                   </div>
                 </div>
                 <div>
-                  <Label>Height (cm)</Label>
-                  <Input type="number" value={form.height_cm || ''} onChange={e => update({ height_cm: parseFloat(e.target.value) || 0 })} placeholder="175" />
-                  {form.height_cm > 0 && <p className="text-xs text-zinc-400 mt-1">{cmToFtIn(form.height_cm)}</p>}
+                  {units.system === 'imperial' ? (
+                    <>
+                      <Label>Height (ft/in)</Label>
+                      <div className="grid grid-cols-2 gap-2">
+                        <Input type="number" value={heightFeet || ''} onChange={e => {
+                          const ft = parseInt(e.target.value) || 0;
+                          setHeightFeet(ft);
+                          update({ height_cm: units.ftInToCm(ft, heightInches) });
+                        }} placeholder="5" />
+                        <Input type="number" value={heightInches || ''} onChange={e => {
+                          const inc = parseInt(e.target.value) || 0;
+                          setHeightInches(inc);
+                          update({ height_cm: units.ftInToCm(heightFeet, inc) });
+                        }} placeholder="9" />
+                      </div>
+                      <div className="flex gap-2 mt-1">
+                        <p className="text-xs text-zinc-400">ft</p>
+                        <p className="text-xs text-zinc-400">in</p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <Label>Height (cm)</Label>
+                      <Input type="number" value={form.height_cm || ''} onChange={e => update({ height_cm: parseFloat(e.target.value) || 0 })} placeholder="175" />
+                      {form.height_cm > 0 && <p className="text-xs text-zinc-400 mt-1">{units.cmToFtIn(form.height_cm).display}</p>}
+                    </>
+                  )}
                 </div>
                 <div>
-                  <Label>Weight (kg)</Label>
-                  <Input type="number" value={form.weight_kg || ''} onChange={e => update({ weight_kg: parseFloat(e.target.value) || 0 })} placeholder="75" />
-                  {form.weight_kg > 0 && <p className="text-xs text-zinc-400 mt-1">{kgToLbs(form.weight_kg)}</p>}
+                  {units.system === 'imperial' ? (
+                    <>
+                      <Label>Weight (lbs)</Label>
+                      <Input type="number" value={weightLbs || ''} onChange={e => {
+                        const lbs = parseFloat(e.target.value) || 0;
+                        setWeightLbs(lbs);
+                        update({ weight_kg: units.lbsToKg(lbs) });
+                      }} placeholder="165" />
+                    </>
+                  ) : (
+                    <>
+                      <Label>Weight (kg)</Label>
+                      <Input type="number" value={form.weight_kg || ''} onChange={e => update({ weight_kg: parseFloat(e.target.value) || 0 })} placeholder="75" />
+                      {form.weight_kg > 0 && <p className="text-xs text-zinc-400 mt-1">{units.displayWeight(form.weight_kg)}</p>}
+                    </>
+                  )}
                 </div>
               </div>
             )}
@@ -237,9 +295,22 @@ export default function OnboardingPage() {
                   })}
                 </div>
                 <div>
-                  <Label>Goal weight (kg)</Label>
-                  <Input type="number" value={form.goal_weight_kg || ''} onChange={e => update({ goal_weight_kg: parseFloat(e.target.value) || 0 })} placeholder="70" />
-                  {form.goal_weight_kg > 0 && <p className="text-xs text-zinc-400 mt-1">{kgToLbs(form.goal_weight_kg)}</p>}
+                  {units.system === 'imperial' ? (
+                    <>
+                      <Label>Goal weight (lbs)</Label>
+                      <Input type="number" value={goalWeightLbs || ''} onChange={e => {
+                        const lbs = parseFloat(e.target.value) || 0;
+                        setGoalWeightLbs(lbs);
+                        update({ goal_weight_kg: units.lbsToKg(lbs) });
+                      }} placeholder="155" />
+                    </>
+                  ) : (
+                    <>
+                      <Label>Goal weight (kg)</Label>
+                      <Input type="number" value={form.goal_weight_kg || ''} onChange={e => update({ goal_weight_kg: parseFloat(e.target.value) || 0 })} placeholder="70" />
+                      {form.goal_weight_kg > 0 && <p className="text-xs text-zinc-400 mt-1">{units.displayWeight(form.goal_weight_kg)}</p>}
+                    </>
+                  )}
                 </div>
               </div>
             )}

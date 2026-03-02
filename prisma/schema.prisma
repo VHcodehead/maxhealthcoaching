@@ -29,6 +29,9 @@ model User {
   notifications       Notification[]
   clientNotes         CoachNote[]     @relation("clientNotes")
   coachNotes          CoachNote[]     @relation("coachNotes")
+  clientSupplements   SupplementRecommendation[] @relation("clientSupplements")
+  coachSupplements    SupplementRecommendation[] @relation("coachSupplements")
+  pendingMacroAdjustments PendingMacroAdjustment[]
 
   @@map("users")
 }
@@ -156,6 +159,7 @@ model CheckIn {
 
   user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   progressPhotos ProgressPhoto[]
+  pendingMacroAdjustment PendingMacroAdjustment?
 
   @@map("check_ins")
 }
@@ -278,4 +282,70 @@ model CoachNote {
   coach User @relation("coachNotes", fields: [coachId], references: [id], onDelete: Cascade)
 
   @@map("coach_notes")
+}
+
+model SupplementRecommendation {
+  id                   String   @id @default(uuid())
+  userId               String   @map("user_id")
+  coachId              String   @map("coach_id")
+  name                 String
+  dosage               String
+  unit                 String
+  frequency            String
+  timing               String
+  category             String
+  form                 String
+  brand                String?
+  cyclingInstructions  String?  @map("cycling_instructions")
+  notes                String?
+  active               Boolean  @default(true)
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @default(now()) @updatedAt @map("updated_at")
+
+  user  User @relation("clientSupplements", fields: [userId], references: [id], onDelete: Cascade)
+  coach User @relation("coachSupplements", fields: [coachId], references: [id], onDelete: Cascade)
+
+  @@map("supplement_recommendations")
+}
+
+model PendingMacroAdjustment {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  checkInId String   @unique @map("check_in_id")
+  status    String   @default("pending") // "pending", "approved", "dismissed"
+
+  // Weight context
+  previousWeightKg  Float @map("previous_weight_kg")
+  newWeightKg       Float @map("new_weight_kg")
+
+  // Current (active) macro values snapshot
+  currentCalories   Int   @map("current_calories")
+  currentProteinG   Int   @map("current_protein_g")
+  currentFatG       Int   @map("current_fat_g")
+  currentCarbsG     Int   @map("current_carbs_g")
+
+  // System-proposed new values
+  proposedBmr       Int   @map("proposed_bmr")
+  proposedTdee      Int   @map("proposed_tdee")
+  proposedCalories  Int   @map("proposed_calories")
+  proposedProteinG  Int   @map("proposed_protein_g")
+  proposedFatG      Int   @map("proposed_fat_g")
+  proposedCarbsG    Int   @map("proposed_carbs_g")
+  proposedFormula   String @map("proposed_formula")
+  proposedExplanation String @default("") @map("proposed_explanation")
+
+  // Coach's final decision (filled on approval)
+  approvedCalories  Int?  @map("approved_calories")
+  approvedProteinG  Int?  @map("approved_protein_g")
+  approvedFatG      Int?  @map("approved_fat_g")
+  approvedCarbsG    Int?  @map("approved_carbs_g")
+  coachNote         String? @map("coach_note")
+
+  resolvedAt DateTime? @map("resolved_at")
+  createdAt  DateTime  @default(now()) @map("created_at")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  checkIn CheckIn @relation(fields: [checkInId], references: [id], onDelete: Cascade)
+
+  @@map("pending_macro_adjustments")
 }

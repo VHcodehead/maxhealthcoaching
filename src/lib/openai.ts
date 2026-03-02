@@ -111,7 +111,72 @@ SPLIT VALIDATION:
 
 INJURY HANDLING:
 - For each injury, explicitly name movements to avoid and provide substitutions.
-- Include substitution in the exercise "substitution" field and explain in "notes".`;
+- Include substitution in the exercise "substitution" field and explain in "notes".
+
+PERIODIZATION:
+- Structure phases as: Accumulation (higher volume, moderate intensity) → Intensification (lower volume, higher intensity) → Deload (recovery week).
+- 4-week plan: Accumulation (wk 1-3) → Deload (wk 4).
+- 8-week plan: Accumulation (wk 1-3) → Intensification (wk 4-6) → Deload (wk 7) → Peak (wk 8).
+- 12-week plan: Accumulation (wk 1-4) → Intensification (wk 5-8) → Deload (wk 9) → Peak (wk 10-11) → Deload (wk 12).
+- Set the "phase_name" field for each week (e.g. "Accumulation 1", "Intensification", "Deload").
+
+AUTOREGULATION (RPE/RIR):
+- Beginner: Fixed weights, no RPE needed. Set rpe to 0 and rir to 0 for all exercises.
+- Intermediate: RPE 6-8 range. RIR 2-4 on compounds, 1-3 on isolation.
+- Advanced: RPE 7-9.5 with specific RIR targets. Compounds RPE 7-8.5 (RIR 1-3), isolation RPE 8-9.5 (RIR 0-2).
+- rpe and rir are REQUIRED on every exercise. Use 0 for beginners.
+
+WEEKLY VOLUME TARGETS (working sets per muscle group per week):
+- Beginner: Chest 8-12, Back 8-12, Quads 8-10, Hamstrings 6-8, Shoulders 6-10, Biceps 4-8, Triceps 4-8, Calves 6-8.
+- Intermediate: Chest 12-16, Back 12-16, Quads 10-14, Hamstrings 8-10, Shoulders 10-14, Biceps 8-12, Triceps 8-12, Calves 8-10.
+- Advanced: Chest 16-22, Back 16-22, Quads 12-18, Hamstrings 10-14, Shoulders 12-18, Biceps 10-14, Triceps 10-14, Calves 10-14.
+
+EXERCISE ROTATION:
+- Keep compound movements consistent across weeks (e.g. always squat on leg day).
+- Rotate accessory/isolation exercises every 2 weeks to prevent staleness.
+- Vary angles across weeks (e.g. incline week 1-2, flat week 3-4).
+- Rotate rep ranges on accessories: week 1-2 moderate (8-12), week 3-4 higher (12-15).
+
+DELOAD SPECIFICITY:
+- Halve total sets (50% volume reduction).
+- Drop RPE by 2 points from working weeks.
+- Keep the SAME exercises as the previous block (maintain motor patterns).
+- Maintain training frequency (same days/week).
+- No intensity techniques during deload.
+
+INTENSITY TECHNIQUES:
+- Drop sets: ONLY on the last set of isolation exercises. Reduce weight 20-30% and continue to failure.
+- Rest-pause: ONLY on machine exercises at RPE 9+. Rack weight, rest 10-15s, continue for 3-5 more reps.
+- Supersets: ONLY for antagonist pairs (e.g. bicep curl + tricep pushdown, chest fly + rear delt fly).
+- Maximum 2 supersets per session.
+- NO intensity techniques during deload weeks.
+- Set the "intensity_technique" field: "none", "drop_set", "rest_pause", or "superset".
+
+EQUIPMENT CONSTRAINTS:
+- Gym: Full exercise selection.
+- Dumbbells only: DB press, DB rows, DB squats, goblet squats, lunges, RDLs, lateral raises, curls, extensions, floor press.
+- Bands: Banded squats, banded push-ups, banded rows, banded curls, band pull-aparts, banded lateral walks.
+- Barbell + rack: Squats, bench press, OHP, deadlifts, barbell rows, rack pulls.
+- Pull-up bar: Pull-ups, chin-ups, hanging leg raises, dead hangs.
+- Bench: Step-ups, hip thrusts, incline pressing, decline push-ups, Bulgarian split squats.
+- Bodyweight only: Push-ups, squats, lunges, planks, dips (on furniture), inverted rows, pike push-ups, glute bridges.
+
+GOAL-SPECIFIC PERIODIZATION:
+- Cut: Cap RPE at 8 for compounds, shorter rest (60-90s compounds, 45-60s isolation), deload every 3rd week, prioritize muscle retention over progressive overload.
+- Bulk: Longer accumulation phases, push volume higher (upper end of volume ranges), RPE 8-9 on isolation, longer rest for strength sets (150-180s).
+- Recomp: Alternate strength-focused weeks (lower reps, higher intensity) with hypertrophy-focused weeks (higher reps, moderate intensity), deload every 4th week.
+
+CARDIO:
+- Include a "cardio" object on each training day with type and duration based on client preference.
+- "none": omit the cardio object or set to null.
+- "light": 15-20 min low-intensity steady state (walking, cycling).
+- "moderate": 20-30 min moderate-intensity (incline walk, elliptical, rowing).
+- "high": 20-30 min including HIIT intervals (sprints, battle ropes, sled pushes).
+
+FORM CUES:
+- Include 2-3 form cues per exercise in the "form_cues" array.
+- Focus on common mistakes and key technique points.
+- Examples: "Drive through heels", "Keep elbows tucked at 45°", "Squeeze at the top for 1 second".`;
 
 // Macro object reused across ingredient definitions
 const MACRO_OBJECT = {
@@ -207,14 +272,16 @@ export const TRAINING_PLAN_SCHEMA = {
         type: 'object' as const,
         properties: {
           week: { type: 'number' as const },
+          phase_name: { type: 'string' as const },
           theme: { type: 'string' as const },
           days: {
             type: 'array' as const,
             items: {
               type: 'object' as const,
               properties: {
-                day: { type: 'string' as const },
-                name: { type: 'string' as const },
+                day_name: { type: 'string' as const },
+                session_name: { type: 'string' as const },
+                muscle_groups: { type: 'array' as const, items: { type: 'string' as const } },
                 warmup: { type: 'array' as const, items: { type: 'string' as const } },
                 exercises: {
                   type: 'array' as const,
@@ -225,24 +292,45 @@ export const TRAINING_PLAN_SCHEMA = {
                       sets: { type: 'number' as const },
                       reps: { type: 'string' as const },
                       rpe: { type: 'number' as const },
+                      rir: { type: 'number' as const },
                       rest_seconds: { type: 'number' as const },
                       tempo: { type: 'string' as const },
+                      intensity_technique: { type: 'string' as const },
+                      form_cues: { type: 'array' as const, items: { type: 'string' as const } },
                       notes: { type: 'string' as const },
                       substitution: { type: 'string' as const },
                     },
-                    required: ['name', 'sets', 'reps', 'rest_seconds'],
+                    required: ['name', 'sets', 'reps', 'rpe', 'rir', 'rest_seconds', 'tempo', 'intensity_technique', 'form_cues', 'notes', 'substitution'],
+                    additionalProperties: false,
                   },
                 },
+                cardio: {
+                  anyOf: [
+                    {
+                      type: 'object' as const,
+                      properties: {
+                        type: { type: 'string' as const },
+                        duration_minutes: { type: 'number' as const },
+                      },
+                      required: ['type', 'duration_minutes'],
+                      additionalProperties: false,
+                    },
+                    { type: 'null' as const },
+                  ],
+                } as any,
                 cooldown: { type: 'string' as const },
                 notes: { type: 'string' as const },
               },
-              required: ['day', 'name', 'warmup', 'exercises'],
+              required: ['day_name', 'session_name', 'muscle_groups', 'warmup', 'exercises', 'cardio', 'cooldown', 'notes'],
+              additionalProperties: false,
             },
           },
         },
-        required: ['week', 'days'],
+        required: ['week', 'phase_name', 'theme', 'days'],
+        additionalProperties: false,
       },
     },
   },
   required: ['program_name', 'overview', 'progression_rules', 'weeks'],
+  additionalProperties: false,
 };

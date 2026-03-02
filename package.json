@@ -10,7 +10,10 @@
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "npx tsx prisma/seed.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "test:pipeline": "npx tsx scripts/test-pipeline.ts",
+    "test:pipeline:mock": "npx tsx scripts/test-pipeline.ts --mock",
+    "test:pipeline:live": "npx tsx scripts/test-pipeline.ts --live"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

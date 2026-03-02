@@ -1,0 +1,4214 @@
+{
+  "days": [
+    {
+      "day": "Monday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Scrambled Eggs with Spinach and Avocado",
+          "ingredients": [
+            {
+              "name": "Whole eggs",
+              "amount": "3",
+              "unit": "large",
+              "macros": {
+                "calories": 225.8,
+                "protein": 19.8,
+                "carbs": 1.3,
+                "fat": 15.1
+              }
+            },
+            {
+              "name": "Egg whites",
+              "amount": "140",
+              "unit": "g",
+              "macros": {
+                "calories": 72.8,
+                "protein": 15.4,
+                "carbs": 1,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Spinach",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 23,
+                "protein": 2.9,
+                "carbs": 3.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Avocado",
+              "amount": "78",
+              "unit": "g",
+              "macros": {
+                "calories": 125.5,
+                "protein": 1.6,
+                "carbs": 7.1,
+                "fat": 11.8
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Heat olive oil in a pan over medium heat.",
+            "Add spinach and cook until wilted, about 2 minutes.",
+            "Whisk eggs and egg whites, then pour into the pan.",
+            "Scramble the eggs until cooked through, about 5 minutes.",
+            "Serve with sliced avocado on top."
+          ],
+          "macro_totals": {
+            "calories": 516,
+            "protein": 40,
+            "carbs": 13,
+            "fat": 35
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Omelette with Cheese and Tomato",
+              "ingredients": [
+                {
+                  "name": "Whole eggs",
+                  "amount": "4",
+                  "unit": "large",
+                  "macros": {
+                    "calories": 288,
+                    "protein": 25.2,
+                    "carbs": 1.6,
+                    "fat": 19.2
+                  }
+                },
+                {
+                  "name": "Cheddar cheese",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 201.5,
+                    "protein": 12.5,
+                    "carbs": 0.7,
+                    "fat": 16.5
+                  }
+                },
+                {
+                  "name": "Tomato",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 18,
+                    "protein": 0.9,
+                    "carbs": 3.9,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat olive oil in a pan over medium heat.",
+                "Add chopped tomato and cook for 2 minutes.",
+                "Whisk eggs and pour into the pan.",
+                "Add cheddar cheese and cook until eggs are set, about 5 minutes."
+              ],
+              "macro_totals": {
+                "calories": 596,
+                "protein": 39,
+                "carbs": 6,
+                "fat": 46
+              }
+            }
+          ]
+        },
+        {
+          "name": "Morning Snack",
+          "time": "10:30",
+          "recipe_title": "Greek Yogurt with Mixed Berries and Almonds",
+          "ingredients": [
+            {
+              "name": "Greek yogurt 0%",
+              "amount": "560",
+              "unit": "g",
+              "macros": {
+                "calories": 330.4,
+                "protein": 56,
+                "carbs": 20.2,
+                "fat": 2.2
+              }
+            },
+            {
+              "name": "Mixed berries",
+              "amount": "140",
+              "unit": "g",
+              "macros": {
+                "calories": 79.8,
+                "protein": 1,
+                "carbs": 19.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Almonds",
+              "amount": "24",
+              "unit": "g",
+              "macros": {
+                "calories": 136.2,
+                "protein": 4.9,
+                "carbs": 5.2,
+                "fat": 11.8
+              }
+            }
+          ],
+          "instructions": [
+            "Mix Greek yogurt and mixed berries in a bowl.",
+            "Top with almonds before serving."
+          ],
+          "macro_totals": {
+            "calories": 546,
+            "protein": 62,
+            "carbs": 45,
+            "fat": 14
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cottage Cheese with Pineapple and Walnuts",
+              "ingredients": [
+                {
+                  "name": "Cottage cheese 2%",
+                  "amount": "350",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 283.5,
+                    "protein": 38.5,
+                    "carbs": 12.6,
+                    "fat": 8
+                  }
+                },
+                {
+                  "name": "Pineapple chunks",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 52,
+                    "protein": 0.3,
+                    "carbs": 14,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Walnuts",
+                  "amount": "30",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 196.2,
+                    "protein": 4.5,
+                    "carbs": 4.2,
+                    "fat": 19.5
+                  }
+                }
+              ],
+              "instructions": [
+                "Mix cottage cheese and pineapple chunks in a bowl.",
+                "Top with walnuts before serving."
+              ],
+              "macro_totals": {
+                "calories": 532,
+                "protein": 43,
+                "carbs": 31,
+                "fat": 28
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "13:00",
+          "recipe_title": "Grilled Chicken Breast with Quinoa and Broccoli",
+          "ingredients": [
+            {
+              "name": "Chicken breast",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 462,
+                "protein": 86.8,
+                "carbs": 0,
+                "fat": 10.1
+              }
+            },
+            {
+              "name": "Quinoa cooked",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 336,
+                "protein": 12.3,
+                "carbs": 58.8,
+                "fat": 5.3
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "210",
+              "unit": "g",
+              "macros": {
+                "calories": 71.4,
+                "protein": 5.9,
+                "carbs": 14.7,
+                "fat": 0.8
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Preheat grill to medium-high heat.",
+            "Season chicken breast with salt and pepper, then grill for 6-7 minutes per side until cooked through.",
+            "Cook quinoa according to package instructions.",
+            "Steam broccoli for 5 minutes until tender.",
+            "Serve chicken with quinoa and broccoli, drizzled with olive oil."
+          ],
+          "macro_totals": {
+            "calories": 939,
+            "protein": 105,
+            "carbs": 74,
+            "fat": 24
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Turkey Breast with Brown Rice and Green Beans",
+              "ingredients": [
+                {
+                  "name": "Turkey breast",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 270,
+                    "protein": 60,
+                    "carbs": 0,
+                    "fat": 3
+                  }
+                },
+                {
+                  "name": "Brown rice cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 224,
+                    "protein": 5.2,
+                    "carbs": 48,
+                    "fat": 1.8
+                  }
+                },
+                {
+                  "name": "Green beans",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 46.5,
+                    "protein": 2.7,
+                    "carbs": 10.5,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Preheat grill to medium-high heat.",
+                "Season turkey breast with salt and pepper, then grill for 6-7 minutes per side until cooked through.",
+                "Cook brown rice according to package instructions.",
+                "Steam green beans for 5 minutes until tender.",
+                "Serve turkey with rice and green beans, drizzled with olive oil."
+              ],
+              "macro_totals": {
+                "calories": 629,
+                "protein": 68,
+                "carbs": 59,
+                "fat": 15
+              }
+            }
+          ]
+        },
+        {
+          "name": "Afternoon Snack",
+          "time": "16:00",
+          "recipe_title": "Whey Protein Shake with Banana",
+          "ingredients": [
+            {
+              "name": "Whey protein",
+              "amount": "1",
+              "unit": "scoop",
+              "macros": {
+                "calories": 168,
+                "protein": 33.6,
+                "carbs": 4.2,
+                "fat": 2.1
+              }
+            },
+            {
+              "name": "Banana",
+              "amount": "165",
+              "unit": "g",
+              "macros": {
+                "calories": 147,
+                "protein": 1.8,
+                "carbs": 37.9,
+                "fat": 0.6
+              }
+            },
+            {
+              "name": "Milk whole",
+              "amount": "196",
+              "unit": "g",
+              "macros": {
+                "calories": 119.6,
+                "protein": 6.3,
+                "carbs": 9.4,
+                "fat": 6.5
+              }
+            }
+          ],
+          "instructions": [
+            "Blend whey protein, banana, and milk until smooth.",
+            "Serve immediately."
+          ],
+          "macro_totals": {
+            "calories": 435,
+            "protein": 42,
+            "carbs": 52,
+            "fat": 9
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Peanut Butter Smoothie",
+              "ingredients": [
+                {
+                  "name": "Whey protein",
+                  "amount": "1",
+                  "unit": "scoop",
+                  "macros": {
+                    "calories": 120,
+                    "protein": 24,
+                    "carbs": 3,
+                    "fat": 1.5
+                  }
+                },
+                {
+                  "name": "Peanut butter",
+                  "amount": "30",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 176.4,
+                    "protein": 7.5,
+                    "carbs": 6,
+                    "fat": 15
+                  }
+                },
+                {
+                  "name": "Milk whole",
+                  "amount": "250",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 152.5,
+                    "protein": 8,
+                    "carbs": 12,
+                    "fat": 8.3
+                  }
+                }
+              ],
+              "instructions": [
+                "Blend whey protein, peanut butter, and milk until smooth.",
+                "Serve immediately."
+              ],
+              "macro_totals": {
+                "calories": 449,
+                "protein": 40,
+                "carbs": 21,
+                "fat": 25
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Salmon with Sweet Potato and Asparagus",
+          "ingredients": [
+            {
+              "name": "Salmon",
+              "amount": "157",
+              "unit": "g",
+              "macros": {
+                "calories": 326.2,
+                "protein": 31.4,
+                "carbs": 0,
+                "fat": 20.4
+              }
+            },
+            {
+              "name": "Sweet potato",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 252,
+                "protein": 5.6,
+                "carbs": 58.8,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Asparagus",
+              "amount": "150",
+              "unit": "g",
+              "macros": {
+                "calories": 30,
+                "protein": 3.3,
+                "carbs": 5.9,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Preheat oven to 200°C (400°F).",
+            "Season salmon with salt and pepper, place on a baking sheet.",
+            "Toss sweet potato and asparagus with olive oil, place on the same sheet.",
+            "Bake for 20 minutes until salmon is cooked through and vegetables are tender."
+          ],
+          "macro_totals": {
+            "calories": 678,
+            "protein": 40,
+            "carbs": 65,
+            "fat": 29
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cod with Rice and Zucchini",
+              "ingredients": [
+                {
+                  "name": "Cod",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 164,
+                    "protein": 36,
+                    "carbs": 0,
+                    "fat": 1.4
+                  }
+                },
+                {
+                  "name": "Rice cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 260,
+                    "protein": 5.4,
+                    "carbs": 56,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Zucchini",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 25.5,
+                    "protein": 1.8,
+                    "carbs": 4.7,
+                    "fat": 0.5
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Preheat oven to 200°C (400°F).",
+                "Season cod with salt and pepper, place on a baking sheet.",
+                "Toss zucchini with olive oil, place on the same sheet.",
+                "Bake for 15 minutes until cod is cooked through and zucchini is tender.",
+                "Serve with cooked rice."
+              ],
+              "macro_totals": {
+                "calories": 538,
+                "protein": 43,
+                "carbs": 61,
+                "fat": 13
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 3114,
+        "protein": 289,
+        "carbs": 249,
+        "fat": 111
+      }
+    },
+    {
+      "day": "Tuesday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Protein Pancakes with Berries",
+          "ingredients": [
+            {
+              "name": "Whey protein",
+              "amount": "1",
+              "unit": "scoop",
+              "macros": {
+                "calories": 100.8,
+                "protein": 20.2,
+                "carbs": 2.5,
+                "fat": 1.3
+              }
+            },
+            {
+              "name": "Oats dry",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 463.1,
+                "protein": 20.2,
+                "carbs": 78.6,
+                "fat": 8.4
+              }
+            },
+            {
+              "name": "Egg whites",
+              "amount": "84",
+              "unit": "g",
+              "macros": {
+                "calories": 43.7,
+                "protein": 9.2,
+                "carbs": 0.6,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Mixed berries",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 67.8,
+                "protein": 0.8,
+                "carbs": 16.7,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Honey",
+              "amount": "24",
+              "unit": "g",
+              "macros": {
+                "calories": 76,
+                "protein": 0.1,
+                "carbs": 20.5,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Blend whey protein, oats, and egg whites to form a batter.",
+            "Cook pancakes on a non-stick skillet over medium heat until golden brown, about 2 minutes per side.",
+            "Serve with mixed berries and honey drizzled on top."
+          ],
+          "macro_totals": {
+            "calories": 751,
+            "protein": 50,
+            "carbs": 119,
+            "fat": 10
+          },
+          "swap_options": [
+            {
+              "recipe_title": "French Toast with Banana",
+              "ingredients": [
+                {
+                  "name": "Whole eggs",
+                  "amount": "2",
+                  "unit": "large",
+                  "macros": {
+                    "calories": 144,
+                    "protein": 12.6,
+                    "carbs": 0.8,
+                    "fat": 9.6
+                  }
+                },
+                {
+                  "name": "Bread whole wheat",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 247,
+                    "protein": 13,
+                    "carbs": 41,
+                    "fat": 3.4
+                  }
+                },
+                {
+                  "name": "Milk whole",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 61,
+                    "protein": 3.2,
+                    "carbs": 4.8,
+                    "fat": 3.3
+                  }
+                },
+                {
+                  "name": "Banana",
+                  "amount": "118",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 105,
+                    "protein": 1.3,
+                    "carbs": 27.1,
+                    "fat": 0.4
+                  }
+                }
+              ],
+              "instructions": [
+                "Whisk eggs and milk together.",
+                "Dip bread slices in the egg mixture and cook on a skillet over medium heat until golden brown, about 3 minutes per side.",
+                "Serve with sliced banana on top."
+              ],
+              "macro_totals": {
+                "calories": 557,
+                "protein": 30,
+                "carbs": 74,
+                "fat": 17
+              }
+            }
+          ]
+        },
+        {
+          "name": "Morning Snack",
+          "time": "10:30",
+          "recipe_title": "Cottage Cheese with Pineapple and Walnuts",
+          "ingredients": [
+            {
+              "name": "Cottage cheese 2%",
+              "amount": "294",
+              "unit": "g",
+              "macros": {
+                "calories": 238.1,
+                "protein": 32.3,
+                "carbs": 10.6,
+                "fat": 6.7
+              }
+            },
+            {
+              "name": "Pineapple chunks",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 62,
+                "protein": 0.3,
+                "carbs": 16.7,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Walnuts",
+              "amount": "31",
+              "unit": "g",
+              "macros": {
+                "calories": 201.5,
+                "protein": 4.6,
+                "carbs": 4.4,
+                "fat": 20
+              }
+            }
+          ],
+          "instructions": [
+            "Mix cottage cheese and pineapple chunks in a bowl.",
+            "Top with walnuts before serving."
+          ],
+          "macro_totals": {
+            "calories": 502,
+            "protein": 37,
+            "carbs": 32,
+            "fat": 27
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Greek Yogurt with Granola and Honey",
+              "ingredients": [
+                {
+                  "name": "Greek yogurt 0%",
+                  "amount": "400",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 236,
+                    "protein": 40,
+                    "carbs": 14.4,
+                    "fat": 1.6
+                  }
+                },
+                {
+                  "name": "Granola",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 244.5,
+                    "protein": 6.9,
+                    "carbs": 27,
+                    "fat": 12.2
+                  }
+                },
+                {
+                  "name": "Honey",
+                  "amount": "21",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 63.8,
+                    "protein": 0.1,
+                    "carbs": 17.2,
+                    "fat": 0
+                  }
+                }
+              ],
+              "instructions": [
+                "Mix Greek yogurt and granola in a bowl.",
+                "Drizzle honey on top before serving."
+              ],
+              "macro_totals": {
+                "calories": 544,
+                "protein": 47,
+                "carbs": 59,
+                "fat": 14
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "13:00",
+          "recipe_title": "Beef Stir-Fry with Rice and Vegetables",
+          "ingredients": [
+            {
+              "name": "Ground beef 90%",
+              "amount": "206",
+              "unit": "g",
+              "macros": {
+                "calories": 361.5,
+                "protein": 41,
+                "carbs": 0,
+                "fat": 20.6
+              }
+            },
+            {
+              "name": "Rice cooked",
+              "amount": "238",
+              "unit": "g",
+              "macros": {
+                "calories": 309.5,
+                "protein": 6.4,
+                "carbs": 66.7,
+                "fat": 0.7
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 40.5,
+                "protein": 3.3,
+                "carbs": 8.4,
+                "fat": 0.5
+              }
+            },
+            {
+              "name": "Soy sauce",
+              "amount": "15",
+              "unit": "ml",
+              "macros": {
+                "calories": 8,
+                "protein": 1.3,
+                "carbs": 1,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Cook ground beef in a pan over medium heat until browned, about 8 minutes.",
+            "Add broccoli and soy sauce, cook for another 5 minutes.",
+            "Serve with cooked rice."
+          ],
+          "macro_totals": {
+            "calories": 720,
+            "protein": 52,
+            "carbs": 76,
+            "fat": 22
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Chicken Stir-Fry with Noodles",
+              "ingredients": [
+                {
+                  "name": "Chicken breast",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 330,
+                    "protein": 62,
+                    "carbs": 0,
+                    "fat": 7.2
+                  }
+                },
+                {
+                  "name": "Pasta cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 262,
+                    "protein": 10,
+                    "carbs": 50,
+                    "fat": 2.2
+                  }
+                },
+                {
+                  "name": "Bell pepper",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 31,
+                    "protein": 1,
+                    "carbs": 6,
+                    "fat": 0.3
+                  }
+                },
+                {
+                  "name": "Soy sauce",
+                  "amount": "15",
+                  "unit": "ml",
+                  "macros": {
+                    "calories": 8,
+                    "protein": 1.3,
+                    "carbs": 1,
+                    "fat": 0
+                  }
+                }
+              ],
+              "instructions": [
+                "Cook chicken in a pan over medium heat until browned, about 8 minutes.",
+                "Add bell pepper and soy sauce, cook for another 5 minutes.",
+                "Serve with cooked pasta."
+              ],
+              "macro_totals": {
+                "calories": 631,
+                "protein": 74,
+                "carbs": 57,
+                "fat": 10
+              }
+            }
+          ]
+        },
+        {
+          "name": "Afternoon Snack",
+          "time": "16:00",
+          "recipe_title": "Tuna Salad with Whole Wheat Bread",
+          "ingredients": [
+            {
+              "name": "Tuna canned",
+              "amount": "119",
+              "unit": "g",
+              "macros": {
+                "calories": 138.4,
+                "protein": 31,
+                "carbs": 0,
+                "fat": 0.9
+              }
+            },
+            {
+              "name": "Mayonnaise",
+              "amount": "31",
+              "unit": "g",
+              "macros": {
+                "calories": 81,
+                "protein": 0.3,
+                "carbs": 7.4,
+                "fat": 5.9
+              }
+            },
+            {
+              "name": "Bread whole wheat",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 294,
+                "protein": 15.5,
+                "carbs": 48.8,
+                "fat": 4.1
+              }
+            }
+          ],
+          "instructions": [
+            "Mix tuna and mayonnaise in a bowl.",
+            "Serve with whole wheat bread."
+          ],
+          "macro_totals": {
+            "calories": 513,
+            "protein": 47,
+            "carbs": 56,
+            "fat": 11
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Turkey Sandwich with Avocado",
+              "ingredients": [
+                {
+                  "name": "Turkey breast",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 135,
+                    "protein": 30,
+                    "carbs": 0,
+                    "fat": 1.5
+                  }
+                },
+                {
+                  "name": "Avocado",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 160,
+                    "protein": 2,
+                    "carbs": 9,
+                    "fat": 15
+                  }
+                },
+                {
+                  "name": "Bread whole wheat",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 247,
+                    "protein": 13,
+                    "carbs": 41,
+                    "fat": 3.4
+                  }
+                }
+              ],
+              "instructions": [
+                "Layer turkey and avocado slices on whole wheat bread.",
+                "Serve as a sandwich."
+              ],
+              "macro_totals": {
+                "calories": 542,
+                "protein": 45,
+                "carbs": 50,
+                "fat": 20
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Grilled Chicken Thighs with Mashed Potatoes and Green Beans",
+          "ingredients": [
+            {
+              "name": "Chicken thigh",
+              "amount": "206",
+              "unit": "g",
+              "macros": {
+                "calories": 363.6,
+                "protein": 41,
+                "carbs": 0,
+                "fat": 20.9
+              }
+            },
+            {
+              "name": "Potato",
+              "amount": "238",
+              "unit": "g",
+              "macros": {
+                "calories": 221.5,
+                "protein": 6,
+                "carbs": 50,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Green beans",
+              "amount": "178",
+              "unit": "g",
+              "macros": {
+                "calories": 55.4,
+                "protein": 3.2,
+                "carbs": 12.5,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Butter",
+              "amount": "10",
+              "unit": "g",
+              "macros": {
+                "calories": 73.7,
+                "protein": 0.1,
+                "carbs": 0,
+                "fat": 8.4
+              }
+            }
+          ],
+          "instructions": [
+            "Preheat grill to medium-high heat.",
+            "Season chicken thighs with salt and pepper, grill for 6-7 minutes per side until cooked through.",
+            "Boil potatoes until tender, mash with butter.",
+            "Steam green beans for 5 minutes until tender.",
+            "Serve chicken with mashed potatoes and green beans."
+          ],
+          "macro_totals": {
+            "calories": 714,
+            "protein": 50,
+            "carbs": 63,
+            "fat": 30
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Pork Chops with Sweet Potato and Peas",
+              "ingredients": [
+                {
+                  "name": "Pork chops",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 286,
+                    "protein": 52,
+                    "carbs": 0,
+                    "fat": 7
+                  }
+                },
+                {
+                  "name": "Sweet potato",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 180,
+                    "protein": 4,
+                    "carbs": 42,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Peas",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 121.5,
+                    "protein": 8.1,
+                    "carbs": 21,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Butter",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 71.7,
+                    "protein": 0.1,
+                    "carbs": 0,
+                    "fat": 8.1
+                  }
+                }
+              ],
+              "instructions": [
+                "Preheat grill to medium-high heat.",
+                "Season pork chops with salt and pepper, grill for 6-7 minutes per side until cooked through.",
+                "Boil sweet potatoes until tender, mash with butter.",
+                "Steam peas for 5 minutes until tender.",
+                "Serve pork with mashed sweet potatoes and peas."
+              ],
+              "macro_totals": {
+                "calories": 659,
+                "protein": 64,
+                "carbs": 63,
+                "fat": 16
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 3200,
+        "protein": 236,
+        "carbs": 346,
+        "fat": 100
+      }
+    },
+    {
+      "day": "Wednesday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Scrambled Eggs with Spinach and Avocado",
+          "ingredients": [
+            {
+              "name": "Whole eggs",
+              "amount": "3",
+              "unit": "large",
+              "macros": {
+                "calories": 225.8,
+                "protein": 19.8,
+                "carbs": 1.3,
+                "fat": 15.1
+              }
+            },
+            {
+              "name": "Egg whites",
+              "amount": "140",
+              "unit": "g",
+              "macros": {
+                "calories": 72.8,
+                "protein": 15.4,
+                "carbs": 1,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Spinach",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 23,
+                "protein": 2.9,
+                "carbs": 3.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Avocado",
+              "amount": "78",
+              "unit": "g",
+              "macros": {
+                "calories": 125.5,
+                "protein": 1.6,
+                "carbs": 7.1,
+                "fat": 11.8
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Heat olive oil in a pan over medium heat.",
+            "Add spinach and cook until wilted, about 2 minutes.",
+            "Whisk eggs and egg whites, then pour into the pan.",
+            "Scramble the eggs until cooked through, about 5 minutes.",
+            "Serve with sliced avocado on top."
+          ],
+          "macro_totals": {
+            "calories": 516,
+            "protein": 40,
+            "carbs": 13,
+            "fat": 35
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Omelette with Cheese and Tomato",
+              "ingredients": [
+                {
+                  "name": "Whole eggs",
+                  "amount": "4",
+                  "unit": "large",
+                  "macros": {
+                    "calories": 288,
+                    "protein": 25.2,
+                    "carbs": 1.6,
+                    "fat": 19.2
+                  }
+                },
+                {
+                  "name": "Cheddar cheese",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 201.5,
+                    "protein": 12.5,
+                    "carbs": 0.7,
+                    "fat": 16.5
+                  }
+                },
+                {
+                  "name": "Tomato",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 18,
+                    "protein": 0.9,
+                    "carbs": 3.9,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat olive oil in a pan over medium heat.",
+                "Add chopped tomato and cook for 2 minutes.",
+                "Whisk eggs and pour into the pan.",
+                "Add cheddar cheese and cook until eggs are set, about 5 minutes."
+              ],
+              "macro_totals": {
+                "calories": 596,
+                "protein": 39,
+                "carbs": 6,
+                "fat": 46
+              }
+            }
+          ]
+        },
+        {
+          "name": "Morning Snack",
+          "time": "10:30",
+          "recipe_title": "Greek Yogurt with Mixed Berries and Almonds",
+          "ingredients": [
+            {
+              "name": "Greek yogurt 0%",
+              "amount": "560",
+              "unit": "g",
+              "macros": {
+                "calories": 330.4,
+                "protein": 56,
+                "carbs": 20.2,
+                "fat": 2.2
+              }
+            },
+            {
+              "name": "Mixed berries",
+              "amount": "140",
+              "unit": "g",
+              "macros": {
+                "calories": 79.8,
+                "protein": 1,
+                "carbs": 19.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Almonds",
+              "amount": "24",
+              "unit": "g",
+              "macros": {
+                "calories": 136.2,
+                "protein": 4.9,
+                "carbs": 5.2,
+                "fat": 11.8
+              }
+            }
+          ],
+          "instructions": [
+            "Mix Greek yogurt and mixed berries in a bowl.",
+            "Top with almonds before serving."
+          ],
+          "macro_totals": {
+            "calories": 546,
+            "protein": 62,
+            "carbs": 45,
+            "fat": 14
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cottage Cheese with Pineapple and Walnuts",
+              "ingredients": [
+                {
+                  "name": "Cottage cheese 2%",
+                  "amount": "350",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 283.5,
+                    "protein": 38.5,
+                    "carbs": 12.6,
+                    "fat": 8
+                  }
+                },
+                {
+                  "name": "Pineapple chunks",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 52,
+                    "protein": 0.3,
+                    "carbs": 14,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Walnuts",
+                  "amount": "30",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 196.2,
+                    "protein": 4.5,
+                    "carbs": 4.2,
+                    "fat": 19.5
+                  }
+                }
+              ],
+              "instructions": [
+                "Mix cottage cheese and pineapple chunks in a bowl.",
+                "Top with walnuts before serving."
+              ],
+              "macro_totals": {
+                "calories": 532,
+                "protein": 43,
+                "carbs": 31,
+                "fat": 28
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "13:00",
+          "recipe_title": "Grilled Chicken Breast with Quinoa and Broccoli",
+          "ingredients": [
+            {
+              "name": "Chicken breast",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 462,
+                "protein": 86.8,
+                "carbs": 0,
+                "fat": 10.1
+              }
+            },
+            {
+              "name": "Quinoa cooked",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 336,
+                "protein": 12.3,
+                "carbs": 58.8,
+                "fat": 5.3
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "210",
+              "unit": "g",
+              "macros": {
+                "calories": 71.4,
+                "protein": 5.9,
+                "carbs": 14.7,
+                "fat": 0.8
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Preheat grill to medium-high heat.",
+            "Season chicken breast with salt and pepper, then grill for 6-7 minutes per side until cooked through.",
+            "Cook quinoa according to package instructions.",
+            "Steam broccoli for 5 minutes until tender.",
+            "Serve chicken with quinoa and broccoli, drizzled with olive oil."
+          ],
+          "macro_totals": {
+            "calories": 939,
+            "protein": 105,
+            "carbs": 74,
+            "fat": 24
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Turkey Breast with Brown Rice and Green Beans",
+              "ingredients": [
+                {
+                  "name": "Turkey breast",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 270,
+                    "protein": 60,
+                    "carbs": 0,
+                    "fat": 3
+                  }
+                },
+                {
+                  "name": "Brown rice cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 224,
+                    "protein": 5.2,
+                    "carbs": 48,
+                    "fat": 1.8
+                  }
+                },
+                {
+                  "name": "Green beans",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 46.5,
+                    "protein": 2.7,
+                    "carbs": 10.5,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Preheat grill to medium-high heat.",
+                "Season turkey breast with salt and pepper, then grill for 6-7 minutes per side until cooked through.",
+                "Cook brown rice according to package instructions.",
+                "Steam green beans for 5 minutes until tender.",
+                "Serve turkey with rice and green beans, drizzled with olive oil."
+              ],
+              "macro_totals": {
+                "calories": 629,
+                "protein": 68,
+                "carbs": 59,
+                "fat": 15
+              }
+            }
+          ]
+        },
+        {
+          "name": "Afternoon Snack",
+          "time": "16:00",
+          "recipe_title": "Whey Protein Shake with Banana",
+          "ingredients": [
+            {
+              "name": "Whey protein",
+              "amount": "1",
+              "unit": "scoop",
+              "macros": {
+                "calories": 168,
+                "protein": 33.6,
+                "carbs": 4.2,
+                "fat": 2.1
+              }
+            },
+            {
+              "name": "Banana",
+              "amount": "165",
+              "unit": "g",
+              "macros": {
+                "calories": 147,
+                "protein": 1.8,
+                "carbs": 37.9,
+                "fat": 0.6
+              }
+            },
+            {
+              "name": "Milk whole",
+              "amount": "196",
+              "unit": "g",
+              "macros": {
+                "calories": 119.6,
+                "protein": 6.3,
+                "carbs": 9.4,
+                "fat": 6.5
+              }
+            }
+          ],
+          "instructions": [
+            "Blend whey protein, banana, and milk until smooth.",
+            "Serve immediately."
+          ],
+          "macro_totals": {
+            "calories": 435,
+            "protein": 42,
+            "carbs": 52,
+            "fat": 9
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Peanut Butter Smoothie",
+              "ingredients": [
+                {
+                  "name": "Whey protein",
+                  "amount": "1",
+                  "unit": "scoop",
+                  "macros": {
+                    "calories": 120,
+                    "protein": 24,
+                    "carbs": 3,
+                    "fat": 1.5
+                  }
+                },
+                {
+                  "name": "Peanut butter",
+                  "amount": "30",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 176.4,
+                    "protein": 7.5,
+                    "carbs": 6,
+                    "fat": 15
+                  }
+                },
+                {
+                  "name": "Milk whole",
+                  "amount": "250",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 152.5,
+                    "protein": 8,
+                    "carbs": 12,
+                    "fat": 8.3
+                  }
+                }
+              ],
+              "instructions": [
+                "Blend whey protein, peanut butter, and milk until smooth.",
+                "Serve immediately."
+              ],
+              "macro_totals": {
+                "calories": 449,
+                "protein": 40,
+                "carbs": 21,
+                "fat": 25
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Salmon with Sweet Potato and Asparagus",
+          "ingredients": [
+            {
+              "name": "Salmon",
+              "amount": "157",
+              "unit": "g",
+              "macros": {
+                "calories": 326.2,
+                "protein": 31.4,
+                "carbs": 0,
+                "fat": 20.4
+              }
+            },
+            {
+              "name": "Sweet potato",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 252,
+                "protein": 5.6,
+                "carbs": 58.8,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Asparagus",
+              "amount": "150",
+              "unit": "g",
+              "macros": {
+                "calories": 30,
+                "protein": 3.3,
+                "carbs": 5.9,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Preheat oven to 200°C (400°F).",
+            "Season salmon with salt and pepper, place on a baking sheet.",
+            "Toss sweet potato and asparagus with olive oil, place on the same sheet.",
+            "Bake for 20 minutes until salmon is cooked through and vegetables are tender."
+          ],
+          "macro_totals": {
+            "calories": 678,
+            "protein": 40,
+            "carbs": 65,
+            "fat": 29
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cod with Rice and Zucchini",
+              "ingredients": [
+                {
+                  "name": "Cod",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 164,
+                    "protein": 36,
+                    "carbs": 0,
+                    "fat": 1.4
+                  }
+                },
+                {
+                  "name": "Rice cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 260,
+                    "protein": 5.4,
+                    "carbs": 56,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Zucchini",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 25.5,
+                    "protein": 1.8,
+                    "carbs": 4.7,
+                    "fat": 0.5
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Preheat oven to 200°C (400°F).",
+                "Season cod with salt and pepper, place on a baking sheet.",
+                "Toss zucchini with olive oil, place on the same sheet.",
+                "Bake for 15 minutes until cod is cooked through and zucchini is tender.",
+                "Serve with cooked rice."
+              ],
+              "macro_totals": {
+                "calories": 538,
+                "protein": 43,
+                "carbs": 61,
+                "fat": 13
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 3114,
+        "protein": 289,
+        "carbs": 249,
+        "fat": 111
+      }
+    },
+    {
+      "day": "Thursday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Protein Pancakes with Berries",
+          "ingredients": [
+            {
+              "name": "Whey protein",
+              "amount": "1",
+              "unit": "scoop",
+              "macros": {
+                "calories": 100.8,
+                "protein": 20.2,
+                "carbs": 2.5,
+                "fat": 1.3
+              }
+            },
+            {
+              "name": "Oats dry",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 463.1,
+                "protein": 20.2,
+                "carbs": 78.6,
+                "fat": 8.4
+              }
+            },
+            {
+              "name": "Egg whites",
+              "amount": "84",
+              "unit": "g",
+              "macros": {
+                "calories": 43.7,
+                "protein": 9.2,
+                "carbs": 0.6,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Mixed berries",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 67.8,
+                "protein": 0.8,
+                "carbs": 16.7,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Honey",
+              "amount": "24",
+              "unit": "g",
+              "macros": {
+                "calories": 76,
+                "protein": 0.1,
+                "carbs": 20.5,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Blend whey protein, oats, and egg whites to form a batter.",
+            "Cook pancakes on a non-stick skillet over medium heat until golden brown, about 2 minutes per side.",
+            "Serve with mixed berries and honey drizzled on top."
+          ],
+          "macro_totals": {
+            "calories": 751,
+            "protein": 50,
+            "carbs": 119,
+            "fat": 10
+          },
+          "swap_options": [
+            {
+              "recipe_title": "French Toast with Banana",
+              "ingredients": [
+                {
+                  "name": "Whole eggs",
+                  "amount": "2",
+                  "unit": "large",
+                  "macros": {
+                    "calories": 144,
+                    "protein": 12.6,
+                    "carbs": 0.8,
+                    "fat": 9.6
+                  }
+                },
+                {
+                  "name": "Bread whole wheat",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 247,
+                    "protein": 13,
+                    "carbs": 41,
+                    "fat": 3.4
+                  }
+                },
+                {
+                  "name": "Milk whole",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 61,
+                    "protein": 3.2,
+                    "carbs": 4.8,
+                    "fat": 3.3
+                  }
+                },
+                {
+                  "name": "Banana",
+                  "amount": "118",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 105,
+                    "protein": 1.3,
+                    "carbs": 27.1,
+                    "fat": 0.4
+                  }
+                }
+              ],
+              "instructions": [
+                "Whisk eggs and milk together.",
+                "Dip bread slices in the egg mixture and cook on a skillet over medium heat until golden brown, about 3 minutes per side.",
+                "Serve with sliced banana on top."
+              ],
+              "macro_totals": {
+                "calories": 557,
+                "protein": 30,
+                "carbs": 74,
+                "fat": 17
+              }
+            }
+          ]
+        },
+        {
+          "name": "Morning Snack",
+          "time": "10:30",
+          "recipe_title": "Cottage Cheese with Pineapple and Walnuts",
+          "ingredients": [
+            {
+              "name": "Cottage cheese 2%",
+              "amount": "294",
+              "unit": "g",
+              "macros": {
+                "calories": 238.1,
+                "protein": 32.3,
+                "carbs": 10.6,
+                "fat": 6.7
+              }
+            },
+            {
+              "name": "Pineapple chunks",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 62,
+                "protein": 0.3,
+                "carbs": 16.7,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Walnuts",
+              "amount": "31",
+              "unit": "g",
+              "macros": {
+                "calories": 201.5,
+                "protein": 4.6,
+                "carbs": 4.4,
+                "fat": 20
+              }
+            }
+          ],
+          "instructions": [
+            "Mix cottage cheese and pineapple chunks in a bowl.",
+            "Top with walnuts before serving."
+          ],
+          "macro_totals": {
+            "calories": 502,
+            "protein": 37,
+            "carbs": 32,
+            "fat": 27
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Greek Yogurt with Granola and Honey",
+              "ingredients": [
+                {
+                  "name": "Greek yogurt 0%",
+                  "amount": "400",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 236,
+                    "protein": 40,
+                    "carbs": 14.4,
+                    "fat": 1.6
+                  }
+                },
+                {
+                  "name": "Granola",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 244.5,
+                    "protein": 6.9,
+                    "carbs": 27,
+                    "fat": 12.2
+                  }
+                },
+                {
+                  "name": "Honey",
+                  "amount": "21",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 63.8,
+                    "protein": 0.1,
+                    "carbs": 17.2,
+                    "fat": 0
+                  }
+                }
+              ],
+              "instructions": [
+                "Mix Greek yogurt and granola in a bowl.",
+                "Drizzle honey on top before serving."
+              ],
+              "macro_totals": {
+                "calories": 544,
+                "protein": 47,
+                "carbs": 59,
+                "fat": 14
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "13:00",
+          "recipe_title": "Beef Stir-Fry with Rice and Vegetables",
+          "ingredients": [
+            {
+              "name": "Ground beef 90%",
+              "amount": "206",
+              "unit": "g",
+              "macros": {
+                "calories": 361.5,
+                "protein": 41,
+                "carbs": 0,
+                "fat": 20.6
+              }
+            },
+            {
+              "name": "Rice cooked",
+              "amount": "238",
+              "unit": "g",
+              "macros": {
+                "calories": 309.5,
+                "protein": 6.4,
+                "carbs": 66.7,
+                "fat": 0.7
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 40.5,
+                "protein": 3.3,
+                "carbs": 8.4,
+                "fat": 0.5
+              }
+            },
+            {
+              "name": "Soy sauce",
+              "amount": "15",
+              "unit": "ml",
+              "macros": {
+                "calories": 8,
+                "protein": 1.3,
+                "carbs": 1,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Cook ground beef in a pan over medium heat until browned, about 8 minutes.",
+            "Add broccoli and soy sauce, cook for another 5 minutes.",
+            "Serve with cooked rice."
+          ],
+          "macro_totals": {
+            "calories": 720,
+            "protein": 52,
+            "carbs": 76,
+            "fat": 22
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Chicken Stir-Fry with Noodles",
+              "ingredients": [
+                {
+                  "name": "Chicken breast",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 330,
+                    "protein": 62,
+                    "carbs": 0,
+                    "fat": 7.2
+                  }
+                },
+                {
+                  "name": "Pasta cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 262,
+                    "protein": 10,
+                    "carbs": 50,
+                    "fat": 2.2
+                  }
+                },
+                {
+                  "name": "Bell pepper",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 31,
+                    "protein": 1,
+                    "carbs": 6,
+                    "fat": 0.3
+                  }
+                },
+                {
+                  "name": "Soy sauce",
+                  "amount": "15",
+                  "unit": "ml",
+                  "macros": {
+                    "calories": 8,
+                    "protein": 1.3,
+                    "carbs": 1,
+                    "fat": 0
+                  }
+                }
+              ],
+              "instructions": [
+                "Cook chicken in a pan over medium heat until browned, about 8 minutes.",
+                "Add bell pepper and soy sauce, cook for another 5 minutes.",
+                "Serve with cooked pasta."
+              ],
+              "macro_totals": {
+                "calories": 631,
+                "protein": 74,
+                "carbs": 57,
+                "fat": 10
+              }
+            }
+          ]
+        },
+        {
+          "name": "Afternoon Snack",
+          "time": "16:00",
+          "recipe_title": "Tuna Salad with Whole Wheat Bread",
+          "ingredients": [
+            {
+              "name": "Tuna canned",
+              "amount": "119",
+              "unit": "g",
+              "macros": {
+                "calories": 138.4,
+                "protein": 31,
+                "carbs": 0,
+                "fat": 0.9
+              }
+            },
+            {
+              "name": "Mayonnaise",
+              "amount": "31",
+              "unit": "g",
+              "macros": {
+                "calories": 81,
+                "protein": 0.3,
+                "carbs": 7.4,
+                "fat": 5.9
+              }
+            },
+            {
+              "name": "Bread whole wheat",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 294,
+                "protein": 15.5,
+                "carbs": 48.8,
+                "fat": 4.1
+              }
+            }
+          ],
+          "instructions": [
+            "Mix tuna and mayonnaise in a bowl.",
+            "Serve with whole wheat bread."
+          ],
+          "macro_totals": {
+            "calories": 513,
+            "protein": 47,
+            "carbs": 56,
+            "fat": 11
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Turkey Sandwich with Avocado",
+              "ingredients": [
+                {
+                  "name": "Turkey breast",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 135,
+                    "protein": 30,
+                    "carbs": 0,
+                    "fat": 1.5
+                  }
+                },
+                {
+                  "name": "Avocado",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 160,
+                    "protein": 2,
+                    "carbs": 9,
+                    "fat": 15
+                  }
+                },
+                {
+                  "name": "Bread whole wheat",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 247,
+                    "protein": 13,
+                    "carbs": 41,
+                    "fat": 3.4
+                  }
+                }
+              ],
+              "instructions": [
+                "Layer turkey and avocado slices on whole wheat bread.",
+                "Serve as a sandwich."
+              ],
+              "macro_totals": {
+                "calories": 542,
+                "protein": 45,
+                "carbs": 50,
+                "fat": 20
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Grilled Chicken Thighs with Mashed Potatoes and Green Beans",
+          "ingredients": [
+            {
+              "name": "Chicken thigh",
+              "amount": "206",
+              "unit": "g",
+              "macros": {
+                "calories": 363.6,
+                "protein": 41,
+                "carbs": 0,
+                "fat": 20.9
+              }
+            },
+            {
+              "name": "Potato",
+              "amount": "238",
+              "unit": "g",
+              "macros": {
+                "calories": 221.5,
+                "protein": 6,
+                "carbs": 50,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Green beans",
+              "amount": "178",
+              "unit": "g",
+              "macros": {
+                "calories": 55.4,
+                "protein": 3.2,
+                "carbs": 12.5,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Butter",
+              "amount": "10",
+              "unit": "g",
+              "macros": {
+                "calories": 73.7,
+                "protein": 0.1,
+                "carbs": 0,
+                "fat": 8.4
+              }
+            }
+          ],
+          "instructions": [
+            "Preheat grill to medium-high heat.",
+            "Season chicken thighs with salt and pepper, grill for 6-7 minutes per side until cooked through.",
+            "Boil potatoes until tender, mash with butter.",
+            "Steam green beans for 5 minutes until tender.",
+            "Serve chicken with mashed potatoes and green beans."
+          ],
+          "macro_totals": {
+            "calories": 714,
+            "protein": 50,
+            "carbs": 63,
+            "fat": 30
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Pork Chops with Sweet Potato and Peas",
+              "ingredients": [
+                {
+                  "name": "Pork chops",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 286,
+                    "protein": 52,
+                    "carbs": 0,
+                    "fat": 7
+                  }
+                },
+                {
+                  "name": "Sweet potato",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 180,
+                    "protein": 4,
+                    "carbs": 42,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Peas",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 121.5,
+                    "protein": 8.1,
+                    "carbs": 21,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Butter",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 71.7,
+                    "protein": 0.1,
+                    "carbs": 0,
+                    "fat": 8.1
+                  }
+                }
+              ],
+              "instructions": [
+                "Preheat grill to medium-high heat.",
+                "Season pork chops with salt and pepper, grill for 6-7 minutes per side until cooked through.",
+                "Boil sweet potatoes until tender, mash with butter.",
+                "Steam peas for 5 minutes until tender.",
+                "Serve pork with mashed sweet potatoes and peas."
+              ],
+              "macro_totals": {
+                "calories": 659,
+                "protein": 64,
+                "carbs": 63,
+                "fat": 16
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 3200,
+        "protein": 236,
+        "carbs": 346,
+        "fat": 100
+      }
+    },
+    {
+      "day": "Friday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Scrambled Eggs with Spinach and Avocado",
+          "ingredients": [
+            {
+              "name": "Whole eggs",
+              "amount": "3",
+              "unit": "large",
+              "macros": {
+                "calories": 225.8,
+                "protein": 19.8,
+                "carbs": 1.3,
+                "fat": 15.1
+              }
+            },
+            {
+              "name": "Egg whites",
+              "amount": "140",
+              "unit": "g",
+              "macros": {
+                "calories": 72.8,
+                "protein": 15.4,
+                "carbs": 1,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Spinach",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 23,
+                "protein": 2.9,
+                "carbs": 3.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Avocado",
+              "amount": "78",
+              "unit": "g",
+              "macros": {
+                "calories": 125.5,
+                "protein": 1.6,
+                "carbs": 7.1,
+                "fat": 11.8
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Heat olive oil in a pan over medium heat.",
+            "Add spinach and cook until wilted, about 2 minutes.",
+            "Whisk eggs and egg whites, then pour into the pan.",
+            "Scramble the eggs until cooked through, about 5 minutes.",
+            "Serve with sliced avocado on top."
+          ],
+          "macro_totals": {
+            "calories": 516,
+            "protein": 40,
+            "carbs": 13,
+            "fat": 35
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Omelette with Cheese and Tomato",
+              "ingredients": [
+                {
+                  "name": "Whole eggs",
+                  "amount": "4",
+                  "unit": "large",
+                  "macros": {
+                    "calories": 288,
+                    "protein": 25.2,
+                    "carbs": 1.6,
+                    "fat": 19.2
+                  }
+                },
+                {
+                  "name": "Cheddar cheese",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 201.5,
+                    "protein": 12.5,
+                    "carbs": 0.7,
+                    "fat": 16.5
+                  }
+                },
+                {
+                  "name": "Tomato",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 18,
+                    "protein": 0.9,
+                    "carbs": 3.9,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat olive oil in a pan over medium heat.",
+                "Add chopped tomato and cook for 2 minutes.",
+                "Whisk eggs and pour into the pan.",
+                "Add cheddar cheese and cook until eggs are set, about 5 minutes."
+              ],
+              "macro_totals": {
+                "calories": 596,
+                "protein": 39,
+                "carbs": 6,
+                "fat": 46
+              }
+            }
+          ]
+        },
+        {
+          "name": "Morning Snack",
+          "time": "10:30",
+          "recipe_title": "Greek Yogurt with Mixed Berries and Almonds",
+          "ingredients": [
+            {
+              "name": "Greek yogurt 0%",
+              "amount": "560",
+              "unit": "g",
+              "macros": {
+                "calories": 330.4,
+                "protein": 56,
+                "carbs": 20.2,
+                "fat": 2.2
+              }
+            },
+            {
+              "name": "Mixed berries",
+              "amount": "140",
+              "unit": "g",
+              "macros": {
+                "calories": 79.8,
+                "protein": 1,
+                "carbs": 19.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Almonds",
+              "amount": "24",
+              "unit": "g",
+              "macros": {
+                "calories": 136.2,
+                "protein": 4.9,
+                "carbs": 5.2,
+                "fat": 11.8
+              }
+            }
+          ],
+          "instructions": [
+            "Mix Greek yogurt and mixed berries in a bowl.",
+            "Top with almonds before serving."
+          ],
+          "macro_totals": {
+            "calories": 546,
+            "protein": 62,
+            "carbs": 45,
+            "fat": 14
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cottage Cheese with Pineapple and Walnuts",
+              "ingredients": [
+                {
+                  "name": "Cottage cheese 2%",
+                  "amount": "350",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 283.5,
+                    "protein": 38.5,
+                    "carbs": 12.6,
+                    "fat": 8
+                  }
+                },
+                {
+                  "name": "Pineapple chunks",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 52,
+                    "protein": 0.3,
+                    "carbs": 14,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Walnuts",
+                  "amount": "30",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 196.2,
+                    "protein": 4.5,
+                    "carbs": 4.2,
+                    "fat": 19.5
+                  }
+                }
+              ],
+              "instructions": [
+                "Mix cottage cheese and pineapple chunks in a bowl.",
+                "Top with walnuts before serving."
+              ],
+              "macro_totals": {
+                "calories": 532,
+                "protein": 43,
+                "carbs": 31,
+                "fat": 28
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "13:00",
+          "recipe_title": "Grilled Chicken Breast with Quinoa and Broccoli",
+          "ingredients": [
+            {
+              "name": "Chicken breast",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 462,
+                "protein": 86.8,
+                "carbs": 0,
+                "fat": 10.1
+              }
+            },
+            {
+              "name": "Quinoa cooked",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 336,
+                "protein": 12.3,
+                "carbs": 58.8,
+                "fat": 5.3
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "210",
+              "unit": "g",
+              "macros": {
+                "calories": 71.4,
+                "protein": 5.9,
+                "carbs": 14.7,
+                "fat": 0.8
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Preheat grill to medium-high heat.",
+            "Season chicken breast with salt and pepper, then grill for 6-7 minutes per side until cooked through.",
+            "Cook quinoa according to package instructions.",
+            "Steam broccoli for 5 minutes until tender.",
+            "Serve chicken with quinoa and broccoli, drizzled with olive oil."
+          ],
+          "macro_totals": {
+            "calories": 939,
+            "protein": 105,
+            "carbs": 74,
+            "fat": 24
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Turkey Breast with Brown Rice and Green Beans",
+              "ingredients": [
+                {
+                  "name": "Turkey breast",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 270,
+                    "protein": 60,
+                    "carbs": 0,
+                    "fat": 3
+                  }
+                },
+                {
+                  "name": "Brown rice cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 224,
+                    "protein": 5.2,
+                    "carbs": 48,
+                    "fat": 1.8
+                  }
+                },
+                {
+                  "name": "Green beans",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 46.5,
+                    "protein": 2.7,
+                    "carbs": 10.5,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Preheat grill to medium-high heat.",
+                "Season turkey breast with salt and pepper, then grill for 6-7 minutes per side until cooked through.",
+                "Cook brown rice according to package instructions.",
+                "Steam green beans for 5 minutes until tender.",
+                "Serve turkey with rice and green beans, drizzled with olive oil."
+              ],
+              "macro_totals": {
+                "calories": 629,
+                "protein": 68,
+                "carbs": 59,
+                "fat": 15
+              }
+            }
+          ]
+        },
+        {
+          "name": "Afternoon Snack",
+          "time": "16:00",
+          "recipe_title": "Whey Protein Shake with Banana",
+          "ingredients": [
+            {
+              "name": "Whey protein",
+              "amount": "1",
+              "unit": "scoop",
+              "macros": {
+                "calories": 168,
+                "protein": 33.6,
+                "carbs": 4.2,
+                "fat": 2.1
+              }
+            },
+            {
+              "name": "Banana",
+              "amount": "165",
+              "unit": "g",
+              "macros": {
+                "calories": 147,
+                "protein": 1.8,
+                "carbs": 37.9,
+                "fat": 0.6
+              }
+            },
+            {
+              "name": "Milk whole",
+              "amount": "196",
+              "unit": "g",
+              "macros": {
+                "calories": 119.6,
+                "protein": 6.3,
+                "carbs": 9.4,
+                "fat": 6.5
+              }
+            }
+          ],
+          "instructions": [
+            "Blend whey protein, banana, and milk until smooth.",
+            "Serve immediately."
+          ],
+          "macro_totals": {
+            "calories": 435,
+            "protein": 42,
+            "carbs": 52,
+            "fat": 9
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Peanut Butter Smoothie",
+              "ingredients": [
+                {
+                  "name": "Whey protein",
+                  "amount": "1",
+                  "unit": "scoop",
+                  "macros": {
+                    "calories": 120,
+                    "protein": 24,
+                    "carbs": 3,
+                    "fat": 1.5
+                  }
+                },
+                {
+                  "name": "Peanut butter",
+                  "amount": "30",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 176.4,
+                    "protein": 7.5,
+                    "carbs": 6,
+                    "fat": 15
+                  }
+                },
+                {
+                  "name": "Milk whole",
+                  "amount": "250",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 152.5,
+                    "protein": 8,
+                    "carbs": 12,
+                    "fat": 8.3
+                  }
+                }
+              ],
+              "instructions": [
+                "Blend whey protein, peanut butter, and milk until smooth.",
+                "Serve immediately."
+              ],
+              "macro_totals": {
+                "calories": 449,
+                "protein": 40,
+                "carbs": 21,
+                "fat": 25
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Salmon with Sweet Potato and Asparagus",
+          "ingredients": [
+            {
+              "name": "Salmon",
+              "amount": "157",
+              "unit": "g",
+              "macros": {
+                "calories": 326.2,
+                "protein": 31.4,
+                "carbs": 0,
+                "fat": 20.4
+              }
+            },
+            {
+              "name": "Sweet potato",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 252,
+                "protein": 5.6,
+                "carbs": 58.8,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Asparagus",
+              "amount": "150",
+              "unit": "g",
+              "macros": {
+                "calories": 30,
+                "protein": 3.3,
+                "carbs": 5.9,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Preheat oven to 200°C (400°F).",
+            "Season salmon with salt and pepper, place on a baking sheet.",
+            "Toss sweet potato and asparagus with olive oil, place on the same sheet.",
+            "Bake for 20 minutes until salmon is cooked through and vegetables are tender."
+          ],
+          "macro_totals": {
+            "calories": 678,
+            "protein": 40,
+            "carbs": 65,
+            "fat": 29
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cod with Rice and Zucchini",
+              "ingredients": [
+                {
+                  "name": "Cod",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 164,
+                    "protein": 36,
+                    "carbs": 0,
+                    "fat": 1.4
+                  }
+                },
+                {
+                  "name": "Rice cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 260,
+                    "protein": 5.4,
+                    "carbs": 56,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Zucchini",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 25.5,
+                    "protein": 1.8,
+                    "carbs": 4.7,
+                    "fat": 0.5
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Preheat oven to 200°C (400°F).",
+                "Season cod with salt and pepper, place on a baking sheet.",
+                "Toss zucchini with olive oil, place on the same sheet.",
+                "Bake for 15 minutes until cod is cooked through and zucchini is tender.",
+                "Serve with cooked rice."
+              ],
+              "macro_totals": {
+                "calories": 538,
+                "protein": 43,
+                "carbs": 61,
+                "fat": 13
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 3114,
+        "protein": 289,
+        "carbs": 249,
+        "fat": 111
+      }
+    },
+    {
+      "day": "Saturday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Protein Pancakes with Berries",
+          "ingredients": [
+            {
+              "name": "Whey protein",
+              "amount": "1",
+              "unit": "scoop",
+              "macros": {
+                "calories": 100.8,
+                "protein": 20.2,
+                "carbs": 2.5,
+                "fat": 1.3
+              }
+            },
+            {
+              "name": "Oats dry",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 463.1,
+                "protein": 20.2,
+                "carbs": 78.6,
+                "fat": 8.4
+              }
+            },
+            {
+              "name": "Egg whites",
+              "amount": "84",
+              "unit": "g",
+              "macros": {
+                "calories": 43.7,
+                "protein": 9.2,
+                "carbs": 0.6,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Mixed berries",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 67.8,
+                "protein": 0.8,
+                "carbs": 16.7,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Honey",
+              "amount": "24",
+              "unit": "g",
+              "macros": {
+                "calories": 76,
+                "protein": 0.1,
+                "carbs": 20.5,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Blend whey protein, oats, and egg whites to form a batter.",
+            "Cook pancakes on a non-stick skillet over medium heat until golden brown, about 2 minutes per side.",
+            "Serve with mixed berries and honey drizzled on top."
+          ],
+          "macro_totals": {
+            "calories": 751,
+            "protein": 50,
+            "carbs": 119,
+            "fat": 10
+          },
+          "swap_options": [
+            {
+              "recipe_title": "French Toast with Banana",
+              "ingredients": [
+                {
+                  "name": "Whole eggs",
+                  "amount": "2",
+                  "unit": "large",
+                  "macros": {
+                    "calories": 144,
+                    "protein": 12.6,
+                    "carbs": 0.8,
+                    "fat": 9.6
+                  }
+                },
+                {
+                  "name": "Bread whole wheat",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 247,
+                    "protein": 13,
+                    "carbs": 41,
+                    "fat": 3.4
+                  }
+                },
+                {
+                  "name": "Milk whole",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 61,
+                    "protein": 3.2,
+                    "carbs": 4.8,
+                    "fat": 3.3
+                  }
+                },
+                {
+                  "name": "Banana",
+                  "amount": "118",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 105,
+                    "protein": 1.3,
+                    "carbs": 27.1,
+                    "fat": 0.4
+                  }
+                }
+              ],
+              "instructions": [
+                "Whisk eggs and milk together.",
+                "Dip bread slices in the egg mixture and cook on a skillet over medium heat until golden brown, about 3 minutes per side.",
+                "Serve with sliced banana on top."
+              ],
+              "macro_totals": {
+                "calories": 557,
+                "protein": 30,
+                "carbs": 74,
+                "fat": 17
+              }
+            }
+          ]
+        },
+        {
+          "name": "Morning Snack",
+          "time": "10:30",
+          "recipe_title": "Cottage Cheese with Pineapple and Walnuts",
+          "ingredients": [
+            {
+              "name": "Cottage cheese 2%",
+              "amount": "294",
+              "unit": "g",
+              "macros": {
+                "calories": 238.1,
+                "protein": 32.3,
+                "carbs": 10.6,
+                "fat": 6.7
+              }
+            },
+            {
+              "name": "Pineapple chunks",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 62,
+                "protein": 0.3,
+                "carbs": 16.7,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Walnuts",
+              "amount": "31",
+              "unit": "g",
+              "macros": {
+                "calories": 201.5,
+                "protein": 4.6,
+                "carbs": 4.4,
+                "fat": 20
+              }
+            }
+          ],
+          "instructions": [
+            "Mix cottage cheese and pineapple chunks in a bowl.",
+            "Top with walnuts before serving."
+          ],
+          "macro_totals": {
+            "calories": 502,
+            "protein": 37,
+            "carbs": 32,
+            "fat": 27
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Greek Yogurt with Granola and Honey",
+              "ingredients": [
+                {
+                  "name": "Greek yogurt 0%",
+                  "amount": "400",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 236,
+                    "protein": 40,
+                    "carbs": 14.4,
+                    "fat": 1.6
+                  }
+                },
+                {
+                  "name": "Granola",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 244.5,
+                    "protein": 6.9,
+                    "carbs": 27,
+                    "fat": 12.2
+                  }
+                },
+                {
+                  "name": "Honey",
+                  "amount": "21",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 63.8,
+                    "protein": 0.1,
+                    "carbs": 17.2,
+                    "fat": 0
+                  }
+                }
+              ],
+              "instructions": [
+                "Mix Greek yogurt and granola in a bowl.",
+                "Drizzle honey on top before serving."
+              ],
+              "macro_totals": {
+                "calories": 544,
+                "protein": 47,
+                "carbs": 59,
+                "fat": 14
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "13:00",
+          "recipe_title": "Beef Stir-Fry with Rice and Vegetables",
+          "ingredients": [
+            {
+              "name": "Ground beef 90%",
+              "amount": "206",
+              "unit": "g",
+              "macros": {
+                "calories": 361.5,
+                "protein": 41,
+                "carbs": 0,
+                "fat": 20.6
+              }
+            },
+            {
+              "name": "Rice cooked",
+              "amount": "238",
+              "unit": "g",
+              "macros": {
+                "calories": 309.5,
+                "protein": 6.4,
+                "carbs": 66.7,
+                "fat": 0.7
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 40.5,
+                "protein": 3.3,
+                "carbs": 8.4,
+                "fat": 0.5
+              }
+            },
+            {
+              "name": "Soy sauce",
+              "amount": "15",
+              "unit": "ml",
+              "macros": {
+                "calories": 8,
+                "protein": 1.3,
+                "carbs": 1,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Cook ground beef in a pan over medium heat until browned, about 8 minutes.",
+            "Add broccoli and soy sauce, cook for another 5 minutes.",
+            "Serve with cooked rice."
+          ],
+          "macro_totals": {
+            "calories": 720,
+            "protein": 52,
+            "carbs": 76,
+            "fat": 22
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Chicken Stir-Fry with Noodles",
+              "ingredients": [
+                {
+                  "name": "Chicken breast",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 330,
+                    "protein": 62,
+                    "carbs": 0,
+                    "fat": 7.2
+                  }
+                },
+                {
+                  "name": "Pasta cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 262,
+                    "protein": 10,
+                    "carbs": 50,
+                    "fat": 2.2
+                  }
+                },
+                {
+                  "name": "Bell pepper",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 31,
+                    "protein": 1,
+                    "carbs": 6,
+                    "fat": 0.3
+                  }
+                },
+                {
+                  "name": "Soy sauce",
+                  "amount": "15",
+                  "unit": "ml",
+                  "macros": {
+                    "calories": 8,
+                    "protein": 1.3,
+                    "carbs": 1,
+                    "fat": 0
+                  }
+                }
+              ],
+              "instructions": [
+                "Cook chicken in a pan over medium heat until browned, about 8 minutes.",
+                "Add bell pepper and soy sauce, cook for another 5 minutes.",
+                "Serve with cooked pasta."
+              ],
+              "macro_totals": {
+                "calories": 631,
+                "protein": 74,
+                "carbs": 57,
+                "fat": 10
+              }
+            }
+          ]
+        },
+        {
+          "name": "Afternoon Snack",
+          "time": "16:00",
+          "recipe_title": "Tuna Salad with Whole Wheat Bread",
+          "ingredients": [
+            {
+              "name": "Tuna canned",
+              "amount": "119",
+              "unit": "g",
+              "macros": {
+                "calories": 138.4,
+                "protein": 31,
+                "carbs": 0,
+                "fat": 0.9
+              }
+            },
+            {
+              "name": "Mayonnaise",
+              "amount": "31",
+              "unit": "g",
+              "macros": {
+                "calories": 81,
+                "protein": 0.3,
+                "carbs": 7.4,
+                "fat": 5.9
+              }
+            },
+            {
+              "name": "Bread whole wheat",
+              "amount": "120",
+              "unit": "g",
+              "macros": {
+                "calories": 294,
+                "protein": 15.5,
+                "carbs": 48.8,
+                "fat": 4.1
+              }
+            }
+          ],
+          "instructions": [
+            "Mix tuna and mayonnaise in a bowl.",
+            "Serve with whole wheat bread."
+          ],
+          "macro_totals": {
+            "calories": 513,
+            "protein": 47,
+            "carbs": 56,
+            "fat": 11
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Turkey Sandwich with Avocado",
+              "ingredients": [
+                {
+                  "name": "Turkey breast",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 135,
+                    "protein": 30,
+                    "carbs": 0,
+                    "fat": 1.5
+                  }
+                },
+                {
+                  "name": "Avocado",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 160,
+                    "protein": 2,
+                    "carbs": 9,
+                    "fat": 15
+                  }
+                },
+                {
+                  "name": "Bread whole wheat",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 247,
+                    "protein": 13,
+                    "carbs": 41,
+                    "fat": 3.4
+                  }
+                }
+              ],
+              "instructions": [
+                "Layer turkey and avocado slices on whole wheat bread.",
+                "Serve as a sandwich."
+              ],
+              "macro_totals": {
+                "calories": 542,
+                "protein": 45,
+                "carbs": 50,
+                "fat": 20
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Grilled Chicken Thighs with Mashed Potatoes and Green Beans",
+          "ingredients": [
+            {
+              "name": "Chicken thigh",
+              "amount": "206",
+              "unit": "g",
+              "macros": {
+                "calories": 363.6,
+                "protein": 41,
+                "carbs": 0,
+                "fat": 20.9
+              }
+            },
+            {
+              "name": "Potato",
+              "amount": "238",
+              "unit": "g",
+              "macros": {
+                "calories": 221.5,
+                "protein": 6,
+                "carbs": 50,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Green beans",
+              "amount": "178",
+              "unit": "g",
+              "macros": {
+                "calories": 55.4,
+                "protein": 3.2,
+                "carbs": 12.5,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Butter",
+              "amount": "10",
+              "unit": "g",
+              "macros": {
+                "calories": 73.7,
+                "protein": 0.1,
+                "carbs": 0,
+                "fat": 8.4
+              }
+            }
+          ],
+          "instructions": [
+            "Preheat grill to medium-high heat.",
+            "Season chicken thighs with salt and pepper, grill for 6-7 minutes per side until cooked through.",
+            "Boil potatoes until tender, mash with butter.",
+            "Steam green beans for 5 minutes until tender.",
+            "Serve chicken with mashed potatoes and green beans."
+          ],
+          "macro_totals": {
+            "calories": 714,
+            "protein": 50,
+            "carbs": 63,
+            "fat": 30
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Pork Chops with Sweet Potato and Peas",
+              "ingredients": [
+                {
+                  "name": "Pork chops",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 286,
+                    "protein": 52,
+                    "carbs": 0,
+                    "fat": 7
+                  }
+                },
+                {
+                  "name": "Sweet potato",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 180,
+                    "protein": 4,
+                    "carbs": 42,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Peas",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 121.5,
+                    "protein": 8.1,
+                    "carbs": 21,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Butter",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 71.7,
+                    "protein": 0.1,
+                    "carbs": 0,
+                    "fat": 8.1
+                  }
+                }
+              ],
+              "instructions": [
+                "Preheat grill to medium-high heat.",
+                "Season pork chops with salt and pepper, grill for 6-7 minutes per side until cooked through.",
+                "Boil sweet potatoes until tender, mash with butter.",
+                "Steam peas for 5 minutes until tender.",
+                "Serve pork with mashed sweet potatoes and peas."
+              ],
+              "macro_totals": {
+                "calories": 659,
+                "protein": 64,
+                "carbs": 63,
+                "fat": 16
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 3200,
+        "protein": 236,
+        "carbs": 346,
+        "fat": 100
+      }
+    },
+    {
+      "day": "Sunday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Scrambled Eggs with Spinach and Avocado",
+          "ingredients": [
+            {
+              "name": "Whole eggs",
+              "amount": "3",
+              "unit": "large",
+              "macros": {
+                "calories": 225.8,
+                "protein": 19.8,
+                "carbs": 1.3,
+                "fat": 15.1
+              }
+            },
+            {
+              "name": "Egg whites",
+              "amount": "140",
+              "unit": "g",
+              "macros": {
+                "calories": 72.8,
+                "protein": 15.4,
+                "carbs": 1,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Spinach",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 23,
+                "protein": 2.9,
+                "carbs": 3.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Avocado",
+              "amount": "78",
+              "unit": "g",
+              "macros": {
+                "calories": 125.5,
+                "protein": 1.6,
+                "carbs": 7.1,
+                "fat": 11.8
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Heat olive oil in a pan over medium heat.",
+            "Add spinach and cook until wilted, about 2 minutes.",
+            "Whisk eggs and egg whites, then pour into the pan.",
+            "Scramble the eggs until cooked through, about 5 minutes.",
+            "Serve with sliced avocado on top."
+          ],
+          "macro_totals": {
+            "calories": 516,
+            "protein": 40,
+            "carbs": 13,
+            "fat": 35
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Omelette with Cheese and Tomato",
+              "ingredients": [
+                {
+                  "name": "Whole eggs",
+                  "amount": "4",
+                  "unit": "large",
+                  "macros": {
+                    "calories": 288,
+                    "protein": 25.2,
+                    "carbs": 1.6,
+                    "fat": 19.2
+                  }
+                },
+                {
+                  "name": "Cheddar cheese",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 201.5,
+                    "protein": 12.5,
+                    "carbs": 0.7,
+                    "fat": 16.5
+                  }
+                },
+                {
+                  "name": "Tomato",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 18,
+                    "protein": 0.9,
+                    "carbs": 3.9,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat olive oil in a pan over medium heat.",
+                "Add chopped tomato and cook for 2 minutes.",
+                "Whisk eggs and pour into the pan.",
+                "Add cheddar cheese and cook until eggs are set, about 5 minutes."
+              ],
+              "macro_totals": {
+                "calories": 596,
+                "protein": 39,
+                "carbs": 6,
+                "fat": 46
+              }
+            }
+          ]
+        },
+        {
+          "name": "Morning Snack",
+          "time": "10:30",
+          "recipe_title": "Greek Yogurt with Mixed Berries and Almonds",
+          "ingredients": [
+            {
+              "name": "Greek yogurt 0%",
+              "amount": "560",
+              "unit": "g",
+              "macros": {
+                "calories": 330.4,
+                "protein": 56,
+                "carbs": 20.2,
+                "fat": 2.2
+              }
+            },
+            {
+              "name": "Mixed berries",
+              "amount": "140",
+              "unit": "g",
+              "macros": {
+                "calories": 79.8,
+                "protein": 1,
+                "carbs": 19.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Almonds",
+              "amount": "24",
+              "unit": "g",
+              "macros": {
+                "calories": 136.2,
+                "protein": 4.9,
+                "carbs": 5.2,
+                "fat": 11.8
+              }
+            }
+          ],
+          "instructions": [
+            "Mix Greek yogurt and mixed berries in a bowl.",
+            "Top with almonds before serving."
+          ],
+          "macro_totals": {
+            "calories": 546,
+            "protein": 62,
+            "carbs": 45,
+            "fat": 14
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cottage Cheese with Pineapple and Walnuts",
+              "ingredients": [
+                {
+                  "name": "Cottage cheese 2%",
+                  "amount": "350",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 283.5,
+                    "protein": 38.5,
+                    "carbs": 12.6,
+                    "fat": 8
+                  }
+                },
+                {
+                  "name": "Pineapple chunks",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 52,
+                    "protein": 0.3,
+                    "carbs": 14,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Walnuts",
+                  "amount": "30",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 196.2,
+                    "protein": 4.5,
+                    "carbs": 4.2,
+                    "fat": 19.5
+                  }
+                }
+              ],
+              "instructions": [
+                "Mix cottage cheese and pineapple chunks in a bowl.",
+                "Top with walnuts before serving."
+              ],
+              "macro_totals": {
+                "calories": 532,
+                "protein": 43,
+                "carbs": 31,
+                "fat": 28
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "13:00",
+          "recipe_title": "Grilled Chicken Breast with Quinoa and Broccoli",
+          "ingredients": [
+            {
+              "name": "Chicken breast",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 462,
+                "protein": 86.8,
+                "carbs": 0,
+                "fat": 10.1
+              }
+            },
+            {
+              "name": "Quinoa cooked",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 336,
+                "protein": 12.3,
+                "carbs": 58.8,
+                "fat": 5.3
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "210",
+              "unit": "g",
+              "macros": {
+                "calories": 71.4,
+                "protein": 5.9,
+                "carbs": 14.7,
+                "fat": 0.8
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Preheat grill to medium-high heat.",
+            "Season chicken breast with salt and pepper, then grill for 6-7 minutes per side until cooked through.",
+            "Cook quinoa according to package instructions.",
+            "Steam broccoli for 5 minutes until tender.",
+            "Serve chicken with quinoa and broccoli, drizzled with olive oil."
+          ],
+          "macro_totals": {
+            "calories": 939,
+            "protein": 105,
+            "carbs": 74,
+            "fat": 24
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Turkey Breast with Brown Rice and Green Beans",
+              "ingredients": [
+                {
+                  "name": "Turkey breast",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 270,
+                    "protein": 60,
+                    "carbs": 0,
+                    "fat": 3
+                  }
+                },
+                {
+                  "name": "Brown rice cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 224,
+                    "protein": 5.2,
+                    "carbs": 48,
+                    "fat": 1.8
+                  }
+                },
+                {
+                  "name": "Green beans",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 46.5,
+                    "protein": 2.7,
+                    "carbs": 10.5,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Preheat grill to medium-high heat.",
+                "Season turkey breast with salt and pepper, then grill for 6-7 minutes per side until cooked through.",
+                "Cook brown rice according to package instructions.",
+                "Steam green beans for 5 minutes until tender.",
+                "Serve turkey with rice and green beans, drizzled with olive oil."
+              ],
+              "macro_totals": {
+                "calories": 629,
+                "protein": 68,
+                "carbs": 59,
+                "fat": 15
+              }
+            }
+          ]
+        },
+        {
+          "name": "Afternoon Snack",
+          "time": "16:00",
+          "recipe_title": "Whey Protein Shake with Banana",
+          "ingredients": [
+            {
+              "name": "Whey protein",
+              "amount": "1",
+              "unit": "scoop",
+              "macros": {
+                "calories": 168,
+                "protein": 33.6,
+                "carbs": 4.2,
+                "fat": 2.1
+              }
+            },
+            {
+              "name": "Banana",
+              "amount": "165",
+              "unit": "g",
+              "macros": {
+                "calories": 147,
+                "protein": 1.8,
+                "carbs": 37.9,
+                "fat": 0.6
+              }
+            },
+            {
+              "name": "Milk whole",
+              "amount": "196",
+              "unit": "g",
+              "macros": {
+                "calories": 119.6,
+                "protein": 6.3,
+                "carbs": 9.4,
+                "fat": 6.5
+              }
+            }
+          ],
+          "instructions": [
+            "Blend whey protein, banana, and milk until smooth.",
+            "Serve immediately."
+          ],
+          "macro_totals": {
+            "calories": 435,
+            "protein": 42,
+            "carbs": 52,
+            "fat": 9
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Peanut Butter Smoothie",
+              "ingredients": [
+                {
+                  "name": "Whey protein",
+                  "amount": "1",
+                  "unit": "scoop",
+                  "macros": {
+                    "calories": 120,
+                    "protein": 24,
+                    "carbs": 3,
+                    "fat": 1.5
+                  }
+                },
+                {
+                  "name": "Peanut butter",
+                  "amount": "30",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 176.4,
+                    "protein": 7.5,
+                    "carbs": 6,
+                    "fat": 15
+                  }
+                },
+                {
+                  "name": "Milk whole",
+                  "amount": "250",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 152.5,
+                    "protein": 8,
+                    "carbs": 12,
+                    "fat": 8.3
+                  }
+                }
+              ],
+              "instructions": [
+                "Blend whey protein, peanut butter, and milk until smooth.",
+                "Serve immediately."
+              ],
+              "macro_totals": {
+                "calories": 449,
+                "protein": 40,
+                "carbs": 21,
+                "fat": 25
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Salmon with Sweet Potato and Asparagus",
+          "ingredients": [
+            {
+              "name": "Salmon",
+              "amount": "157",
+              "unit": "g",
+              "macros": {
+                "calories": 326.2,
+                "protein": 31.4,
+                "carbs": 0,
+                "fat": 20.4
+              }
+            },
+            {
+              "name": "Sweet potato",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 252,
+                "protein": 5.6,
+                "carbs": 58.8,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Asparagus",
+              "amount": "150",
+              "unit": "g",
+              "macros": {
+                "calories": 30,
+                "protein": 3.3,
+                "carbs": 5.9,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 69.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 7.8
+              }
+            }
+          ],
+          "instructions": [
+            "Preheat oven to 200°C (400°F).",
+            "Season salmon with salt and pepper, place on a baking sheet.",
+            "Toss sweet potato and asparagus with olive oil, place on the same sheet.",
+            "Bake for 20 minutes until salmon is cooked through and vegetables are tender."
+          ],
+          "macro_totals": {
+            "calories": 678,
+            "protein": 40,
+            "carbs": 65,
+            "fat": 29
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cod with Rice and Zucchini",
+              "ingredients": [
+                {
+                  "name": "Cod",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 164,
+                    "protein": 36,
+                    "carbs": 0,
+                    "fat": 1.4
+                  }
+                },
+                {
+                  "name": "Rice cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 260,
+                    "protein": 5.4,
+                    "carbs": 56,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Zucchini",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 25.5,
+                    "protein": 1.8,
+                    "carbs": 4.7,
+                    "fat": 0.5
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Preheat oven to 200°C (400°F).",
+                "Season cod with salt and pepper, place on a baking sheet.",
+                "Toss zucchini with olive oil, place on the same sheet.",
+                "Bake for 15 minutes until cod is cooked through and zucchini is tender.",
+                "Serve with cooked rice."
+              ],
+              "macro_totals": {
+                "calories": 538,
+                "protein": 43,
+                "carbs": 61,
+                "fat": 13
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 3114,
+        "protein": 289,
+        "carbs": 249,
+        "fat": 111
+      }
+    }
+  ]
+}

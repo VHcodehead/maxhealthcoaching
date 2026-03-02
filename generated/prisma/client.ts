@@ -115,6 +115,11 @@ export type Notification = Prisma.NotificationModel
  */
 export type CoachNote = Prisma.CoachNoteModel
 /**
+ * Model SupplementRecommendation
+ * 
+ */
+export type SupplementRecommendation = Prisma.SupplementRecommendationModel
+/**
  * Model PendingMacroAdjustment
  * 
  */

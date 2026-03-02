@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Loader2, AlertTriangle, Check, X, Minus, Plus } from 'lucide-react'
 import { calculateMacros } from '@/lib/macros'
+import { useUnits } from '@/hooks/use-units'
 import type { PendingMacroAdjustment } from '@/types/database'
 
 interface PendingMacroReviewProps {
@@ -21,6 +22,7 @@ export function PendingMacroReview({
   clientBodyFatPercentage,
   onResolved,
 }: PendingMacroReviewProps) {
+  const units = useUnits()
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [coachNote, setCoachNote] = useState('')
@@ -98,9 +100,9 @@ export function PendingMacroReview({
       <div className="rounded-md bg-white/60 p-3">
         <p className="text-sm font-medium text-amber-900">Weight Change</p>
         <p className="text-lg font-bold text-amber-800">
-          {adjustment.previous_weight_kg} kg → {adjustment.new_weight_kg} kg{' '}
+          {units.displayWeight(adjustment.previous_weight_kg)} → {units.displayWeight(adjustment.new_weight_kg)}{' '}
           <span className={weightDiff < 0 ? 'text-emerald-600' : 'text-amber-600'}>
-            ({weightSign}{weightDiff.toFixed(1)} kg)
+            ({weightSign}{units.system === 'imperial' ? (units.kgToLbs(weightDiff)).toFixed(1) : weightDiff.toFixed(1)} {units.weightUnit})
           </span>
         </p>
       </div>

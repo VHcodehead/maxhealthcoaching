@@ -51,6 +51,8 @@ import { MacroOverrideForm } from '@/components/coach/macro-override-form'
 import { PendingMacroReview } from '@/components/coach/pending-macro-review'
 import { CoachNotes } from '@/components/coach/coach-notes'
 import { CoachSupplements } from '@/components/coach/coach-supplements'
+import { UnitToggle } from '@/components/ui/unit-toggle'
+import { useUnits } from '@/hooks/use-units'
 
 interface CheckInWithPhotos extends CheckIn {
   progress_photos: (ProgressPhoto & { url?: string })[]
@@ -59,6 +61,7 @@ interface CheckInWithPhotos extends CheckIn {
 export default function ClientDetailPage() {
   const params = useParams()
   const router = useRouter()
+  const units = useUnits()
   const clientId = params.id as string
 
   const [loading, setLoading] = useState(true)
@@ -465,21 +468,24 @@ export default function ClientDetailPage() {
                 </p>
               </div>
             </div>
-            <div className="flex gap-6 text-sm">
-              <div>
-                <p className="text-muted-foreground">Subscription</p>
-                <p className="font-medium">{formatLabel(profile.subscription_status)}</p>
+            <div className="flex items-center gap-4">
+              <div className="flex gap-6 text-sm">
+                <div>
+                  <p className="text-muted-foreground">Subscription</p>
+                  <p className="font-medium">{formatLabel(profile.subscription_status)}</p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">Check-ins</p>
+                  <p className="font-medium">{checkIns.length}</p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">Onboarding</p>
+                  <p className="font-medium">
+                    {profile.onboarding_completed ? 'Completed' : 'Pending'}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-muted-foreground">Check-ins</p>
-                <p className="font-medium">{checkIns.length}</p>
-              </div>
-              <div>
-                <p className="text-muted-foreground">Onboarding</p>
-                <p className="font-medium">
-                  {profile.onboarding_completed ? 'Completed' : 'Pending'}
-                </p>
-              </div>
+              <UnitToggle system={units.system} onToggle={units.setSystem} />
             </div>
           </div>
         </CardContent>
@@ -518,8 +524,8 @@ export default function ClientDetailPage() {
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   <InfoItem label="Age" value={`${onboarding.age} years`} />
                   <InfoItem label="Sex" value={formatLabel(onboarding.sex)} />
-                  <InfoItem label="Height" value={`${onboarding.height_cm} cm`} />
-                  <InfoItem label="Weight" value={`${onboarding.weight_kg} kg`} />
+                  <InfoItem label="Height" value={units.displayHeight(onboarding.height_cm)} />
+                  <InfoItem label="Weight" value={units.displayWeight(onboarding.weight_kg)} />
                 </div>
               </div>
 
@@ -534,7 +540,7 @@ export default function ClientDetailPage() {
                   <InfoItem label="Goal" value={formatLabel(onboarding.goal)} />
                   <InfoItem
                     label="Goal Weight"
-                    value={`${onboarding.goal_weight_kg} kg`}
+                    value={units.displayWeight(onboarding.goal_weight_kg)}
                   />
                   <InfoItem
                     label="Activity Level"
@@ -1145,13 +1151,13 @@ export default function ClientDetailPage() {
                       <div className="flex items-center gap-2 text-sm">
                         <Scale className="size-4 text-muted-foreground" />
                         <span className="text-muted-foreground">Weight:</span>
-                        <span className="font-medium">{ci.weight_kg} kg</span>
+                        <span className="font-medium">{units.displayWeight(ci.weight_kg)}</span>
                       </div>
                       {ci.waist_cm && (
                         <div className="flex items-center gap-2 text-sm">
                           <Ruler className="size-4 text-muted-foreground" />
                           <span className="text-muted-foreground">Waist:</span>
-                          <span className="font-medium">{ci.waist_cm} cm</span>
+                          <span className="font-medium">{units.displayLength(ci.waist_cm)}</span>
                         </div>
                       )}
                       <div className="flex items-center gap-2 text-sm">

@@ -1,0 +1,3022 @@
+{
+  "days": [
+    {
+      "day": "Monday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Greek Yogurt and Whey Protein Bowl",
+          "ingredients": [
+            {
+              "name": "Greek yogurt 0%",
+              "amount": "308",
+              "unit": "g",
+              "macros": {
+                "calories": 181.9,
+                "protein": 30.8,
+                "carbs": 11.1,
+                "fat": 1.2
+              }
+            },
+            {
+              "name": "Whey protein",
+              "amount": "1",
+              "unit": "scoop",
+              "macros": {
+                "calories": 123.3,
+                "protein": 24.7,
+                "carbs": 3.1,
+                "fat": 1.5
+              }
+            },
+            {
+              "name": "Mixed berries",
+              "amount": "147",
+              "unit": "g",
+              "macros": {
+                "calories": 83.8,
+                "protein": 1,
+                "carbs": 20.6,
+                "fat": 0.5
+              }
+            },
+            {
+              "name": "Almonds",
+              "amount": "17",
+              "unit": "g",
+              "macros": {
+                "calories": 97.6,
+                "protein": 3.6,
+                "carbs": 3.7,
+                "fat": 8.4
+              }
+            }
+          ],
+          "instructions": [
+            "Mix Greek yogurt and whey protein until smooth.",
+            "Top with mixed berries and almonds.",
+            "Serve immediately."
+          ],
+          "macro_totals": {
+            "calories": 487,
+            "protein": 60,
+            "carbs": 39,
+            "fat": 12
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cottage Cheese and Whey Protein Bowl",
+              "ingredients": [
+                {
+                  "name": "Cottage cheese 2%",
+                  "amount": "300",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 243,
+                    "protein": 33,
+                    "carbs": 10.8,
+                    "fat": 6.9
+                  }
+                },
+                {
+                  "name": "Whey protein",
+                  "amount": "1",
+                  "unit": "scoop",
+                  "macros": {
+                    "calories": 120,
+                    "protein": 24,
+                    "carbs": 3,
+                    "fat": 1.5
+                  }
+                },
+                {
+                  "name": "Mixed berries",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 57,
+                    "protein": 0.7,
+                    "carbs": 14,
+                    "fat": 0.3
+                  }
+                },
+                {
+                  "name": "Almonds",
+                  "amount": "20",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 115.8,
+                    "protein": 4.2,
+                    "carbs": 4.4,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Mix cottage cheese and whey protein until smooth.",
+                "Top with mixed berries and almonds.",
+                "Serve immediately."
+              ],
+              "macro_totals": {
+                "calories": 536,
+                "protein": 62,
+                "carbs": 32,
+                "fat": 19
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "12:30",
+          "recipe_title": "Egg White Omelette with Spinach and Feta",
+          "ingredients": [
+            {
+              "name": "Egg whites",
+              "amount": "308",
+              "unit": "g",
+              "macros": {
+                "calories": 160.3,
+                "protein": 33.9,
+                "carbs": 2.1,
+                "fat": 0.6
+              }
+            },
+            {
+              "name": "Feta cheese",
+              "amount": "84",
+              "unit": "g",
+              "macros": {
+                "calories": 222.6,
+                "protein": 11.7,
+                "carbs": 3.3,
+                "fat": 17.8
+              }
+            },
+            {
+              "name": "Spinach",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 23,
+                "protein": 2.9,
+                "carbs": 3.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 74.5,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 8.4
+              }
+            }
+          ],
+          "instructions": [
+            "Heat olive oil in a pan over medium heat.",
+            "Add egg whites and cook until partially set.",
+            "Add spinach and feta, cook until spinach wilts and egg is fully set.",
+            "Fold omelette and serve."
+          ],
+          "macro_totals": {
+            "calories": 480,
+            "protein": 48,
+            "carbs": 9,
+            "fat": 27
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Egg White Scramble with Broccoli and Cheddar",
+              "ingredients": [
+                {
+                  "name": "Egg whites",
+                  "amount": "300",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 156,
+                    "protein": 33,
+                    "carbs": 2.1,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Cheddar cheese",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 201.5,
+                    "protein": 12.5,
+                    "carbs": 0.7,
+                    "fat": 16.5
+                  }
+                },
+                {
+                  "name": "Broccoli",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 34,
+                    "protein": 2.8,
+                    "carbs": 7,
+                    "fat": 0.4
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat olive oil in a pan over medium heat.",
+                "Add egg whites and cook until partially set.",
+                "Add broccoli and cheddar, cook until broccoli is tender and egg is fully set.",
+                "Scramble and serve."
+              ],
+              "macro_totals": {
+                "calories": 480,
+                "protein": 48,
+                "carbs": 10,
+                "fat": 28
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Quinoa and Black Bean Salad with Avocado",
+          "ingredients": [
+            {
+              "name": "Quinoa cooked",
+              "amount": "294",
+              "unit": "g",
+              "macros": {
+                "calories": 352.8,
+                "protein": 12.9,
+                "carbs": 61.8,
+                "fat": 5.5
+              }
+            },
+            {
+              "name": "Black beans canned",
+              "amount": "294",
+              "unit": "g",
+              "macros": {
+                "calories": 267.5,
+                "protein": 19.7,
+                "carbs": 47.1,
+                "fat": 0.8
+              }
+            },
+            {
+              "name": "Avocado",
+              "amount": "84",
+              "unit": "g",
+              "macros": {
+                "calories": 134.9,
+                "protein": 1.7,
+                "carbs": 7.6,
+                "fat": 12.6
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 74.5,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 8.4
+              }
+            },
+            {
+              "name": "Lemon juice",
+              "amount": "15",
+              "unit": "ml",
+              "macros": {
+                "calories": 3.3,
+                "protein": 0.1,
+                "carbs": 1,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Combine quinoa, black beans, and avocado in a bowl.",
+            "Drizzle with olive oil and lemon juice.",
+            "Toss to combine and serve."
+          ],
+          "macro_totals": {
+            "calories": 833,
+            "protein": 34,
+            "carbs": 118,
+            "fat": 27
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Chickpea and Quinoa Salad with Tahini Dressing",
+              "ingredients": [
+                {
+                  "name": "Quinoa cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 240,
+                    "protein": 8.8,
+                    "carbs": 42,
+                    "fat": 3.8
+                  }
+                },
+                {
+                  "name": "Chickpeas canned",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 256,
+                    "protein": 14,
+                    "carbs": 42,
+                    "fat": 5.2
+                  }
+                },
+                {
+                  "name": "Tahini",
+                  "amount": "30",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 177.6,
+                    "protein": 5.2,
+                    "carbs": 6.5,
+                    "fat": 15.9
+                  }
+                },
+                {
+                  "name": "Lemon juice",
+                  "amount": "15",
+                  "unit": "ml",
+                  "macros": {
+                    "calories": 3.3,
+                    "protein": 0.1,
+                    "carbs": 1,
+                    "fat": 0
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Combine quinoa and chickpeas in a bowl.",
+                "Mix tahini, lemon juice, and olive oil to make dressing.",
+                "Pour dressing over salad, toss to combine and serve."
+              ],
+              "macro_totals": {
+                "calories": 765,
+                "protein": 28,
+                "carbs": 92,
+                "fat": 35
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 1800,
+        "protein": 142,
+        "carbs": 166,
+        "fat": 66
+      }
+    },
+    {
+      "day": "Tuesday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Egg White and Spinach Breakfast Wrap",
+          "ingredients": [
+            {
+              "name": "Egg whites",
+              "amount": "343",
+              "unit": "g",
+              "macros": {
+                "calories": 178.3,
+                "protein": 37.7,
+                "carbs": 2.4,
+                "fat": 0.7
+              }
+            },
+            {
+              "name": "Whole wheat tortilla",
+              "amount": "1",
+              "unit": "tortilla",
+              "macros": {
+                "calories": 213.8,
+                "protein": 5.7,
+                "carbs": 35.3,
+                "fat": 5.4
+              }
+            },
+            {
+              "name": "Spinach",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 23,
+                "protein": 2.9,
+                "carbs": 3.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Feta cheese",
+              "amount": "53",
+              "unit": "g",
+              "macros": {
+                "calories": 141.1,
+                "protein": 7.5,
+                "carbs": 2.1,
+                "fat": 11.2
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "5",
+              "unit": "g",
+              "macros": {
+                "calories": 47.3,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 5.3
+              }
+            }
+          ],
+          "instructions": [
+            "Heat olive oil in a pan over medium heat.",
+            "Add egg whites and cook until set, then add spinach and feta.",
+            "Place mixture in tortilla, wrap, and serve."
+          ],
+          "macro_totals": {
+            "calories": 604,
+            "protein": 54,
+            "carbs": 43,
+            "fat": 23
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Egg White and Cheese Breakfast Burrito",
+              "ingredients": [
+                {
+                  "name": "Egg whites",
+                  "amount": "300",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 156,
+                    "protein": 33,
+                    "carbs": 2.1,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Whole wheat tortilla",
+                  "amount": "1",
+                  "unit": "tortilla",
+                  "macros": {
+                    "calories": 200,
+                    "protein": 5.3,
+                    "carbs": 33,
+                    "fat": 5.1
+                  }
+                },
+                {
+                  "name": "Cheddar cheese",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 201.5,
+                    "protein": 12.5,
+                    "carbs": 0.7,
+                    "fat": 16.5
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "5",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 44.2,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 5
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat olive oil in a pan over medium heat.",
+                "Add egg whites and cook until set, then add cheese.",
+                "Place mixture in tortilla, wrap, and serve."
+              ],
+              "macro_totals": {
+                "calories": 602,
+                "protein": 51,
+                "carbs": 36,
+                "fat": 27
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "12:30",
+          "recipe_title": "Greek Yogurt and Chickpea Salad",
+          "ingredients": [
+            {
+              "name": "Greek yogurt 0%",
+              "amount": "343",
+              "unit": "g",
+              "macros": {
+                "calories": 202.3,
+                "protein": 34.3,
+                "carbs": 12.3,
+                "fat": 1.4
+              }
+            },
+            {
+              "name": "Chickpeas canned",
+              "amount": "214",
+              "unit": "g",
+              "macros": {
+                "calories": 273.7,
+                "protein": 15,
+                "carbs": 44.9,
+                "fat": 5.6
+              }
+            },
+            {
+              "name": "Cucumber",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 15,
+                "protein": 0.7,
+                "carbs": 3.6,
+                "fat": 0.1
+              }
+            },
+            {
+              "name": "Tomato",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 18,
+                "protein": 0.9,
+                "carbs": 3.9,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "11",
+              "unit": "g",
+              "macros": {
+                "calories": 94.5,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 10.7
+              }
+            }
+          ],
+          "instructions": [
+            "Combine Greek yogurt, chickpeas, cucumber, and tomato in a bowl.",
+            "Drizzle with olive oil and mix well.",
+            "Serve chilled."
+          ],
+          "macro_totals": {
+            "calories": 604,
+            "protein": 51,
+            "carbs": 65,
+            "fat": 18
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cottage Cheese and Lentil Salad",
+              "ingredients": [
+                {
+                  "name": "Cottage cheese 2%",
+                  "amount": "300",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 243,
+                    "protein": 33,
+                    "carbs": 10.8,
+                    "fat": 6.9
+                  }
+                },
+                {
+                  "name": "Lentils cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 232,
+                    "protein": 18,
+                    "carbs": 40,
+                    "fat": 0.8
+                  }
+                },
+                {
+                  "name": "Cucumber",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 15,
+                    "protein": 0.7,
+                    "carbs": 3.6,
+                    "fat": 0.1
+                  }
+                },
+                {
+                  "name": "Tomato",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 18,
+                    "protein": 0.9,
+                    "carbs": 3.9,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Combine cottage cheese, lentils, cucumber, and tomato in a bowl.",
+                "Drizzle with olive oil and mix well.",
+                "Serve chilled."
+              ],
+              "macro_totals": {
+                "calories": 596,
+                "protein": 53,
+                "carbs": 58,
+                "fat": 18
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Quinoa and Vegetable Stir-fry with Tofu",
+          "ingredients": [
+            {
+              "name": "Quinoa cooked",
+              "amount": "214",
+              "unit": "g",
+              "macros": {
+                "calories": 256.6,
+                "protein": 9.4,
+                "carbs": 44.9,
+                "fat": 4
+              }
+            },
+            {
+              "name": "Tofu firm",
+              "amount": "214",
+              "unit": "g",
+              "macros": {
+                "calories": 162.5,
+                "protein": 17.1,
+                "carbs": 4,
+                "fat": 10.2
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "107",
+              "unit": "g",
+              "macros": {
+                "calories": 36.4,
+                "protein": 3,
+                "carbs": 7.5,
+                "fat": 0.5
+              }
+            },
+            {
+              "name": "Carrot",
+              "amount": "107",
+              "unit": "g",
+              "macros": {
+                "calories": 43.8,
+                "protein": 1,
+                "carbs": 10.7,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Soy sauce",
+              "amount": "15",
+              "unit": "ml",
+              "macros": {
+                "calories": 8,
+                "protein": 1.3,
+                "carbs": 1,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Heat a pan over medium heat and add tofu, cooking until golden.",
+            "Add broccoli and carrot, stir-fry until tender.",
+            "Add quinoa and soy sauce, stir to combine and heat through.",
+            "Serve hot."
+          ],
+          "macro_totals": {
+            "calories": 507,
+            "protein": 32,
+            "carbs": 68,
+            "fat": 15
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Brown Rice and Vegetable Stir-fry with Tempeh",
+              "ingredients": [
+                {
+                  "name": "Brown rice cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 224,
+                    "protein": 5.2,
+                    "carbs": 48,
+                    "fat": 1.8
+                  }
+                },
+                {
+                  "name": "Tempeh",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 384,
+                    "protein": 40,
+                    "carbs": 15.2,
+                    "fat": 22
+                  }
+                },
+                {
+                  "name": "Broccoli",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 34,
+                    "protein": 2.8,
+                    "carbs": 7,
+                    "fat": 0.4
+                  }
+                },
+                {
+                  "name": "Carrot",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 41,
+                    "protein": 0.9,
+                    "carbs": 10,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Soy sauce",
+                  "amount": "15",
+                  "unit": "ml",
+                  "macros": {
+                    "calories": 8,
+                    "protein": 1.3,
+                    "carbs": 1,
+                    "fat": 0
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat a pan over medium heat and add tempeh, cooking until golden.",
+                "Add broccoli and carrot, stir-fry until tender.",
+                "Add brown rice and soy sauce, stir to combine and heat through.",
+                "Serve hot."
+              ],
+              "macro_totals": {
+                "calories": 691,
+                "protein": 50,
+                "carbs": 81,
+                "fat": 24
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 1715,
+        "protein": 137,
+        "carbs": 176,
+        "fat": 56
+      }
+    },
+    {
+      "day": "Wednesday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Oatmeal with Egg Whites and Berries",
+          "ingredients": [
+            {
+              "name": "Oats dry",
+              "amount": "68",
+              "unit": "g",
+              "macros": {
+                "calories": 264.1,
+                "protein": 11.5,
+                "carbs": 44.8,
+                "fat": 4.8
+              }
+            },
+            {
+              "name": "Egg whites",
+              "amount": "280",
+              "unit": "g",
+              "macros": {
+                "calories": 145.6,
+                "protein": 30.8,
+                "carbs": 2,
+                "fat": 0.6
+              }
+            },
+            {
+              "name": "Mixed berries",
+              "amount": "68",
+              "unit": "g",
+              "macros": {
+                "calories": 38.7,
+                "protein": 0.5,
+                "carbs": 9.5,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Almonds",
+              "amount": "17",
+              "unit": "g",
+              "macros": {
+                "calories": 99.5,
+                "protein": 3.6,
+                "carbs": 3.8,
+                "fat": 8.6
+              }
+            }
+          ],
+          "instructions": [
+            "Cook oats according to package instructions.",
+            "Whisk egg whites and fold into cooked oats, stirring until set.",
+            "Top with mixed berries and almonds.",
+            "Serve warm."
+          ],
+          "macro_totals": {
+            "calories": 548,
+            "protein": 46,
+            "carbs": 60,
+            "fat": 14
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Quinoa Porridge with Egg Whites and Berries",
+              "ingredients": [
+                {
+                  "name": "Quinoa cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 240,
+                    "protein": 8.8,
+                    "carbs": 42,
+                    "fat": 3.8
+                  }
+                },
+                {
+                  "name": "Egg whites",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 104,
+                    "protein": 22,
+                    "carbs": 1.4,
+                    "fat": 0.4
+                  }
+                },
+                {
+                  "name": "Mixed berries",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 57,
+                    "protein": 0.7,
+                    "carbs": 14,
+                    "fat": 0.3
+                  }
+                },
+                {
+                  "name": "Almonds",
+                  "amount": "20",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 115.8,
+                    "protein": 4.2,
+                    "carbs": 4.4,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Cook quinoa according to package instructions.",
+                "Whisk egg whites and fold into cooked quinoa, stirring until set.",
+                "Top with mixed berries and almonds.",
+                "Serve warm."
+              ],
+              "macro_totals": {
+                "calories": 517,
+                "protein": 36,
+                "carbs": 62,
+                "fat": 15
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "12:30",
+          "recipe_title": "Cottage Cheese and Avocado Toast",
+          "ingredients": [
+            {
+              "name": "Cottage cheese 2%",
+              "amount": "420",
+              "unit": "g",
+              "macros": {
+                "calories": 340.2,
+                "protein": 46.2,
+                "carbs": 15.1,
+                "fat": 9.7
+              }
+            },
+            {
+              "name": "Whole wheat bread",
+              "amount": "68",
+              "unit": "g",
+              "macros": {
+                "calories": 167.7,
+                "protein": 8.8,
+                "carbs": 27.8,
+                "fat": 2.3
+              }
+            },
+            {
+              "name": "Avocado",
+              "amount": "86",
+              "unit": "g",
+              "macros": {
+                "calories": 137.5,
+                "protein": 1.7,
+                "carbs": 7.7,
+                "fat": 12.9
+              }
+            },
+            {
+              "name": "Tomato",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 18,
+                "protein": 0.9,
+                "carbs": 3.9,
+                "fat": 0.2
+              }
+            }
+          ],
+          "instructions": [
+            "Toast bread slices.",
+            "Spread cottage cheese on toast.",
+            "Top with avocado slices and tomato.",
+            "Serve immediately."
+          ],
+          "macro_totals": {
+            "calories": 663,
+            "protein": 58,
+            "carbs": 55,
+            "fat": 25
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Greek Yogurt and Avocado Toast",
+              "ingredients": [
+                {
+                  "name": "Greek yogurt 0%",
+                  "amount": "300",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 177,
+                    "protein": 30,
+                    "carbs": 10.8,
+                    "fat": 1.2
+                  }
+                },
+                {
+                  "name": "Whole wheat bread",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 247,
+                    "protein": 13,
+                    "carbs": 41,
+                    "fat": 3.4
+                  }
+                },
+                {
+                  "name": "Avocado",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 160,
+                    "protein": 2,
+                    "carbs": 9,
+                    "fat": 15
+                  }
+                },
+                {
+                  "name": "Tomato",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 18,
+                    "protein": 0.9,
+                    "carbs": 3.9,
+                    "fat": 0.2
+                  }
+                }
+              ],
+              "instructions": [
+                "Toast bread slices.",
+                "Spread Greek yogurt on toast.",
+                "Top with avocado slices and tomato.",
+                "Serve immediately."
+              ],
+              "macro_totals": {
+                "calories": 602,
+                "protein": 46,
+                "carbs": 65,
+                "fat": 20
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Lentil and Vegetable Curry with Rice",
+          "ingredients": [
+            {
+              "name": "Lentils cooked",
+              "amount": "136",
+              "unit": "g",
+              "macros": {
+                "calories": 157.5,
+                "protein": 12.2,
+                "carbs": 27.2,
+                "fat": 0.6
+              }
+            },
+            {
+              "name": "Rice cooked",
+              "amount": "136",
+              "unit": "g",
+              "macros": {
+                "calories": 176.5,
+                "protein": 3.7,
+                "carbs": 38.1,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Carrot",
+              "amount": "68",
+              "unit": "g",
+              "macros": {
+                "calories": 27.8,
+                "protein": 0.6,
+                "carbs": 6.8,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "85",
+              "unit": "g",
+              "macros": {
+                "calories": 29.1,
+                "protein": 2.4,
+                "carbs": 6,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Coconut milk",
+              "amount": "86",
+              "unit": "ml",
+              "macros": {
+                "calories": 197.7,
+                "protein": 2,
+                "carbs": 5.2,
+                "fat": 20.7
+              }
+            }
+          ],
+          "instructions": [
+            "Cook rice according to package instructions.",
+            "In a pot, combine lentils, carrot, broccoli, and coconut milk.",
+            "Simmer until vegetables are tender.",
+            "Serve curry over rice."
+          ],
+          "macro_totals": {
+            "calories": 589,
+            "protein": 21,
+            "carbs": 83,
+            "fat": 22
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Chickpea and Vegetable Curry with Quinoa",
+              "ingredients": [
+                {
+                  "name": "Chickpeas canned",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 256,
+                    "protein": 14,
+                    "carbs": 42,
+                    "fat": 5.2
+                  }
+                },
+                {
+                  "name": "Quinoa cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 240,
+                    "protein": 8.8,
+                    "carbs": 42,
+                    "fat": 3.8
+                  }
+                },
+                {
+                  "name": "Carrot",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 41,
+                    "protein": 0.9,
+                    "carbs": 10,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Broccoli",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 34,
+                    "protein": 2.8,
+                    "carbs": 7,
+                    "fat": 0.4
+                  }
+                },
+                {
+                  "name": "Coconut milk",
+                  "amount": "100",
+                  "unit": "ml",
+                  "macros": {
+                    "calories": 230,
+                    "protein": 2.3,
+                    "carbs": 6,
+                    "fat": 24
+                  }
+                }
+              ],
+              "instructions": [
+                "Cook quinoa according to package instructions.",
+                "In a pot, combine chickpeas, carrot, broccoli, and coconut milk.",
+                "Simmer until vegetables are tender.",
+                "Serve curry over quinoa."
+              ],
+              "macro_totals": {
+                "calories": 801,
+                "protein": 29,
+                "carbs": 107,
+                "fat": 34
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 1800,
+        "protein": 125,
+        "carbs": 198,
+        "fat": 61
+      }
+    },
+    {
+      "day": "Thursday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Protein Pancakes with Greek Yogurt",
+          "ingredients": [
+            {
+              "name": "Whey protein",
+              "amount": "1",
+              "unit": "scoop",
+              "macros": {
+                "calories": 150.8,
+                "protein": 30.2,
+                "carbs": 3.8,
+                "fat": 1.9
+              }
+            },
+            {
+              "name": "Oats dry",
+              "amount": "49",
+              "unit": "g",
+              "macros": {
+                "calories": 189.8,
+                "protein": 8.3,
+                "carbs": 32.2,
+                "fat": 3.5
+              }
+            },
+            {
+              "name": "Egg whites",
+              "amount": "126",
+              "unit": "g",
+              "macros": {
+                "calories": 65.3,
+                "protein": 13.8,
+                "carbs": 0.9,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Greek yogurt 0%",
+              "amount": "126",
+              "unit": "g",
+              "macros": {
+                "calories": 74.1,
+                "protein": 12.6,
+                "carbs": 4.5,
+                "fat": 0.5
+              }
+            },
+            {
+              "name": "Honey",
+              "amount": "21",
+              "unit": "g",
+              "macros": {
+                "calories": 62.3,
+                "protein": 0.1,
+                "carbs": 16.8,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Blend oats, whey protein, and egg whites to form a batter.",
+            "Cook pancakes on a non-stick skillet over medium heat until golden.",
+            "Serve with Greek yogurt and honey drizzled on top."
+          ],
+          "macro_totals": {
+            "calories": 542,
+            "protein": 65,
+            "carbs": 58,
+            "fat": 6
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Protein Waffles with Greek Yogurt",
+              "ingredients": [
+                {
+                  "name": "Whey protein",
+                  "amount": "1",
+                  "unit": "scoop",
+                  "macros": {
+                    "calories": 120,
+                    "protein": 24,
+                    "carbs": 3,
+                    "fat": 1.5
+                  }
+                },
+                {
+                  "name": "Oats dry",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 194.5,
+                    "protein": 8.5,
+                    "carbs": 33,
+                    "fat": 3.5
+                  }
+                },
+                {
+                  "name": "Egg whites",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 52,
+                    "protein": 11,
+                    "carbs": 0.7,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Greek yogurt 0%",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 59,
+                    "protein": 10,
+                    "carbs": 3.6,
+                    "fat": 0.4
+                  }
+                },
+                {
+                  "name": "Honey",
+                  "amount": "21",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 63.8,
+                    "protein": 0.1,
+                    "carbs": 17.2,
+                    "fat": 0
+                  }
+                }
+              ],
+              "instructions": [
+                "Blend oats, whey protein, and egg whites to form a batter.",
+                "Cook waffles in a waffle iron until golden.",
+                "Serve with Greek yogurt and honey drizzled on top."
+              ],
+              "macro_totals": {
+                "calories": 489,
+                "protein": 54,
+                "carbs": 58,
+                "fat": 6
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "12:30",
+          "recipe_title": "Chickpea and Avocado Salad with Cottage Cheese",
+          "ingredients": [
+            {
+              "name": "Chickpeas canned",
+              "amount": "195",
+              "unit": "g",
+              "macros": {
+                "calories": 249.8,
+                "protein": 13.7,
+                "carbs": 41,
+                "fat": 5.1
+              }
+            },
+            {
+              "name": "Avocado",
+              "amount": "107",
+              "unit": "g",
+              "macros": {
+                "calories": 171.8,
+                "protein": 2.1,
+                "carbs": 9.7,
+                "fat": 16.1
+              }
+            },
+            {
+              "name": "Cottage cheese 2%",
+              "amount": "251",
+              "unit": "g",
+              "macros": {
+                "calories": 203.6,
+                "protein": 27.6,
+                "carbs": 9.1,
+                "fat": 5.7
+              }
+            },
+            {
+              "name": "Tomato",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 18,
+                "protein": 0.9,
+                "carbs": 3.9,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "11",
+              "unit": "g",
+              "macros": {
+                "calories": 95,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 10.7
+              }
+            }
+          ],
+          "instructions": [
+            "Combine chickpeas, avocado, and tomato in a bowl.",
+            "Add cottage cheese and drizzle with olive oil.",
+            "Mix well and serve."
+          ],
+          "macro_totals": {
+            "calories": 738,
+            "protein": 44,
+            "carbs": 64,
+            "fat": 38
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Black Bean and Avocado Salad with Greek Yogurt",
+              "ingredients": [
+                {
+                  "name": "Black beans canned",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 182,
+                    "protein": 13.4,
+                    "carbs": 32,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Avocado",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 160,
+                    "protein": 2,
+                    "carbs": 9,
+                    "fat": 15
+                  }
+                },
+                {
+                  "name": "Greek yogurt 0%",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 118,
+                    "protein": 20,
+                    "carbs": 7.2,
+                    "fat": 0.8
+                  }
+                },
+                {
+                  "name": "Tomato",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 18,
+                    "protein": 0.9,
+                    "carbs": 3.9,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Combine black beans, avocado, and tomato in a bowl.",
+                "Add Greek yogurt and drizzle with olive oil.",
+                "Mix well and serve."
+              ],
+              "macro_totals": {
+                "calories": 566,
+                "protein": 36,
+                "carbs": 52,
+                "fat": 27
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Tofu Stir-fry with Brown Rice",
+          "ingredients": [
+            {
+              "name": "Tofu firm",
+              "amount": "215",
+              "unit": "g",
+              "macros": {
+                "calories": 163.2,
+                "protein": 17.2,
+                "carbs": 4.1,
+                "fat": 10.3
+              }
+            },
+            {
+              "name": "Brown rice cooked",
+              "amount": "195",
+              "unit": "g",
+              "macros": {
+                "calories": 218.6,
+                "protein": 5.1,
+                "carbs": 46.9,
+                "fat": 1.8
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "97",
+              "unit": "g",
+              "macros": {
+                "calories": 33.2,
+                "protein": 2.8,
+                "carbs": 6.8,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Carrot",
+              "amount": "97",
+              "unit": "g",
+              "macros": {
+                "calories": 40,
+                "protein": 0.8,
+                "carbs": 9.7,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Soy sauce",
+              "amount": "15",
+              "unit": "ml",
+              "macros": {
+                "calories": 8,
+                "protein": 1.3,
+                "carbs": 1,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Heat a pan over medium heat and add tofu, cooking until golden.",
+            "Add broccoli and carrot, stir-fry until tender.",
+            "Add brown rice and soy sauce, stir to combine and heat through.",
+            "Serve hot."
+          ],
+          "macro_totals": {
+            "calories": 463,
+            "protein": 27,
+            "carbs": 69,
+            "fat": 13
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Tempeh Stir-fry with Quinoa",
+              "ingredients": [
+                {
+                  "name": "Tempeh",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 384,
+                    "protein": 40,
+                    "carbs": 15.2,
+                    "fat": 22
+                  }
+                },
+                {
+                  "name": "Quinoa cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 240,
+                    "protein": 8.8,
+                    "carbs": 42,
+                    "fat": 3.8
+                  }
+                },
+                {
+                  "name": "Broccoli",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 34,
+                    "protein": 2.8,
+                    "carbs": 7,
+                    "fat": 0.4
+                  }
+                },
+                {
+                  "name": "Carrot",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 41,
+                    "protein": 0.9,
+                    "carbs": 10,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Soy sauce",
+                  "amount": "15",
+                  "unit": "ml",
+                  "macros": {
+                    "calories": 8,
+                    "protein": 1.3,
+                    "carbs": 1,
+                    "fat": 0
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat a pan over medium heat and add tempeh, cooking until golden.",
+                "Add broccoli and carrot, stir-fry until tender.",
+                "Add quinoa and soy sauce, stir to combine and heat through.",
+                "Serve hot."
+              ],
+              "macro_totals": {
+                "calories": 707,
+                "protein": 54,
+                "carbs": 75,
+                "fat": 26
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 1743,
+        "protein": 136,
+        "carbs": 191,
+        "fat": 57
+      }
+    },
+    {
+      "day": "Friday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Egg White and Cheese Breakfast Sandwich",
+          "ingredients": [
+            {
+              "name": "Egg whites",
+              "amount": "220",
+              "unit": "g",
+              "macros": {
+                "calories": 114.2,
+                "protein": 24.2,
+                "carbs": 1.6,
+                "fat": 0.5
+              }
+            },
+            {
+              "name": "Whole wheat bread",
+              "amount": "109",
+              "unit": "g",
+              "macros": {
+                "calories": 268.1,
+                "protein": 14.1,
+                "carbs": 44.5,
+                "fat": 3.7
+              }
+            },
+            {
+              "name": "Cheddar cheese",
+              "amount": "50",
+              "unit": "g",
+              "macros": {
+                "calories": 201.4,
+                "protein": 12.5,
+                "carbs": 0.7,
+                "fat": 16.5
+              }
+            },
+            {
+              "name": "Tomato",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 18,
+                "protein": 0.9,
+                "carbs": 3.9,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "5",
+              "unit": "g",
+              "macros": {
+                "calories": 44.2,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 5
+              }
+            }
+          ],
+          "instructions": [
+            "Heat olive oil in a pan over medium heat.",
+            "Cook egg whites until set.",
+            "Assemble sandwich with bread, cheese, tomato, and cooked egg whites.",
+            "Serve warm."
+          ],
+          "macro_totals": {
+            "calories": 646,
+            "protein": 52,
+            "carbs": 51,
+            "fat": 26
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Egg White and Avocado Breakfast Sandwich",
+              "ingredients": [
+                {
+                  "name": "Egg whites",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 104,
+                    "protein": 22,
+                    "carbs": 1.4,
+                    "fat": 0.4
+                  }
+                },
+                {
+                  "name": "Whole wheat bread",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 247,
+                    "protein": 13,
+                    "carbs": 41,
+                    "fat": 3.4
+                  }
+                },
+                {
+                  "name": "Avocado",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 160,
+                    "protein": 2,
+                    "carbs": 9,
+                    "fat": 15
+                  }
+                },
+                {
+                  "name": "Tomato",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 18,
+                    "protein": 0.9,
+                    "carbs": 3.9,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "5",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 44.2,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 5
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat olive oil in a pan over medium heat.",
+                "Cook egg whites until set.",
+                "Assemble sandwich with bread, avocado, tomato, and cooked egg whites.",
+                "Serve warm."
+              ],
+              "macro_totals": {
+                "calories": 573,
+                "protein": 38,
+                "carbs": 55,
+                "fat": 24
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "12:30",
+          "recipe_title": "Greek Yogurt and Lentil Salad",
+          "ingredients": [
+            {
+              "name": "Greek yogurt 0%",
+              "amount": "329",
+              "unit": "g",
+              "macros": {
+                "calories": 194.4,
+                "protein": 32.9,
+                "carbs": 11.8,
+                "fat": 1.3
+              }
+            },
+            {
+              "name": "Lentils cooked",
+              "amount": "217",
+              "unit": "g",
+              "macros": {
+                "calories": 251.8,
+                "protein": 19.5,
+                "carbs": 43.4,
+                "fat": 0.9
+              }
+            },
+            {
+              "name": "Cucumber",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 15,
+                "protein": 0.7,
+                "carbs": 3.6,
+                "fat": 0.1
+              }
+            },
+            {
+              "name": "Tomato",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 18,
+                "protein": 0.9,
+                "carbs": 3.9,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "10",
+              "unit": "g",
+              "macros": {
+                "calories": 88.4,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 10
+              }
+            }
+          ],
+          "instructions": [
+            "Combine Greek yogurt, lentils, cucumber, and tomato in a bowl.",
+            "Drizzle with olive oil and mix well.",
+            "Serve chilled."
+          ],
+          "macro_totals": {
+            "calories": 568,
+            "protein": 54,
+            "carbs": 63,
+            "fat": 13
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cottage Cheese and Chickpea Salad",
+              "ingredients": [
+                {
+                  "name": "Cottage cheese 2%",
+                  "amount": "300",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 243,
+                    "protein": 33,
+                    "carbs": 10.8,
+                    "fat": 6.9
+                  }
+                },
+                {
+                  "name": "Chickpeas canned",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 256,
+                    "protein": 14,
+                    "carbs": 42,
+                    "fat": 5.2
+                  }
+                },
+                {
+                  "name": "Cucumber",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 15,
+                    "protein": 0.7,
+                    "carbs": 3.6,
+                    "fat": 0.1
+                  }
+                },
+                {
+                  "name": "Tomato",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 18,
+                    "protein": 0.9,
+                    "carbs": 3.9,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Combine cottage cheese, chickpeas, cucumber, and tomato in a bowl.",
+                "Drizzle with olive oil and mix well.",
+                "Serve chilled."
+              ],
+              "macro_totals": {
+                "calories": 620,
+                "protein": 49,
+                "carbs": 60,
+                "fat": 22
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Vegetable Stir-fry with Tofu and Quinoa",
+          "ingredients": [
+            {
+              "name": "Tofu firm",
+              "amount": "200",
+              "unit": "g",
+              "macros": {
+                "calories": 151.9,
+                "protein": 16,
+                "carbs": 3.8,
+                "fat": 9.6
+              }
+            },
+            {
+              "name": "Quinoa cooked",
+              "amount": "217",
+              "unit": "g",
+              "macros": {
+                "calories": 260.5,
+                "protein": 9.5,
+                "carbs": 45.6,
+                "fat": 4.1
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "109",
+              "unit": "g",
+              "macros": {
+                "calories": 36.9,
+                "protein": 3,
+                "carbs": 7.6,
+                "fat": 0.5
+              }
+            },
+            {
+              "name": "Carrot",
+              "amount": "109",
+              "unit": "g",
+              "macros": {
+                "calories": 44.5,
+                "protein": 1,
+                "carbs": 10.9,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Soy sauce",
+              "amount": "15",
+              "unit": "ml",
+              "macros": {
+                "calories": 8,
+                "protein": 1.3,
+                "carbs": 1,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Heat a pan over medium heat and add tofu, cooking until golden.",
+            "Add broccoli and carrot, stir-fry until tender.",
+            "Add quinoa and soy sauce, stir to combine and heat through.",
+            "Serve hot."
+          ],
+          "macro_totals": {
+            "calories": 502,
+            "protein": 31,
+            "carbs": 69,
+            "fat": 14
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Tempeh Stir-fry with Brown Rice",
+              "ingredients": [
+                {
+                  "name": "Tempeh",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 384,
+                    "protein": 40,
+                    "carbs": 15.2,
+                    "fat": 22
+                  }
+                },
+                {
+                  "name": "Brown rice cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 224,
+                    "protein": 5.2,
+                    "carbs": 48,
+                    "fat": 1.8
+                  }
+                },
+                {
+                  "name": "Broccoli",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 34,
+                    "protein": 2.8,
+                    "carbs": 7,
+                    "fat": 0.4
+                  }
+                },
+                {
+                  "name": "Carrot",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 41,
+                    "protein": 0.9,
+                    "carbs": 10,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Soy sauce",
+                  "amount": "15",
+                  "unit": "ml",
+                  "macros": {
+                    "calories": 8,
+                    "protein": 1.3,
+                    "carbs": 1,
+                    "fat": 0
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat a pan over medium heat and add tempeh, cooking until golden.",
+                "Add broccoli and carrot, stir-fry until tender.",
+                "Add brown rice and soy sauce, stir to combine and heat through.",
+                "Serve hot."
+              ],
+              "macro_totals": {
+                "calories": 691,
+                "protein": 50,
+                "carbs": 81,
+                "fat": 24
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 1716,
+        "protein": 137,
+        "carbs": 183,
+        "fat": 53
+      }
+    },
+    {
+      "day": "Saturday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Protein Smoothie Bowl",
+          "ingredients": [
+            {
+              "name": "Whey protein",
+              "amount": "1",
+              "unit": "scoop",
+              "macros": {
+                "calories": 168,
+                "protein": 33.6,
+                "carbs": 4.2,
+                "fat": 2.1
+              }
+            },
+            {
+              "name": "Banana",
+              "amount": "123",
+              "unit": "g",
+              "macros": {
+                "calories": 109.8,
+                "protein": 1.3,
+                "carbs": 28.4,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Almond milk",
+              "amount": "165",
+              "unit": "ml",
+              "macros": {
+                "calories": 28.1,
+                "protein": 1,
+                "carbs": 1,
+                "fat": 1.8
+              }
+            },
+            {
+              "name": "Mixed berries",
+              "amount": "105",
+              "unit": "g",
+              "macros": {
+                "calories": 59.6,
+                "protein": 0.7,
+                "carbs": 14.6,
+                "fat": 0.3
+              }
+            },
+            {
+              "name": "Almonds",
+              "amount": "17",
+              "unit": "g",
+              "macros": {
+                "calories": 95.8,
+                "protein": 3.5,
+                "carbs": 3.6,
+                "fat": 8.3
+              }
+            }
+          ],
+          "instructions": [
+            "Blend whey protein, banana, and almond milk until smooth.",
+            "Pour into a bowl and top with mixed berries and almonds.",
+            "Serve immediately."
+          ],
+          "macro_totals": {
+            "calories": 461,
+            "protein": 40,
+            "carbs": 52,
+            "fat": 13
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Greek Yogurt Smoothie Bowl",
+              "ingredients": [
+                {
+                  "name": "Greek yogurt 0%",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 118,
+                    "protein": 20,
+                    "carbs": 7.2,
+                    "fat": 0.8
+                  }
+                },
+                {
+                  "name": "Banana",
+                  "amount": "118",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 105,
+                    "protein": 1.3,
+                    "carbs": 27.1,
+                    "fat": 0.4
+                  }
+                },
+                {
+                  "name": "Almond milk",
+                  "amount": "200",
+                  "unit": "ml",
+                  "macros": {
+                    "calories": 34,
+                    "protein": 1.2,
+                    "carbs": 1.2,
+                    "fat": 2.2
+                  }
+                },
+                {
+                  "name": "Mixed berries",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 57,
+                    "protein": 0.7,
+                    "carbs": 14,
+                    "fat": 0.3
+                  }
+                },
+                {
+                  "name": "Almonds",
+                  "amount": "20",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 115.8,
+                    "protein": 4.2,
+                    "carbs": 4.4,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Blend Greek yogurt, banana, and almond milk until smooth.",
+                "Pour into a bowl and top with mixed berries and almonds.",
+                "Serve immediately."
+              ],
+              "macro_totals": {
+                "calories": 430,
+                "protein": 27,
+                "carbs": 54,
+                "fat": 14
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "12:30",
+          "recipe_title": "Egg White and Veggie Wrap",
+          "ingredients": [
+            {
+              "name": "Egg whites",
+              "amount": "420",
+              "unit": "g",
+              "macros": {
+                "calories": 218.4,
+                "protein": 46.2,
+                "carbs": 2.9,
+                "fat": 0.8
+              }
+            },
+            {
+              "name": "Whole wheat tortilla",
+              "amount": "1",
+              "unit": "tortilla",
+              "macros": {
+                "calories": 209.2,
+                "protein": 5.5,
+                "carbs": 34.5,
+                "fat": 5.4
+              }
+            },
+            {
+              "name": "Spinach",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 23,
+                "protein": 2.9,
+                "carbs": 3.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Feta cheese",
+              "amount": "41",
+              "unit": "g",
+              "macros": {
+                "calories": 109.2,
+                "protein": 5.8,
+                "carbs": 1.7,
+                "fat": 8.7
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "4",
+              "unit": "g",
+              "macros": {
+                "calories": 36.6,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 4.1
+              }
+            }
+          ],
+          "instructions": [
+            "Heat olive oil in a pan over medium heat.",
+            "Add egg whites and cook until set, then add spinach and feta.",
+            "Place mixture in tortilla, wrap, and serve."
+          ],
+          "macro_totals": {
+            "calories": 596,
+            "protein": 60,
+            "carbs": 43,
+            "fat": 19
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Egg White and Cheese Wrap",
+              "ingredients": [
+                {
+                  "name": "Egg whites",
+                  "amount": "300",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 156,
+                    "protein": 33,
+                    "carbs": 2.1,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Whole wheat tortilla",
+                  "amount": "1",
+                  "unit": "tortilla",
+                  "macros": {
+                    "calories": 200,
+                    "protein": 5.3,
+                    "carbs": 33,
+                    "fat": 5.1
+                  }
+                },
+                {
+                  "name": "Cheddar cheese",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 201.5,
+                    "protein": 12.5,
+                    "carbs": 0.7,
+                    "fat": 16.5
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "5",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 44.2,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 5
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat olive oil in a pan over medium heat.",
+                "Add egg whites and cook until set, then add cheese.",
+                "Place mixture in tortilla, wrap, and serve."
+              ],
+              "macro_totals": {
+                "calories": 602,
+                "protein": 51,
+                "carbs": 36,
+                "fat": 27
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Chickpea and Quinoa Salad with Avocado",
+          "ingredients": [
+            {
+              "name": "Chickpeas canned",
+              "amount": "209",
+              "unit": "g",
+              "macros": {
+                "calories": 267.8,
+                "protein": 14.6,
+                "carbs": 43.9,
+                "fat": 5.5
+              }
+            },
+            {
+              "name": "Quinoa cooked",
+              "amount": "209",
+              "unit": "g",
+              "macros": {
+                "calories": 251.1,
+                "protein": 9.2,
+                "carbs": 43.9,
+                "fat": 4
+              }
+            },
+            {
+              "name": "Avocado",
+              "amount": "83",
+              "unit": "g",
+              "macros": {
+                "calories": 132.3,
+                "protein": 1.7,
+                "carbs": 7.4,
+                "fat": 12.4
+              }
+            },
+            {
+              "name": "Tomato",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 18,
+                "protein": 0.9,
+                "carbs": 3.9,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "8",
+              "unit": "g",
+              "macros": {
+                "calories": 73.1,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 8.3
+              }
+            }
+          ],
+          "instructions": [
+            "Combine chickpeas, quinoa, avocado, and tomato in a bowl.",
+            "Drizzle with olive oil and mix well.",
+            "Serve chilled."
+          ],
+          "macro_totals": {
+            "calories": 742,
+            "protein": 26,
+            "carbs": 99,
+            "fat": 30
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Black Bean and Quinoa Salad with Avocado",
+              "ingredients": [
+                {
+                  "name": "Black beans canned",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 182,
+                    "protein": 13.4,
+                    "carbs": 32,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Quinoa cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 240,
+                    "protein": 8.8,
+                    "carbs": 42,
+                    "fat": 3.8
+                  }
+                },
+                {
+                  "name": "Avocado",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 160,
+                    "protein": 2,
+                    "carbs": 9,
+                    "fat": 15
+                  }
+                },
+                {
+                  "name": "Tomato",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 18,
+                    "protein": 0.9,
+                    "carbs": 3.9,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "10",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 88.4,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 10
+                  }
+                }
+              ],
+              "instructions": [
+                "Combine black beans, quinoa, avocado, and tomato in a bowl.",
+                "Drizzle with olive oil and mix well.",
+                "Serve chilled."
+              ],
+              "macro_totals": {
+                "calories": 688,
+                "protein": 25,
+                "carbs": 87,
+                "fat": 30
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 1799,
+        "protein": 126,
+        "carbs": 194,
+        "fat": 62
+      }
+    },
+    {
+      "day": "Sunday",
+      "meals": [
+        {
+          "name": "Breakfast",
+          "time": "08:00",
+          "recipe_title": "Egg White and Spinach Omelette",
+          "ingredients": [
+            {
+              "name": "Egg whites",
+              "amount": "420",
+              "unit": "g",
+              "macros": {
+                "calories": 218.4,
+                "protein": 46.2,
+                "carbs": 2.9,
+                "fat": 0.8
+              }
+            },
+            {
+              "name": "Spinach",
+              "amount": "100",
+              "unit": "g",
+              "macros": {
+                "calories": 23,
+                "protein": 2.9,
+                "carbs": 3.6,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Feta cheese",
+              "amount": "58",
+              "unit": "g",
+              "macros": {
+                "calories": 153.5,
+                "protein": 8.1,
+                "carbs": 2.3,
+                "fat": 12.2
+              }
+            },
+            {
+              "name": "Olive oil",
+              "amount": "6",
+              "unit": "g",
+              "macros": {
+                "calories": 51.4,
+                "protein": 0,
+                "carbs": 0,
+                "fat": 5.8
+              }
+            },
+            {
+              "name": "Whole wheat bread",
+              "amount": "48",
+              "unit": "g",
+              "macros": {
+                "calories": 119.5,
+                "protein": 6.3,
+                "carbs": 19.9,
+                "fat": 1.7
+              }
+            }
+          ],
+          "instructions": [
+            "Heat olive oil in a pan over medium heat.",
+            "Add egg whites and cook until partially set.",
+            "Add spinach and feta, cook until spinach wilts and egg is fully set.",
+            "Serve with whole wheat bread."
+          ],
+          "macro_totals": {
+            "calories": 566,
+            "protein": 64,
+            "carbs": 29,
+            "fat": 21
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Egg White and Cheese Omelette",
+              "ingredients": [
+                {
+                  "name": "Egg whites",
+                  "amount": "300",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 156,
+                    "protein": 33,
+                    "carbs": 2.1,
+                    "fat": 0.6
+                  }
+                },
+                {
+                  "name": "Cheddar cheese",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 201.5,
+                    "protein": 12.5,
+                    "carbs": 0.7,
+                    "fat": 16.5
+                  }
+                },
+                {
+                  "name": "Olive oil",
+                  "amount": "5",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 44.2,
+                    "protein": 0,
+                    "carbs": 0,
+                    "fat": 5
+                  }
+                },
+                {
+                  "name": "Whole wheat bread",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 123.5,
+                    "protein": 6.5,
+                    "carbs": 20.5,
+                    "fat": 1.7
+                  }
+                }
+              ],
+              "instructions": [
+                "Heat olive oil in a pan over medium heat.",
+                "Add egg whites and cook until partially set.",
+                "Add cheddar, cook until cheese melts and egg is fully set.",
+                "Serve with whole wheat bread."
+              ],
+              "macro_totals": {
+                "calories": 525,
+                "protein": 52,
+                "carbs": 23,
+                "fat": 24
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lunch",
+          "time": "12:30",
+          "recipe_title": "Greek Yogurt and Berry Parfait",
+          "ingredients": [
+            {
+              "name": "Greek yogurt 0%",
+              "amount": "420",
+              "unit": "g",
+              "macros": {
+                "calories": 247.8,
+                "protein": 42,
+                "carbs": 15.1,
+                "fat": 1.7
+              }
+            },
+            {
+              "name": "Mixed berries",
+              "amount": "145",
+              "unit": "g",
+              "macros": {
+                "calories": 82.7,
+                "protein": 1,
+                "carbs": 20.3,
+                "fat": 0.5
+              }
+            },
+            {
+              "name": "Granola",
+              "amount": "58",
+              "unit": "g",
+              "macros": {
+                "calories": 284.3,
+                "protein": 8.1,
+                "carbs": 31.4,
+                "fat": 14.2
+              }
+            },
+            {
+              "name": "Honey",
+              "amount": "20",
+              "unit": "g",
+              "macros": {
+                "calories": 61.7,
+                "protein": 0.1,
+                "carbs": 16.6,
+                "fat": 0
+              }
+            }
+          ],
+          "instructions": [
+            "Layer Greek yogurt, mixed berries, and granola in a glass.",
+            "Drizzle honey on top.",
+            "Serve chilled."
+          ],
+          "macro_totals": {
+            "calories": 677,
+            "protein": 51,
+            "carbs": 83,
+            "fat": 16
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Cottage Cheese and Berry Parfait",
+              "ingredients": [
+                {
+                  "name": "Cottage cheese 2%",
+                  "amount": "300",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 243,
+                    "protein": 33,
+                    "carbs": 10.8,
+                    "fat": 6.9
+                  }
+                },
+                {
+                  "name": "Mixed berries",
+                  "amount": "150",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 85.5,
+                    "protein": 1,
+                    "carbs": 21,
+                    "fat": 0.5
+                  }
+                },
+                {
+                  "name": "Granola",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 244.5,
+                    "protein": 6.9,
+                    "carbs": 27,
+                    "fat": 12.2
+                  }
+                },
+                {
+                  "name": "Honey",
+                  "amount": "21",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 63.8,
+                    "protein": 0.1,
+                    "carbs": 17.2,
+                    "fat": 0
+                  }
+                }
+              ],
+              "instructions": [
+                "Layer cottage cheese, mixed berries, and granola in a glass.",
+                "Drizzle honey on top.",
+                "Serve chilled."
+              ],
+              "macro_totals": {
+                "calories": 637,
+                "protein": 41,
+                "carbs": 76,
+                "fat": 20
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dinner",
+          "time": "19:00",
+          "recipe_title": "Lentil and Vegetable Stew with Rice",
+          "ingredients": [
+            {
+              "name": "Lentils cooked",
+              "amount": "194",
+              "unit": "g",
+              "macros": {
+                "calories": 224.4,
+                "protein": 17.4,
+                "carbs": 38.7,
+                "fat": 0.7
+              }
+            },
+            {
+              "name": "Rice cooked",
+              "amount": "194",
+              "unit": "g",
+              "macros": {
+                "calories": 251.6,
+                "protein": 5.2,
+                "carbs": 54.2,
+                "fat": 0.6
+              }
+            },
+            {
+              "name": "Carrot",
+              "amount": "96",
+              "unit": "g",
+              "macros": {
+                "calories": 39.7,
+                "protein": 0.8,
+                "carbs": 9.6,
+                "fat": 0.2
+              }
+            },
+            {
+              "name": "Broccoli",
+              "amount": "96",
+              "unit": "g",
+              "macros": {
+                "calories": 32.9,
+                "protein": 2.7,
+                "carbs": 6.8,
+                "fat": 0.4
+              }
+            },
+            {
+              "name": "Tomato paste",
+              "amount": "50",
+              "unit": "g",
+              "macros": {
+                "calories": 9,
+                "protein": 0.5,
+                "carbs": 2,
+                "fat": 0.1
+              }
+            }
+          ],
+          "instructions": [
+            "In a pot, combine lentils, carrot, broccoli, and tomato paste.",
+            "Simmer until vegetables are tender.",
+            "Serve stew over rice."
+          ],
+          "macro_totals": {
+            "calories": 558,
+            "protein": 27,
+            "carbs": 111,
+            "fat": 2
+          },
+          "swap_options": [
+            {
+              "recipe_title": "Chickpea and Vegetable Stew with Quinoa",
+              "ingredients": [
+                {
+                  "name": "Chickpeas canned",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 256,
+                    "protein": 14,
+                    "carbs": 42,
+                    "fat": 5.2
+                  }
+                },
+                {
+                  "name": "Quinoa cooked",
+                  "amount": "200",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 240,
+                    "protein": 8.8,
+                    "carbs": 42,
+                    "fat": 3.8
+                  }
+                },
+                {
+                  "name": "Carrot",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 41,
+                    "protein": 0.9,
+                    "carbs": 10,
+                    "fat": 0.2
+                  }
+                },
+                {
+                  "name": "Broccoli",
+                  "amount": "100",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 34,
+                    "protein": 2.8,
+                    "carbs": 7,
+                    "fat": 0.4
+                  }
+                },
+                {
+                  "name": "Tomato paste",
+                  "amount": "50",
+                  "unit": "g",
+                  "macros": {
+                    "calories": 9,
+                    "protein": 0.5,
+                    "carbs": 2,
+                    "fat": 0.1
+                  }
+                }
+              ],
+              "instructions": [
+                "In a pot, combine chickpeas, carrot, broccoli, and tomato paste.",
+                "Simmer until vegetables are tender.",
+                "Serve stew over quinoa."
+              ],
+              "macro_totals": {
+                "calories": 580,
+                "protein": 27,
+                "carbs": 103,
+                "fat": 10
+              }
+            }
+          ]
+        }
+      ],
+      "day_totals": {
+        "calories": 1801,
+        "protein": 142,
+        "carbs": 223,
+        "fat": 39
+      }
+    }
+  ]
+}

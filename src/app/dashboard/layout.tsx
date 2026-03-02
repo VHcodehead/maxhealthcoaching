@@ -14,6 +14,7 @@ import {
   Menu,
   X,
   Activity,
+  Pill,
 } from 'lucide-react'
 import { useSession, signOut } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
@@ -32,6 +33,7 @@ const navItems = [
   { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
   { href: '/dashboard/meals', label: 'Meal Plan', icon: UtensilsCrossed },
   { href: '/dashboard/training', label: 'Training', icon: Dumbbell },
+  { href: '/dashboard/supplements', label: 'Supplements', icon: Pill },
   { href: '/dashboard/progress', label: 'Progress', icon: TrendingUp },
   { href: '/dashboard/referral', label: 'Referral', icon: Gift },
 ]

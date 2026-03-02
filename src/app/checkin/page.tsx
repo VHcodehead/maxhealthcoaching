@@ -11,6 +11,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
+import { UnitToggle } from '@/components/ui/unit-toggle';
+import { useUnits } from '@/hooks/use-units';
 import { checkInSchema } from '@/lib/validations';
 import { isWithinCheckInWindow, getNextWindowOpens, hasCheckedInThisWeek } from '@/lib/checkin-schedule';
 import { toast } from 'sonner';
@@ -33,8 +35,12 @@ type PageState = 'loading' | 'window-closed' | 'already-done' | 'form' | 'photos
 
 export default function CheckInPage() {
   const router = useRouter();
+  const units = useUnits();
   const [step, setStep] = useState<PageState>('loading');
   const [checkInId, setCheckInId] = useState<string | null>(null);
+  // Display values for imperial inputs
+  const [displayWeightVal, setDisplayWeightVal] = useState<number | ''>('');
+  const [displayWaistVal, setDisplayWaistVal] = useState<number | ''>('');
   const [uploading, setUploading] = useState(false);
   const [pendingAdjustment, setPendingAdjustment] = useState(false);
   const [oldCalories, setOldCalories] = useState(0);
@@ -107,10 +113,18 @@ export default function CheckInPage() {
 
   const onSubmitForm = async (data: CheckInData) => {
     try {
+      // Convert from display units to metric before sending
+      const metricData = {
+        ...data,
+        weight_kg: units.system === 'imperial' ? units.lbsToKg(data.weight_kg) : data.weight_kg,
+        waist_cm: data.waist_cm != null && units.system === 'imperial'
+          ? units.inToCm(data.waist_cm)
+          : data.waist_cm,
+      };
       const res = await fetch('/api/checkin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(metricData),
       });
 
       const result = await res.json();
@@ -308,6 +322,11 @@ export default function CheckInPage() {
             onSubmit={handleSubmit(onSubmitForm)}
             className="space-y-6"
           >
+            {/* Unit Toggle */}
+            <div className="flex justify-end">
+              <UnitToggle system={units.system} onToggle={units.setSystem} />
+            </div>
+
             {/* Weight */}
             <Card>
               <CardHeader className="pb-3">
@@ -317,13 +336,13 @@ export default function CheckInPage() {
               </CardHeader>
               <CardContent>
                 <div>
-                  <Label htmlFor="weight_kg">Weight (kg)</Label>
+                  <Label htmlFor="weight_kg">Weight ({units.weightUnit})</Label>
                   <Input
                     id="weight_kg"
                     type="number"
                     step="0.1"
                     {...register('weight_kg', { valueAsNumber: true })}
-                    placeholder="75.0"
+                    placeholder={units.system === 'imperial' ? '165.0' : '75.0'}
                   />
                   {errors.weight_kg && (
                     <p className="text-xs text-red-500 mt-1">{errors.weight_kg.message}</p>
@@ -342,13 +361,13 @@ export default function CheckInPage() {
               </CardHeader>
               <CardContent>
                 <div>
-                  <Label htmlFor="waist_cm">Waist (cm)</Label>
+                  <Label htmlFor="waist_cm">Waist ({units.lengthUnit})</Label>
                   <Input
                     id="waist_cm"
                     type="number"
                     step="0.1"
                     {...register('waist_cm', { valueAsNumber: true })}
-                    placeholder="80.0"
+                    placeholder={units.system === 'imperial' ? '31.5' : '80.0'}
                   />
                 </div>
               </CardContent>

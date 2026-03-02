@@ -25,6 +25,9 @@ import {
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+import { UnitToggle } from '@/components/ui/unit-toggle'
+import { useUnits } from '@/hooks/use-units'
+import { type UnitSystem, kgToLbs, displayWeight } from '@/lib/units'
 import {
   Dialog,
   DialogContent,
@@ -61,7 +64,7 @@ function formatDate(dateStr: string): string {
   })
 }
 
-function WeightChart({ checkIns }: { checkIns: CheckIn[] }) {
+function WeightChart({ checkIns, unitSystem }: { checkIns: CheckIn[]; unitSystem: UnitSystem }) {
   const weightsData = checkIns
     .filter((c) => c.weightKg != null)
     .sort(
@@ -69,6 +72,9 @@ function WeightChart({ checkIns }: { checkIns: CheckIn[] }) {
         new Date(a.createdAt).getTime() -
         new Date(b.createdAt).getTime()
     )
+
+  const convertWeight = (kg: number) => unitSystem === 'imperial' ? kgToLbs(kg) : kg
+  const unitLabel = unitSystem === 'imperial' ? 'lbs' : 'kg'
 
   if (weightsData.length === 0) {
     return (
@@ -83,7 +89,7 @@ function WeightChart({ checkIns }: { checkIns: CheckIn[] }) {
     )
   }
 
-  const weights = weightsData.map((c) => c.weightKg as number)
+  const weights = weightsData.map((c) => convertWeight(c.weightKg as number))
   const minWeight = Math.min(...weights)
   const maxWeight = Math.max(...weights)
   const range = maxWeight - minWeight || 1
@@ -124,7 +130,7 @@ function WeightChart({ checkIns }: { checkIns: CheckIn[] }) {
                     }`}
                   >
                     {weightChange > 0 ? '+' : ''}
-                    {weightChange.toFixed(1)} kg
+                    {weightChange.toFixed(1)} {unitLabel}
                   </span>
                 </>
               )}
@@ -181,7 +187,7 @@ function WeightChart({ checkIns }: { checkIns: CheckIn[] }) {
                           (Math.max(weightsData.length * 60, 300) - 60)
                       const y =
                         20 +
-                        (1 - ((d.weightKg as number) - minWeight) / range) *
+                        (1 - (convertWeight(d.weightKg as number) - minWeight) / range) *
                           chartHeight
                       return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
                     })
@@ -204,7 +210,7 @@ function WeightChart({ checkIns }: { checkIns: CheckIn[] }) {
                         (Math.max(weightsData.length * 60, 300) - 60)
                 const y =
                   20 +
-                  (1 - ((d.weightKg as number) - minWeight) / range) *
+                  (1 - (convertWeight(d.weightKg as number) - minWeight) / range) *
                     chartHeight
                 return (
                   <g key={d.id}>
@@ -276,6 +282,7 @@ function PhotoThumbnail({
 }
 
 export default function ProgressPage() {
+  const units = useUnits()
   const [checkIns, setCheckIns] = useState<CheckIn[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -446,21 +453,24 @@ export default function ProgressPage() {
               Track your weight, photos, and check-in history.
             </p>
           </div>
-          <Button
-            variant={compareMode ? 'default' : 'outline'}
-            className={
-              compareMode
-                ? 'gap-2 bg-emerald-600 hover:bg-emerald-700'
-                : 'gap-2'
-            }
-            onClick={() => {
-              setCompareMode(!compareMode)
-              setSelectedCheckIns([])
-            }}
-          >
-            <ArrowLeftRight className="h-4 w-4" />
-            {compareMode ? 'Exit Compare' : 'Compare Photos'}
-          </Button>
+          <div className="flex items-center gap-2">
+            <UnitToggle system={units.system} onToggle={units.setSystem} />
+            <Button
+              variant={compareMode ? 'default' : 'outline'}
+              className={
+                compareMode
+                  ? 'gap-2 bg-emerald-600 hover:bg-emerald-700'
+                  : 'gap-2'
+              }
+              onClick={() => {
+                setCompareMode(!compareMode)
+                setSelectedCheckIns([])
+              }}
+            >
+              <ArrowLeftRight className="h-4 w-4" />
+              {compareMode ? 'Exit Compare' : 'Compare Photos'}
+            </Button>
+          </div>
         </div>
       </motion.div>
 
@@ -541,7 +551,7 @@ export default function ProgressPage() {
 
       {/* Weight Chart */}
       <div className="mb-8">
-        <WeightChart checkIns={checkIns} />
+        <WeightChart checkIns={checkIns} unitSystem={units.system} />
       </div>
 
       {/* Check-in History */}
@@ -621,7 +631,7 @@ export default function ProgressPage() {
                               className="gap-1 text-xs"
                             >
                               <Scale className="h-3 w-3" />
-                              {checkIn.weightKg} kg
+                              {displayWeight(checkIn.weightKg, units.system)}
                             </Badge>
                           )}
                           {checkIn.adherenceRating != null && (
