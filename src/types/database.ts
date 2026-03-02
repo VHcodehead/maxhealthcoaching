@@ -85,7 +85,7 @@ export interface MacroTargets {
   protein_g: number;
   fat_g: number;
   carbs_g: number;
-  formula_used: 'katch_mcardle' | 'mifflin_st_jeor' | 'coach_override';
+  formula_used: 'katch_mcardle' | 'mifflin_st_jeor' | 'coach_override' | 'coach_approved' | 'coach_approved_adjusted';
   explanation: string;
   created_at: string;
 }
@@ -162,15 +162,22 @@ export interface TrainingPlanData {
 
 export interface TrainingWeek {
   week: number;
+  phase_name?: string;
   theme?: string;
   days: TrainingDay[];
 }
 
 export interface TrainingDay {
-  day: string;
-  name: string;
+  day_name?: string;
+  /** @deprecated Use day_name */
+  day?: string;
+  session_name?: string;
+  /** @deprecated Use session_name */
+  name?: string;
+  muscle_groups?: string[];
   warmup: string[];
   exercises: Exercise[];
+  cardio?: { type: string; duration_minutes: number } | null;
   cooldown?: string;
   notes?: string;
 }
@@ -180,8 +187,11 @@ export interface Exercise {
   sets: number;
   reps: string;
   rpe?: number;
+  rir?: number;
   rest_seconds: number;
   tempo?: string;
+  intensity_technique?: string;
+  form_cues?: string[];
   notes?: string;
   substitution?: string;
 }
@@ -270,7 +280,7 @@ export interface CoachSettings {
 export interface Notification {
   id: string;
   user_id: string;
-  type: 'plan_ready' | 'checkin_reminder' | 'checkin_overdue' | 'welcome' | 'referral_used';
+  type: 'plan_ready' | 'checkin_reminder' | 'checkin_overdue' | 'welcome' | 'referral_used' | 'macro_adjustment_pending' | 'macro_adjustment_approved';
   title: string;
   message: string;
   read: boolean;
@@ -283,5 +293,62 @@ export interface CoachNote {
   coach_id: string;
   category: CoachNoteCategory;
   content: string;
+  created_at: string;
+}
+
+export type SupplementFrequency = 'daily' | 'twice_daily' | 'as_needed' | 'cycling';
+export type SupplementTiming = 'morning' | 'pre_workout' | 'post_workout' | 'with_meals' | 'evening' | 'bedtime';
+export type SupplementCategory = 'vitamin' | 'mineral' | 'performance' | 'recovery' | 'protein' | 'health';
+export type SupplementForm = 'capsule' | 'powder' | 'liquid' | 'tablet' | 'softgel';
+
+export interface SupplementRecommendation {
+  id: string;
+  user_id: string;
+  coach_id: string;
+  name: string;
+  dosage: string;
+  unit: string;
+  frequency: SupplementFrequency;
+  timing: SupplementTiming;
+  category: SupplementCategory;
+  form: SupplementForm;
+  brand?: string;
+  cycling_instructions?: string;
+  notes?: string;
+  active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PendingMacroAdjustment {
+  id: string;
+  user_id: string;
+  check_in_id: string;
+  status: 'pending' | 'approved' | 'dismissed';
+
+  previous_weight_kg: number;
+  new_weight_kg: number;
+
+  current_calories: number;
+  current_protein_g: number;
+  current_fat_g: number;
+  current_carbs_g: number;
+
+  proposed_bmr: number;
+  proposed_tdee: number;
+  proposed_calories: number;
+  proposed_protein_g: number;
+  proposed_fat_g: number;
+  proposed_carbs_g: number;
+  proposed_formula: string;
+  proposed_explanation: string;
+
+  approved_calories?: number;
+  approved_protein_g?: number;
+  approved_fat_g?: number;
+  approved_carbs_g?: number;
+  coach_note?: string;
+
+  resolved_at?: string;
   created_at: string;
 }
