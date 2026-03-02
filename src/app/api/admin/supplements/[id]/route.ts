@@ -38,6 +38,7 @@ export async function PUT(
         ...(body.cycling_instructions !== undefined && { cyclingInstructions: body.cycling_instructions || null }),
         ...(body.notes !== undefined && { notes: body.notes || null }),
         ...(body.active !== undefined && { active: body.active }),
+        ...(body.catalog_id !== undefined && { catalogId: body.catalog_id || null }),
       },
     });
 

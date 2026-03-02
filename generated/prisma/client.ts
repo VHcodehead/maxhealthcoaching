@@ -120,6 +120,11 @@ export type CoachNote = Prisma.CoachNoteModel
  */
 export type SupplementRecommendation = Prisma.SupplementRecommendationModel
 /**
+ * Model SupplementCatalog
+ * 
+ */
+export type SupplementCatalog = Prisma.SupplementCatalogModel
+/**
  * Model PendingMacroAdjustment
  * 
  */

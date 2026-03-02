@@ -400,6 +400,7 @@ export const ModelName = {
   Notification: 'Notification',
   CoachNote: 'CoachNote',
   SupplementRecommendation: 'SupplementRecommendation',
+  SupplementCatalog: 'SupplementCatalog',
   PendingMacroAdjustment: 'PendingMacroAdjustment'
 } as const
 
@@ -416,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "supplementRecommendation" | "pendingMacroAdjustment"
+    modelProps: "user" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1604,6 +1605,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SupplementCatalog: {
+      payload: Prisma.$SupplementCatalogPayload<ExtArgs>
+      fields: Prisma.SupplementCatalogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SupplementCatalogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplementCatalogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SupplementCatalogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplementCatalogPayload>
+        }
+        findFirst: {
+          args: Prisma.SupplementCatalogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplementCatalogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SupplementCatalogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplementCatalogPayload>
+        }
+        findMany: {
+          args: Prisma.SupplementCatalogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplementCatalogPayload>[]
+        }
+        create: {
+          args: Prisma.SupplementCatalogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplementCatalogPayload>
+        }
+        createMany: {
+          args: Prisma.SupplementCatalogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SupplementCatalogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplementCatalogPayload>[]
+        }
+        delete: {
+          args: Prisma.SupplementCatalogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplementCatalogPayload>
+        }
+        update: {
+          args: Prisma.SupplementCatalogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplementCatalogPayload>
+        }
+        deleteMany: {
+          args: Prisma.SupplementCatalogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SupplementCatalogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SupplementCatalogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplementCatalogPayload>[]
+        }
+        upsert: {
+          args: Prisma.SupplementCatalogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplementCatalogPayload>
+        }
+        aggregate: {
+          args: Prisma.SupplementCatalogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSupplementCatalog>
+        }
+        groupBy: {
+          args: Prisma.SupplementCatalogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SupplementCatalogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SupplementCatalogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SupplementCatalogCountAggregateOutputType> | number
+        }
+      }
+    }
     PendingMacroAdjustment: {
       payload: Prisma.$PendingMacroAdjustmentPayload<ExtArgs>
       fields: Prisma.PendingMacroAdjustmentFieldRefs
@@ -1975,10 +2050,32 @@ export const SupplementRecommendationScalarFieldEnum = {
   notes: 'notes',
   active: 'active',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  catalogId: 'catalogId'
 } as const
 
 export type SupplementRecommendationScalarFieldEnum = (typeof SupplementRecommendationScalarFieldEnum)[keyof typeof SupplementRecommendationScalarFieldEnum]
+
+
+export const SupplementCatalogScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  category: 'category',
+  description: 'description',
+  typicalForms: 'typicalForms',
+  defaultForm: 'defaultForm',
+  defaultUnit: 'defaultUnit',
+  dosageLow: 'dosageLow',
+  dosageHigh: 'dosageHigh',
+  dosageGuidance: 'dosageGuidance',
+  defaultTiming: 'defaultTiming',
+  defaultFrequency: 'defaultFrequency',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SupplementCatalogScalarFieldEnum = (typeof SupplementCatalogScalarFieldEnum)[keyof typeof SupplementCatalogScalarFieldEnum]
 
 
 export const PendingMacroAdjustmentScalarFieldEnum = {
@@ -2253,6 +2350,7 @@ export type GlobalOmitConfig = {
   notification?: Prisma.NotificationOmit
   coachNote?: Prisma.CoachNoteOmit
   supplementRecommendation?: Prisma.SupplementRecommendationOmit
+  supplementCatalog?: Prisma.SupplementCatalogOmit
   pendingMacroAdjustment?: Prisma.PendingMacroAdjustmentOmit
 }
 

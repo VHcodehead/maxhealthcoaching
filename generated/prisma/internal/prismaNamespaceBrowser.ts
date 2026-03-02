@@ -67,6 +67,7 @@ export const ModelName = {
   Notification: 'Notification',
   CoachNote: 'CoachNote',
   SupplementRecommendation: 'SupplementRecommendation',
+  SupplementCatalog: 'SupplementCatalog',
   PendingMacroAdjustment: 'PendingMacroAdjustment'
 } as const
 
@@ -344,10 +345,32 @@ export const SupplementRecommendationScalarFieldEnum = {
   notes: 'notes',
   active: 'active',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  catalogId: 'catalogId'
 } as const
 
 export type SupplementRecommendationScalarFieldEnum = (typeof SupplementRecommendationScalarFieldEnum)[keyof typeof SupplementRecommendationScalarFieldEnum]
+
+
+export const SupplementCatalogScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  category: 'category',
+  description: 'description',
+  typicalForms: 'typicalForms',
+  defaultForm: 'defaultForm',
+  defaultUnit: 'defaultUnit',
+  dosageLow: 'dosageLow',
+  dosageHigh: 'dosageHigh',
+  dosageGuidance: 'dosageGuidance',
+  defaultTiming: 'defaultTiming',
+  defaultFrequency: 'defaultFrequency',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SupplementCatalogScalarFieldEnum = (typeof SupplementCatalogScalarFieldEnum)[keyof typeof SupplementCatalogScalarFieldEnum]
 
 
 export const PendingMacroAdjustmentScalarFieldEnum = {

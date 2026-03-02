@@ -51,6 +51,9 @@ const CATEGORY_COLORS: Record<string, string> = {
   recovery: 'bg-blue-100 text-blue-700',
   protein: 'bg-purple-100 text-purple-700',
   health: 'bg-emerald-100 text-emerald-700',
+  organ_support: 'bg-teal-100 text-teal-700',
+  sleep: 'bg-violet-100 text-violet-700',
+  hormonal: 'bg-pink-100 text-pink-700',
 }
 
 function formatLabel(str: string) {

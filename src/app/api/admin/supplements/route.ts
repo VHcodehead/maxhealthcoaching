@@ -4,7 +4,7 @@ import { prisma } from '@/lib/db';
 
 const VALID_FREQUENCIES = ['daily', 'twice_daily', 'as_needed', 'cycling'];
 const VALID_TIMINGS = ['morning', 'pre_workout', 'post_workout', 'with_meals', 'evening', 'bedtime'];
-const VALID_CATEGORIES = ['vitamin', 'mineral', 'performance', 'recovery', 'protein', 'health'];
+const VALID_CATEGORIES = ['vitamin', 'mineral', 'performance', 'recovery', 'protein', 'health', 'organ_support', 'sleep', 'hormonal'];
 const VALID_FORMS = ['capsule', 'powder', 'liquid', 'tablet', 'softgel'];
 
 export async function GET(request: NextRequest) {
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { user_id, name, dosage, unit, frequency, timing, category, form, brand, cycling_instructions, notes } = body;
+    const { user_id, name, dosage, unit, frequency, timing, category, form, brand, cycling_instructions, notes, catalog_id } = body;
 
     if (!user_id || !name || !dosage || !unit || !frequency || !timing || !category || !form) {
       return NextResponse.json(
@@ -83,6 +83,7 @@ export async function POST(request: NextRequest) {
         brand: brand || null,
         cyclingInstructions: cycling_instructions || null,
         notes: notes || null,
+        catalogId: catalog_id || null,
       },
     });
 

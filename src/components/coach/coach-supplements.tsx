@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import {
   Card,
   CardContent,
@@ -11,13 +11,14 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Loader2, Pill, ChevronDown, ChevronUp, Plus, Pencil, Trash2, X, Check } from 'lucide-react'
+import { Loader2, Pill, ChevronDown, ChevronUp, Plus, Pencil, Trash2, X, Check, Info } from 'lucide-react'
 import type {
   SupplementRecommendation,
   SupplementFrequency,
   SupplementTiming,
   SupplementCategory,
   SupplementForm,
+  SupplementCatalogEntry,
 } from '@/types/database'
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -27,6 +28,9 @@ const CATEGORY_COLORS: Record<string, string> = {
   recovery: 'bg-blue-100 text-blue-700',
   protein: 'bg-purple-100 text-purple-700',
   health: 'bg-emerald-100 text-emerald-700',
+  organ_support: 'bg-teal-100 text-teal-700',
+  sleep: 'bg-violet-100 text-violet-700',
+  hormonal: 'bg-pink-100 text-pink-700',
 }
 
 const TIMING_COLORS: Record<string, string> = {
@@ -61,6 +65,9 @@ const CATEGORIES: { value: SupplementCategory; label: string }[] = [
   { value: 'recovery', label: 'Recovery' },
   { value: 'protein', label: 'Protein' },
   { value: 'health', label: 'Health' },
+  { value: 'organ_support', label: 'Organ Support' },
+  { value: 'sleep', label: 'Sleep' },
+  { value: 'hormonal', label: 'Hormonal' },
 ]
 
 const FORMS: { value: SupplementForm; label: string }[] = [
@@ -86,6 +93,7 @@ interface SupplementFormData {
   brand: string
   cycling_instructions: string
   notes: string
+  catalog_id: string
 }
 
 const emptyForm: SupplementFormData = {
@@ -99,6 +107,7 @@ const emptyForm: SupplementFormData = {
   brand: '',
   cycling_instructions: '',
   notes: '',
+  catalog_id: '',
 }
 
 function formatLabel(str: string) {
@@ -108,12 +117,19 @@ function formatLabel(str: string) {
 export function CoachSupplements({ clientId }: CoachSupplementsProps) {
   const [expanded, setExpanded] = useState(false)
   const [supplements, setSupplements] = useState<SupplementRecommendation[]>([])
+  const [catalog, setCatalog] = useState<SupplementCatalogEntry[]>([])
   const [loading, setLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [showAddForm, setShowAddForm] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
   const [formData, setFormData] = useState<SupplementFormData>(emptyForm)
+  const [selectedCatalogEntry, setSelectedCatalogEntry] = useState<SupplementCatalogEntry | null>(null)
+
+  // Searchable dropdown state
+  const [nameSearch, setNameSearch] = useState('')
+  const [showDropdown, setShowDropdown] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   const loadSupplements = useCallback(async () => {
     setLoading(true)
@@ -129,11 +145,65 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
     }
   }, [clientId])
 
+  const loadCatalog = useCallback(async () => {
+    try {
+      const res = await fetch('/api/admin/supplements/catalog')
+      if (!res.ok) throw new Error('Failed to load catalog')
+      const data = await res.json()
+      setCatalog(data.catalog || [])
+    } catch {
+      // Catalog is non-critical — coach can still type freeform
+    }
+  }, [])
+
   useEffect(() => {
     if (expanded && supplements.length === 0 && !loading) {
       loadSupplements()
     }
-  }, [expanded, supplements.length, loading, loadSupplements])
+    if (expanded && catalog.length === 0) {
+      loadCatalog()
+    }
+  }, [expanded, supplements.length, loading, loadSupplements, catalog.length, loadCatalog])
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setShowDropdown(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  const filteredCatalog = catalog.filter((entry) =>
+    entry.name.toLowerCase().includes(nameSearch.toLowerCase())
+  )
+
+  const handleSelectCatalogEntry = (entry: SupplementCatalogEntry) => {
+    setSelectedCatalogEntry(entry)
+    setNameSearch(entry.name)
+    setShowDropdown(false)
+    setFormData((p) => ({
+      ...p,
+      name: entry.name,
+      category: entry.category,
+      form: entry.default_form,
+      unit: entry.default_unit,
+      timing: entry.default_timing,
+      frequency: entry.default_frequency,
+      catalog_id: entry.id,
+    }))
+  }
+
+  const handleNameInputChange = (value: string) => {
+    setNameSearch(value)
+    setShowDropdown(true)
+    setFormData((p) => ({ ...p, name: value, catalog_id: '' }))
+    if (selectedCatalogEntry && value !== selectedCatalogEntry.name) {
+      setSelectedCatalogEntry(null)
+    }
+  }
 
   const handleSubmitAdd = async () => {
     if (!formData.name.trim() || !formData.dosage.trim()) return
@@ -157,6 +227,8 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
       const data = await res.json()
       setSupplements((prev) => [data.supplement, ...prev])
       setFormData(emptyForm)
+      setNameSearch('')
+      setSelectedCatalogEntry(null)
       setShowAddForm(false)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to add supplement')
@@ -167,6 +239,9 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
 
   const handleStartEdit = (supp: SupplementRecommendation) => {
     setEditingId(supp.id)
+    setNameSearch(supp.name)
+    const catalogEntry = catalog.find((c) => c.id === supp.catalog_id) || null
+    setSelectedCatalogEntry(catalogEntry)
     setFormData({
       name: supp.name,
       dosage: supp.dosage,
@@ -178,6 +253,7 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
       brand: supp.brand || '',
       cycling_instructions: supp.cycling_instructions || '',
       notes: supp.notes || '',
+      catalog_id: supp.catalog_id || '',
     })
   }
 
@@ -203,6 +279,8 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
       )
       setEditingId(null)
       setFormData(emptyForm)
+      setNameSearch('')
+      setSelectedCatalogEntry(null)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to update supplement')
     } finally {
@@ -222,23 +300,65 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
     }
   }
 
+  const renderDosageGuidance = () => {
+    if (!selectedCatalogEntry) return null
+    const entry = selectedCatalogEntry
+    return (
+      <div className="rounded-lg border border-blue-200 bg-blue-50 p-3">
+        <div className="mb-1.5 flex items-center gap-1.5 text-sm font-medium text-blue-800">
+          <Info className="size-3.5" />
+          Dosage Guidance
+        </div>
+        {entry.dosage_low && entry.dosage_high && (
+          <p className="text-sm font-medium text-blue-700">
+            Typical range: {entry.dosage_low}–{entry.dosage_high} {entry.default_unit}
+          </p>
+        )}
+        {entry.dosage_guidance && (
+          <p className="mt-1 text-xs text-blue-600">{entry.dosage_guidance}</p>
+        )}
+        {entry.description && (
+          <p className="mt-1.5 text-xs text-blue-500">{entry.description}</p>
+        )}
+      </div>
+    )
+  }
+
   const renderFormFields = () => (
     <div className="space-y-3">
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-        <div>
+        <div className="relative" ref={dropdownRef}>
           <Label className="text-xs">Name *</Label>
           <Input
-            value={formData.name}
-            onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
-            placeholder="e.g. Vitamin D3"
+            value={nameSearch}
+            onChange={(e) => handleNameInputChange(e.target.value)}
+            onFocus={() => setShowDropdown(true)}
+            placeholder="Search or type supplement..."
           />
+          {showDropdown && nameSearch.length > 0 && filteredCatalog.length > 0 && (
+            <div className="absolute z-50 mt-1 max-h-56 w-72 overflow-auto rounded-md border bg-background shadow-lg">
+              {filteredCatalog.map((entry) => (
+                <button
+                  key={entry.id}
+                  type="button"
+                  className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm hover:bg-muted"
+                  onClick={() => handleSelectCatalogEntry(entry)}
+                >
+                  <span className="font-medium">{entry.name}</span>
+                  <Badge className={`${CATEGORY_COLORS[entry.category] || 'bg-gray-100 text-gray-700'} text-[10px]`}>
+                    {formatLabel(entry.category)}
+                  </Badge>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
         <div>
           <Label className="text-xs">Dosage *</Label>
           <Input
             value={formData.dosage}
             onChange={(e) => setFormData((p) => ({ ...p, dosage: e.target.value }))}
-            placeholder="e.g. 5000"
+            placeholder={selectedCatalogEntry ? `${selectedCatalogEntry.dosage_low}–${selectedCatalogEntry.dosage_high}` : 'e.g. 5000'}
           />
         </div>
         <div>
@@ -250,6 +370,8 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
           />
         </div>
       </div>
+
+      {renderDosageGuidance()}
 
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         <div>
@@ -368,6 +490,8 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
               size="sm"
               onClick={() => {
                 setFormData(emptyForm)
+                setNameSearch('')
+                setSelectedCatalogEntry(null)
                 setShowAddForm(true)
                 setEditingId(null)
               }}
@@ -385,7 +509,7 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
                   {saving && <Loader2 className="mr-1 size-3 animate-spin" />}
                   Save
                 </Button>
-                <Button variant="ghost" size="sm" onClick={() => { setShowAddForm(false); setError(null) }}>
+                <Button variant="ghost" size="sm" onClick={() => { setShowAddForm(false); setError(null); setNameSearch(''); setSelectedCatalogEntry(null) }}>
                   Cancel
                 </Button>
               </div>
@@ -415,7 +539,7 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
                           <Check className="mr-1 size-3" />
                           Save
                         </Button>
-                        <Button variant="ghost" size="sm" onClick={() => { setEditingId(null); setError(null) }}>
+                        <Button variant="ghost" size="sm" onClick={() => { setEditingId(null); setError(null); setNameSearch(''); setSelectedCatalogEntry(null) }}>
                           <X className="mr-1 size-3" />
                           Cancel
                         </Button>

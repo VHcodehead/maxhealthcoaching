@@ -298,13 +298,14 @@ export interface CoachNote {
 
 export type SupplementFrequency = 'daily' | 'twice_daily' | 'as_needed' | 'cycling';
 export type SupplementTiming = 'morning' | 'pre_workout' | 'post_workout' | 'with_meals' | 'evening' | 'bedtime';
-export type SupplementCategory = 'vitamin' | 'mineral' | 'performance' | 'recovery' | 'protein' | 'health';
+export type SupplementCategory = 'vitamin' | 'mineral' | 'performance' | 'recovery' | 'protein' | 'health' | 'organ_support' | 'sleep' | 'hormonal';
 export type SupplementForm = 'capsule' | 'powder' | 'liquid' | 'tablet' | 'softgel';
 
 export interface SupplementRecommendation {
   id: string;
   user_id: string;
   coach_id: string;
+  catalog_id?: string;
   name: string;
   dosage: string;
   unit: string;
@@ -318,6 +319,22 @@ export interface SupplementRecommendation {
   active: boolean;
   created_at: string;
   updated_at: string;
+}
+
+export interface SupplementCatalogEntry {
+  id: string;
+  name: string;
+  category: SupplementCategory;
+  description: string;
+  typical_forms: string[];
+  default_form: SupplementForm;
+  default_unit: string;
+  dosage_low: string;
+  dosage_high: string;
+  dosage_guidance: string;
+  default_timing: SupplementTiming;
+  default_frequency: SupplementFrequency;
+  active: boolean;
 }
 
 export interface PendingMacroAdjustment {

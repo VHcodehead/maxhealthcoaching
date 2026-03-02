@@ -41,6 +41,7 @@ export type SupplementRecommendationMinAggregateOutputType = {
   active: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  catalogId: string | null
 }
 
 export type SupplementRecommendationMaxAggregateOutputType = {
@@ -60,6 +61,7 @@ export type SupplementRecommendationMaxAggregateOutputType = {
   active: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  catalogId: string | null
 }
 
 export type SupplementRecommendationCountAggregateOutputType = {
@@ -79,6 +81,7 @@ export type SupplementRecommendationCountAggregateOutputType = {
   active: number
   createdAt: number
   updatedAt: number
+  catalogId: number
   _all: number
 }
 
@@ -100,6 +103,7 @@ export type SupplementRecommendationMinAggregateInputType = {
   active?: true
   createdAt?: true
   updatedAt?: true
+  catalogId?: true
 }
 
 export type SupplementRecommendationMaxAggregateInputType = {
@@ -119,6 +123,7 @@ export type SupplementRecommendationMaxAggregateInputType = {
   active?: true
   createdAt?: true
   updatedAt?: true
+  catalogId?: true
 }
 
 export type SupplementRecommendationCountAggregateInputType = {
@@ -138,6 +143,7 @@ export type SupplementRecommendationCountAggregateInputType = {
   active?: true
   createdAt?: true
   updatedAt?: true
+  catalogId?: true
   _all?: true
 }
 
@@ -230,6 +236,7 @@ export type SupplementRecommendationGroupByOutputType = {
   active: boolean
   createdAt: Date
   updatedAt: Date
+  catalogId: string | null
   _count: SupplementRecommendationCountAggregateOutputType | null
   _min: SupplementRecommendationMinAggregateOutputType | null
   _max: SupplementRecommendationMaxAggregateOutputType | null
@@ -270,8 +277,10 @@ export type SupplementRecommendationWhereInput = {
   active?: Prisma.BoolFilter<"SupplementRecommendation"> | boolean
   createdAt?: Prisma.DateTimeFilter<"SupplementRecommendation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SupplementRecommendation"> | Date | string
+  catalogId?: Prisma.StringNullableFilter<"SupplementRecommendation"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   coach?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  catalog?: Prisma.XOR<Prisma.SupplementCatalogNullableScalarRelationFilter, Prisma.SupplementCatalogWhereInput> | null
 }
 
 export type SupplementRecommendationOrderByWithRelationInput = {
@@ -291,8 +300,10 @@ export type SupplementRecommendationOrderByWithRelationInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  catalogId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   coach?: Prisma.UserOrderByWithRelationInput
+  catalog?: Prisma.SupplementCatalogOrderByWithRelationInput
 }
 
 export type SupplementRecommendationWhereUniqueInput = Prisma.AtLeast<{
@@ -315,8 +326,10 @@ export type SupplementRecommendationWhereUniqueInput = Prisma.AtLeast<{
   active?: Prisma.BoolFilter<"SupplementRecommendation"> | boolean
   createdAt?: Prisma.DateTimeFilter<"SupplementRecommendation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SupplementRecommendation"> | Date | string
+  catalogId?: Prisma.StringNullableFilter<"SupplementRecommendation"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   coach?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  catalog?: Prisma.XOR<Prisma.SupplementCatalogNullableScalarRelationFilter, Prisma.SupplementCatalogWhereInput> | null
 }, "id">
 
 export type SupplementRecommendationOrderByWithAggregationInput = {
@@ -336,6 +349,7 @@ export type SupplementRecommendationOrderByWithAggregationInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  catalogId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SupplementRecommendationCountOrderByAggregateInput
   _max?: Prisma.SupplementRecommendationMaxOrderByAggregateInput
   _min?: Prisma.SupplementRecommendationMinOrderByAggregateInput
@@ -361,6 +375,7 @@ export type SupplementRecommendationScalarWhereWithAggregatesInput = {
   active?: Prisma.BoolWithAggregatesFilter<"SupplementRecommendation"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"SupplementRecommendation"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"SupplementRecommendation"> | Date | string
+  catalogId?: Prisma.StringNullableWithAggregatesFilter<"SupplementRecommendation"> | string | null
 }
 
 export type SupplementRecommendationCreateInput = {
@@ -380,6 +395,7 @@ export type SupplementRecommendationCreateInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutClientSupplementsInput
   coach: Prisma.UserCreateNestedOneWithoutCoachSupplementsInput
+  catalog?: Prisma.SupplementCatalogCreateNestedOneWithoutRecommendationsInput
 }
 
 export type SupplementRecommendationUncheckedCreateInput = {
@@ -399,6 +415,7 @@ export type SupplementRecommendationUncheckedCreateInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  catalogId?: string | null
 }
 
 export type SupplementRecommendationUpdateInput = {
@@ -418,6 +435,7 @@ export type SupplementRecommendationUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutClientSupplementsNestedInput
   coach?: Prisma.UserUpdateOneRequiredWithoutCoachSupplementsNestedInput
+  catalog?: Prisma.SupplementCatalogUpdateOneWithoutRecommendationsNestedInput
 }
 
 export type SupplementRecommendationUncheckedUpdateInput = {
@@ -437,6 +455,7 @@ export type SupplementRecommendationUncheckedUpdateInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  catalogId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SupplementRecommendationCreateManyInput = {
@@ -456,6 +475,7 @@ export type SupplementRecommendationCreateManyInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  catalogId?: string | null
 }
 
 export type SupplementRecommendationUpdateManyMutationInput = {
@@ -492,6 +512,7 @@ export type SupplementRecommendationUncheckedUpdateManyInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  catalogId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SupplementRecommendationListRelationFilter = {
@@ -521,6 +542,7 @@ export type SupplementRecommendationCountOrderByAggregateInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  catalogId?: Prisma.SortOrder
 }
 
 export type SupplementRecommendationMaxOrderByAggregateInput = {
@@ -540,6 +562,7 @@ export type SupplementRecommendationMaxOrderByAggregateInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  catalogId?: Prisma.SortOrder
 }
 
 export type SupplementRecommendationMinOrderByAggregateInput = {
@@ -559,6 +582,7 @@ export type SupplementRecommendationMinOrderByAggregateInput = {
   active?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  catalogId?: Prisma.SortOrder
 }
 
 export type SupplementRecommendationCreateNestedManyWithoutUserInput = {
@@ -645,6 +669,48 @@ export type SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput =
   deleteMany?: Prisma.SupplementRecommendationScalarWhereInput | Prisma.SupplementRecommendationScalarWhereInput[]
 }
 
+export type SupplementRecommendationCreateNestedManyWithoutCatalogInput = {
+  create?: Prisma.XOR<Prisma.SupplementRecommendationCreateWithoutCatalogInput, Prisma.SupplementRecommendationUncheckedCreateWithoutCatalogInput> | Prisma.SupplementRecommendationCreateWithoutCatalogInput[] | Prisma.SupplementRecommendationUncheckedCreateWithoutCatalogInput[]
+  connectOrCreate?: Prisma.SupplementRecommendationCreateOrConnectWithoutCatalogInput | Prisma.SupplementRecommendationCreateOrConnectWithoutCatalogInput[]
+  createMany?: Prisma.SupplementRecommendationCreateManyCatalogInputEnvelope
+  connect?: Prisma.SupplementRecommendationWhereUniqueInput | Prisma.SupplementRecommendationWhereUniqueInput[]
+}
+
+export type SupplementRecommendationUncheckedCreateNestedManyWithoutCatalogInput = {
+  create?: Prisma.XOR<Prisma.SupplementRecommendationCreateWithoutCatalogInput, Prisma.SupplementRecommendationUncheckedCreateWithoutCatalogInput> | Prisma.SupplementRecommendationCreateWithoutCatalogInput[] | Prisma.SupplementRecommendationUncheckedCreateWithoutCatalogInput[]
+  connectOrCreate?: Prisma.SupplementRecommendationCreateOrConnectWithoutCatalogInput | Prisma.SupplementRecommendationCreateOrConnectWithoutCatalogInput[]
+  createMany?: Prisma.SupplementRecommendationCreateManyCatalogInputEnvelope
+  connect?: Prisma.SupplementRecommendationWhereUniqueInput | Prisma.SupplementRecommendationWhereUniqueInput[]
+}
+
+export type SupplementRecommendationUpdateManyWithoutCatalogNestedInput = {
+  create?: Prisma.XOR<Prisma.SupplementRecommendationCreateWithoutCatalogInput, Prisma.SupplementRecommendationUncheckedCreateWithoutCatalogInput> | Prisma.SupplementRecommendationCreateWithoutCatalogInput[] | Prisma.SupplementRecommendationUncheckedCreateWithoutCatalogInput[]
+  connectOrCreate?: Prisma.SupplementRecommendationCreateOrConnectWithoutCatalogInput | Prisma.SupplementRecommendationCreateOrConnectWithoutCatalogInput[]
+  upsert?: Prisma.SupplementRecommendationUpsertWithWhereUniqueWithoutCatalogInput | Prisma.SupplementRecommendationUpsertWithWhereUniqueWithoutCatalogInput[]
+  createMany?: Prisma.SupplementRecommendationCreateManyCatalogInputEnvelope
+  set?: Prisma.SupplementRecommendationWhereUniqueInput | Prisma.SupplementRecommendationWhereUniqueInput[]
+  disconnect?: Prisma.SupplementRecommendationWhereUniqueInput | Prisma.SupplementRecommendationWhereUniqueInput[]
+  delete?: Prisma.SupplementRecommendationWhereUniqueInput | Prisma.SupplementRecommendationWhereUniqueInput[]
+  connect?: Prisma.SupplementRecommendationWhereUniqueInput | Prisma.SupplementRecommendationWhereUniqueInput[]
+  update?: Prisma.SupplementRecommendationUpdateWithWhereUniqueWithoutCatalogInput | Prisma.SupplementRecommendationUpdateWithWhereUniqueWithoutCatalogInput[]
+  updateMany?: Prisma.SupplementRecommendationUpdateManyWithWhereWithoutCatalogInput | Prisma.SupplementRecommendationUpdateManyWithWhereWithoutCatalogInput[]
+  deleteMany?: Prisma.SupplementRecommendationScalarWhereInput | Prisma.SupplementRecommendationScalarWhereInput[]
+}
+
+export type SupplementRecommendationUncheckedUpdateManyWithoutCatalogNestedInput = {
+  create?: Prisma.XOR<Prisma.SupplementRecommendationCreateWithoutCatalogInput, Prisma.SupplementRecommendationUncheckedCreateWithoutCatalogInput> | Prisma.SupplementRecommendationCreateWithoutCatalogInput[] | Prisma.SupplementRecommendationUncheckedCreateWithoutCatalogInput[]
+  connectOrCreate?: Prisma.SupplementRecommendationCreateOrConnectWithoutCatalogInput | Prisma.SupplementRecommendationCreateOrConnectWithoutCatalogInput[]
+  upsert?: Prisma.SupplementRecommendationUpsertWithWhereUniqueWithoutCatalogInput | Prisma.SupplementRecommendationUpsertWithWhereUniqueWithoutCatalogInput[]
+  createMany?: Prisma.SupplementRecommendationCreateManyCatalogInputEnvelope
+  set?: Prisma.SupplementRecommendationWhereUniqueInput | Prisma.SupplementRecommendationWhereUniqueInput[]
+  disconnect?: Prisma.SupplementRecommendationWhereUniqueInput | Prisma.SupplementRecommendationWhereUniqueInput[]
+  delete?: Prisma.SupplementRecommendationWhereUniqueInput | Prisma.SupplementRecommendationWhereUniqueInput[]
+  connect?: Prisma.SupplementRecommendationWhereUniqueInput | Prisma.SupplementRecommendationWhereUniqueInput[]
+  update?: Prisma.SupplementRecommendationUpdateWithWhereUniqueWithoutCatalogInput | Prisma.SupplementRecommendationUpdateWithWhereUniqueWithoutCatalogInput[]
+  updateMany?: Prisma.SupplementRecommendationUpdateManyWithWhereWithoutCatalogInput | Prisma.SupplementRecommendationUpdateManyWithWhereWithoutCatalogInput[]
+  deleteMany?: Prisma.SupplementRecommendationScalarWhereInput | Prisma.SupplementRecommendationScalarWhereInput[]
+}
+
 export type SupplementRecommendationCreateWithoutUserInput = {
   id?: string
   name: string
@@ -661,6 +727,7 @@ export type SupplementRecommendationCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   coach: Prisma.UserCreateNestedOneWithoutCoachSupplementsInput
+  catalog?: Prisma.SupplementCatalogCreateNestedOneWithoutRecommendationsInput
 }
 
 export type SupplementRecommendationUncheckedCreateWithoutUserInput = {
@@ -679,6 +746,7 @@ export type SupplementRecommendationUncheckedCreateWithoutUserInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  catalogId?: string | null
 }
 
 export type SupplementRecommendationCreateOrConnectWithoutUserInput = {
@@ -707,6 +775,7 @@ export type SupplementRecommendationCreateWithoutCoachInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutClientSupplementsInput
+  catalog?: Prisma.SupplementCatalogCreateNestedOneWithoutRecommendationsInput
 }
 
 export type SupplementRecommendationUncheckedCreateWithoutCoachInput = {
@@ -725,6 +794,7 @@ export type SupplementRecommendationUncheckedCreateWithoutCoachInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  catalogId?: string | null
 }
 
 export type SupplementRecommendationCreateOrConnectWithoutCoachInput = {
@@ -773,6 +843,7 @@ export type SupplementRecommendationScalarWhereInput = {
   active?: Prisma.BoolFilter<"SupplementRecommendation"> | boolean
   createdAt?: Prisma.DateTimeFilter<"SupplementRecommendation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SupplementRecommendation"> | Date | string
+  catalogId?: Prisma.StringNullableFilter<"SupplementRecommendation"> | string | null
 }
 
 export type SupplementRecommendationUpsertWithWhereUniqueWithoutCoachInput = {
@@ -791,6 +862,70 @@ export type SupplementRecommendationUpdateManyWithWhereWithoutCoachInput = {
   data: Prisma.XOR<Prisma.SupplementRecommendationUpdateManyMutationInput, Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachInput>
 }
 
+export type SupplementRecommendationCreateWithoutCatalogInput = {
+  id?: string
+  name: string
+  dosage: string
+  unit: string
+  frequency: string
+  timing: string
+  category: string
+  form: string
+  brand?: string | null
+  cyclingInstructions?: string | null
+  notes?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutClientSupplementsInput
+  coach: Prisma.UserCreateNestedOneWithoutCoachSupplementsInput
+}
+
+export type SupplementRecommendationUncheckedCreateWithoutCatalogInput = {
+  id?: string
+  userId: string
+  coachId: string
+  name: string
+  dosage: string
+  unit: string
+  frequency: string
+  timing: string
+  category: string
+  form: string
+  brand?: string | null
+  cyclingInstructions?: string | null
+  notes?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SupplementRecommendationCreateOrConnectWithoutCatalogInput = {
+  where: Prisma.SupplementRecommendationWhereUniqueInput
+  create: Prisma.XOR<Prisma.SupplementRecommendationCreateWithoutCatalogInput, Prisma.SupplementRecommendationUncheckedCreateWithoutCatalogInput>
+}
+
+export type SupplementRecommendationCreateManyCatalogInputEnvelope = {
+  data: Prisma.SupplementRecommendationCreateManyCatalogInput | Prisma.SupplementRecommendationCreateManyCatalogInput[]
+  skipDuplicates?: boolean
+}
+
+export type SupplementRecommendationUpsertWithWhereUniqueWithoutCatalogInput = {
+  where: Prisma.SupplementRecommendationWhereUniqueInput
+  update: Prisma.XOR<Prisma.SupplementRecommendationUpdateWithoutCatalogInput, Prisma.SupplementRecommendationUncheckedUpdateWithoutCatalogInput>
+  create: Prisma.XOR<Prisma.SupplementRecommendationCreateWithoutCatalogInput, Prisma.SupplementRecommendationUncheckedCreateWithoutCatalogInput>
+}
+
+export type SupplementRecommendationUpdateWithWhereUniqueWithoutCatalogInput = {
+  where: Prisma.SupplementRecommendationWhereUniqueInput
+  data: Prisma.XOR<Prisma.SupplementRecommendationUpdateWithoutCatalogInput, Prisma.SupplementRecommendationUncheckedUpdateWithoutCatalogInput>
+}
+
+export type SupplementRecommendationUpdateManyWithWhereWithoutCatalogInput = {
+  where: Prisma.SupplementRecommendationScalarWhereInput
+  data: Prisma.XOR<Prisma.SupplementRecommendationUpdateManyMutationInput, Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCatalogInput>
+}
+
 export type SupplementRecommendationCreateManyUserInput = {
   id?: string
   coachId: string
@@ -807,6 +942,7 @@ export type SupplementRecommendationCreateManyUserInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  catalogId?: string | null
 }
 
 export type SupplementRecommendationCreateManyCoachInput = {
@@ -825,6 +961,7 @@ export type SupplementRecommendationCreateManyCoachInput = {
   active?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  catalogId?: string | null
 }
 
 export type SupplementRecommendationUpdateWithoutUserInput = {
@@ -843,6 +980,7 @@ export type SupplementRecommendationUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coach?: Prisma.UserUpdateOneRequiredWithoutCoachSupplementsNestedInput
+  catalog?: Prisma.SupplementCatalogUpdateOneWithoutRecommendationsNestedInput
 }
 
 export type SupplementRecommendationUncheckedUpdateWithoutUserInput = {
@@ -861,6 +999,7 @@ export type SupplementRecommendationUncheckedUpdateWithoutUserInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  catalogId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SupplementRecommendationUncheckedUpdateManyWithoutUserInput = {
@@ -879,6 +1018,7 @@ export type SupplementRecommendationUncheckedUpdateManyWithoutUserInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  catalogId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SupplementRecommendationUpdateWithoutCoachInput = {
@@ -897,6 +1037,7 @@ export type SupplementRecommendationUpdateWithoutCoachInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutClientSupplementsNestedInput
+  catalog?: Prisma.SupplementCatalogUpdateOneWithoutRecommendationsNestedInput
 }
 
 export type SupplementRecommendationUncheckedUpdateWithoutCoachInput = {
@@ -915,11 +1056,89 @@ export type SupplementRecommendationUncheckedUpdateWithoutCoachInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  catalogId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SupplementRecommendationUncheckedUpdateManyWithoutCoachInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  dosage?: Prisma.StringFieldUpdateOperationsInput | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  frequency?: Prisma.StringFieldUpdateOperationsInput | string
+  timing?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  form?: Prisma.StringFieldUpdateOperationsInput | string
+  brand?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cyclingInstructions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  catalogId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type SupplementRecommendationCreateManyCatalogInput = {
+  id?: string
+  userId: string
+  coachId: string
+  name: string
+  dosage: string
+  unit: string
+  frequency: string
+  timing: string
+  category: string
+  form: string
+  brand?: string | null
+  cyclingInstructions?: string | null
+  notes?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SupplementRecommendationUpdateWithoutCatalogInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  dosage?: Prisma.StringFieldUpdateOperationsInput | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  frequency?: Prisma.StringFieldUpdateOperationsInput | string
+  timing?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  form?: Prisma.StringFieldUpdateOperationsInput | string
+  brand?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cyclingInstructions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutClientSupplementsNestedInput
+  coach?: Prisma.UserUpdateOneRequiredWithoutCoachSupplementsNestedInput
+}
+
+export type SupplementRecommendationUncheckedUpdateWithoutCatalogInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  coachId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  dosage?: Prisma.StringFieldUpdateOperationsInput | string
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  frequency?: Prisma.StringFieldUpdateOperationsInput | string
+  timing?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  form?: Prisma.StringFieldUpdateOperationsInput | string
+  brand?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cyclingInstructions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SupplementRecommendationUncheckedUpdateManyWithoutCatalogInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  coachId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   dosage?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
@@ -954,8 +1173,10 @@ export type SupplementRecommendationSelect<ExtArgs extends runtime.Types.Extensi
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  catalogId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   coach?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  catalog?: boolean | Prisma.SupplementRecommendation$catalogArgs<ExtArgs>
 }, ExtArgs["result"]["supplementRecommendation"]>
 
 export type SupplementRecommendationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -975,8 +1196,10 @@ export type SupplementRecommendationSelectCreateManyAndReturn<ExtArgs extends ru
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  catalogId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   coach?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  catalog?: boolean | Prisma.SupplementRecommendation$catalogArgs<ExtArgs>
 }, ExtArgs["result"]["supplementRecommendation"]>
 
 export type SupplementRecommendationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -996,8 +1219,10 @@ export type SupplementRecommendationSelectUpdateManyAndReturn<ExtArgs extends ru
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  catalogId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   coach?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  catalog?: boolean | Prisma.SupplementRecommendation$catalogArgs<ExtArgs>
 }, ExtArgs["result"]["supplementRecommendation"]>
 
 export type SupplementRecommendationSelectScalar = {
@@ -1017,20 +1242,24 @@ export type SupplementRecommendationSelectScalar = {
   active?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  catalogId?: boolean
 }
 
-export type SupplementRecommendationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "coachId" | "name" | "dosage" | "unit" | "frequency" | "timing" | "category" | "form" | "brand" | "cyclingInstructions" | "notes" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["supplementRecommendation"]>
+export type SupplementRecommendationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "coachId" | "name" | "dosage" | "unit" | "frequency" | "timing" | "category" | "form" | "brand" | "cyclingInstructions" | "notes" | "active" | "createdAt" | "updatedAt" | "catalogId", ExtArgs["result"]["supplementRecommendation"]>
 export type SupplementRecommendationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   coach?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  catalog?: boolean | Prisma.SupplementRecommendation$catalogArgs<ExtArgs>
 }
 export type SupplementRecommendationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   coach?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  catalog?: boolean | Prisma.SupplementRecommendation$catalogArgs<ExtArgs>
 }
 export type SupplementRecommendationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   coach?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  catalog?: boolean | Prisma.SupplementRecommendation$catalogArgs<ExtArgs>
 }
 
 export type $SupplementRecommendationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1038,6 +1267,7 @@ export type $SupplementRecommendationPayload<ExtArgs extends runtime.Types.Exten
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     coach: Prisma.$UserPayload<ExtArgs>
+    catalog: Prisma.$SupplementCatalogPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1056,6 +1286,7 @@ export type $SupplementRecommendationPayload<ExtArgs extends runtime.Types.Exten
     active: boolean
     createdAt: Date
     updatedAt: Date
+    catalogId: string | null
   }, ExtArgs["result"]["supplementRecommendation"]>
   composites: {}
 }
@@ -1452,6 +1683,7 @@ export interface Prisma__SupplementRecommendationClient<T, Null = never, ExtArgs
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   coach<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  catalog<T extends Prisma.SupplementRecommendation$catalogArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SupplementRecommendation$catalogArgs<ExtArgs>>): Prisma.Prisma__SupplementCatalogClient<runtime.Types.Result.GetResult<Prisma.$SupplementCatalogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1497,6 +1729,7 @@ export interface SupplementRecommendationFieldRefs {
   readonly active: Prisma.FieldRef<"SupplementRecommendation", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"SupplementRecommendation", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"SupplementRecommendation", 'DateTime'>
+  readonly catalogId: Prisma.FieldRef<"SupplementRecommendation", 'String'>
 }
     
 
@@ -1890,6 +2123,25 @@ export type SupplementRecommendationDeleteManyArgs<ExtArgs extends runtime.Types
    * Limit how many SupplementRecommendations to delete.
    */
   limit?: number
+}
+
+/**
+ * SupplementRecommendation.catalog
+ */
+export type SupplementRecommendation$catalogArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SupplementCatalog
+   */
+  select?: Prisma.SupplementCatalogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SupplementCatalog
+   */
+  omit?: Prisma.SupplementCatalogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SupplementCatalogInclude<ExtArgs> | null
+  where?: Prisma.SupplementCatalogWhereInput
 }
 
 /**

@@ -302,10 +302,35 @@ model SupplementRecommendation {
   createdAt            DateTime @default(now()) @map("created_at")
   updatedAt            DateTime @default(now()) @updatedAt @map("updated_at")
 
-  user  User @relation("clientSupplements", fields: [userId], references: [id], onDelete: Cascade)
-  coach User @relation("coachSupplements", fields: [coachId], references: [id], onDelete: Cascade)
+  catalogId  String?  @map("catalog_id")
+
+  user    User                @relation("clientSupplements", fields: [userId], references: [id], onDelete: Cascade)
+  coach   User                @relation("coachSupplements", fields: [coachId], references: [id], onDelete: Cascade)
+  catalog SupplementCatalog?  @relation(fields: [catalogId], references: [id], onDelete: SetNull)
 
   @@map("supplement_recommendations")
+}
+
+model SupplementCatalog {
+  id                String   @id @default(uuid())
+  name              String   @unique
+  category          String
+  description       String   @default("")
+  typicalForms      String[] @default([]) @map("typical_forms")
+  defaultForm       String   @default("capsule") @map("default_form")
+  defaultUnit       String   @default("mg") @map("default_unit")
+  dosageLow         String   @default("") @map("dosage_low")
+  dosageHigh        String   @default("") @map("dosage_high")
+  dosageGuidance    String   @default("") @map("dosage_guidance")
+  defaultTiming     String   @default("morning") @map("default_timing")
+  defaultFrequency  String   @default("daily") @map("default_frequency")
+  active            Boolean  @default(true)
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @default(now()) @updatedAt @map("updated_at")
+
+  recommendations   SupplementRecommendation[]
+
+  @@map("supplement_catalog")
 }
 
 model PendingMacroAdjustment {
