@@ -58,7 +58,10 @@ Plans:
   2. Coach can add and remove individual exercises from any training day
   3. Coach can edit cardio prescriptions per training day (type, duration, frequency) and the changes persist and display correctly to the client
   4. All generated plan content — macros, meals, training, supplements — is editable inline with changes saving and reflecting on the client side
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 03-01-PLAN.md — Add and remove individual meals from client meal plans with day total recalculation
+- [ ] 03-02-PLAN.md — Verify and fix exercise/cardio editing, full editability audit across all content types
 
 ### Phase 4: Email Notifications
 **Goal**: Coach and clients receive the right email at the right moment throughout the coaching workflow
@@ -100,7 +103,7 @@ Note: Phase 4 depends on Phase 1 only and can begin after Phase 1 completes. Pha
 |-------|----------------|--------|-----------|
 | 1. Security and Auth | 3/3 | Complete   | 2026-03-31 |
 | 2. Client Vetting | 0/2 | Planning complete | - |
-| 3. Coach Editing | 0/TBD | Not started | - |
+| 3. Coach Editing | 0/2 | Planning complete | - |
 | 4. Email Notifications | 0/TBD | Not started | - |
 | 5. Payment Readiness | 0/TBD | Not started | - |
 | 6. Pipeline Verification | 0/TBD | Not started | - |
