@@ -12,7 +12,7 @@ Six phases take the platform from a functional but incomplete v0.9 prototype to 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Security and Auth** - Rate limiting, password reset, and email verification
+- [x] **Phase 1: Security and Auth** - Rate limiting, password reset, and email verification (completed 2026-03-31)
 - [ ] **Phase 2: Client Vetting** - Application flow and coach approval before access is granted
 - [ ] **Phase 3: Coach Editing** - Audit and complete all editing capabilities (meals, exercises, cardio)
 - [ ] **Phase 4: Email Notifications** - Email service integration and all transactional notification triggers
@@ -30,7 +30,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. New signup triggers an email verification message and the account is not fully accessible until verified
   3. Repeated failed login attempts are rejected with rate limiting (not just silently allowed through)
   4. The "Forgot password?" link on the login page navigates to a functional reset flow, not a dead anchor
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 Plans:
 - [ ] 01-01-PLAN.md — Shared infrastructure: Resend email service, rate limiter, Prisma token models, schemas, middleware
 - [ ] 01-02-PLAN.md — Password reset flow: forgot-password and reset-password pages + API routes
@@ -95,7 +95,7 @@ Note: Phase 4 depends on Phase 1 only and can begin after Phase 1 completes. Pha
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Security and Auth | 2/3 | In Progress|  |
+| 1. Security and Auth | 3/3 | Complete   | 2026-03-31 |
 | 2. Client Vetting | 0/TBD | Not started | - |
 | 3. Coach Editing | 0/TBD | Not started | - |
 | 4. Email Notifications | 0/TBD | Not started | - |
