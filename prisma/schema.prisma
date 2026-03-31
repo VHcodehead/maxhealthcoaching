@@ -32,8 +32,34 @@ model User {
   clientSupplements   SupplementRecommendation[] @relation("clientSupplements")
   coachSupplements    SupplementRecommendation[] @relation("coachSupplements")
   pendingMacroAdjustments PendingMacroAdjustment[]
+  passwordResetTokens     PasswordResetToken[]
+  emailVerificationTokens EmailVerificationToken[]
 
   @@map("users")
+}
+
+model PasswordResetToken {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  hashedToken String   @map("hashed_token")
+  expiresAt   DateTime @map("expires_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("password_reset_tokens")
+}
+
+model EmailVerificationToken {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  hashedToken String   @map("hashed_token")
+  expiresAt   DateTime @map("expires_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("email_verification_tokens")
 }
 
 model Profile {
