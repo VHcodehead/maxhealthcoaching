@@ -168,7 +168,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
               <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-base px-8" asChild>
-                <Link href="/pricing">Start Your Transformation <ArrowRight className="w-4 h-4 ml-2" /></Link>
+                <Link href="/signup">Apply Now <ArrowRight className="w-4 h-4 ml-2" /></Link>
               </Button>
               <Button size="lg" variant="outline" className="text-base" asChild>
                 <Link href="/quiz">Take Free Assessment</Link>

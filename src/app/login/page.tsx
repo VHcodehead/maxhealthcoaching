@@ -142,12 +142,12 @@ function LoginContent() {
             </form>
 
             <div className="mt-6 text-center text-sm text-muted-foreground">
-              Don&apos;t have an account?{' '}
+              Want to work with me?{' '}
               <Link
                 href="/signup"
                 className="font-medium text-foreground hover:underline"
               >
-                Sign up
+                Apply Now
               </Link>
             </div>
           </CardContent>
