@@ -31,6 +31,8 @@ import {
   Moon,
   Footprints,
   Pencil,
+  Plus,
+  Trash2,
 } from 'lucide-react'
 import type {
   Profile,
@@ -200,6 +202,13 @@ export default function ClientDetailPage() {
     }
   }
 
+  const recalculateDayTotals = (meals: Meal[]) => ({
+    calories: meals.reduce((sum, m) => sum + (m.macro_totals?.calories ?? 0), 0),
+    protein: meals.reduce((sum, m) => sum + (m.macro_totals?.protein ?? 0), 0),
+    carbs: meals.reduce((sum, m) => sum + (m.macro_totals?.carbs ?? 0), 0),
+    fat: meals.reduce((sum, m) => sum + (m.macro_totals?.fat ?? 0), 0),
+  })
+
   const handleSaveMealEdit = async (
     dayIndex: number,
     mealIndex: number,
@@ -210,8 +219,13 @@ export default function ClientDetailPage() {
     try {
       const updatedDays = [...mealPlan.plan_data.days]
       const updatedMeals = [...updatedDays[dayIndex].meals]
-      updatedMeals[mealIndex] = updatedMeal
-      updatedDays[dayIndex] = { ...updatedDays[dayIndex], meals: updatedMeals }
+      if (mealIndex >= updatedMeals.length) {
+        updatedMeals.push(updatedMeal)
+      } else {
+        updatedMeals[mealIndex] = updatedMeal
+      }
+      const day_totals = recalculateDayTotals(updatedMeals)
+      updatedDays[dayIndex] = { ...updatedDays[dayIndex], meals: updatedMeals, day_totals }
       const updatedPlanData = { days: updatedDays }
 
       const res = await fetch('/api/admin/meal-plan', {
@@ -234,6 +248,60 @@ export default function ClientDetailPage() {
       )
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to save meal edit')
+    } finally {
+      setSavingMealEdit(false)
+    }
+  }
+
+  const handleAddMeal = (dayIndex: number) => {
+    if (!mealPlan) return
+    const blankMeal: Meal = {
+      name: 'New Meal',
+      recipe_title: '',
+      ingredients: [],
+      instructions: [],
+      macro_totals: { calories: 0, protein: 0, carbs: 0, fat: 0 },
+      swap_options: [],
+    }
+    setEditingMeal({
+      dayIndex,
+      mealIndex: mealPlan.plan_data.days[dayIndex].meals.length,
+      meal: blankMeal,
+    })
+  }
+
+  const handleDeleteMeal = async (dayIndex: number, mealIndex: number) => {
+    if (!mealPlan) return
+    if (!window.confirm('Are you sure you want to delete this meal?')) return
+    setSavingMealEdit(true)
+    try {
+      const updatedDays = [...mealPlan.plan_data.days]
+      const updatedMeals = [...updatedDays[dayIndex].meals]
+      updatedMeals.splice(mealIndex, 1)
+      const day_totals = recalculateDayTotals(updatedMeals)
+      updatedDays[dayIndex] = { ...updatedDays[dayIndex], meals: updatedMeals, day_totals }
+      const updatedPlanData = { days: updatedDays }
+
+      const res = await fetch('/api/admin/meal-plan', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id: clientId,
+          plan_data: updatedPlanData,
+          grocery_list: mealPlan.grocery_list,
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Failed to delete meal')
+      }
+
+      setMealPlan((prev) =>
+        prev ? { ...prev, plan_data: updatedPlanData } : prev
+      )
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to delete meal')
     } finally {
       setSavingMealEdit(false)
     }
@@ -894,6 +962,18 @@ export default function ClientDetailPage() {
                           >
                             <Pencil className="size-3" />
                           </Button>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="size-6 text-destructive hover:text-destructive"
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              handleDeleteMeal(dayIndex, mealIndex)
+                            }}
+                            disabled={savingMealEdit}
+                          >
+                            <Trash2 className="size-3" />
+                          </Button>
                         </div>
                       </div>
                       <p className="text-muted-foreground">
@@ -902,6 +982,15 @@ export default function ClientDetailPage() {
                     </div>
                   ))}
                 </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleAddMeal(dayIndex)}
+                  className="mt-2"
+                  disabled={savingMealEdit}
+                >
+                  <Plus className="mr-1 size-3" /> Add Meal
+                </Button>
               </div>
             ))}
           </CardContent>
