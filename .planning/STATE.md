@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v0.9
 milestone_name: milestone
 status: planning
-stopped_at: Completed 01-security-and-auth/01-02-PLAN.md
-last_updated: "2026-03-31T19:38:06.439Z"
+stopped_at: Completed 02-client-vetting 02-01-PLAN.md
+last_updated: "2026-03-31T23:01:57.372Z"
 last_activity: 2026-03-31 — Roadmap created for v1.0 Production Launch
 progress:
   total_phases: 6
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
+  total_plans: 5
+  completed_plans: 4
   percent: 0
 ---
 
@@ -53,6 +53,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-security-and-auth P01 | 12 | 2 tasks | 5 files |
 | Phase 01-security-and-auth P03 | 5 | 2 tasks | 7 files |
 | Phase 01-security-and-auth P02 | 16 | 2 tasks | 6 files |
+| Phase 02-client-vetting P01 | 18 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - [Phase 01-security-and-auth]: Email send failure is non-blocking on signup — token stored, error only logged, signup returns success
 - [Phase 01-security-and-auth]: Lazy Resend initialization in email.ts: prevents build-time Error when RESEND_API_KEY is not set
 - [Phase 01-security-and-auth]: Token hashing pattern established: raw token in URL, SHA-256 hash in DB, never store raw tokens
+- [Phase 02-client-vetting]: Application fields stored directly on Profile (not separate table) — simpler schema and enables onboarding pre-fill
+- [Phase 02-client-vetting]: No auto-login after application submit — user sees confirmation, waits for coach approval
 
 ### Pending Todos
 
@@ -83,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-31T19:32:41.602Z
-Stopped at: Completed 01-security-and-auth/01-02-PLAN.md
+Last session: 2026-03-31T23:01:57.371Z
+Stopped at: Completed 02-client-vetting 02-01-PLAN.md
 Resume file: None
