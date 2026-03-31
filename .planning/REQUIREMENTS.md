@@ -10,7 +10,7 @@ Requirements for production launch. Each maps to roadmap phases.
 ### Authentication & Security
 
 - [x] **AUTH-01**: User can reset password via email link (token-based)
-- [ ] **AUTH-02**: User receives email verification after signup
+- [x] **AUTH-02**: User receives email verification after signup
 - [x] **AUTH-03**: Login and signup endpoints are rate-limited against brute force
 - [ ] **AUTH-04**: "Forgot password?" link on login page works end-to-end
 
@@ -82,7 +82,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | AUTH-01 | Phase 1 | Complete |
-| AUTH-02 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Complete |
 | AUTH-03 | Phase 1 | Complete |
 | AUTH-04 | Phase 1 | Pending |
 | VET-01 | Phase 2 | Pending |

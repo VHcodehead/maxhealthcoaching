@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v0.9
 milestone_name: milestone
 status: planning
-stopped_at: Completed 01-security-and-auth/01-01-PLAN.md
-last_updated: "2026-03-31T19:13:15.061Z"
+stopped_at: Completed 01-security-and-auth/01-03-PLAN.md
+last_updated: "2026-03-31T19:21:03.020Z"
 last_activity: 2026-03-31 — Roadmap created for v1.0 Production Launch
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 3
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -51,6 +51,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 01-security-and-auth P01 | 12 | 2 tasks | 5 files |
+| Phase 01-security-and-auth P03 | 5 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -65,6 +66,8 @@ Recent decisions affecting current work:
 - [Phase 01-security-and-auth]: Used Resend SDK for email service — matches project decision, RESEND_API_KEY must be provisioned before Plans 02/03 work end-to-end
 - [Phase 01-security-and-auth]: In-memory Map for rate limiting (no Redis) — adequate for single-instance Next.js, upgrade path clear
 - [Phase 01-security-and-auth]: Separate PasswordResetToken and EmailVerificationToken models (not polymorphic) for Prisma type safety
+- [Phase 01-security-and-auth]: emailVerified stored as boolean in JWT (coerced with !!) to avoid NextAuth Date type conflict on DefaultUser
+- [Phase 01-security-and-auth]: Email send failure is non-blocking on signup — token stored, error only logged, signup returns success
 
 ### Pending Todos
 
@@ -77,6 +80,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-31T19:13:15.059Z
-Stopped at: Completed 01-security-and-auth/01-01-PLAN.md
+Last session: 2026-03-31T19:21:03.019Z
+Stopped at: Completed 01-security-and-auth/01-03-PLAN.md
 Resume file: None
