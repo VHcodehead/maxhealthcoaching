@@ -1,6 +1,13 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy initialization — avoids throwing at build time when RESEND_API_KEY is not set
+let _resend: Resend | null = null;
+function getResend(): Resend {
+  if (!_resend) {
+    _resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return _resend;
+}
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? 'MaxHealth Coaching <noreply@maxhealthfitness.com>';
 
@@ -65,7 +72,7 @@ function buildBrandedHtml(options: {
 }
 
 export async function sendEmail(to: string, subject: string, html: string): Promise<void> {
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM_EMAIL,
     to,
     subject,
