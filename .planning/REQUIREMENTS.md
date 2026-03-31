@@ -22,7 +22,7 @@ Requirements for production launch. Each maps to roadmap phases.
 
 ### Coach Editing
 
-- [ ] **EDIT-01**: Coach can add, edit, and remove individual meals from a client's meal plan
+- [x] **EDIT-01**: Coach can add, edit, and remove individual meals from a client's meal plan
 - [ ] **EDIT-02**: Coach can add, edit, and remove exercises from training days
 - [ ] **EDIT-03**: Coach can edit cardio prescriptions (type, duration, frequency) per training day
 - [ ] **EDIT-04**: All generated plan content (macros, meals, training, supplements) is fully editable by coach
@@ -88,7 +88,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | VET-01 | Phase 2 | Complete |
 | VET-02 | Phase 2 | Complete |
 | VET-03 | Phase 2 | Complete |
-| EDIT-01 | Phase 3 | Pending |
+| EDIT-01 | Phase 3 | Complete |
 | EDIT-02 | Phase 3 | Pending |
 | EDIT-03 | Phase 3 | Pending |
 | EDIT-04 | Phase 3 | Pending |
