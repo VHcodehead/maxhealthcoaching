@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 const { auth } = NextAuth(authConfig);
 
-const publicRoutes = ['/', '/login', '/signup', '/pricing', '/quiz', '/tools', '/results', '/blog', '/success', '/api/webhooks/stripe', '/api/leads', '/api/quiz', '/forgot-password', '/reset-password', '/verify-email'];
+const publicRoutes = ['/', '/login', '/signup', '/pricing', '/quiz', '/tools', '/results', '/blog', '/success', '/pending', '/api/webhooks/stripe', '/api/leads', '/api/quiz', '/forgot-password', '/reset-password', '/verify-email'];
 
 export default auth((req) => {
   const path = req.nextUrl.pathname;
@@ -30,6 +30,23 @@ export default auth((req) => {
   }
 
   const { role, subscriptionStatus, onboardingCompleted } = req.auth.user;
+
+  // Pending approval — block all routes except /pending
+  if (subscriptionStatus === 'pending_approval') {
+    if (path === '/pending') return NextResponse.next();
+    const url = req.nextUrl.clone();
+    url.pathname = '/pending';
+    return NextResponse.redirect(url);
+  }
+
+  // Rejected — redirect to /pending with status=rejected
+  if (subscriptionStatus === 'rejected') {
+    if (path === '/pending') return NextResponse.next();
+    const url = req.nextUrl.clone();
+    url.pathname = '/pending';
+    url.searchParams.set('status', 'rejected');
+    return NextResponse.redirect(url);
+  }
 
   // Coach routes - require coach/admin role
   if (path.startsWith('/coach')) {
