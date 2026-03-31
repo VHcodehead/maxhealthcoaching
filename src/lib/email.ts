@@ -112,3 +112,36 @@ export async function sendVerificationEmail(
 
   await sendEmail(to, 'Verify Your Email — MaxHealth Coaching', html);
 }
+
+export async function sendApprovalEmail(
+  to: string,
+  name: string,
+  loginUrl: string
+): Promise<void> {
+  const html = buildBrandedHtml({
+    heading: "You've Been Accepted!",
+    name,
+    body: "Great news — you've been accepted into MaxHealth Coaching! Click the button below to log in and get started on your fitness journey.",
+    ctaText: 'Get Started',
+    ctaUrl: loginUrl,
+  });
+
+  await sendEmail(to, 'Welcome to MaxHealth Coaching!', html);
+}
+
+export async function sendRejectionEmail(
+  to: string,
+  name: string
+): Promise<void> {
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://maxhealthfitness.com';
+
+  const html = buildBrandedHtml({
+    heading: 'Application Update',
+    name,
+    body: "Unfortunately, we're not able to take on new clients at this time. We'll reach out if a spot opens up.",
+    ctaText: 'Visit Website',
+    ctaUrl: appUrl,
+  });
+
+  await sendEmail(to, 'MaxHealth Coaching — Application Update', html);
+}
