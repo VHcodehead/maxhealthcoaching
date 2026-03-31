@@ -20,8 +20,24 @@ export type ProfileModel = runtime.Types.Result.DefaultSelection<Prisma.$Profile
 
 export type AggregateProfile = {
   _count: ProfileCountAggregateOutputType | null
+  _avg: ProfileAvgAggregateOutputType | null
+  _sum: ProfileSumAggregateOutputType | null
   _min: ProfileMinAggregateOutputType | null
   _max: ProfileMaxAggregateOutputType | null
+}
+
+export type ProfileAvgAggregateOutputType = {
+  applicationAge: number | null
+  applicationHeightFt: number | null
+  applicationHeightIn: number | null
+  applicationWeightLbs: number | null
+}
+
+export type ProfileSumAggregateOutputType = {
+  applicationAge: number | null
+  applicationHeightFt: number | null
+  applicationHeightIn: number | null
+  applicationWeightLbs: number | null
 }
 
 export type ProfileMinAggregateOutputType = {
@@ -38,6 +54,16 @@ export type ProfileMinAggregateOutputType = {
   referralCode: string | null
   referredBy: string | null
   onboardingCompleted: boolean | null
+  applicationGoal: string | null
+  applicationExperience: string | null
+  applicationCommitment: string | null
+  applicationGender: string | null
+  applicationAge: number | null
+  applicationHeightFt: number | null
+  applicationHeightIn: number | null
+  applicationWeightLbs: number | null
+  applicationMotivation: string | null
+  applicationSource: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,6 +82,16 @@ export type ProfileMaxAggregateOutputType = {
   referralCode: string | null
   referredBy: string | null
   onboardingCompleted: boolean | null
+  applicationGoal: string | null
+  applicationExperience: string | null
+  applicationCommitment: string | null
+  applicationGender: string | null
+  applicationAge: number | null
+  applicationHeightFt: number | null
+  applicationHeightIn: number | null
+  applicationWeightLbs: number | null
+  applicationMotivation: string | null
+  applicationSource: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -74,11 +110,35 @@ export type ProfileCountAggregateOutputType = {
   referralCode: number
   referredBy: number
   onboardingCompleted: number
+  applicationGoal: number
+  applicationExperience: number
+  applicationCommitment: number
+  applicationGender: number
+  applicationAge: number
+  applicationHeightFt: number
+  applicationHeightIn: number
+  applicationWeightLbs: number
+  applicationMotivation: number
+  applicationSource: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
+
+export type ProfileAvgAggregateInputType = {
+  applicationAge?: true
+  applicationHeightFt?: true
+  applicationHeightIn?: true
+  applicationWeightLbs?: true
+}
+
+export type ProfileSumAggregateInputType = {
+  applicationAge?: true
+  applicationHeightFt?: true
+  applicationHeightIn?: true
+  applicationWeightLbs?: true
+}
 
 export type ProfileMinAggregateInputType = {
   id?: true
@@ -94,6 +154,16 @@ export type ProfileMinAggregateInputType = {
   referralCode?: true
   referredBy?: true
   onboardingCompleted?: true
+  applicationGoal?: true
+  applicationExperience?: true
+  applicationCommitment?: true
+  applicationGender?: true
+  applicationAge?: true
+  applicationHeightFt?: true
+  applicationHeightIn?: true
+  applicationWeightLbs?: true
+  applicationMotivation?: true
+  applicationSource?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +182,16 @@ export type ProfileMaxAggregateInputType = {
   referralCode?: true
   referredBy?: true
   onboardingCompleted?: true
+  applicationGoal?: true
+  applicationExperience?: true
+  applicationCommitment?: true
+  applicationGender?: true
+  applicationAge?: true
+  applicationHeightFt?: true
+  applicationHeightIn?: true
+  applicationWeightLbs?: true
+  applicationMotivation?: true
+  applicationSource?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -130,6 +210,16 @@ export type ProfileCountAggregateInputType = {
   referralCode?: true
   referredBy?: true
   onboardingCompleted?: true
+  applicationGoal?: true
+  applicationExperience?: true
+  applicationCommitment?: true
+  applicationGender?: true
+  applicationAge?: true
+  applicationHeightFt?: true
+  applicationHeightIn?: true
+  applicationWeightLbs?: true
+  applicationMotivation?: true
+  applicationSource?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -173,6 +263,18 @@ export type ProfileAggregateArgs<ExtArgs extends runtime.Types.Extensions.Intern
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ProfileAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ProfileSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ProfileMinAggregateInputType
@@ -203,6 +305,8 @@ export type ProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   _count?: ProfileCountAggregateInputType | true
+  _avg?: ProfileAvgAggregateInputType
+  _sum?: ProfileSumAggregateInputType
   _min?: ProfileMinAggregateInputType
   _max?: ProfileMaxAggregateInputType
 }
@@ -221,9 +325,21 @@ export type ProfileGroupByOutputType = {
   referralCode: string | null
   referredBy: string | null
   onboardingCompleted: boolean
+  applicationGoal: string | null
+  applicationExperience: string | null
+  applicationCommitment: string | null
+  applicationGender: string | null
+  applicationAge: number | null
+  applicationHeightFt: number | null
+  applicationHeightIn: number | null
+  applicationWeightLbs: number | null
+  applicationMotivation: string | null
+  applicationSource: string | null
   createdAt: Date
   updatedAt: Date
   _count: ProfileCountAggregateOutputType | null
+  _avg: ProfileAvgAggregateOutputType | null
+  _sum: ProfileSumAggregateOutputType | null
   _min: ProfileMinAggregateOutputType | null
   _max: ProfileMaxAggregateOutputType | null
 }
@@ -260,6 +376,16 @@ export type ProfileWhereInput = {
   referralCode?: Prisma.StringNullableFilter<"Profile"> | string | null
   referredBy?: Prisma.StringNullableFilter<"Profile"> | string | null
   onboardingCompleted?: Prisma.BoolFilter<"Profile"> | boolean
+  applicationGoal?: Prisma.StringNullableFilter<"Profile"> | string | null
+  applicationExperience?: Prisma.StringNullableFilter<"Profile"> | string | null
+  applicationCommitment?: Prisma.StringNullableFilter<"Profile"> | string | null
+  applicationGender?: Prisma.StringNullableFilter<"Profile"> | string | null
+  applicationAge?: Prisma.IntNullableFilter<"Profile"> | number | null
+  applicationHeightFt?: Prisma.IntNullableFilter<"Profile"> | number | null
+  applicationHeightIn?: Prisma.IntNullableFilter<"Profile"> | number | null
+  applicationWeightLbs?: Prisma.IntNullableFilter<"Profile"> | number | null
+  applicationMotivation?: Prisma.StringNullableFilter<"Profile"> | string | null
+  applicationSource?: Prisma.StringNullableFilter<"Profile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -279,6 +405,16 @@ export type ProfileOrderByWithRelationInput = {
   referralCode?: Prisma.SortOrderInput | Prisma.SortOrder
   referredBy?: Prisma.SortOrderInput | Prisma.SortOrder
   onboardingCompleted?: Prisma.SortOrder
+  applicationGoal?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationExperience?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationCommitment?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationGender?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationAge?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationHeightFt?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationHeightIn?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationWeightLbs?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationMotivation?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationSource?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -301,6 +437,16 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   currentPeriodEnd?: Prisma.DateTimeNullableFilter<"Profile"> | Date | string | null
   referredBy?: Prisma.StringNullableFilter<"Profile"> | string | null
   onboardingCompleted?: Prisma.BoolFilter<"Profile"> | boolean
+  applicationGoal?: Prisma.StringNullableFilter<"Profile"> | string | null
+  applicationExperience?: Prisma.StringNullableFilter<"Profile"> | string | null
+  applicationCommitment?: Prisma.StringNullableFilter<"Profile"> | string | null
+  applicationGender?: Prisma.StringNullableFilter<"Profile"> | string | null
+  applicationAge?: Prisma.IntNullableFilter<"Profile"> | number | null
+  applicationHeightFt?: Prisma.IntNullableFilter<"Profile"> | number | null
+  applicationHeightIn?: Prisma.IntNullableFilter<"Profile"> | number | null
+  applicationWeightLbs?: Prisma.IntNullableFilter<"Profile"> | number | null
+  applicationMotivation?: Prisma.StringNullableFilter<"Profile"> | string | null
+  applicationSource?: Prisma.StringNullableFilter<"Profile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -320,11 +466,23 @@ export type ProfileOrderByWithAggregationInput = {
   referralCode?: Prisma.SortOrderInput | Prisma.SortOrder
   referredBy?: Prisma.SortOrderInput | Prisma.SortOrder
   onboardingCompleted?: Prisma.SortOrder
+  applicationGoal?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationExperience?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationCommitment?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationGender?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationAge?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationHeightFt?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationHeightIn?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationWeightLbs?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationMotivation?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicationSource?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProfileCountOrderByAggregateInput
+  _avg?: Prisma.ProfileAvgOrderByAggregateInput
   _max?: Prisma.ProfileMaxOrderByAggregateInput
   _min?: Prisma.ProfileMinOrderByAggregateInput
+  _sum?: Prisma.ProfileSumOrderByAggregateInput
 }
 
 export type ProfileScalarWhereWithAggregatesInput = {
@@ -344,6 +502,16 @@ export type ProfileScalarWhereWithAggregatesInput = {
   referralCode?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   referredBy?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   onboardingCompleted?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
+  applicationGoal?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  applicationExperience?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  applicationCommitment?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  applicationGender?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  applicationAge?: Prisma.IntNullableWithAggregatesFilter<"Profile"> | number | null
+  applicationHeightFt?: Prisma.IntNullableWithAggregatesFilter<"Profile"> | number | null
+  applicationHeightIn?: Prisma.IntNullableWithAggregatesFilter<"Profile"> | number | null
+  applicationWeightLbs?: Prisma.IntNullableWithAggregatesFilter<"Profile"> | number | null
+  applicationMotivation?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  applicationSource?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Profile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Profile"> | Date | string
 }
@@ -361,6 +529,16 @@ export type ProfileCreateInput = {
   referralCode?: string | null
   referredBy?: string | null
   onboardingCompleted?: boolean
+  applicationGoal?: string | null
+  applicationExperience?: string | null
+  applicationCommitment?: string | null
+  applicationGender?: string | null
+  applicationAge?: number | null
+  applicationHeightFt?: number | null
+  applicationHeightIn?: number | null
+  applicationWeightLbs?: number | null
+  applicationMotivation?: string | null
+  applicationSource?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProfileInput
@@ -380,6 +558,16 @@ export type ProfileUncheckedCreateInput = {
   referralCode?: string | null
   referredBy?: string | null
   onboardingCompleted?: boolean
+  applicationGoal?: string | null
+  applicationExperience?: string | null
+  applicationCommitment?: string | null
+  applicationGender?: string | null
+  applicationAge?: number | null
+  applicationHeightFt?: number | null
+  applicationHeightIn?: number | null
+  applicationWeightLbs?: number | null
+  applicationMotivation?: string | null
+  applicationSource?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -397,6 +585,16 @@ export type ProfileUpdateInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  applicationGoal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationGender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationAge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightFt?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightIn?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationWeightLbs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationMotivation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
@@ -416,6 +614,16 @@ export type ProfileUncheckedUpdateInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  applicationGoal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationGender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationAge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightFt?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightIn?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationWeightLbs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationMotivation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -434,6 +642,16 @@ export type ProfileCreateManyInput = {
   referralCode?: string | null
   referredBy?: string | null
   onboardingCompleted?: boolean
+  applicationGoal?: string | null
+  applicationExperience?: string | null
+  applicationCommitment?: string | null
+  applicationGender?: string | null
+  applicationAge?: number | null
+  applicationHeightFt?: number | null
+  applicationHeightIn?: number | null
+  applicationWeightLbs?: number | null
+  applicationMotivation?: string | null
+  applicationSource?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -451,6 +669,16 @@ export type ProfileUpdateManyMutationInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  applicationGoal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationGender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationAge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightFt?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightIn?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationWeightLbs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationMotivation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -469,6 +697,16 @@ export type ProfileUncheckedUpdateManyInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  applicationGoal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationGender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationAge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightFt?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightIn?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationWeightLbs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationMotivation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -492,8 +730,25 @@ export type ProfileCountOrderByAggregateInput = {
   referralCode?: Prisma.SortOrder
   referredBy?: Prisma.SortOrder
   onboardingCompleted?: Prisma.SortOrder
+  applicationGoal?: Prisma.SortOrder
+  applicationExperience?: Prisma.SortOrder
+  applicationCommitment?: Prisma.SortOrder
+  applicationGender?: Prisma.SortOrder
+  applicationAge?: Prisma.SortOrder
+  applicationHeightFt?: Prisma.SortOrder
+  applicationHeightIn?: Prisma.SortOrder
+  applicationWeightLbs?: Prisma.SortOrder
+  applicationMotivation?: Prisma.SortOrder
+  applicationSource?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ProfileAvgOrderByAggregateInput = {
+  applicationAge?: Prisma.SortOrder
+  applicationHeightFt?: Prisma.SortOrder
+  applicationHeightIn?: Prisma.SortOrder
+  applicationWeightLbs?: Prisma.SortOrder
 }
 
 export type ProfileMaxOrderByAggregateInput = {
@@ -510,6 +765,16 @@ export type ProfileMaxOrderByAggregateInput = {
   referralCode?: Prisma.SortOrder
   referredBy?: Prisma.SortOrder
   onboardingCompleted?: Prisma.SortOrder
+  applicationGoal?: Prisma.SortOrder
+  applicationExperience?: Prisma.SortOrder
+  applicationCommitment?: Prisma.SortOrder
+  applicationGender?: Prisma.SortOrder
+  applicationAge?: Prisma.SortOrder
+  applicationHeightFt?: Prisma.SortOrder
+  applicationHeightIn?: Prisma.SortOrder
+  applicationWeightLbs?: Prisma.SortOrder
+  applicationMotivation?: Prisma.SortOrder
+  applicationSource?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -528,8 +793,25 @@ export type ProfileMinOrderByAggregateInput = {
   referralCode?: Prisma.SortOrder
   referredBy?: Prisma.SortOrder
   onboardingCompleted?: Prisma.SortOrder
+  applicationGoal?: Prisma.SortOrder
+  applicationExperience?: Prisma.SortOrder
+  applicationCommitment?: Prisma.SortOrder
+  applicationGender?: Prisma.SortOrder
+  applicationAge?: Prisma.SortOrder
+  applicationHeightFt?: Prisma.SortOrder
+  applicationHeightIn?: Prisma.SortOrder
+  applicationWeightLbs?: Prisma.SortOrder
+  applicationMotivation?: Prisma.SortOrder
+  applicationSource?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ProfileSumOrderByAggregateInput = {
+  applicationAge?: Prisma.SortOrder
+  applicationHeightFt?: Prisma.SortOrder
+  applicationHeightIn?: Prisma.SortOrder
+  applicationWeightLbs?: Prisma.SortOrder
 }
 
 export type ProfileCreateNestedOneWithoutUserInput = {
@@ -572,6 +854,14 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type ProfileCreateWithoutUserInput = {
   id?: string
   email: string
@@ -585,6 +875,16 @@ export type ProfileCreateWithoutUserInput = {
   referralCode?: string | null
   referredBy?: string | null
   onboardingCompleted?: boolean
+  applicationGoal?: string | null
+  applicationExperience?: string | null
+  applicationCommitment?: string | null
+  applicationGender?: string | null
+  applicationAge?: number | null
+  applicationHeightFt?: number | null
+  applicationHeightIn?: number | null
+  applicationWeightLbs?: number | null
+  applicationMotivation?: string | null
+  applicationSource?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -602,6 +902,16 @@ export type ProfileUncheckedCreateWithoutUserInput = {
   referralCode?: string | null
   referredBy?: string | null
   onboardingCompleted?: boolean
+  applicationGoal?: string | null
+  applicationExperience?: string | null
+  applicationCommitment?: string | null
+  applicationGender?: string | null
+  applicationAge?: number | null
+  applicationHeightFt?: number | null
+  applicationHeightIn?: number | null
+  applicationWeightLbs?: number | null
+  applicationMotivation?: string | null
+  applicationSource?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -635,6 +945,16 @@ export type ProfileUpdateWithoutUserInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  applicationGoal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationGender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationAge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightFt?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightIn?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationWeightLbs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationMotivation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -652,6 +972,16 @@ export type ProfileUncheckedUpdateWithoutUserInput = {
   referralCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  applicationGoal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationExperience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationGender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationAge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightFt?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationHeightIn?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationWeightLbs?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  applicationMotivation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicationSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -672,6 +1002,16 @@ export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   referralCode?: boolean
   referredBy?: boolean
   onboardingCompleted?: boolean
+  applicationGoal?: boolean
+  applicationExperience?: boolean
+  applicationCommitment?: boolean
+  applicationGender?: boolean
+  applicationAge?: boolean
+  applicationHeightFt?: boolean
+  applicationHeightIn?: boolean
+  applicationWeightLbs?: boolean
+  applicationMotivation?: boolean
+  applicationSource?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -691,6 +1031,16 @@ export type ProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   referralCode?: boolean
   referredBy?: boolean
   onboardingCompleted?: boolean
+  applicationGoal?: boolean
+  applicationExperience?: boolean
+  applicationCommitment?: boolean
+  applicationGender?: boolean
+  applicationAge?: boolean
+  applicationHeightFt?: boolean
+  applicationHeightIn?: boolean
+  applicationWeightLbs?: boolean
+  applicationMotivation?: boolean
+  applicationSource?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -710,6 +1060,16 @@ export type ProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   referralCode?: boolean
   referredBy?: boolean
   onboardingCompleted?: boolean
+  applicationGoal?: boolean
+  applicationExperience?: boolean
+  applicationCommitment?: boolean
+  applicationGender?: boolean
+  applicationAge?: boolean
+  applicationHeightFt?: boolean
+  applicationHeightIn?: boolean
+  applicationWeightLbs?: boolean
+  applicationMotivation?: boolean
+  applicationSource?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -729,11 +1089,21 @@ export type ProfileSelectScalar = {
   referralCode?: boolean
   referredBy?: boolean
   onboardingCompleted?: boolean
+  applicationGoal?: boolean
+  applicationExperience?: boolean
+  applicationCommitment?: boolean
+  applicationGender?: boolean
+  applicationAge?: boolean
+  applicationHeightFt?: boolean
+  applicationHeightIn?: boolean
+  applicationWeightLbs?: boolean
+  applicationMotivation?: boolean
+  applicationSource?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "email" | "fullName" | "role" | "avatarUrl" | "subscriptionStatus" | "stripeCustomerId" | "stripeSubscriptionId" | "currentPeriodEnd" | "referralCode" | "referredBy" | "onboardingCompleted" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
+export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "email" | "fullName" | "role" | "avatarUrl" | "subscriptionStatus" | "stripeCustomerId" | "stripeSubscriptionId" | "currentPeriodEnd" | "referralCode" | "referredBy" | "onboardingCompleted" | "applicationGoal" | "applicationExperience" | "applicationCommitment" | "applicationGender" | "applicationAge" | "applicationHeightFt" | "applicationHeightIn" | "applicationWeightLbs" | "applicationMotivation" | "applicationSource" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
 export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -763,6 +1133,16 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     referralCode: string | null
     referredBy: string | null
     onboardingCompleted: boolean
+    applicationGoal: string | null
+    applicationExperience: string | null
+    applicationCommitment: string | null
+    applicationGender: string | null
+    applicationAge: number | null
+    applicationHeightFt: number | null
+    applicationHeightIn: number | null
+    applicationWeightLbs: number | null
+    applicationMotivation: string | null
+    applicationSource: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["profile"]>
@@ -1202,6 +1582,16 @@ export interface ProfileFieldRefs {
   readonly referralCode: Prisma.FieldRef<"Profile", 'String'>
   readonly referredBy: Prisma.FieldRef<"Profile", 'String'>
   readonly onboardingCompleted: Prisma.FieldRef<"Profile", 'Boolean'>
+  readonly applicationGoal: Prisma.FieldRef<"Profile", 'String'>
+  readonly applicationExperience: Prisma.FieldRef<"Profile", 'String'>
+  readonly applicationCommitment: Prisma.FieldRef<"Profile", 'String'>
+  readonly applicationGender: Prisma.FieldRef<"Profile", 'String'>
+  readonly applicationAge: Prisma.FieldRef<"Profile", 'Int'>
+  readonly applicationHeightFt: Prisma.FieldRef<"Profile", 'Int'>
+  readonly applicationHeightIn: Prisma.FieldRef<"Profile", 'Int'>
+  readonly applicationWeightLbs: Prisma.FieldRef<"Profile", 'Int'>
+  readonly applicationMotivation: Prisma.FieldRef<"Profile", 'String'>
+  readonly applicationSource: Prisma.FieldRef<"Profile", 'String'>
   readonly createdAt: Prisma.FieldRef<"Profile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Profile", 'DateTime'>
 }

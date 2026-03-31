@@ -52,6 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  PasswordResetToken: 'PasswordResetToken',
+  EmailVerificationToken: 'EmailVerificationToken',
   Profile: 'Profile',
   OnboardingResponse: 'OnboardingResponse',
   MacroTarget: 'MacroTarget',
@@ -98,6 +100,28 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const PasswordResetTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  hashedToken: 'hashedToken',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type PasswordResetTokenScalarFieldEnum = (typeof PasswordResetTokenScalarFieldEnum)[keyof typeof PasswordResetTokenScalarFieldEnum]
+
+
+export const EmailVerificationTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  hashedToken: 'hashedToken',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type EmailVerificationTokenScalarFieldEnum = (typeof EmailVerificationTokenScalarFieldEnum)[keyof typeof EmailVerificationTokenScalarFieldEnum]
+
+
 export const ProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -112,6 +136,16 @@ export const ProfileScalarFieldEnum = {
   referralCode: 'referralCode',
   referredBy: 'referredBy',
   onboardingCompleted: 'onboardingCompleted',
+  applicationGoal: 'applicationGoal',
+  applicationExperience: 'applicationExperience',
+  applicationCommitment: 'applicationCommitment',
+  applicationGender: 'applicationGender',
+  applicationAge: 'applicationAge',
+  applicationHeightFt: 'applicationHeightFt',
+  applicationHeightIn: 'applicationHeightIn',
+  applicationWeightLbs: 'applicationWeightLbs',
+  applicationMotivation: 'applicationMotivation',
+  applicationSource: 'applicationSource',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

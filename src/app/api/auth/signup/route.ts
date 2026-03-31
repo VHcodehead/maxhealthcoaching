@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
-import { signUpSchema } from '@/lib/validations';
+import { applicationSchema } from '@/lib/validations';
 import { rateLimit, SIGNUP_LIMIT } from '@/lib/rate-limit';
 import { sendVerificationEmail } from '@/lib/email';
 import bcrypt from 'bcryptjs';
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const parsed = signUpSchema.safeParse(body);
+    const parsed = applicationSchema.safeParse(body);
 
     if (!parsed.success) {
       return NextResponse.json(
@@ -58,6 +58,17 @@ export async function POST(request: NextRequest) {
           fullName: parsed.data.full_name,
           role: 'client',
           referralCode,
+          subscriptionStatus: 'pending_approval',
+          applicationGoal: parsed.data.goal,
+          applicationExperience: parsed.data.experience,
+          applicationCommitment: parsed.data.commitment,
+          applicationGender: parsed.data.gender,
+          applicationAge: parsed.data.age,
+          applicationHeightFt: parsed.data.height_ft,
+          applicationHeightIn: parsed.data.height_in,
+          applicationWeightLbs: parsed.data.weight_lbs,
+          applicationMotivation: parsed.data.motivation,
+          applicationSource: parsed.data.source ?? null,
         },
       });
 

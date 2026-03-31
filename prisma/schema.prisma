@@ -76,6 +76,19 @@ model Profile {
   referralCode         String?   @unique @map("referral_code")
   referredBy           String?   @map("referred_by")
   onboardingCompleted  Boolean   @default(false) @map("onboarding_completed")
+
+  // Application fields — stored at signup for coach vetting
+  applicationGoal        String?  @map("application_goal")
+  applicationExperience  String?  @map("application_experience")
+  applicationCommitment  String?  @map("application_commitment")
+  applicationGender      String?  @map("application_gender")
+  applicationAge         Int?     @map("application_age")
+  applicationHeightFt    Int?     @map("application_height_ft")
+  applicationHeightIn    Int?     @map("application_height_in")
+  applicationWeightLbs   Int?     @map("application_weight_lbs")
+  applicationMotivation  String?  @map("application_motivation")
+  applicationSource      String?  @map("application_source")
+
   createdAt            DateTime  @default(now()) @map("created_at")
   updatedAt            DateTime  @default(now()) @updatedAt @map("updated_at")
 

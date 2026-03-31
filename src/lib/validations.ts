@@ -6,6 +6,19 @@ export const signUpSchema = z.object({
   full_name: z.string().min(2, 'Please enter your full name'),
 });
 
+export const applicationSchema = signUpSchema.extend({
+  goal: z.enum(['lose_fat', 'build_muscle', 'recomp', 'general_health', 'competition']),
+  experience: z.enum(['beginner', 'intermediate', 'advanced']),
+  commitment: z.enum(['3', '4', '5', '6+']),
+  gender: z.enum(['male', 'female']),
+  age: z.number().min(16, 'Must be at least 16').max(100),
+  height_ft: z.number().min(3).max(8),
+  height_in: z.number().min(0).max(11),
+  weight_lbs: z.number().min(80, 'Please enter a valid weight').max(600),
+  motivation: z.string().min(10, 'Please tell us a bit more about your goals').max(2000),
+  source: z.string().max(500).optional(),
+});
+
 export const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   password: z.string().min(1, 'Password is required'),
