@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v0.9
 milestone_name: milestone
 status: planning
-stopped_at: Completed 02-client-vetting 02-01-PLAN.md
-last_updated: "2026-03-31T23:01:57.372Z"
+stopped_at: Completed 02-client-vetting 02-02-PLAN.md
+last_updated: "2026-03-31T23:06:25.076Z"
 last_activity: 2026-03-31 — Roadmap created for v1.0 Production Launch
 progress:
   total_phases: 6
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 5
-  completed_plans: 4
+  completed_plans: 5
   percent: 0
 ---
 
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-security-and-auth P03 | 5 | 2 tasks | 7 files |
 | Phase 01-security-and-auth P02 | 16 | 2 tasks | 6 files |
 | Phase 02-client-vetting P01 | 18 | 2 tasks | 7 files |
+| Phase 02-client-vetting P02 | 3 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,8 @@ Recent decisions affecting current work:
 - [Phase 01-security-and-auth]: Token hashing pattern established: raw token in URL, SHA-256 hash in DB, never store raw tokens
 - [Phase 02-client-vetting]: Application fields stored directly on Profile (not separate table) — simpler schema and enables onboarding pre-fill
 - [Phase 02-client-vetting]: No auto-login after application submit — user sees confirmation, waits for coach approval
+- [Phase 02-client-vetting]: fullName field used from Profile model for email personalization (not name)
+- [Phase 02-client-vetting]: Non-blocking email sends on approve/reject — DB update completes before email attempt; error only logged
 
 ### Pending Todos
 
@@ -86,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-31T23:01:57.371Z
-Stopped at: Completed 02-client-vetting 02-01-PLAN.md
+Last session: 2026-03-31T23:06:25.074Z
+Stopped at: Completed 02-client-vetting 02-02-PLAN.md
 Resume file: None

@@ -17,7 +17,7 @@ Requirements for production launch. Each maps to roadmap phases.
 ### Client Vetting
 
 - [x] **VET-01**: New signups land in "pending" state until coach approves
-- [ ] **VET-02**: Coach can view pending applications and approve/reject from dashboard
+- [x] **VET-02**: Coach can view pending applications and approve/reject from dashboard
 - [x] **VET-03**: Login page has "Apply Now" CTA directing to application flow
 
 ### Coach Editing
@@ -86,7 +86,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AUTH-03 | Phase 1 | Complete |
 | AUTH-04 | Phase 1 | Complete |
 | VET-01 | Phase 2 | Complete |
-| VET-02 | Phase 2 | Pending |
+| VET-02 | Phase 2 | Complete |
 | VET-03 | Phase 2 | Complete |
 | EDIT-01 | Phase 3 | Pending |
 | EDIT-02 | Phase 3 | Pending |
