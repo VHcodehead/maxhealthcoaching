@@ -30,7 +30,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. New signup triggers an email verification message and the account is not fully accessible until verified
   3. Repeated failed login attempts are rejected with rate limiting (not just silently allowed through)
   4. The "Forgot password?" link on the login page navigates to a functional reset flow, not a dead anchor
-**Plans:** 3 plans
+**Plans:** 1/3 plans executed
 Plans:
 - [ ] 01-01-PLAN.md — Shared infrastructure: Resend email service, rate limiter, Prisma token models, schemas, middleware
 - [ ] 01-02-PLAN.md — Password reset flow: forgot-password and reset-password pages + API routes
@@ -95,7 +95,7 @@ Note: Phase 4 depends on Phase 1 only and can begin after Phase 1 completes. Pha
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Security and Auth | 0/3 | Planning complete | - |
+| 1. Security and Auth | 1/3 | In Progress|  |
 | 2. Client Vetting | 0/TBD | Not started | - |
 | 3. Coach Editing | 0/TBD | Not started | - |
 | 4. Email Notifications | 0/TBD | Not started | - |
