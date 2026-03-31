@@ -44,7 +44,10 @@ Plans:
   1. A newly registered user lands in a "pending" state and cannot access the client dashboard until approved
   2. Coach can see a list of pending applicants in the dashboard and approve or reject each one
   3. The login page displays an "Apply Now" call-to-action that directs visitors to the application flow
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 02-01-PLAN.md — Application form, data model, pending state middleware, and /pending holding page
+- [ ] 02-02-PLAN.md — Coach approve/reject workflow, approval emails, and Apply Now CTAs
 
 ### Phase 3: Coach Editing
 **Goal**: Coach can fully edit every aspect of a client's plan with no gaps in the editing interface
@@ -96,7 +99,7 @@ Note: Phase 4 depends on Phase 1 only and can begin after Phase 1 completes. Pha
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Security and Auth | 3/3 | Complete   | 2026-03-31 |
-| 2. Client Vetting | 0/TBD | Not started | - |
+| 2. Client Vetting | 0/2 | Planning complete | - |
 | 3. Coach Editing | 0/TBD | Not started | - |
 | 4. Email Notifications | 0/TBD | Not started | - |
 | 5. Payment Readiness | 0/TBD | Not started | - |
