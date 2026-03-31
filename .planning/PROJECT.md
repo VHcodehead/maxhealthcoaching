@@ -77,6 +77,7 @@ Clients get a fully personalized coaching experience — macros, meals, training
 | Railway PostgreSQL | Simple managed DB, good free tier | ✓ Good |
 | Stripe subscriptions | Industry standard, handles recurring billing | — Pending (still in test mode) |
 | No application flow at signup | Fast to build initially | ⚠️ Revisit — need vetting before launch |
+| Resend for email service | Modern, Next.js-native, generous free tier (3k/mo), simple API | — Pending (Phase 1) |
 
 ---
-*Last updated: 2026-03-31 after production readiness assessment*
+*Last updated: 2026-03-31 after v1.0 roadmap approved*
