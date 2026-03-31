@@ -18,6 +18,7 @@ export const authConfig: NextAuthConfig = {
         token.role = user.role ?? 'client';
         token.subscriptionStatus = user.subscriptionStatus ?? 'none';
         token.onboardingCompleted = user.onboardingCompleted ?? false;
+        token.emailVerified = !!user.emailVerified;
       }
       return token;
     },
@@ -26,6 +27,7 @@ export const authConfig: NextAuthConfig = {
       session.user.role = token.role as string;
       session.user.subscriptionStatus = token.subscriptionStatus as string;
       session.user.onboardingCompleted = token.onboardingCompleted as boolean;
+      (session.user as any).emailVerified = token.emailVerified as boolean;
       return session;
     },
   },

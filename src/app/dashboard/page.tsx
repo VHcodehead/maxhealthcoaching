@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import { motion } from 'framer-motion'
 import {
   Flame,
@@ -158,6 +159,8 @@ function MacroBar({
 }
 
 export default function DashboardOverview() {
+  const { data: session } = useSession()
+  const emailVerified = session?.user?.emailVerified ?? true // default true to avoid flash on load
   const [profile, setProfile] = useState<Profile | null>(null)
   const [macros, setMacros] = useState<MacroTargets | null>(null)
   const [todayMeals, setTodayMeals] = useState<MealPlanDay[]>([])
@@ -367,6 +370,17 @@ export default function DashboardOverview() {
 
   return (
     <div className="p-6 lg:p-8">
+      {/* Email verification banner */}
+      {!emailVerified && (
+        <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4 flex items-center gap-3">
+          <AlertCircle className="h-5 w-5 text-amber-600 shrink-0" />
+          <div className="flex-1">
+            <p className="text-sm font-medium text-amber-800">Verify your email</p>
+            <p className="text-sm text-amber-700">Check your inbox for a verification link to secure your account.</p>
+          </div>
+        </div>
+      )}
+
       {/* Welcome Header */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}

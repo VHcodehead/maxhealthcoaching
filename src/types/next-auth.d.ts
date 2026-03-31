@@ -6,6 +6,7 @@ declare module 'next-auth' {
     role?: string;
     subscriptionStatus?: string;
     onboardingCompleted?: boolean;
+    emailVerified?: boolean;
   }
   interface Session {
     user: {
@@ -15,6 +16,7 @@ declare module 'next-auth' {
       role: string;
       subscriptionStatus: string;
       onboardingCompleted: boolean;
+      emailVerified: boolean;
     };
   }
 }
@@ -25,5 +27,6 @@ declare module 'next-auth/jwt' {
     role: string;
     subscriptionStatus: string;
     onboardingCompleted: boolean;
+    emailVerified: boolean;
   }
 }
