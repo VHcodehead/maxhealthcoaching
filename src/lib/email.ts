@@ -145,3 +145,77 @@ export async function sendRejectionEmail(
 
   await sendEmail(to, 'MaxHealth Coaching — Application Update', html);
 }
+
+export async function sendPlanReadyEmail(
+  to: string,
+  name: string,
+  dashboardUrl: string
+): Promise<void> {
+  const html = buildBrandedHtml({
+    heading: 'Your Plan Is Ready!',
+    name,
+    body: "Your custom meal plan and training program are ready to go. Everything has been tailored to your goals — let's get to work!",
+    ctaText: 'View My Plan',
+    ctaUrl: dashboardUrl,
+  });
+
+  await sendEmail(to, 'Your personalized plan is ready! — MaxHealth Coaching', html);
+}
+
+export async function sendCheckinReminderEmail(
+  to: string,
+  name: string,
+  checkinUrl: string
+): Promise<void> {
+  const html = buildBrandedHtml({
+    heading: 'Time for Your Weekly Check-in',
+    name,
+    body: "It's check-in time! Take a few minutes to log your progress — it helps me fine-tune your plan and keep you on track.",
+    ctaText: 'Submit Check-in',
+    ctaUrl: checkinUrl,
+  });
+
+  await sendEmail(to, 'Time for your weekly check-in — MaxHealth Coaching', html);
+}
+
+export async function sendCheckinNotificationEmail(
+  to: string,
+  clientName: string,
+  weekNumber: number,
+  weightKg: number,
+  adherenceRating: number,
+  notes: string | null,
+  reviewUrl: string
+): Promise<void> {
+  const notesSnippet = notes
+    ? ` | Notes: "${notes.slice(0, 100)}${notes.length > 100 ? '...' : ''}"`
+    : '';
+
+  const html = buildBrandedHtml({
+    heading: `${clientName} Submitted a Check-in`,
+    name: 'Coach',
+    body: `${clientName} just submitted their week ${weekNumber} check-in. Weight: ${weightKg}kg | Adherence: ${adherenceRating}/10${notesSnippet}`,
+    ctaText: 'Review Check-in',
+    ctaUrl: reviewUrl,
+  });
+
+  await sendEmail(to, `${clientName} submitted their week ${weekNumber} check-in`, html);
+}
+
+export async function sendMacroApprovedEmail(
+  to: string,
+  name: string,
+  oldCalories: number,
+  newCalories: number,
+  dashboardUrl: string
+): Promise<void> {
+  const html = buildBrandedHtml({
+    heading: 'Your Macros Have Been Updated',
+    name,
+    body: `I've adjusted your macros based on your progress. Your daily calories have been updated from ${oldCalories} to ${newCalories}. Check your dashboard for the full breakdown.`,
+    ctaText: 'View Updated Macros',
+    ctaUrl: dashboardUrl,
+  });
+
+  await sendEmail(to, 'Your macros have been updated — MaxHealth Coaching', html);
+}
