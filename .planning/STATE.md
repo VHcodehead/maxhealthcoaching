@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v0.9
 milestone_name: milestone
 status: planning
-stopped_at: Completed 03-02-PLAN.md
-last_updated: "2026-03-31T23:49:22.586Z"
+stopped_at: Completed 04-email-notifications 04-01-PLAN.md
+last_updated: "2026-04-01T00:16:09.896Z"
 last_activity: 2026-03-31 — Roadmap created for v1.0 Production Launch
 progress:
   total_phases: 6
   completed_phases: 3
-  total_plans: 7
-  completed_plans: 7
+  total_plans: 10
+  completed_plans: 8
   percent: 0
 ---
 
@@ -57,6 +57,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-client-vetting P02 | 3 | 2 tasks | 6 files |
 | Phase 03-coach-editing P01 | 8 | 1 tasks | 1 files |
 | Phase 03-coach-editing P02 | 10 | 2 tasks | 0 files |
+| Phase 04-email-notifications P01 | 15 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -83,6 +84,9 @@ Recent decisions affecting current work:
 - [Phase 03-coach-editing]: Deleting last meal in a day is allowed — day remains with empty meals and zeroed day_totals
 - [Phase 03-coach-editing]: No bugs found in exercise add/remove or cardio editing — existing implementation was correct as-built
 - [Phase 03-coach-editing]: Human verification approved: all four EDIT requirements (EDIT-01 through EDIT-04) confirmed working
+- [Phase 04-email-notifications]: All email sends in route handlers are non-blocking (fire-and-forget .catch()) — API response latency not affected by email delivery
+- [Phase 04-email-notifications]: Cron endpoint uses CRON_SECRET Bearer token auth (not NextAuth session) — cron jobs have no user session context
+- [Phase 04-email-notifications]: Promise.allSettled used in cron endpoint for bulk send — one failure does not abort remaining sends
 
 ### Pending Todos
 
@@ -95,6 +99,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-31T23:46:01.044Z
-Stopped at: Completed 03-02-PLAN.md
+Last session: 2026-04-01T00:16:09.894Z
+Stopped at: Completed 04-email-notifications 04-01-PLAN.md
 Resume file: None

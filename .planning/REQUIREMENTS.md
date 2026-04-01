@@ -29,10 +29,10 @@ Requirements for production launch. Each maps to roadmap phases.
 
 ### Email Notifications
 
-- [ ] **NOTIF-01**: Client receives email when their plan is generated and ready
-- [ ] **NOTIF-02**: Client receives weekly check-in reminder email
-- [ ] **NOTIF-03**: Coach receives email when a client submits a check-in
-- [ ] **NOTIF-04**: Client receives email when coach approves a macro adjustment
+- [x] **NOTIF-01**: Client receives email when their plan is generated and ready
+- [x] **NOTIF-02**: Client receives weekly check-in reminder email
+- [x] **NOTIF-03**: Coach receives email when a client submits a check-in
+- [x] **NOTIF-04**: Client receives email when coach approves a macro adjustment
 
 ### Messaging
 
@@ -97,10 +97,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EDIT-02 | Phase 3 | Complete |
 | EDIT-03 | Phase 3 | Complete |
 | EDIT-04 | Phase 3 | Complete |
-| NOTIF-01 | Phase 4 | Pending |
-| NOTIF-02 | Phase 4 | Pending |
-| NOTIF-03 | Phase 4 | Pending |
-| NOTIF-04 | Phase 4 | Pending |
+| NOTIF-01 | Phase 4 | Complete |
+| NOTIF-02 | Phase 4 | Complete |
+| NOTIF-03 | Phase 4 | Complete |
+| NOTIF-04 | Phase 4 | Complete |
 | MSG-01 | Phase 4 | Pending |
 | MSG-02 | Phase 4 | Pending |
 | PAY-01 | Phase 5 | Pending |
