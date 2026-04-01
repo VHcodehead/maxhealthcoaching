@@ -68,6 +68,7 @@ export const ModelName = {
   CoachSettings: 'CoachSettings',
   Notification: 'Notification',
   CoachNote: 'CoachNote',
+  Message: 'Message',
   SupplementRecommendation: 'SupplementRecommendation',
   SupplementCatalog: 'SupplementCatalog',
   PendingMacroAdjustment: 'PendingMacroAdjustment'
@@ -361,6 +362,18 @@ export const CoachNoteScalarFieldEnum = {
 } as const
 
 export type CoachNoteScalarFieldEnum = (typeof CoachNoteScalarFieldEnum)[keyof typeof CoachNoteScalarFieldEnum]
+
+
+export const MessageScalarFieldEnum = {
+  id: 'id',
+  senderId: 'senderId',
+  receiverId: 'receiverId',
+  content: 'content',
+  read: 'read',
+  createdAt: 'createdAt'
+} as const
+
+export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum]
 
 
 export const SupplementRecommendationScalarFieldEnum = {

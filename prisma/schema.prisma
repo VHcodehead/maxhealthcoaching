@@ -29,6 +29,8 @@ model User {
   notifications       Notification[]
   clientNotes         CoachNote[]     @relation("clientNotes")
   coachNotes          CoachNote[]     @relation("coachNotes")
+  sentMessages        Message[]       @relation("sentMessages")
+  receivedMessages    Message[]       @relation("receivedMessages")
   clientSupplements   SupplementRecommendation[] @relation("clientSupplements")
   coachSupplements    SupplementRecommendation[] @relation("coachSupplements")
   pendingMacroAdjustments PendingMacroAdjustment[]
@@ -321,6 +323,20 @@ model CoachNote {
   coach User @relation("coachNotes", fields: [coachId], references: [id], onDelete: Cascade)
 
   @@map("coach_notes")
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  senderId   String   @map("sender_id")
+  receiverId String   @map("receiver_id")
+  content    String
+  read       Boolean  @default(false)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  sender   User @relation("sentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User @relation("receivedMessages", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@map("messages")
 }
 
 model SupplementRecommendation {

@@ -296,6 +296,15 @@ export interface CoachNote {
   created_at: string;
 }
 
+export interface Message {
+  id: string;
+  sender_id: string;
+  receiver_id: string;
+  content: string;
+  read: boolean;
+  created_at: string;
+}
+
 export type SupplementFrequency = 'daily' | 'twice_daily' | 'as_needed' | 'cycling';
 export type SupplementTiming = 'morning' | 'pre_workout' | 'post_workout' | 'with_meals' | 'evening' | 'bedtime';
 export type SupplementCategory = 'vitamin' | 'mineral' | 'performance' | 'recovery' | 'protein' | 'health' | 'organ_support' | 'sleep' | 'hormonal';

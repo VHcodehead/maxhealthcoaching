@@ -197,6 +197,8 @@ export type UserWhereInput = {
   notifications?: Prisma.NotificationListRelationFilter
   clientNotes?: Prisma.CoachNoteListRelationFilter
   coachNotes?: Prisma.CoachNoteListRelationFilter
+  sentMessages?: Prisma.MessageListRelationFilter
+  receivedMessages?: Prisma.MessageListRelationFilter
   clientSupplements?: Prisma.SupplementRecommendationListRelationFilter
   coachSupplements?: Prisma.SupplementRecommendationListRelationFilter
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentListRelationFilter
@@ -225,6 +227,8 @@ export type UserOrderByWithRelationInput = {
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
   clientNotes?: Prisma.CoachNoteOrderByRelationAggregateInput
   coachNotes?: Prisma.CoachNoteOrderByRelationAggregateInput
+  sentMessages?: Prisma.MessageOrderByRelationAggregateInput
+  receivedMessages?: Prisma.MessageOrderByRelationAggregateInput
   clientSupplements?: Prisma.SupplementRecommendationOrderByRelationAggregateInput
   coachSupplements?: Prisma.SupplementRecommendationOrderByRelationAggregateInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentOrderByRelationAggregateInput
@@ -256,6 +260,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   notifications?: Prisma.NotificationListRelationFilter
   clientNotes?: Prisma.CoachNoteListRelationFilter
   coachNotes?: Prisma.CoachNoteListRelationFilter
+  sentMessages?: Prisma.MessageListRelationFilter
+  receivedMessages?: Prisma.MessageListRelationFilter
   clientSupplements?: Prisma.SupplementRecommendationListRelationFilter
   coachSupplements?: Prisma.SupplementRecommendationListRelationFilter
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentListRelationFilter
@@ -306,6 +312,8 @@ export type UserCreateInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -334,6 +342,8 @@ export type UserUncheckedCreateInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -362,6 +372,8 @@ export type UserUpdateInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -390,6 +402,8 @@ export type UserUncheckedUpdateInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -709,6 +723,34 @@ export type UserUpdateOneRequiredWithoutCoachNotesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCoachNotesInput, Prisma.UserUpdateWithoutCoachNotesInput>, Prisma.UserUncheckedUpdateWithoutCoachNotesInput>
 }
 
+export type UserCreateNestedOneWithoutSentMessagesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSentMessagesInput, Prisma.UserUncheckedCreateWithoutSentMessagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentMessagesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutReceivedMessagesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReceivedMessagesInput, Prisma.UserUncheckedCreateWithoutReceivedMessagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceivedMessagesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSentMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSentMessagesInput, Prisma.UserUncheckedCreateWithoutSentMessagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentMessagesInput
+  upsert?: Prisma.UserUpsertWithoutSentMessagesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSentMessagesInput, Prisma.UserUpdateWithoutSentMessagesInput>, Prisma.UserUncheckedUpdateWithoutSentMessagesInput>
+}
+
+export type UserUpdateOneRequiredWithoutReceivedMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReceivedMessagesInput, Prisma.UserUncheckedCreateWithoutReceivedMessagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceivedMessagesInput
+  upsert?: Prisma.UserUpsertWithoutReceivedMessagesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReceivedMessagesInput, Prisma.UserUpdateWithoutReceivedMessagesInput>, Prisma.UserUncheckedUpdateWithoutReceivedMessagesInput>
+}
+
 export type UserCreateNestedOneWithoutClientSupplementsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutClientSupplementsInput, Prisma.UserUncheckedCreateWithoutClientSupplementsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutClientSupplementsInput
@@ -772,6 +814,8 @@ export type UserCreateWithoutPasswordResetTokensInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -799,6 +843,8 @@ export type UserUncheckedCreateWithoutPasswordResetTokensInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -842,6 +888,8 @@ export type UserUpdateWithoutPasswordResetTokensInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -869,6 +917,8 @@ export type UserUncheckedUpdateWithoutPasswordResetTokensInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -896,6 +946,8 @@ export type UserCreateWithoutEmailVerificationTokensInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -923,6 +975,8 @@ export type UserUncheckedCreateWithoutEmailVerificationTokensInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -966,6 +1020,8 @@ export type UserUpdateWithoutEmailVerificationTokensInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -993,6 +1049,8 @@ export type UserUncheckedUpdateWithoutEmailVerificationTokensInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -1019,6 +1077,8 @@ export type UserCreateWithoutProfileInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -1046,6 +1106,8 @@ export type UserUncheckedCreateWithoutProfileInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -1089,6 +1151,8 @@ export type UserUpdateWithoutProfileInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -1116,6 +1180,8 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -1143,6 +1209,8 @@ export type UserCreateWithoutOnboardingResponsesInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -1170,6 +1238,8 @@ export type UserUncheckedCreateWithoutOnboardingResponsesInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -1213,6 +1283,8 @@ export type UserUpdateWithoutOnboardingResponsesInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -1240,6 +1312,8 @@ export type UserUncheckedUpdateWithoutOnboardingResponsesInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -1267,6 +1341,8 @@ export type UserCreateWithoutMacroTargetsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -1294,6 +1370,8 @@ export type UserUncheckedCreateWithoutMacroTargetsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -1337,6 +1415,8 @@ export type UserUpdateWithoutMacroTargetsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -1364,6 +1444,8 @@ export type UserUncheckedUpdateWithoutMacroTargetsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -1391,6 +1473,8 @@ export type UserCreateWithoutMealPlansInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -1418,6 +1502,8 @@ export type UserUncheckedCreateWithoutMealPlansInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -1461,6 +1547,8 @@ export type UserUpdateWithoutMealPlansInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -1488,6 +1576,8 @@ export type UserUncheckedUpdateWithoutMealPlansInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -1515,6 +1605,8 @@ export type UserCreateWithoutTrainingPlansInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -1542,6 +1634,8 @@ export type UserUncheckedCreateWithoutTrainingPlansInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -1585,6 +1679,8 @@ export type UserUpdateWithoutTrainingPlansInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -1612,6 +1708,8 @@ export type UserUncheckedUpdateWithoutTrainingPlansInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -1639,6 +1737,8 @@ export type UserCreateWithoutCheckInsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -1666,6 +1766,8 @@ export type UserUncheckedCreateWithoutCheckInsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -1709,6 +1811,8 @@ export type UserUpdateWithoutCheckInsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -1736,6 +1840,8 @@ export type UserUncheckedUpdateWithoutCheckInsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -1763,6 +1869,8 @@ export type UserCreateWithoutProgressPhotosInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -1790,6 +1898,8 @@ export type UserUncheckedCreateWithoutProgressPhotosInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -1833,6 +1943,8 @@ export type UserUpdateWithoutProgressPhotosInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -1860,6 +1972,8 @@ export type UserUncheckedUpdateWithoutProgressPhotosInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -1887,6 +2001,8 @@ export type UserCreateWithoutReferralsMadeInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -1914,6 +2030,8 @@ export type UserUncheckedCreateWithoutReferralsMadeInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -1946,6 +2064,8 @@ export type UserCreateWithoutReferralsReceivedInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -1973,6 +2093,8 @@ export type UserUncheckedCreateWithoutReferralsReceivedInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -2016,6 +2138,8 @@ export type UserUpdateWithoutReferralsMadeInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -2043,6 +2167,8 @@ export type UserUncheckedUpdateWithoutReferralsMadeInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -2081,6 +2207,8 @@ export type UserUpdateWithoutReferralsReceivedInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -2108,6 +2236,8 @@ export type UserUncheckedUpdateWithoutReferralsReceivedInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -2135,6 +2265,8 @@ export type UserCreateWithoutBlogPostsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -2162,6 +2294,8 @@ export type UserUncheckedCreateWithoutBlogPostsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -2205,6 +2339,8 @@ export type UserUpdateWithoutBlogPostsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -2232,6 +2368,8 @@ export type UserUncheckedUpdateWithoutBlogPostsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -2259,6 +2397,8 @@ export type UserCreateWithoutTransformationsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -2286,6 +2426,8 @@ export type UserUncheckedCreateWithoutTransformationsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -2329,6 +2471,8 @@ export type UserUpdateWithoutTransformationsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -2356,6 +2500,8 @@ export type UserUncheckedUpdateWithoutTransformationsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -2383,6 +2529,8 @@ export type UserCreateWithoutCoachSettingsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -2410,6 +2558,8 @@ export type UserUncheckedCreateWithoutCoachSettingsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -2453,6 +2603,8 @@ export type UserUpdateWithoutCoachSettingsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -2480,6 +2632,8 @@ export type UserUncheckedUpdateWithoutCoachSettingsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -2507,6 +2661,8 @@ export type UserCreateWithoutNotificationsInput = {
   coachSettings?: Prisma.CoachSettingsCreateNestedOneWithoutCoachInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -2534,6 +2690,8 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   coachSettings?: Prisma.CoachSettingsUncheckedCreateNestedOneWithoutCoachInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -2577,6 +2735,8 @@ export type UserUpdateWithoutNotificationsInput = {
   coachSettings?: Prisma.CoachSettingsUpdateOneWithoutCoachNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -2604,6 +2764,8 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   coachSettings?: Prisma.CoachSettingsUncheckedUpdateOneWithoutCoachNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -2631,6 +2793,8 @@ export type UserCreateWithoutClientNotesInput = {
   coachSettings?: Prisma.CoachSettingsCreateNestedOneWithoutCoachInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -2658,6 +2822,8 @@ export type UserUncheckedCreateWithoutClientNotesInput = {
   coachSettings?: Prisma.CoachSettingsUncheckedCreateNestedOneWithoutCoachInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -2690,6 +2856,8 @@ export type UserCreateWithoutCoachNotesInput = {
   coachSettings?: Prisma.CoachSettingsCreateNestedOneWithoutCoachInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
@@ -2717,6 +2885,8 @@ export type UserUncheckedCreateWithoutCoachNotesInput = {
   coachSettings?: Prisma.CoachSettingsUncheckedCreateNestedOneWithoutCoachInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
@@ -2760,6 +2930,8 @@ export type UserUpdateWithoutClientNotesInput = {
   coachSettings?: Prisma.CoachSettingsUpdateOneWithoutCoachNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -2787,6 +2959,8 @@ export type UserUncheckedUpdateWithoutClientNotesInput = {
   coachSettings?: Prisma.CoachSettingsUncheckedUpdateOneWithoutCoachNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -2825,6 +2999,8 @@ export type UserUpdateWithoutCoachNotesInput = {
   coachSettings?: Prisma.CoachSettingsUpdateOneWithoutCoachNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
@@ -2852,6 +3028,272 @@ export type UserUncheckedUpdateWithoutCoachNotesInput = {
   coachSettings?: Prisma.CoachSettingsUncheckedUpdateOneWithoutCoachNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
+  coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSentMessagesInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  emailVerified?: boolean
+  createdAt?: Date | string
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  onboardingResponses?: Prisma.OnboardingResponseCreateNestedManyWithoutUserInput
+  macroTargets?: Prisma.MacroTargetCreateNestedManyWithoutUserInput
+  mealPlans?: Prisma.MealPlanCreateNestedManyWithoutUserInput
+  trainingPlans?: Prisma.TrainingPlanCreateNestedManyWithoutUserInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutUserInput
+  progressPhotos?: Prisma.ProgressPhotoCreateNestedManyWithoutUserInput
+  referralsMade?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
+  referralsReceived?: Prisma.ReferralCreateNestedManyWithoutReferredInput
+  blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
+  transformations?: Prisma.TransformationCreateNestedManyWithoutClientInput
+  coachSettings?: Prisma.CoachSettingsCreateNestedOneWithoutCoachInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
+  coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
+  coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
+  passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSentMessagesInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  emailVerified?: boolean
+  createdAt?: Date | string
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  onboardingResponses?: Prisma.OnboardingResponseUncheckedCreateNestedManyWithoutUserInput
+  macroTargets?: Prisma.MacroTargetUncheckedCreateNestedManyWithoutUserInput
+  mealPlans?: Prisma.MealPlanUncheckedCreateNestedManyWithoutUserInput
+  trainingPlans?: Prisma.TrainingPlanUncheckedCreateNestedManyWithoutUserInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutUserInput
+  progressPhotos?: Prisma.ProgressPhotoUncheckedCreateNestedManyWithoutUserInput
+  referralsMade?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
+  referralsReceived?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferredInput
+  blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
+  transformations?: Prisma.TransformationUncheckedCreateNestedManyWithoutClientInput
+  coachSettings?: Prisma.CoachSettingsUncheckedCreateNestedOneWithoutCoachInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
+  coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
+  coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSentMessagesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSentMessagesInput, Prisma.UserUncheckedCreateWithoutSentMessagesInput>
+}
+
+export type UserCreateWithoutReceivedMessagesInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  emailVerified?: boolean
+  createdAt?: Date | string
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  onboardingResponses?: Prisma.OnboardingResponseCreateNestedManyWithoutUserInput
+  macroTargets?: Prisma.MacroTargetCreateNestedManyWithoutUserInput
+  mealPlans?: Prisma.MealPlanCreateNestedManyWithoutUserInput
+  trainingPlans?: Prisma.TrainingPlanCreateNestedManyWithoutUserInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutUserInput
+  progressPhotos?: Prisma.ProgressPhotoCreateNestedManyWithoutUserInput
+  referralsMade?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
+  referralsReceived?: Prisma.ReferralCreateNestedManyWithoutReferredInput
+  blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
+  transformations?: Prisma.TransformationCreateNestedManyWithoutClientInput
+  coachSettings?: Prisma.CoachSettingsCreateNestedOneWithoutCoachInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
+  coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
+  coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
+  passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutReceivedMessagesInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  emailVerified?: boolean
+  createdAt?: Date | string
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  onboardingResponses?: Prisma.OnboardingResponseUncheckedCreateNestedManyWithoutUserInput
+  macroTargets?: Prisma.MacroTargetUncheckedCreateNestedManyWithoutUserInput
+  mealPlans?: Prisma.MealPlanUncheckedCreateNestedManyWithoutUserInput
+  trainingPlans?: Prisma.TrainingPlanUncheckedCreateNestedManyWithoutUserInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutUserInput
+  progressPhotos?: Prisma.ProgressPhotoUncheckedCreateNestedManyWithoutUserInput
+  referralsMade?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
+  referralsReceived?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferredInput
+  blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
+  transformations?: Prisma.TransformationUncheckedCreateNestedManyWithoutClientInput
+  coachSettings?: Prisma.CoachSettingsUncheckedCreateNestedOneWithoutCoachInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
+  coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
+  coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutReceivedMessagesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReceivedMessagesInput, Prisma.UserUncheckedCreateWithoutReceivedMessagesInput>
+}
+
+export type UserUpsertWithoutSentMessagesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSentMessagesInput, Prisma.UserUncheckedUpdateWithoutSentMessagesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSentMessagesInput, Prisma.UserUncheckedCreateWithoutSentMessagesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSentMessagesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSentMessagesInput, Prisma.UserUncheckedUpdateWithoutSentMessagesInput>
+}
+
+export type UserUpdateWithoutSentMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  onboardingResponses?: Prisma.OnboardingResponseUpdateManyWithoutUserNestedInput
+  macroTargets?: Prisma.MacroTargetUpdateManyWithoutUserNestedInput
+  mealPlans?: Prisma.MealPlanUpdateManyWithoutUserNestedInput
+  trainingPlans?: Prisma.TrainingPlanUpdateManyWithoutUserNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutUserNestedInput
+  progressPhotos?: Prisma.ProgressPhotoUpdateManyWithoutUserNestedInput
+  referralsMade?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
+  referralsReceived?: Prisma.ReferralUpdateManyWithoutReferredNestedInput
+  blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
+  transformations?: Prisma.TransformationUpdateManyWithoutClientNestedInput
+  coachSettings?: Prisma.CoachSettingsUpdateOneWithoutCoachNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
+  coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
+  coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
+  passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSentMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  onboardingResponses?: Prisma.OnboardingResponseUncheckedUpdateManyWithoutUserNestedInput
+  macroTargets?: Prisma.MacroTargetUncheckedUpdateManyWithoutUserNestedInput
+  mealPlans?: Prisma.MealPlanUncheckedUpdateManyWithoutUserNestedInput
+  trainingPlans?: Prisma.TrainingPlanUncheckedUpdateManyWithoutUserNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutUserNestedInput
+  progressPhotos?: Prisma.ProgressPhotoUncheckedUpdateManyWithoutUserNestedInput
+  referralsMade?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
+  referralsReceived?: Prisma.ReferralUncheckedUpdateManyWithoutReferredNestedInput
+  blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
+  transformations?: Prisma.TransformationUncheckedUpdateManyWithoutClientNestedInput
+  coachSettings?: Prisma.CoachSettingsUncheckedUpdateOneWithoutCoachNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
+  coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
+  coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutReceivedMessagesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReceivedMessagesInput, Prisma.UserUncheckedUpdateWithoutReceivedMessagesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReceivedMessagesInput, Prisma.UserUncheckedCreateWithoutReceivedMessagesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReceivedMessagesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReceivedMessagesInput, Prisma.UserUncheckedUpdateWithoutReceivedMessagesInput>
+}
+
+export type UserUpdateWithoutReceivedMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  onboardingResponses?: Prisma.OnboardingResponseUpdateManyWithoutUserNestedInput
+  macroTargets?: Prisma.MacroTargetUpdateManyWithoutUserNestedInput
+  mealPlans?: Prisma.MealPlanUpdateManyWithoutUserNestedInput
+  trainingPlans?: Prisma.TrainingPlanUpdateManyWithoutUserNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutUserNestedInput
+  progressPhotos?: Prisma.ProgressPhotoUpdateManyWithoutUserNestedInput
+  referralsMade?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
+  referralsReceived?: Prisma.ReferralUpdateManyWithoutReferredNestedInput
+  blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
+  transformations?: Prisma.TransformationUpdateManyWithoutClientNestedInput
+  coachSettings?: Prisma.CoachSettingsUpdateOneWithoutCoachNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
+  coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
+  coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
+  passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  onboardingResponses?: Prisma.OnboardingResponseUncheckedUpdateManyWithoutUserNestedInput
+  macroTargets?: Prisma.MacroTargetUncheckedUpdateManyWithoutUserNestedInput
+  mealPlans?: Prisma.MealPlanUncheckedUpdateManyWithoutUserNestedInput
+  trainingPlans?: Prisma.TrainingPlanUncheckedUpdateManyWithoutUserNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutUserNestedInput
+  progressPhotos?: Prisma.ProgressPhotoUncheckedUpdateManyWithoutUserNestedInput
+  referralsMade?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
+  referralsReceived?: Prisma.ReferralUncheckedUpdateManyWithoutReferredNestedInput
+  blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
+  transformations?: Prisma.TransformationUncheckedUpdateManyWithoutClientNestedInput
+  coachSettings?: Prisma.CoachSettingsUncheckedUpdateOneWithoutCoachNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
+  coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
@@ -2880,6 +3322,8 @@ export type UserCreateWithoutClientSupplementsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
   passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
@@ -2907,6 +3351,8 @@ export type UserUncheckedCreateWithoutClientSupplementsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
@@ -2939,6 +3385,8 @@ export type UserCreateWithoutCoachSupplementsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
   passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
@@ -2966,6 +3414,8 @@ export type UserUncheckedCreateWithoutCoachSupplementsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
@@ -3009,6 +3459,8 @@ export type UserUpdateWithoutClientSupplementsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
   passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
@@ -3036,6 +3488,8 @@ export type UserUncheckedUpdateWithoutClientSupplementsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -3074,6 +3528,8 @@ export type UserUpdateWithoutCoachSupplementsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
   passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
@@ -3101,6 +3557,8 @@ export type UserUncheckedUpdateWithoutCoachSupplementsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -3128,6 +3586,8 @@ export type UserCreateWithoutPendingMacroAdjustmentsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
   passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
@@ -3155,6 +3615,8 @@ export type UserUncheckedCreateWithoutPendingMacroAdjustmentsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
   coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
@@ -3198,6 +3660,8 @@ export type UserUpdateWithoutPendingMacroAdjustmentsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
   passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
@@ -3225,6 +3689,8 @@ export type UserUncheckedUpdateWithoutPendingMacroAdjustmentsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
   coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
   clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
   coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -3250,6 +3716,8 @@ export type UserCountOutputType = {
   notifications: number
   clientNotes: number
   coachNotes: number
+  sentMessages: number
+  receivedMessages: number
   clientSupplements: number
   coachSupplements: number
   pendingMacroAdjustments: number
@@ -3271,6 +3739,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   clientNotes?: boolean | UserCountOutputTypeCountClientNotesArgs
   coachNotes?: boolean | UserCountOutputTypeCountCoachNotesArgs
+  sentMessages?: boolean | UserCountOutputTypeCountSentMessagesArgs
+  receivedMessages?: boolean | UserCountOutputTypeCountReceivedMessagesArgs
   clientSupplements?: boolean | UserCountOutputTypeCountClientSupplementsArgs
   coachSupplements?: boolean | UserCountOutputTypeCountCoachSupplementsArgs
   pendingMacroAdjustments?: boolean | UserCountOutputTypeCountPendingMacroAdjustmentsArgs
@@ -3382,6 +3852,20 @@ export type UserCountOutputTypeCountCoachNotesArgs<ExtArgs extends runtime.Types
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountSentMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MessageWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReceivedMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MessageWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountClientSupplementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.SupplementRecommendationWhereInput
 }
@@ -3436,6 +3920,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   clientNotes?: boolean | Prisma.User$clientNotesArgs<ExtArgs>
   coachNotes?: boolean | Prisma.User$coachNotesArgs<ExtArgs>
+  sentMessages?: boolean | Prisma.User$sentMessagesArgs<ExtArgs>
+  receivedMessages?: boolean | Prisma.User$receivedMessagesArgs<ExtArgs>
   clientSupplements?: boolean | Prisma.User$clientSupplementsArgs<ExtArgs>
   coachSupplements?: boolean | Prisma.User$coachSupplementsArgs<ExtArgs>
   pendingMacroAdjustments?: boolean | Prisma.User$pendingMacroAdjustmentsArgs<ExtArgs>
@@ -3485,6 +3971,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   clientNotes?: boolean | Prisma.User$clientNotesArgs<ExtArgs>
   coachNotes?: boolean | Prisma.User$coachNotesArgs<ExtArgs>
+  sentMessages?: boolean | Prisma.User$sentMessagesArgs<ExtArgs>
+  receivedMessages?: boolean | Prisma.User$receivedMessagesArgs<ExtArgs>
   clientSupplements?: boolean | Prisma.User$clientSupplementsArgs<ExtArgs>
   coachSupplements?: boolean | Prisma.User$coachSupplementsArgs<ExtArgs>
   pendingMacroAdjustments?: boolean | Prisma.User$pendingMacroAdjustmentsArgs<ExtArgs>
@@ -3513,6 +4001,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
     clientNotes: Prisma.$CoachNotePayload<ExtArgs>[]
     coachNotes: Prisma.$CoachNotePayload<ExtArgs>[]
+    sentMessages: Prisma.$MessagePayload<ExtArgs>[]
+    receivedMessages: Prisma.$MessagePayload<ExtArgs>[]
     clientSupplements: Prisma.$SupplementRecommendationPayload<ExtArgs>[]
     coachSupplements: Prisma.$SupplementRecommendationPayload<ExtArgs>[]
     pendingMacroAdjustments: Prisma.$PendingMacroAdjustmentPayload<ExtArgs>[]
@@ -3934,6 +4424,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   clientNotes<T extends Prisma.User$clientNotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$clientNotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoachNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   coachNotes<T extends Prisma.User$coachNotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$coachNotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoachNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sentMessages<T extends Prisma.User$sentMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  receivedMessages<T extends Prisma.User$receivedMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   clientSupplements<T extends Prisma.User$clientSupplementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$clientSupplementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplementRecommendationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   coachSupplements<T extends Prisma.User$coachSupplementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$coachSupplementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplementRecommendationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pendingMacroAdjustments<T extends Prisma.User$pendingMacroAdjustmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pendingMacroAdjustmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PendingMacroAdjustmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -4708,6 +5200,54 @@ export type User$coachNotesArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.CoachNoteScalarFieldEnum | Prisma.CoachNoteScalarFieldEnum[]
+}
+
+/**
+ * User.sentMessages
+ */
+export type User$sentMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Message
+   */
+  select?: Prisma.MessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Message
+   */
+  omit?: Prisma.MessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MessageInclude<ExtArgs> | null
+  where?: Prisma.MessageWhereInput
+  orderBy?: Prisma.MessageOrderByWithRelationInput | Prisma.MessageOrderByWithRelationInput[]
+  cursor?: Prisma.MessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[]
+}
+
+/**
+ * User.receivedMessages
+ */
+export type User$receivedMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Message
+   */
+  select?: Prisma.MessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Message
+   */
+  omit?: Prisma.MessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MessageInclude<ExtArgs> | null
+  where?: Prisma.MessageWhereInput
+  orderBy?: Prisma.MessageOrderByWithRelationInput | Prisma.MessageOrderByWithRelationInput[]
+  cursor?: Prisma.MessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[]
 }
 
 /**

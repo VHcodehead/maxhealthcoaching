@@ -103,6 +103,11 @@ export type Notification = Prisma.NotificationModel
  */
 export type CoachNote = Prisma.CoachNoteModel
 /**
+ * Model Message
+ * 
+ */
+export type Message = Prisma.MessageModel
+/**
  * Model SupplementRecommendation
  * 
  */
