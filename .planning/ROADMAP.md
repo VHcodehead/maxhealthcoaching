@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Security and Auth** - Rate limiting, password reset, and email verification (completed 2026-03-31)
 - [ ] **Phase 2: Client Vetting** - Application flow and coach approval before access is granted
 - [ ] **Phase 3: Coach Editing** - Audit and complete all editing capabilities (meals, exercises, cardio)
-- [ ] **Phase 4: Email Notifications** - Email notifications and coach-client messaging
+- [x] **Phase 4: Email Notifications** - Email notifications and coach-client messaging (completed 2026-04-01)
 - [ ] **Phase 5: Payment Readiness** - Stripe production key configuration and webhook hardening
 - [ ] **Phase 6: Pipeline Verification** - End-to-end lifecycle testing across all flows
 
@@ -74,7 +74,7 @@ Plans:
   4. Client receives an email when the coach approves a macro adjustment on their behalf
   5. Coach and client can exchange messages in a per-client thread
   6. Unread message count badge is visible on coach and client dashboards
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 Plans:
 - [ ] 04-01-PLAN.md — Four notification email send functions and triggers in existing API routes
 - [ ] 04-02-PLAN.md — Message data model (Prisma) and /api/messages endpoint (GET/POST/PATCH)
@@ -110,6 +110,6 @@ Note: Phase 4 depends on Phase 1 only and can begin after Phase 1 completes. Pha
 | 1. Security and Auth | 3/3 | Complete   | 2026-03-31 |
 | 2. Client Vetting | 0/2 | Planning complete | - |
 | 3. Coach Editing | 1/2 | In Progress|  |
-| 4. Email Notifications | 2/3 | In Progress|  |
+| 4. Email Notifications | 3/3 | Complete   | 2026-04-01 |
 | 5. Payment Readiness | 0/TBD | Not started | - |
 | 6. Pipeline Verification | 0/TBD | Not started | - |
