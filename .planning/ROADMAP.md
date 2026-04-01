@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Security and Auth** - Rate limiting, password reset, and email verification (completed 2026-03-31)
 - [ ] **Phase 2: Client Vetting** - Application flow and coach approval before access is granted
 - [ ] **Phase 3: Coach Editing** - Audit and complete all editing capabilities (meals, exercises, cardio)
-- [ ] **Phase 4: Email Notifications** - Email service integration and all transactional notification triggers
+- [ ] **Phase 4: Email Notifications** - Email notifications and coach-client messaging
 - [ ] **Phase 5: Payment Readiness** - Stripe production key configuration and webhook hardening
 - [ ] **Phase 6: Pipeline Verification** - End-to-end lifecycle testing across all flows
 
@@ -64,15 +64,21 @@ Plans:
 - [ ] 03-02-PLAN.md — Verify and fix exercise/cardio editing, full editability audit across all content types
 
 ### Phase 4: Email Notifications
-**Goal**: Coach and clients receive the right email at the right moment throughout the coaching workflow
+**Goal**: Coach and clients receive the right email at the right moment throughout the coaching workflow, and can exchange messages in a per-client thread
 **Depends on**: Phase 1
-**Requirements**: NOTIF-01, NOTIF-02, NOTIF-03, NOTIF-04
+**Requirements**: NOTIF-01, NOTIF-02, NOTIF-03, NOTIF-04, MSG-01, MSG-02
 **Success Criteria** (what must be TRUE):
   1. Client receives an email when their plan is generated and ready to view
   2. Client receives a weekly reminder email prompting them to submit their check-in
   3. Coach receives an email when a client submits a check-in
   4. Client receives an email when the coach approves a macro adjustment on their behalf
-**Plans**: TBD
+  5. Coach and client can exchange messages in a per-client thread
+  6. Unread message count badge is visible on coach and client dashboards
+**Plans:** 3 plans
+Plans:
+- [ ] 04-01-PLAN.md — Four notification email send functions and triggers in existing API routes
+- [ ] 04-02-PLAN.md — Message data model (Prisma) and /api/messages endpoint (GET/POST/PATCH)
+- [ ] 04-03-PLAN.md — Message thread UI for coach and client, unread badges on both dashboards
 
 ### Phase 5: Payment Readiness
 **Goal**: The platform can accept real money — Stripe production configuration is verified and webhooks handle all subscription events
@@ -104,6 +110,6 @@ Note: Phase 4 depends on Phase 1 only and can begin after Phase 1 completes. Pha
 | 1. Security and Auth | 3/3 | Complete   | 2026-03-31 |
 | 2. Client Vetting | 0/2 | Planning complete | - |
 | 3. Coach Editing | 1/2 | In Progress|  |
-| 4. Email Notifications | 0/TBD | Not started | - |
+| 4. Email Notifications | 0/3 | Planning complete | - |
 | 5. Payment Readiness | 0/TBD | Not started | - |
 | 6. Pipeline Verification | 0/TBD | Not started | - |
