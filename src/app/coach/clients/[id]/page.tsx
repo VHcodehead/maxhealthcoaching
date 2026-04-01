@@ -53,6 +53,7 @@ import { MacroOverrideForm } from '@/components/coach/macro-override-form'
 import { PendingMacroReview } from '@/components/coach/pending-macro-review'
 import { CoachNotes } from '@/components/coach/coach-notes'
 import { CoachSupplements } from '@/components/coach/coach-supplements'
+import { ClientMessages } from '@/components/coach/client-messages'
 import { UnitToggle } from '@/components/ui/unit-toggle'
 import { useUnits } from '@/hooks/use-units'
 
@@ -1289,6 +1290,9 @@ export default function ClientDetailPage() {
 
       {/* Supplements */}
       <CoachSupplements clientId={clientId} />
+
+      {/* Messages */}
+      <ClientMessages clientId={clientId} clientName={profile.full_name} />
 
       {/* Photo Comparison */}
       {checkInsWithPhotos.length > 0 && (
