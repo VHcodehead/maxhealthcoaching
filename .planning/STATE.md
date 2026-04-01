@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v0.9
 milestone_name: milestone
 status: planning
-stopped_at: Completed 04-03-PLAN.md — Phase 04 Email Notifications complete
-last_updated: "2026-04-01T00:57:37.862Z"
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-04-01T01:29:12.110Z"
 last_activity: 2026-03-31 — Roadmap created for v1.0 Production Launch
 progress:
   total_phases: 6
-  completed_phases: 4
-  total_plans: 10
-  completed_plans: 10
+  completed_phases: 5
+  total_plans: 11
+  completed_plans: 11
   percent: 0
 ---
 
@@ -60,6 +60,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 04-email-notifications P01 | 15 | 2 tasks | 5 files |
 | Phase 04-email-notifications P02 | 15 | 2 tasks | 4 files |
 | Phase 04-email-notifications P03 | 18 | 2 tasks | 6 files |
+| Phase 05-payment-readiness P01 | 15 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -93,6 +94,9 @@ Recent decisions affecting current work:
 - [Phase 04-email-notifications]: Unread count endpoint serves two modes: total-only for clients, per-user breakdown for coaches using profile.role check
 - [Phase 04-email-notifications]: ClientMessages uses session.user.id to distinguish coach vs client bubbles without extra profile fetch
 - [Phase 04-email-notifications]: Unread count badge replaces active indicator dot on Messages nav when count > 0
+- [Phase 05-payment-readiness]: Idempotency implemented via DB read before update (not a separate idempotency table) — sufficient for webhook deduplication without schema changes
+- [Phase 05-payment-readiness]: Per-case try/catch in webhook handler returns 200 on handler errors to prevent Stripe retry storms on permanent failures
+- [Phase 05-payment-readiness]: current_period_end accessed via intersection type cast — field exists at runtime but not typed in Stripe SDK Subscription interface
 
 ### Pending Todos
 
@@ -105,6 +109,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T00:53:49.061Z
-Stopped at: Completed 04-03-PLAN.md — Phase 04 Email Notifications complete
+Last session: 2026-04-01T01:29:12.108Z
+Stopped at: Completed 05-01-PLAN.md
 Resume file: None

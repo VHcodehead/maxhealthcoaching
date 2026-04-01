@@ -47,8 +47,8 @@ Requirements for production launch. Each maps to roadmap phases.
 
 ### Payment Readiness
 
-- [ ] **PAY-01**: Stripe environment supports production key swap (env var config verified)
-- [ ] **PAY-02**: Webhook endpoint handles all subscription lifecycle events correctly
+- [x] **PAY-01**: Stripe environment supports production key swap (env var config verified)
+- [x] **PAY-02**: Webhook endpoint handles all subscription lifecycle events correctly
 
 ## v2 Requirements
 
@@ -103,8 +103,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NOTIF-04 | Phase 4 | Complete |
 | MSG-01 | Phase 4 | Complete |
 | MSG-02 | Phase 4 | Complete |
-| PAY-01 | Phase 5 | Pending |
-| PAY-02 | Phase 5 | Pending |
+| PAY-01 | Phase 5 | Complete |
+| PAY-02 | Phase 5 | Complete |
 | PIPE-01 | Phase 6 | Pending |
 | PIPE-02 | Phase 6 | Pending |
 | PIPE-03 | Phase 6 | Pending |
