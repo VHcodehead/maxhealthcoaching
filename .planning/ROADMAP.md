@@ -99,7 +99,10 @@ Plans:
   1. A full client lifecycle runs without errors: signup triggers vetting, coach approves, client completes onboarding, plan is generated, check-in is submitted, auto-adjustment is proposed, coach reviews and approves
   2. Stripe checkout completes and subscription status is active and correct in both Stripe and the platform database
   3. All coach editing operations (add/remove meals, add/remove exercises, edit cardio, macro overrides) save correctly and the updated content is visible on the client dashboard
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 06-01-PLAN.md — Code audit of all three pipelines (lifecycle, Stripe, editing), bug fixes, build verification
+- [ ] 06-02-PLAN.md — Human walkthrough of entire product end-to-end before launch
 
 ## Progress
 
@@ -114,4 +117,4 @@ Note: Phase 4 depends on Phase 1 only and can begin after Phase 1 completes. Pha
 | 3. Coach Editing | 1/2 | In Progress|  |
 | 4. Email Notifications | 3/3 | Complete   | 2026-04-01 |
 | 5. Payment Readiness | 1/1 | Complete   | 2026-04-01 |
-| 6. Pipeline Verification | 0/TBD | Not started | - |
+| 6. Pipeline Verification | 0/2 | Planning complete | - |
