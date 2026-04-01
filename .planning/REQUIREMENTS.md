@@ -34,6 +34,11 @@ Requirements for production launch. Each maps to roadmap phases.
 - [ ] **NOTIF-03**: Coach receives email when a client submits a check-in
 - [ ] **NOTIF-04**: Client receives email when coach approves a macro adjustment
 
+### Messaging
+
+- [ ] **MSG-01**: Coach and client can exchange messages in a per-client thread
+- [ ] **MSG-02**: Unread message count badge visible on coach and client dashboards
+
 ### Pipeline Verification
 
 - [ ] **PIPE-01**: Full client lifecycle works end-to-end (signup → onboarding → plan generation → check-in → auto-adjust → coach review)
@@ -96,6 +101,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NOTIF-02 | Phase 4 | Pending |
 | NOTIF-03 | Phase 4 | Pending |
 | NOTIF-04 | Phase 4 | Pending |
+| MSG-01 | Phase 4 | Pending |
+| MSG-02 | Phase 4 | Pending |
 | PAY-01 | Phase 5 | Pending |
 | PAY-02 | Phase 5 | Pending |
 | PIPE-01 | Phase 6 | Pending |
@@ -103,8 +110,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PIPE-03 | Phase 6 | Pending |
 
 **Coverage:**
-- v1.0 requirements: 20 total
-- Mapped to phases: 20
+- v1.0 requirements: 22 total
+- Mapped to phases: 22
 - Unmapped: 0
 
 ---
