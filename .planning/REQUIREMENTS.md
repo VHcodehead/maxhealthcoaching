@@ -36,8 +36,8 @@ Requirements for production launch. Each maps to roadmap phases.
 
 ### Messaging
 
-- [ ] **MSG-01**: Coach and client can exchange messages in a per-client thread
-- [ ] **MSG-02**: Unread message count badge visible on coach and client dashboards
+- [x] **MSG-01**: Coach and client can exchange messages in a per-client thread
+- [x] **MSG-02**: Unread message count badge visible on coach and client dashboards
 
 ### Pipeline Verification
 
@@ -101,8 +101,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NOTIF-02 | Phase 4 | Complete |
 | NOTIF-03 | Phase 4 | Complete |
 | NOTIF-04 | Phase 4 | Complete |
-| MSG-01 | Phase 4 | Pending |
-| MSG-02 | Phase 4 | Pending |
+| MSG-01 | Phase 4 | Complete |
+| MSG-02 | Phase 4 | Complete |
 | PAY-01 | Phase 5 | Pending |
 | PAY-02 | Phase 5 | Pending |
 | PIPE-01 | Phase 6 | Pending |

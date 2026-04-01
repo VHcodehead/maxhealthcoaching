@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v0.9
 milestone_name: milestone
 status: planning
-stopped_at: Completed 04-email-notifications 04-01-PLAN.md
-last_updated: "2026-04-01T00:16:09.896Z"
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-04-01T00:25:39.321Z"
 last_activity: 2026-03-31 — Roadmap created for v1.0 Production Launch
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 10
-  completed_plans: 8
+  completed_plans: 9
   percent: 0
 ---
 
@@ -58,6 +58,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-coach-editing P01 | 8 | 1 tasks | 1 files |
 | Phase 03-coach-editing P02 | 10 | 2 tasks | 0 files |
 | Phase 04-email-notifications P01 | 15 | 2 tasks | 5 files |
+| Phase 04-email-notifications P02 | 15 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -87,6 +88,8 @@ Recent decisions affecting current work:
 - [Phase 04-email-notifications]: All email sends in route handlers are non-blocking (fire-and-forget .catch()) — API response latency not affected by email delivery
 - [Phase 04-email-notifications]: Cron endpoint uses CRON_SECRET Bearer token auth (not NextAuth session) — cron jobs have no user session context
 - [Phase 04-email-notifications]: Promise.allSettled used in cron endpoint for bulk send — one failure does not abort remaining sends
+- [Phase 04-email-notifications]: Message model uses sender/receiver UUID relations with Cascade delete, consistent with CoachNote pattern
+- [Phase 04-email-notifications]: Unread count endpoint serves two modes: total-only for clients, per-user breakdown for coaches using profile.role check
 
 ### Pending Todos
 
@@ -99,6 +102,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T00:16:09.894Z
-Stopped at: Completed 04-email-notifications 04-01-PLAN.md
+Last session: 2026-04-01T00:25:39.319Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None
