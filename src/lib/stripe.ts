@@ -1,3 +1,15 @@
+/**
+ * Required Stripe environment variables:
+ * - STRIPE_SECRET_KEY: Stripe secret key (sk_test_... or sk_live_...)
+ * - NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: Stripe publishable key (pk_test_... or pk_live_...)
+ * - STRIPE_WEBHOOK_SECRET: Webhook signing secret (whsec_...)
+ * - STRIPE_PRICE_BASIC: Price ID for Basic plan
+ * - STRIPE_PRICE_PRO: Price ID for Pro plan
+ * - STRIPE_PRICE_ELITE: Price ID for Elite plan
+ * - NEXT_PUBLIC_APP_URL: Base URL for success/cancel redirects
+ *
+ * Production switch: Replace all values with production equivalents. No code changes needed.
+ */
 import Stripe from 'stripe';
 
 let _stripe: Stripe | null = null;
