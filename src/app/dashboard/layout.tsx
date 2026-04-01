@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -15,6 +15,7 @@ import {
   X,
   Activity,
   Pill,
+  MessageSquare,
 } from 'lucide-react'
 import { useSession, signOut } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
@@ -34,6 +35,7 @@ const navItems = [
   { href: '/dashboard/meals', label: 'Meal Plan', icon: UtensilsCrossed },
   { href: '/dashboard/training', label: 'Training', icon: Dumbbell },
   { href: '/dashboard/supplements', label: 'Supplements', icon: Pill },
+  { href: '/dashboard/messages', label: 'Messages', icon: MessageSquare },
   { href: '/dashboard/progress', label: 'Progress', icon: TrendingUp },
   { href: '/dashboard/referral', label: 'Referral', icon: Gift },
 ]
@@ -48,11 +50,13 @@ function SidebarContent({
   pathname,
   onSignOut,
   onNavClick,
+  unreadCount,
 }: {
   user: UserProfile | null
   pathname: string
   onSignOut: () => void
   onNavClick?: () => void
+  unreadCount?: number
 }) {
   return (
     <div className="flex h-full flex-col">
@@ -95,13 +99,17 @@ function SidebarContent({
                   }`}
                 />
                 {item.label}
-                {isActive && (
+                {item.href === '/dashboard/messages' && unreadCount && unreadCount > 0 ? (
+                  <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-600 px-1.5 text-[11px] font-semibold text-white">
+                    {unreadCount > 99 ? '99+' : unreadCount}
+                  </span>
+                ) : isActive ? (
                   <motion.div
                     layoutId="sidebar-active-indicator"
                     className="ml-auto h-1.5 w-1.5 rounded-full bg-emerald-600"
                     transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                   />
-                )}
+                ) : null}
               </Link>
             )
           })}
@@ -155,6 +163,18 @@ export default function DashboardLayout({
   const router = useRouter()
   const { data: session, status } = useSession()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [unreadCount, setUnreadCount] = useState(0)
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      fetch('/api/messages?count_only=true')
+        .then((r) => r.ok ? r.json() : null)
+        .then((data) => {
+          if (data?.unreadTotal) setUnreadCount(data.unreadTotal)
+        })
+        .catch(() => { /* non-critical */ })
+    }
+  }, [status])
 
   // Redirect to login if unauthenticated
   if (status === 'unauthenticated') {
@@ -188,6 +208,7 @@ export default function DashboardLayout({
           user={user}
           pathname={pathname}
           onSignOut={handleSignOut}
+          unreadCount={unreadCount}
         />
       </aside>
 
@@ -211,6 +232,7 @@ export default function DashboardLayout({
                 pathname={pathname}
                 onSignOut={handleSignOut}
                 onNavClick={() => setMobileOpen(false)}
+                unreadCount={unreadCount}
               />
             </SheetContent>
           </Sheet>

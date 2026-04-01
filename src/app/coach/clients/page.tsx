@@ -88,6 +88,7 @@ function ClientsContent() {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>(
     (searchParams.get('status') as StatusFilter) || 'all'
   )
+  const [unreadByUser, setUnreadByUser] = useState<Record<string, number>>({})
 
   useEffect(() => {
     async function loadClients() {
@@ -106,7 +107,21 @@ function ClientsContent() {
       }
     }
 
+    async function loadUnreadCounts() {
+      try {
+        const res = await fetch('/api/messages?count_only=true')
+        if (!res.ok) return
+        const data = await res.json()
+        if (data.unreadByUser) {
+          setUnreadByUser(data.unreadByUser)
+        }
+      } catch {
+        // non-critical — don't show badges if this fails
+      }
+    }
+
     loadClients()
+    loadUnreadCounts()
   }, [])
 
   const filteredClients = useMemo(() => {
@@ -275,6 +290,11 @@ function ClientsContent() {
                             <Badge className="bg-amber-100 text-amber-700 hover:bg-amber-100 text-[10px] px-1.5 py-0">
                               Macro Review
                             </Badge>
+                          )}
+                          {unreadByUser[client.user_id] > 0 && (
+                            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-600 px-1.5 text-[11px] font-semibold text-white">
+                              {unreadByUser[client.user_id] > 99 ? '99+' : unreadByUser[client.user_id]}
+                            </span>
                           )}
                         </span>
                       </TableCell>
