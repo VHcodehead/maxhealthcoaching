@@ -41,9 +41,9 @@ Requirements for production launch. Each maps to roadmap phases.
 
 ### Pipeline Verification
 
-- [ ] **PIPE-01**: Full client lifecycle works end-to-end (signup → onboarding → plan generation → check-in → auto-adjust → coach review)
-- [ ] **PIPE-02**: Stripe checkout flow completes and subscription activates correctly
-- [ ] **PIPE-03**: All coach editing operations save and display correctly to client
+- [x] **PIPE-01**: Full client lifecycle works end-to-end (signup → onboarding → plan generation → check-in → auto-adjust → coach review)
+- [x] **PIPE-02**: Stripe checkout flow completes and subscription activates correctly
+- [x] **PIPE-03**: All coach editing operations save and display correctly to client
 
 ### Payment Readiness
 
@@ -105,9 +105,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MSG-02 | Phase 4 | Complete |
 | PAY-01 | Phase 5 | Complete |
 | PAY-02 | Phase 5 | Complete |
-| PIPE-01 | Phase 6 | Pending |
-| PIPE-02 | Phase 6 | Pending |
-| PIPE-03 | Phase 6 | Pending |
+| PIPE-01 | Phase 6 | Complete |
+| PIPE-02 | Phase 6 | Complete |
+| PIPE-03 | Phase 6 | Complete |
 
 **Coverage:**
 - v1.0 requirements: 22 total
