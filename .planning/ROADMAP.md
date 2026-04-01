@@ -87,7 +87,9 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. Switching to production Stripe keys requires only an environment variable change — no code changes needed
   2. The webhook endpoint correctly handles all relevant Stripe subscription lifecycle events (created, updated, canceled, payment failed) and database state reflects each event accurately
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 05-01-PLAN.md — Audit env-var config for production key swap, harden webhook with idempotency and edge case handling
 
 ### Phase 6: Pipeline Verification
 **Goal**: Every critical user flow works end-to-end in a production-like environment before the first real client is onboarded
@@ -111,5 +113,5 @@ Note: Phase 4 depends on Phase 1 only and can begin after Phase 1 completes. Pha
 | 2. Client Vetting | 0/2 | Planning complete | - |
 | 3. Coach Editing | 1/2 | In Progress|  |
 | 4. Email Notifications | 3/3 | Complete   | 2026-04-01 |
-| 5. Payment Readiness | 0/TBD | Not started | - |
+| 5. Payment Readiness | 0/1 | Planning complete | - |
 | 6. Pipeline Verification | 0/TBD | Not started | - |
