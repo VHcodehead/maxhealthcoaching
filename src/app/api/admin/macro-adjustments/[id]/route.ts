@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { calculateMacros } from '@/lib/macros';
+import { sendMacroApprovedEmail } from '@/lib/email';
 
 export async function PUT(
   request: NextRequest,
@@ -126,6 +127,26 @@ export async function PUT(
         },
       }),
     ]);
+
+    // Notify client that their macros have been approved (non-blocking)
+    try {
+      const clientProfile = await prisma.profile.findUnique({
+        where: { userId: adjustment.userId },
+        select: { fullName: true, email: true },
+      });
+      if (clientProfile?.email) {
+        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://maxhealthfitness.com';
+        sendMacroApprovedEmail(
+          clientProfile.email,
+          clientProfile.fullName || 'there',
+          adjustment.currentCalories,
+          finalCalories,
+          `${appUrl}/dashboard`
+        ).catch((err) => console.error('Macro approved email failed:', err));
+      }
+    } catch (err) {
+      console.error('Macro approved email lookup failed:', err);
+    }
 
     return NextResponse.json({ success: true, action: 'approved', macroTarget });
   } catch (error) {

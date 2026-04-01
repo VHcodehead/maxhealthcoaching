@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { getOpenAI, TRAINING_PLAN_SYSTEM_PROMPT, TRAINING_PLAN_SCHEMA } from '@/lib/openai';
+import { sendPlanReadyEmail } from '@/lib/email';
 
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_WINDOW = 60000;
@@ -311,6 +312,22 @@ OUTPUT — valid JSON only:
         planData,
       },
     });
+
+    // After successful plan save, send plan-ready email (non-blocking)
+    try {
+      const profile = await prisma.profile.findUnique({
+        where: { userId: targetUserId },
+        select: { fullName: true, email: true },
+      });
+      if (profile?.email) {
+        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://maxhealthfitness.com';
+        sendPlanReadyEmail(profile.email, profile.fullName || 'there', `${appUrl}/dashboard`).catch(
+          (err) => console.error('Plan ready email failed:', err)
+        );
+      }
+    } catch (err) {
+      console.error('Plan ready email lookup failed:', err);
+    }
 
     return NextResponse.json({ success: true, trainingPlan });
   } catch (error) {

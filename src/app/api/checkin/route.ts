@@ -4,6 +4,7 @@ import { prisma } from '@/lib/db';
 import { checkInSchema } from '@/lib/validations';
 import { generateMacroTargets } from '@/lib/macros';
 import { isWithinCheckInWindow, hasCheckedInThisWeek } from '@/lib/checkin-schedule';
+import { sendCheckinNotificationEmail } from '@/lib/email';
 import type { OnboardingResponse } from '@/types/database';
 
 export async function POST(request: NextRequest) {
@@ -166,6 +167,35 @@ export async function POST(request: NextRequest) {
         pendingAdjustment = true;
         console.log(`Pending macro adjustment created: ${oldCalories} → ${newCalories} kcal (week ${weekNumber}, weight ${parsed.data.weight_kg}kg)`);
       }
+    }
+
+    // Notify coach about the new check-in (non-blocking)
+    try {
+      const [coachProfile, clientProfile] = await Promise.all([
+        prisma.profile.findFirst({
+          where: { role: 'coach' },
+          select: { email: true, userId: true },
+        }),
+        prisma.profile.findUnique({
+          where: { userId: session.user.id },
+          select: { fullName: true },
+        }),
+      ]);
+      if (coachProfile?.email) {
+        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://maxhealthfitness.com';
+        const clientName = clientProfile?.fullName || 'A client';
+        sendCheckinNotificationEmail(
+          coachProfile.email,
+          clientName,
+          weekNumber,
+          parsed.data.weight_kg,
+          parsed.data.adherence_rating,
+          parsed.data.notes ?? null,
+          `${appUrl}/coach/clients/${session.user.id}`
+        ).catch((err) => console.error('Coach checkin notification email failed:', err));
+      }
+    } catch (err) {
+      console.error('Coach checkin notification email lookup failed:', err);
     }
 
     return NextResponse.json({
