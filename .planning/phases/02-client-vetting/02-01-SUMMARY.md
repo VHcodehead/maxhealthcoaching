@@ -79,7 +79,7 @@ Each task was committed atomically:
 1. **Task 1: Add application fields to Profile, create applicationSchema, update signup API** - `7b07e11` (feat)
 2. **Task 2: Rewrite signup page as application form, add pending middleware, create /pending page** - `34d47f7` (feat)
 
-**Plan metadata:** (pending)
+**Plan metadata:** `a0cac39` (docs: complete plan)
 
 ## Files Created/Modified
 - `prisma/schema.prisma` - Added 10 application fields to Profile model
