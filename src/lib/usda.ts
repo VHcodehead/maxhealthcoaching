@@ -470,8 +470,63 @@ export function scaleDayToTarget(day: any, targets: MacroTargets): void {
     }
   }
 
-  // --- Step 3: Final protein correction if still over target ---
+  // --- Step 3: Protein correction (under OR over target) ---
   let totalProtein = 0;
+  for (const meal of day.meals) {
+    if (!Array.isArray(meal.ingredients)) continue;
+    for (const ing of meal.ingredients) {
+      totalProtein += ing.macros?.protein || 0;
+    }
+  }
+
+  // Step 3a: If protein is UNDER target, scale protein ingredients UP
+  const proteinRatio = totalProtein / targets.protein;
+  if (proteinRatio < 0.95 && groups.protein.length > 0) {
+    let protGroupProtein = 0;
+    for (const ing of groups.protein) {
+      protGroupProtein += ing.macros?.protein || 0;
+    }
+    if (protGroupProtein > 0) {
+      const deficit = targets.protein - totalProtein;
+      const boostFactor = clamp(1 + (deficit / protGroupProtein), 1.0, 1.5);
+      for (const ing of groups.protein) {
+        scaleIngredient(ing, boostFactor);
+      }
+
+      // Re-reconcile calories: protein went up, scale carb/fat down to compensate
+      let postProtCal = 0;
+      let postNonProtCal = 0;
+      let postFixedCal = 0;
+      for (const meal of day.meals) {
+        if (!Array.isArray(meal.ingredients)) continue;
+        for (const ing of meal.ingredients) {
+          const cal = ing.macros?.calories || 0;
+          if (cal <= 30) { postFixedCal += cal; }
+          else if (proteinIngSet.has(ing)) { postProtCal += cal; }
+          else { postNonProtCal += cal; }
+        }
+      }
+      const postTotal = postProtCal + postNonProtCal + postFixedCal;
+      if (postNonProtCal > 0 && postTotal > targets.calories * 1.05) {
+        const calNeeded = targets.calories - postProtCal - postFixedCal;
+        if (calNeeded > 0) {
+          const shrinkFactor = clamp(calNeeded / postNonProtCal, 0.5, 1.0);
+          for (const meal of day.meals) {
+            if (!Array.isArray(meal.ingredients)) continue;
+            for (const ing of meal.ingredients) {
+              if ((ing.macros?.calories || 0) <= 30) continue;
+              if (proteinIngSet.has(ing)) continue;
+              scaleIngredient(ing, shrinkFactor);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Step 3b: If protein is OVER target (>10%), scale protein ingredients DOWN
+  // Recompute after potential Step 3a adjustments
+  totalProtein = 0;
   for (const meal of day.meals) {
     if (!Array.isArray(meal.ingredients)) continue;
     for (const ing of meal.ingredients) {

@@ -634,9 +634,27 @@ export default function DashboardOverview() {
                   Get a PDF of your complete meal and training plan.
                 </p>
               </div>
-              <Button className="mt-2 gap-2 bg-emerald-600 hover:bg-emerald-700">
+              <Button
+                className="mt-2 gap-2 bg-emerald-600 hover:bg-emerald-700"
+                onClick={async () => {
+                  try {
+                    const res = await fetch('/api/generate-pdf')
+                    if (!res.ok) throw new Error('Failed to generate')
+                    const data = await res.json()
+                    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+                    const url = URL.createObjectURL(blob)
+                    const a = document.createElement('a')
+                    a.href = url
+                    a.download = `maxhealth-plan-${new Date().toISOString().split('T')[0]}.json`
+                    a.click()
+                    URL.revokeObjectURL(url)
+                  } catch {
+                    // silently fail — non-critical feature
+                  }
+                }}
+              >
                 <Download className="h-4 w-4" />
-                Download PDF
+                Download Plan
               </Button>
             </CardContent>
           </Card>

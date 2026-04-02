@@ -35,6 +35,7 @@ const navItems = [
   { href: '/dashboard/meals', label: 'Meal Plan', icon: UtensilsCrossed },
   { href: '/dashboard/training', label: 'Training', icon: Dumbbell },
   { href: '/dashboard/supplements', label: 'Supplements', icon: Pill },
+  { href: '/checkin', label: 'Check-in', icon: Activity },
   { href: '/dashboard/messages', label: 'Messages', icon: MessageSquare },
   { href: '/dashboard/progress', label: 'Progress', icon: TrendingUp },
   { href: '/dashboard/referral', label: 'Referral', icon: Gift },

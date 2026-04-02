@@ -30,8 +30,21 @@ export function calculateBMR(data: OnboardingResponse): {
   return { bmr: Math.round(bmr), formula: 'mifflin_st_jeor' };
 }
 
-export function calculateTDEE(bmr: number, activityLevel: string): number {
-  const multiplier = ACTIVITY_MULTIPLIERS[activityLevel] || 1.55;
+export function calculateTDEE(bmr: number, activityLevel: string, workoutFrequency?: number): number {
+  // If planned training frequency suggests higher activity than self-reported,
+  // use the higher level. Clients often underreport current activity but are
+  // about to start a structured program.
+  let effectiveLevel = activityLevel;
+  if (workoutFrequency !== undefined) {
+    if (workoutFrequency >= 5 && (activityLevel === 'sedentary' || activityLevel === 'lightly_active' || activityLevel === 'moderate')) {
+      effectiveLevel = 'very_active';
+    } else if (workoutFrequency >= 4 && (activityLevel === 'sedentary' || activityLevel === 'lightly_active')) {
+      effectiveLevel = 'moderate';
+    } else if (workoutFrequency >= 3 && activityLevel === 'sedentary') {
+      effectiveLevel = 'lightly_active';
+    }
+  }
+  const multiplier = ACTIVITY_MULTIPLIERS[effectiveLevel] || 1.55;
   return Math.round(bmr * multiplier);
 }
 
@@ -138,7 +151,7 @@ export function generateMacroTargets(
   userId: string
 ): Omit<MacroTargets, 'id' | 'created_at'> {
   const { bmr, formula } = calculateBMR(onboarding);
-  const tdee = calculateTDEE(bmr, onboarding.activity_level);
+  const tdee = calculateTDEE(bmr, onboarding.activity_level, onboarding.workout_frequency);
   const { calories } = calculateCalorieTarget(
     tdee,
     onboarding.goal,
