@@ -78,7 +78,7 @@ function WeightChart({ checkIns, unitSystem }: { checkIns: CheckIn[]; unitSystem
 
   if (weightsData.length === 0) {
     return (
-      <Card>
+      <Card className="bg-card">
         <CardContent className="flex flex-col items-center gap-3 py-12 text-center">
           <Scale className="h-10 w-10 text-muted-foreground/30" />
           <p className="text-sm text-muted-foreground">
@@ -107,12 +107,12 @@ function WeightChart({ checkIns, unitSystem }: { checkIns: CheckIn[]; unitSystem
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
-      <Card>
+      <Card className="bg-card">
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2 text-base">
-              <div className="rounded-md bg-emerald-100 p-1.5">
-                <Scale className="h-4 w-4 text-emerald-600" />
+              <div className="rounded-md bg-emerald-500/10 p-1.5">
+                <Scale className="h-4 w-4 text-emerald-400" />
               </div>
               Weight Trend
             </CardTitle>
@@ -120,13 +120,13 @@ function WeightChart({ checkIns, unitSystem }: { checkIns: CheckIn[]; unitSystem
               {weightChange !== 0 && (
                 <>
                   {isDown ? (
-                    <TrendingDown className="h-4 w-4 text-emerald-600" />
+                    <TrendingDown className="h-4 w-4 text-emerald-500" />
                   ) : (
-                    <TrendingUp className="h-4 w-4 text-rose-500" />
+                    <TrendingUp className="h-4 w-4 text-rose-400" />
                   )}
                   <span
-                    className={`text-sm font-semibold ${
-                      isDown ? 'text-emerald-600' : 'text-rose-500'
+                    className={`font-display text-sm font-semibold ${
+                      isDown ? 'text-emerald-500' : 'text-rose-400'
                     }`}
                   >
                     {weightChange > 0 ? '+' : ''}
@@ -160,7 +160,7 @@ function WeightChart({ checkIns, unitSystem }: { checkIns: CheckIn[]; unitSystem
                       y1={y}
                       x2={Math.max(weightsData.length * 60, 300) - 10}
                       y2={y}
-                      stroke="#e5e7eb"
+                      stroke="#3f3f46"
                       strokeWidth={1}
                       strokeDasharray="4,4"
                     />
@@ -193,7 +193,7 @@ function WeightChart({ checkIns, unitSystem }: { checkIns: CheckIn[]; unitSystem
                     })
                     .join(' ')}
                   fill="none"
-                  stroke="#059669"
+                  stroke="#10b981"
                   strokeWidth={2.5}
                   strokeLinejoin="round"
                   strokeLinecap="round"
@@ -218,8 +218,8 @@ function WeightChart({ checkIns, unitSystem }: { checkIns: CheckIn[]; unitSystem
                       cx={x}
                       cy={y}
                       r={5}
-                      fill="white"
-                      stroke="#059669"
+                      fill="#09090b"
+                      stroke="#10b981"
                       strokeWidth={2.5}
                     />
                     <text
@@ -255,7 +255,7 @@ function PhotoThumbnail({
 }) {
   if (!photo?.signed_url) {
     return (
-      <div className="flex aspect-[3/4] w-full items-center justify-center rounded-lg border-2 border-dashed border-muted bg-muted/30">
+      <div className="flex aspect-[3/4] w-full items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/30">
         <div className="text-center">
           <ImageIcon className="mx-auto h-6 w-6 text-muted-foreground/40" />
           <p className="mt-1 text-[10px] text-muted-foreground">{label}</p>
@@ -267,7 +267,7 @@ function PhotoThumbnail({
   return (
     <button
       onClick={onClick}
-      className="group relative aspect-[3/4] w-full overflow-hidden rounded-lg border bg-muted transition-all hover:ring-2 hover:ring-emerald-500"
+      className="group relative aspect-[3/4] w-full overflow-hidden rounded-lg border border-border bg-muted transition-all hover:ring-2 hover:ring-emerald-500"
     >
       <img
         src={photo.signed_url}
@@ -355,14 +355,14 @@ export default function ProgressPage() {
           <div className="h-8 w-48 animate-pulse rounded bg-muted" />
           <div className="h-4 w-72 animate-pulse rounded bg-muted" />
         </div>
-        <Card className="mb-6">
+        <Card className="mb-6 bg-card">
           <CardContent className="pt-6">
             <div className="h-48 animate-pulse rounded bg-muted" />
           </CardContent>
         </Card>
         <div className="space-y-4">
           {[...Array(3)].map((_, i) => (
-            <Card key={i}>
+            <Card key={i} className="bg-card">
               <CardContent className="pt-6">
                 <div className="flex gap-4">
                   <div className="h-16 w-16 animate-pulse rounded bg-muted" />
@@ -383,10 +383,10 @@ export default function ProgressPage() {
   if (error) {
     return (
       <div className="flex h-full items-center justify-center p-6">
-        <Card className="max-w-md">
+        <Card className="max-w-md bg-card">
           <CardContent className="flex flex-col items-center gap-4 pt-6 text-center">
-            <div className="rounded-full bg-red-100 p-3">
-              <AlertCircle className="h-6 w-6 text-red-600" />
+            <div className="rounded-full bg-red-500/20 p-3">
+              <AlertCircle className="h-6 w-6 text-red-400" />
             </div>
             <div>
               <p className="font-semibold">Failed to load progress</p>
@@ -394,7 +394,7 @@ export default function ProgressPage() {
             </div>
             <Button
               onClick={() => window.location.reload()}
-              className="bg-emerald-600 hover:bg-emerald-700"
+              className="bg-primary hover:bg-primary/90"
             >
               Try again
             </Button>
@@ -412,17 +412,17 @@ export default function ProgressPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-6"
         >
-          <h1 className="text-2xl font-bold tracking-tight lg:text-3xl">
+          <h1 className="font-display text-2xl font-bold tracking-tight lg:text-3xl">
             Progress
           </h1>
           <p className="mt-1 text-muted-foreground">
             Track your weight, photos, and check-in history.
           </p>
         </motion.div>
-        <Card className="max-w-lg">
+        <Card className="max-w-lg bg-card">
           <CardContent className="flex flex-col items-center gap-4 py-16 text-center">
-            <div className="rounded-full bg-emerald-50 p-4">
-              <TrendingUp className="h-10 w-10 text-emerald-300" />
+            <div className="rounded-full bg-emerald-500/10 p-4">
+              <TrendingUp className="h-10 w-10 text-emerald-400" />
             </div>
             <div>
               <p className="text-lg font-semibold">No check-ins yet</p>
@@ -446,7 +446,7 @@ export default function ProgressPage() {
       >
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight lg:text-3xl">
+            <h1 className="font-display text-2xl font-bold tracking-tight lg:text-3xl">
               Progress
             </h1>
             <p className="mt-1 text-muted-foreground">
@@ -459,7 +459,7 @@ export default function ProgressPage() {
               variant={compareMode ? 'default' : 'outline'}
               className={
                 compareMode
-                  ? 'gap-2 bg-emerald-600 hover:bg-emerald-700'
+                  ? 'gap-2 bg-primary hover:bg-primary/90'
                   : 'gap-2'
               }
               onClick={() => {
@@ -482,10 +482,10 @@ export default function ProgressPage() {
           exit={{ opacity: 0, height: 0 }}
           className="mb-6"
         >
-          <Card className="border-emerald-200 bg-emerald-50/50">
+          <Card className="border-emerald-500/30 bg-emerald-500/10">
             <CardContent className="flex items-center gap-3 pt-6">
-              <ArrowLeftRight className="h-5 w-5 text-emerald-600" />
-              <p className="text-sm text-emerald-800">
+              <ArrowLeftRight className="h-5 w-5 text-emerald-400" />
+              <p className="text-sm text-emerald-300">
                 Select two check-ins below to compare photos side by side.{' '}
                 <span className="font-medium">
                   {selectedCheckIns.length}/2 selected
@@ -503,10 +503,10 @@ export default function ProgressPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <Card>
+          <Card className="bg-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
-                <Camera className="h-4 w-4 text-emerald-600" />
+                <Camera className="h-4 w-4 text-emerald-400" />
                 Photo Comparison
               </CardTitle>
               <CardDescription>
@@ -583,13 +583,13 @@ export default function ProgressPage() {
                 transition={{ delay: i * 0.05 }}
               >
                 <Card
-                  className={`transition-all ${
+                  className={`bg-card transition-all ${
                     compareMode
-                      ? 'cursor-pointer hover:border-emerald-300'
+                      ? 'cursor-pointer hover:border-emerald-500/50'
                       : ''
                   } ${
                     isSelected
-                      ? 'border-emerald-500 bg-emerald-50/30 ring-1 ring-emerald-500'
+                      ? 'border-emerald-500 bg-emerald-500/10 ring-1 ring-emerald-500'
                       : ''
                   }`}
                   onClick={() =>
@@ -631,7 +631,7 @@ export default function ProgressPage() {
                               className="gap-1 text-xs"
                             >
                               <Scale className="h-3 w-3" />
-                              {displayWeight(checkIn.weightKg, units.system)}
+                              <span className="font-display">{displayWeight(checkIn.weightKg, units.system)}</span>
                             </Badge>
                           )}
                           {checkIn.adherenceRating != null && (
@@ -639,14 +639,14 @@ export default function ProgressPage() {
                               variant="secondary"
                               className={`gap-1 text-xs ${
                                 checkIn.adherenceRating >= 8
-                                  ? 'bg-emerald-100 text-emerald-700'
+                                  ? 'bg-emerald-500/20 text-emerald-400'
                                   : checkIn.adherenceRating >= 5
-                                    ? 'bg-amber-100 text-amber-700'
-                                    : 'bg-red-100 text-red-700'
+                                    ? 'bg-amber-500/20 text-amber-400'
+                                    : 'bg-red-500/20 text-red-400'
                               }`}
                             >
                               <CheckCircle2 className="h-3 w-3" />
-                              {checkIn.adherenceRating}/10 adherence
+                              <span className="font-display">{checkIn.adherenceRating}/10</span> adherence
                             </Badge>
                           )}
                         </div>

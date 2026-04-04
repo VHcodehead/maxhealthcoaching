@@ -46,15 +46,15 @@ const statusConfig: Record<
   string,
   { label: string; className: string }
 > = {
-  pending: { label: 'Pending', className: 'bg-amber-100 text-amber-700' },
+  pending: { label: 'Pending', className: 'bg-amber-500/20 text-amber-400' },
   signed_up: {
     label: 'Signed Up',
-    className: 'bg-blue-100 text-blue-700',
+    className: 'bg-blue-500/20 text-blue-400',
   },
-  active: { label: 'Active', className: 'bg-emerald-100 text-emerald-700' },
+  active: { label: 'Active', className: 'bg-emerald-500/20 text-emerald-400' },
   completed: {
     label: 'Completed',
-    className: 'bg-violet-100 text-violet-700',
+    className: 'bg-violet-500/20 text-violet-400',
   },
 }
 
@@ -85,13 +85,13 @@ function StatCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay }}
     >
-      <Card>
+      <Card className="bg-card">
         <CardContent className="flex items-center gap-4 pt-6">
           <div className={`rounded-lg p-3 ${color}`}>
             <Icon className="h-5 w-5 text-white" />
           </div>
           <div>
-            <p className="text-2xl font-bold">{value}</p>
+            <p className="font-display text-2xl font-bold">{value}</p>
             <p className="text-sm text-muted-foreground">{label}</p>
           </div>
         </CardContent>
@@ -160,7 +160,7 @@ export default function ReferralPage() {
           <div className="h-4 w-64 animate-pulse rounded bg-muted" />
         </div>
         <div className="mb-6 grid gap-4 sm:grid-cols-2">
-          <Card>
+          <Card className="bg-card">
             <CardContent className="pt-6">
               <div className="flex items-center gap-4">
                 <div className="h-12 w-12 animate-pulse rounded-lg bg-muted" />
@@ -171,7 +171,7 @@ export default function ReferralPage() {
               </div>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-card">
             <CardContent className="pt-6">
               <div className="flex items-center gap-4">
                 <div className="h-12 w-12 animate-pulse rounded-lg bg-muted" />
@@ -183,7 +183,7 @@ export default function ReferralPage() {
             </CardContent>
           </Card>
         </div>
-        <Card>
+        <Card className="bg-card">
           <CardContent className="pt-6">
             <div className="space-y-4">
               <div className="h-6 w-40 animate-pulse rounded bg-muted" />
@@ -199,10 +199,10 @@ export default function ReferralPage() {
   if (error) {
     return (
       <div className="flex h-full items-center justify-center p-6">
-        <Card className="max-w-md">
+        <Card className="max-w-md bg-card">
           <CardContent className="flex flex-col items-center gap-4 pt-6 text-center">
-            <div className="rounded-full bg-red-100 p-3">
-              <AlertCircle className="h-6 w-6 text-red-600" />
+            <div className="rounded-full bg-red-500/20 p-3">
+              <AlertCircle className="h-6 w-6 text-red-400" />
             </div>
             <div>
               <p className="font-semibold">Failed to load referral data</p>
@@ -210,7 +210,7 @@ export default function ReferralPage() {
             </div>
             <Button
               onClick={() => window.location.reload()}
-              className="bg-emerald-600 hover:bg-emerald-700"
+              className="bg-primary hover:bg-primary/90"
             >
               Try again
             </Button>
@@ -230,7 +230,7 @@ export default function ReferralPage() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6"
       >
-        <h1 className="text-2xl font-bold tracking-tight lg:text-3xl">
+        <h1 className="font-display text-2xl font-bold tracking-tight lg:text-3xl">
           Referral Program
         </h1>
         <p className="mt-1 text-muted-foreground">
@@ -263,11 +263,11 @@ export default function ReferralPage() {
         transition={{ delay: 0.25 }}
         className="mb-8"
       >
-        <Card>
+        <Card className="bg-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
-              <div className="rounded-md bg-emerald-100 p-1.5">
-                <Gift className="h-4 w-4 text-emerald-600" />
+              <div className="rounded-md bg-emerald-500/10 p-1.5">
+                <Gift className="h-4 w-4 text-emerald-400" />
               </div>
               Your Referral Code
             </CardTitle>
@@ -278,8 +278,8 @@ export default function ReferralPage() {
           <CardContent className="space-y-4">
             {/* Referral Code */}
             <div className="flex items-center gap-3">
-              <div className="flex-1 rounded-lg border-2 border-dashed border-emerald-200 bg-emerald-50/50 px-4 py-3">
-                <p className="text-center text-lg font-bold tracking-widest text-emerald-700">
+              <div className="flex-1 rounded-lg border-2 border-dashed border-emerald-500/30 bg-emerald-500/10 px-4 py-3">
+                <p className="font-display text-center text-lg font-bold tracking-widest text-emerald-400">
                   {data.referral_code}
                 </p>
               </div>
@@ -291,7 +291,7 @@ export default function ReferralPage() {
               >
                 {copied ? (
                   <>
-                    <Check className="h-4 w-4 text-emerald-600" />
+                    <Check className="h-4 w-4 text-emerald-400" />
                     Copied
                   </>
                 ) : (
@@ -305,7 +305,7 @@ export default function ReferralPage() {
 
             {/* Referral Link */}
             <div className="flex items-center gap-3">
-              <div className="flex min-w-0 flex-1 items-center gap-2 rounded-lg border bg-muted/50 px-4 py-3">
+              <div className="flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-border bg-muted/50 px-4 py-3">
                 <LinkIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
                 <p className="truncate text-sm text-muted-foreground">
                   {referralLink}
@@ -319,7 +319,7 @@ export default function ReferralPage() {
               >
                 {copiedLink ? (
                   <>
-                    <Check className="h-4 w-4 text-emerald-600" />
+                    <Check className="h-4 w-4 text-emerald-400" />
                     Copied
                   </>
                 ) : (
@@ -341,11 +341,11 @@ export default function ReferralPage() {
         transition={{ delay: 0.35 }}
         className="mb-8"
       >
-        <Card>
+        <Card className="bg-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
-              <div className="rounded-md bg-blue-100 p-1.5">
-                <Share2 className="h-4 w-4 text-blue-600" />
+              <div className="rounded-md bg-blue-500/10 p-1.5">
+                <Share2 className="h-4 w-4 text-blue-400" />
               </div>
               Share with Friends
             </CardTitle>
@@ -355,7 +355,7 @@ export default function ReferralPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Twitter / X */}
-            <div className="rounded-lg border p-4">
+            <div className="rounded-lg border border-border bg-card p-4">
               <div className="mb-2 flex items-center gap-2">
                 <Twitter className="h-4 w-4" />
                 <p className="text-sm font-semibold">Twitter / X</p>
@@ -380,7 +380,7 @@ export default function ReferralPage() {
             </div>
 
             {/* Email */}
-            <div className="rounded-lg border p-4">
+            <div className="rounded-lg border border-border bg-card p-4">
               <div className="mb-2 flex items-center gap-2">
                 <Mail className="h-4 w-4" />
                 <p className="text-sm font-semibold">Email</p>
@@ -405,7 +405,7 @@ export default function ReferralPage() {
             </div>
 
             {/* General / SMS */}
-            <div className="rounded-lg border p-4">
+            <div className="rounded-lg border border-border bg-card p-4">
               <div className="mb-2 flex items-center gap-2">
                 <MessageCircle className="h-4 w-4" />
                 <p className="text-sm font-semibold">Text / Direct Message</p>
@@ -435,11 +435,11 @@ export default function ReferralPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.45 }}
       >
-        <Card>
+        <Card className="bg-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
-              <div className="rounded-md bg-violet-100 p-1.5">
-                <Users className="h-4 w-4 text-violet-600" />
+              <div className="rounded-md bg-violet-500/10 p-1.5">
+                <Users className="h-4 w-4 text-violet-400" />
               </div>
               Referral History
             </CardTitle>
@@ -459,7 +459,7 @@ export default function ReferralPage() {
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.5 + i * 0.05 }}
-                      className="flex items-center justify-between rounded-lg border px-4 py-3 transition-colors hover:bg-muted/50"
+                      className="flex items-center justify-between rounded-lg border border-border px-4 py-3 transition-colors hover:bg-muted/50"
                     >
                       <div className="flex items-center gap-3">
                         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-xs font-bold">
