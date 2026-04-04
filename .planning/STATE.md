@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Dark Athletic Hybrid Redesign
 status: planning
-stopped_at: Completed 10-01-PLAN.md (Phase 10 Plan 01 — Onboarding dark restyle)
-last_updated: "2026-04-04T18:44:22.409Z"
+stopped_at: Completed 10-onboarding 10-02-PLAN.md — 100% dark theme coverage achieved
+last_updated: "2026-04-04T18:45:10.433Z"
 last_activity: 2026-04-03 — v1.1 roadmap created (phases 7-10)
 progress:
   total_phases: 10
-  completed_phases: 9
+  completed_phases: 10
   total_plans: 23
-  completed_plans: 22
+  completed_plans: 23
   percent: 40
 ---
 
@@ -59,6 +59,7 @@ Progress: [████████░░░░░░░░░░░░] 40% (v1
 | Phase 09-dashboards P02 | 4 | 2 tasks | 4 files |
 | Phase 09-dashboards P01 | 325 | 2 tasks | 4 files |
 | Phase 10-onboarding P01 | 4 | 1 tasks | 1 files |
+| Phase 10-onboarding P02 | 6 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -86,6 +87,8 @@ Progress: [████████░░░░░░░░░░░░] 40% (v1
 - [Phase 09-dashboards]: Active nav state uses bg-primary text-primary-foreground for clear visual contrast on dark surfaces
 - [Phase 09-dashboards]: Day totals macro values use font-display for brand consistency with overview stat cards
 - [Phase 10-onboarding]: Onboarding page uses bg-background (zinc-950) outer wrapper; SelectableCard selected state uses emerald-950/30 with ring-2 ring-emerald-500; TagInput badges use explicit dark classes; Nav buttons use bg-primary pattern
+- [Phase 10-onboarding]: Amber pending-adjustment box dark-restyled to amber-950/20 pattern for consistency across all surfaces
+- [Phase 10-onboarding]: All buttons standardized to bg-primary hover:bg-primary/90 pattern on check-in and success pages
 
 ### Pending Todos
 
@@ -97,6 +100,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-04-04T18:44:22.406Z
-Stopped at: Completed 10-01-PLAN.md (Phase 10 Plan 01 — Onboarding dark restyle)
+Last session: 2026-04-04T18:45:10.431Z
+Stopped at: Completed 10-onboarding 10-02-PLAN.md — 100% dark theme coverage achieved
 Resume file: None
