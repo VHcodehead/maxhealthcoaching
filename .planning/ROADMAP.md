@@ -115,7 +115,11 @@ Plans:
   3. A bold condensed heading font and a clean body font are loaded and applied to all headings and body text site-wide
   4. All buttons, cards, form inputs, and badges have dark-surface variants available as reusable classes or components
   5. Interactive elements (buttons, links, modals) share a consistent transition/animation behavior — no jarring instant state changes
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — Dark palette CSS variables + Bebas Neue font loading
+- [ ] 07-02-PLAN.md — Component overrides for dark surfaces + animation utilities
 
 #### Phase 8: Public Pages
 **Goal**: Prospects visiting the site encounter a premium, high-conversion dark-themed experience before ever creating an account
@@ -164,7 +168,7 @@ Note: Phase 9 (Dashboards) depends only on Phase 7 and could theoretically run i
 | 4. Email Notifications | v1.0 | 3/3 | Complete | 2026-04-01 |
 | 5. Payment Readiness | v1.0 | 1/1 | Complete | 2026-04-01 |
 | 6. Pipeline Verification | v1.0 | 2/2 | Complete | 2026-04-01 |
-| 7. Design Foundation | v1.1 | 0/TBD | Not started | - |
+| 7. Design Foundation | v1.1 | 0/2 | Not started | - |
 | 8. Public Pages | v1.1 | 0/TBD | Not started | - |
 | 9. Dashboards | v1.1 | 0/TBD | Not started | - |
 | 10. Onboarding | v1.1 | 0/TBD | Not started | - |
