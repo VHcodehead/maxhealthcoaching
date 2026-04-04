@@ -88,7 +88,7 @@ export function MacroOverrideForm({
   }
 
   return (
-    <div className="mt-4 space-y-3 rounded-lg border border-emerald-200 bg-emerald-50/50 p-4">
+    <div className="mt-4 space-y-3 rounded-lg border border-emerald-800/30 bg-emerald-950/20 p-4">
       <div className="flex items-center justify-between">
         <Label className="text-sm font-semibold">Coach Macro Override</Label>
         <Button variant="ghost" size="sm" onClick={() => setOpen(false)}>

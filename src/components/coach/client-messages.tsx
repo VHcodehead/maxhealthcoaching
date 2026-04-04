@@ -175,8 +175,8 @@ export function ClientMessages({ clientId, clientName }: ClientMessagesProps) {
                     <div
                       className={`max-w-[75%] rounded-2xl px-3.5 py-2.5 text-sm whitespace-pre-wrap ${
                         isCoach
-                          ? 'bg-emerald-600 text-white rounded-tr-sm'
-                          : 'bg-gray-100 text-gray-900 rounded-tl-sm'
+                          ? 'bg-emerald-900/50 text-emerald-100 rounded-tr-sm'
+                          : 'bg-zinc-800 text-foreground rounded-tl-sm'
                       }`}
                     >
                       {msg.content}

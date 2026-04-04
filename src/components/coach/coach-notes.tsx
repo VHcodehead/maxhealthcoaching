@@ -13,10 +13,10 @@ import { Loader2, MessageSquare, ChevronDown, ChevronUp } from 'lucide-react'
 import type { CoachNote, CoachNoteCategory } from '@/types/database'
 
 const CATEGORY_COLORS: Record<string, string> = {
-  general: 'bg-gray-100 text-gray-700',
-  nutrition: 'bg-blue-100 text-blue-700',
-  training: 'bg-purple-100 text-purple-700',
-  check_in: 'bg-amber-100 text-amber-700',
+  general: 'bg-zinc-800 text-zinc-400',
+  nutrition: 'bg-blue-900/30 text-blue-400',
+  training: 'bg-purple-900/30 text-purple-400',
+  check_in: 'bg-amber-900/30 text-amber-400',
 }
 
 const CATEGORIES: { value: CoachNoteCategory; label: string }[] = [

@@ -83,23 +83,23 @@ export function PendingMacroReview({
   const calorieSign = calorieDiff > 0 ? '+' : ''
 
   return (
-    <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-4 space-y-4">
+    <div className="rounded-lg border border-amber-800/40 bg-amber-950/20 p-4 space-y-4">
       <div className="flex items-start gap-2">
-        <AlertTriangle className="size-5 text-amber-600 mt-0.5 shrink-0" />
+        <AlertTriangle className="size-5 text-amber-400 mt-0.5 shrink-0" />
         <div>
-          <h3 className="text-sm font-semibold text-amber-900">
+          <h3 className="text-sm font-semibold text-amber-400">
             Macro Adjustment Pending Review
           </h3>
-          <p className="text-sm text-amber-700">
+          <p className="text-sm text-amber-400/70">
             Weight change detected — review and approve or dismiss the proposed macro update.
           </p>
         </div>
       </div>
 
       {/* Weight change context */}
-      <div className="rounded-md bg-white/60 p-3">
-        <p className="text-sm font-medium text-amber-900">Weight Change</p>
-        <p className="text-lg font-bold text-amber-800">
+      <div className="rounded-md bg-zinc-800/60 p-3">
+        <p className="text-sm font-medium text-amber-400">Weight Change</p>
+        <p className="text-lg font-bold text-foreground">
           {units.displayWeight(adjustment.previous_weight_kg)} → {units.displayWeight(adjustment.new_weight_kg)}{' '}
           <span className={weightDiff < 0 ? 'text-emerald-600' : 'text-amber-600'}>
             ({weightSign}{units.system === 'imperial' ? (units.kgToLbs(weightDiff)).toFixed(1) : weightDiff.toFixed(1)} {units.weightUnit})
@@ -109,7 +109,7 @@ export function PendingMacroReview({
 
       {/* Current vs Proposed comparison */}
       <div className="grid gap-3 sm:grid-cols-2">
-        <div className="rounded-md bg-white/60 p-3">
+        <div className="rounded-md bg-zinc-800/60 p-3">
           <p className="text-xs font-medium text-muted-foreground mb-2">Current Macros</p>
           <div className="space-y-1 text-sm">
             <p><span className="text-muted-foreground">Calories:</span> <span className="font-medium">{adjustment.current_calories}</span></p>
@@ -118,10 +118,10 @@ export function PendingMacroReview({
             <p><span className="text-muted-foreground">Fat:</span> <span className="font-medium">{adjustment.current_fat_g}g</span></p>
           </div>
         </div>
-        <div className="rounded-md bg-amber-100/50 p-3 border border-amber-200">
-          <p className="text-xs font-medium text-amber-800 mb-2">Proposed Macros</p>
+        <div className="rounded-md bg-amber-900/20 p-3 border border-amber-800/30">
+          <p className="text-xs font-medium text-amber-400 mb-2">Proposed Macros</p>
           <div className="space-y-1 text-sm">
-            <p><span className="text-muted-foreground">Calories:</span> <span className="font-bold text-amber-900">{adjustment.proposed_calories}</span></p>
+            <p><span className="text-muted-foreground">Calories:</span> <span className="font-bold text-amber-400">{adjustment.proposed_calories}</span></p>
             <p><span className="text-muted-foreground">Protein:</span> <span className="font-medium">{adjustment.proposed_protein_g}g</span></p>
             <p><span className="text-muted-foreground">Carbs:</span> <span className="font-medium">{adjustment.proposed_carbs_g}g</span></p>
             <p><span className="text-muted-foreground">Fat:</span> <span className="font-medium">{adjustment.proposed_fat_g}g</span></p>
@@ -164,7 +164,7 @@ export function PendingMacroReview({
         </div>
 
         {calorieTarget !== adjustment.proposed_calories && (
-          <div className="rounded-md bg-white/60 p-2 text-sm">
+          <div className="rounded-md bg-zinc-800/60 p-2 text-sm">
             <p className="text-muted-foreground">
               Adjusted macros: <span className="font-medium">{protein}g P</span> / <span className="font-medium">{carbs}g C</span> / <span className="font-medium">{fat}g F</span>
             </p>

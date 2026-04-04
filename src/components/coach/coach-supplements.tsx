@@ -22,24 +22,24 @@ import type {
 } from '@/types/database'
 
 const CATEGORY_COLORS: Record<string, string> = {
-  vitamin: 'bg-amber-100 text-amber-700',
-  mineral: 'bg-slate-100 text-slate-700',
-  performance: 'bg-red-100 text-red-700',
-  recovery: 'bg-blue-100 text-blue-700',
-  protein: 'bg-purple-100 text-purple-700',
-  health: 'bg-emerald-100 text-emerald-700',
-  organ_support: 'bg-teal-100 text-teal-700',
-  sleep: 'bg-violet-100 text-violet-700',
-  hormonal: 'bg-pink-100 text-pink-700',
+  vitamin: 'bg-amber-900/30 text-amber-400',
+  mineral: 'bg-slate-800/50 text-slate-400',
+  performance: 'bg-red-900/30 text-red-400',
+  recovery: 'bg-blue-900/30 text-blue-400',
+  protein: 'bg-purple-900/30 text-purple-400',
+  health: 'bg-emerald-900/30 text-emerald-400',
+  organ_support: 'bg-teal-900/30 text-teal-400',
+  sleep: 'bg-violet-900/30 text-violet-400',
+  hormonal: 'bg-pink-900/30 text-pink-400',
 }
 
 const TIMING_COLORS: Record<string, string> = {
-  morning: 'bg-orange-100 text-orange-700',
-  pre_workout: 'bg-red-100 text-red-700',
-  post_workout: 'bg-blue-100 text-blue-700',
-  with_meals: 'bg-emerald-100 text-emerald-700',
-  evening: 'bg-indigo-100 text-indigo-700',
-  bedtime: 'bg-violet-100 text-violet-700',
+  morning: 'bg-orange-900/30 text-orange-400',
+  pre_workout: 'bg-red-900/30 text-red-400',
+  post_workout: 'bg-blue-900/30 text-blue-400',
+  with_meals: 'bg-emerald-900/30 text-emerald-400',
+  evening: 'bg-indigo-900/30 text-indigo-400',
+  bedtime: 'bg-violet-900/30 text-violet-400',
 }
 
 const FREQUENCIES: { value: SupplementFrequency; label: string }[] = [
@@ -304,21 +304,21 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
     if (!selectedCatalogEntry) return null
     const entry = selectedCatalogEntry
     return (
-      <div className="rounded-lg border border-blue-200 bg-blue-50 p-3">
-        <div className="mb-1.5 flex items-center gap-1.5 text-sm font-medium text-blue-800">
+      <div className="rounded-lg border border-blue-800/30 bg-blue-950/20 p-3">
+        <div className="mb-1.5 flex items-center gap-1.5 text-sm font-medium text-blue-400">
           <Info className="size-3.5" />
           Dosage Guidance
         </div>
         {entry.dosage_low && entry.dosage_high && (
-          <p className="text-sm font-medium text-blue-700">
+          <p className="text-sm font-medium text-blue-400">
             Typical range: {entry.dosage_low}–{entry.dosage_high} {entry.default_unit}
           </p>
         )}
         {entry.dosage_guidance && (
-          <p className="mt-1 text-xs text-blue-600">{entry.dosage_guidance}</p>
+          <p className="mt-1 text-xs text-blue-400/70">{entry.dosage_guidance}</p>
         )}
         {entry.description && (
-          <p className="mt-1.5 text-xs text-blue-500">{entry.description}</p>
+          <p className="mt-1.5 text-xs text-muted-foreground">{entry.description}</p>
         )}
       </div>
     )
@@ -345,7 +345,7 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
                   onClick={() => handleSelectCatalogEntry(entry)}
                 >
                   <span className="font-medium">{entry.name}</span>
-                  <Badge className={`${CATEGORY_COLORS[entry.category] || 'bg-gray-100 text-gray-700'} text-[10px]`}>
+                  <Badge className={`${CATEGORY_COLORS[entry.category] || 'bg-zinc-800 text-zinc-400'} text-[10px]`}>
                     {formatLabel(entry.category)}
                   </Badge>
                 </button>
@@ -550,10 +550,10 @@ export function CoachSupplements({ clientId }: CoachSupplementsProps) {
                       <div className="mb-2 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="font-medium text-sm">{supp.name}</span>
-                          <Badge className={CATEGORY_COLORS[supp.category] || 'bg-gray-100 text-gray-700'}>
+                          <Badge className={CATEGORY_COLORS[supp.category] || 'bg-zinc-800 text-zinc-400'}>
                             {formatLabel(supp.category)}
                           </Badge>
-                          <Badge className={TIMING_COLORS[supp.timing] || 'bg-gray-100 text-gray-700'}>
+                          <Badge className={TIMING_COLORS[supp.timing] || 'bg-zinc-800 text-zinc-400'}>
                             {formatLabel(supp.timing)}
                           </Badge>
                         </div>
