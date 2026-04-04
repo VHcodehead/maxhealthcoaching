@@ -136,21 +136,21 @@ export default function MessagesPage() {
     <div className="p-6 lg:p-8 max-w-3xl mx-auto">
       {/* Page header */}
       <div className="mb-6 flex items-center gap-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-100">
-          <MessageSquare className="h-5 w-5 text-emerald-600" />
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/10">
+          <MessageSquare className="h-5 w-5 text-emerald-400" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Messages</h1>
+          <h1 className="font-display text-2xl font-bold tracking-tight">Messages</h1>
           <p className="text-sm text-muted-foreground">
             Your conversation with {coachName}
           </p>
         </div>
       </div>
 
-      <Card className="flex flex-col">
-        <CardHeader className="border-b">
+      <Card className="flex flex-col bg-card">
+        <CardHeader className="border-b border-border">
           <CardTitle className="text-base flex items-center gap-2">
-            <MessageSquare className="size-4 text-emerald-600" />
+            <MessageSquare className="size-4 text-emerald-400" />
             {coachName}
           </CardTitle>
         </CardHeader>
@@ -192,8 +192,8 @@ export default function MessagesPage() {
                     <div
                       className={`max-w-[75%] rounded-2xl px-3.5 py-2.5 text-sm whitespace-pre-wrap ${
                         isClient
-                          ? 'bg-emerald-600 text-white rounded-tr-sm'
-                          : 'bg-gray-100 text-gray-900 rounded-tl-sm'
+                          ? 'bg-zinc-800 text-foreground rounded-tr-sm'
+                          : 'bg-emerald-900/50 text-foreground rounded-tl-sm'
                       }`}
                     >
                       {msg.content}
@@ -209,7 +209,7 @@ export default function MessagesPage() {
           )}
 
           {/* Compose */}
-          <div className="space-y-2 border-t pt-4">
+          <div className="space-y-2 border-t border-border pt-4">
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
@@ -217,7 +217,7 @@ export default function MessagesPage() {
               placeholder={`Message ${coachName}... (Ctrl+Enter to send)`}
               rows={3}
               disabled={loading || !coachId}
-              className="border-input w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none disabled:opacity-50"
+              className="border-input w-full rounded-md border bg-background px-3 py-2 text-sm shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none disabled:opacity-50"
             />
             {error && !loading && (
               <p className="text-sm text-destructive">{error}</p>
@@ -225,7 +225,7 @@ export default function MessagesPage() {
             <Button
               onClick={handleSend}
               disabled={sending || !content.trim() || !coachId}
-              className="bg-emerald-600 hover:bg-emerald-700"
+              className="bg-primary hover:bg-primary/90"
             >
               {sending && <Loader2 className="mr-1.5 size-3.5 animate-spin" />}
               Send Message

@@ -36,24 +36,24 @@ const TIMING_CONFIG: Record<
   SupplementTiming,
   { label: string; icon: React.ElementType; color: string; bg: string }
 > = {
-  morning: { label: 'Morning', icon: Sun, color: 'text-orange-600', bg: 'bg-orange-50' },
-  pre_workout: { label: 'Pre-Workout', icon: Dumbbell, color: 'text-red-600', bg: 'bg-red-50' },
-  post_workout: { label: 'Post-Workout', icon: Dumbbell, color: 'text-blue-600', bg: 'bg-blue-50' },
-  with_meals: { label: 'With Meals', icon: Utensils, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-  evening: { label: 'Evening', icon: Sunset, color: 'text-indigo-600', bg: 'bg-indigo-50' },
-  bedtime: { label: 'Bedtime', icon: Moon, color: 'text-violet-600', bg: 'bg-violet-50' },
+  morning: { label: 'Morning', icon: Sun, color: 'text-orange-400', bg: 'bg-orange-500/10' },
+  pre_workout: { label: 'Pre-Workout', icon: Dumbbell, color: 'text-red-400', bg: 'bg-red-500/10' },
+  post_workout: { label: 'Post-Workout', icon: Dumbbell, color: 'text-blue-400', bg: 'bg-blue-500/10' },
+  with_meals: { label: 'With Meals', icon: Utensils, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+  evening: { label: 'Evening', icon: Sunset, color: 'text-indigo-400', bg: 'bg-indigo-500/10' },
+  bedtime: { label: 'Bedtime', icon: Moon, color: 'text-violet-400', bg: 'bg-violet-500/10' },
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
-  vitamin: 'bg-amber-100 text-amber-700',
-  mineral: 'bg-slate-100 text-slate-700',
-  performance: 'bg-red-100 text-red-700',
-  recovery: 'bg-blue-100 text-blue-700',
-  protein: 'bg-purple-100 text-purple-700',
-  health: 'bg-emerald-100 text-emerald-700',
-  organ_support: 'bg-teal-100 text-teal-700',
-  sleep: 'bg-violet-100 text-violet-700',
-  hormonal: 'bg-pink-100 text-pink-700',
+  vitamin: 'bg-amber-500/20 text-amber-400',
+  mineral: 'bg-slate-500/20 text-slate-400',
+  performance: 'bg-red-500/20 text-red-400',
+  recovery: 'bg-blue-500/20 text-blue-400',
+  protein: 'bg-purple-500/20 text-purple-400',
+  health: 'bg-emerald-500/20 text-emerald-400',
+  organ_support: 'bg-teal-500/20 text-teal-400',
+  sleep: 'bg-violet-500/20 text-violet-400',
+  hormonal: 'bg-pink-500/20 text-pink-400',
 }
 
 function formatLabel(str: string) {
@@ -124,8 +124,8 @@ export default function SupplementsPage() {
       <div className="flex h-full items-center justify-center p-6">
         <Card className="max-w-md">
           <CardContent className="flex flex-col items-center gap-4 pt-6 text-center">
-            <div className="rounded-full bg-red-100 p-3">
-              <AlertCircle className="h-6 w-6 text-red-600" />
+            <div className="rounded-full bg-red-500/20 p-3">
+              <AlertCircle className="h-6 w-6 text-red-400" />
             </div>
             <div>
               <p className="font-semibold">Failed to load supplements</p>
@@ -133,7 +133,7 @@ export default function SupplementsPage() {
             </div>
             <Button
               onClick={() => window.location.reload()}
-              className="bg-emerald-600 hover:bg-emerald-700"
+              className="bg-primary hover:bg-primary/90"
             >
               Try again
             </Button>
@@ -148,8 +148,8 @@ export default function SupplementsPage() {
       <div className="flex h-full items-center justify-center p-6">
         <Card className="max-w-md">
           <CardContent className="flex flex-col items-center gap-4 py-16 text-center">
-            <div className="rounded-full bg-emerald-50 p-4">
-              <Pill className="h-10 w-10 text-emerald-300" />
+            <div className="rounded-full bg-emerald-500/10 p-4">
+              <Pill className="h-10 w-10 text-emerald-400" />
             </div>
             <div>
               <p className="text-lg font-semibold">No supplements yet</p>
@@ -172,7 +172,7 @@ export default function SupplementsPage() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6"
       >
-        <h1 className="text-2xl font-bold tracking-tight lg:text-3xl">
+        <h1 className="font-display text-2xl font-bold tracking-tight lg:text-3xl">
           Supplements
         </h1>
         <p className="mt-1 text-muted-foreground">
@@ -195,7 +195,7 @@ export default function SupplementsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, delay: sectionIndex * 0.08 }}
             >
-              <Card>
+              <Card className="bg-card">
                 <CardHeader className={config.bg}>
                   <div className="flex items-center gap-3">
                     <div className={`flex h-9 w-9 items-center justify-center rounded-lg ${config.bg}`}>
@@ -209,11 +209,11 @@ export default function SupplementsPage() {
                 </CardHeader>
                 <CardContent className="space-y-3 pt-4">
                   {items.map((supp) => (
-                    <div key={supp.id} className="rounded-lg border p-3">
+                    <div key={supp.id} className="rounded-lg border border-white/10 bg-card p-3">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-sm font-medium">{supp.name}</span>
-                          <Badge className={CATEGORY_COLORS[supp.category] || 'bg-gray-100 text-gray-700'} variant="secondary">
+                          <Badge className={CATEGORY_COLORS[supp.category] || 'bg-zinc-700 text-zinc-300'} variant="secondary">
                             {formatLabel(supp.category)}
                           </Badge>
                         </div>
