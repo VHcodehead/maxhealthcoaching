@@ -89,3 +89,70 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  /* Consistent transition durations */
+  .transition-micro {
+    transition-property: color, background-color, border-color, opacity, transform, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+
+  .transition-page {
+    transition-property: opacity, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 400ms;
+  }
+
+  /* Card hover effect — subtle scale + border glow */
+  .hover-card-glow {
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .hover-card-glow:hover {
+    transform: scale(1.01);
+    border-color: oklch(0.696 0.17 162.48 / 30%); /* emerald-500/30 */
+    box-shadow: 0 0 20px oklch(0.696 0.17 162.48 / 10%); /* subtle emerald glow */
+  }
+
+  /* Button hover — brightness increase */
+  .hover-brightness {
+    transition: filter 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .hover-brightness:hover {
+    filter: brightness(1.1);
+  }
+
+  /* Fade-in-up for page content */
+  .animate-fade-in-up {
+    animation: fade-in-up 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Count-up ready — applied to stat numbers that will animate via JS */
+  .animate-count-up {
+    animation: count-fade 600ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes count-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
