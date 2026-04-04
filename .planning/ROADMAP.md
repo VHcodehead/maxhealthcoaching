@@ -146,11 +146,13 @@ Plans:
   3. Meal plan and training plan pages use dark cards with clear macro and exercise data — day/week navigation is visible and styled
   4. The coach client list shows dark cards with clearly styled status badges and unread message indicators
   5. The coach client detail page uses dark expandable sections and editing dialogs — editing actions are visually distinct from read state
-**Plans**: 2 plans
+**Plans**: 4 plans
 
 Plans:
-- [ ] 08-01-PLAN.md — Landing page dark restyle (hero, nav, features, comparison, pricing, FAQ, footer)
-- [ ] 08-02-PLAN.md — Auth pages dark restyle (login, apply, pricing, pending)
+- [ ] 09-01-PLAN.md — Client layout, overview, meals, and training dark restyle
+- [ ] 09-02-PLAN.md — Client supplements, messages, progress, and referral dark restyle
+- [ ] 09-03-PLAN.md — Coach overview, client list, settings, and content dark restyle
+- [ ] 09-04-PLAN.md — Coach client detail page and all coach components dark restyle
 
 #### Phase 10: Onboarding
 **Goal**: New clients experience a premium, brand-consistent intake flow from first question through plan generation — the quality of the form matches the quality of the coaching
@@ -182,5 +184,5 @@ Note: Phase 9 (Dashboards) depends only on Phase 7 and could theoretically run i
 | 6. Pipeline Verification | v1.0 | 2/2 | Complete | 2026-04-01 |
 | 7. Design Foundation | 2/2 | Complete   | 2026-04-04 | - |
 | 8. Public Pages | 2/2 | Complete   | 2026-04-04 | - |
-| 9. Dashboards | v1.1 | 0/TBD | Not started | - |
+| 9. Dashboards | v1.1 | 0/4 | Planning | - |
 | 10. Onboarding | v1.1 | 0/TBD | Not started | - |
