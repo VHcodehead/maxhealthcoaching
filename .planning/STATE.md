@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Dark Athletic Hybrid Redesign
 status: planning
-stopped_at: Completed 09-04-PLAN.md
-last_updated: "2026-04-04T18:25:40.223Z"
+stopped_at: Completed 09-03-PLAN.md (coach dashboard dark restyle)
+last_updated: "2026-04-04T18:26:10.781Z"
 last_activity: 2026-04-03 — v1.1 roadmap created (phases 7-10)
 progress:
   total_phases: 10
   completed_phases: 8
   total_plans: 21
-  completed_plans: 18
+  completed_plans: 20
   percent: 40
 ---
 
@@ -55,6 +55,8 @@ Progress: [████████░░░░░░░░░░░░] 40% (v1
 | Phase 08-public-pages P02 | 15 | 3 tasks | 4 files |
 | Phase 08-public-pages P01 | 5 | 2 tasks | 1 files |
 | Phase 09-dashboards P04 | 15 | 2 tasks | 8 files |
+| Phase 09-dashboards P03 | 4 | 2 tasks | 4 files |
+| Phase 09-dashboards P02 | 4 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -75,6 +77,8 @@ Progress: [████████░░░░░░░░░░░░] 40% (v1
 - [Phase 08-public-pages]: Landing page uses bg-primary/hover:bg-primary/90 pattern for all CTAs, font-display with ALL CAPS for section headings, bg-card/50 for alternating section backgrounds
 - [Phase 09-dashboards]: Status badge dark pattern: 900/30 bg with 400 text for active/overdue/pending states
 - [Phase 09-dashboards]: Message bubbles: coach=emerald-900/50 with emerald-100 text, client=zinc-800 with foreground text
+- [Phase 09-dashboards]: Coach stat cards use 4-color left-border system: emerald (total), blue (active), violet (overdue), amber (pending)
+- [Phase 09-dashboards]: Status badges use /20 bg opacity + /400 text color pattern for dark surfaces (emerald-400, amber-400, zinc-400)
 
 ### Pending Todos
 
@@ -86,6 +90,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-04-04T18:25:35.873Z
-Stopped at: Completed 09-04-PLAN.md
+Last session: 2026-04-04T18:26:01.957Z
+Stopped at: Completed 09-03-PLAN.md (coach dashboard dark restyle)
 Resume file: None
