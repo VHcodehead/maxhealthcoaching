@@ -47,7 +47,7 @@ function SelectableCard({ selected, onClick, children, className = '' }: {
 }) {
   return (
     <Card
-      className={`cursor-pointer transition-all p-4 ${selected ? 'ring-2 ring-emerald-500 bg-emerald-50 border-emerald-300' : 'hover:border-zinc-300'} ${className}`}
+      className={`cursor-pointer transition-all p-4 ${selected ? 'ring-2 ring-emerald-500 bg-emerald-950/30 border-transparent' : 'hover:border-white/20'} ${className}`}
       onClick={onClick}
     >
       {children}
@@ -61,7 +61,7 @@ function TagInput({ tags, setTags, placeholder }: { tags: string[]; setTags: (t:
     <div>
       <div className="flex flex-wrap gap-1 mb-2">
         {tags.map((tag, i) => (
-          <Badge key={i} variant="secondary" className="cursor-pointer" onClick={() => setTags(tags.filter((_, j) => j !== i))}>
+          <Badge key={i} className="bg-emerald-900/30 text-emerald-400 hover:bg-emerald-900/50 cursor-pointer" onClick={() => setTags(tags.filter((_, j) => j !== i))}>
             {tag} &times;
           </Badge>
         ))}
@@ -159,16 +159,16 @@ export default function OnboardingPage() {
 
 
   return (
-    <div className="min-h-screen bg-zinc-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white border-b sticky top-0 z-10">
+      <header className="bg-background border-b border-white/10 sticky top-0 z-10">
         <div className="max-w-2xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-lg font-bold tracking-tight">Max<span className="text-emerald-600">Health</span></span>
-            <span className="text-xs text-zinc-400">Step {step} of {TOTAL_STEPS}</span>
+            <span className="text-lg font-bold tracking-tight">Max<span className="text-primary">Health</span></span>
+            <span className="text-xs text-muted-foreground">Step {step} of {TOTAL_STEPS}</span>
           </div>
-          <Progress value={(step / TOTAL_STEPS) * 100} className="h-1.5" />
-          <p className="text-sm font-medium text-zinc-600 mt-1">{stepTitles[step - 1]}</p>
+          <Progress value={(step / TOTAL_STEPS) * 100} className="h-1.5 [&>div]:bg-primary" />
+          <p className="text-sm font-medium text-zinc-400 font-display mt-1">{stepTitles[step - 1]}</p>
         </div>
       </header>
 
@@ -187,7 +187,7 @@ export default function OnboardingPage() {
             {step === 1 && (
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold">Tell us about yourself</h2>
+                  <h2 className="text-2xl font-bold text-foreground">Tell us about yourself</h2>
                   <UnitToggle system={units.system} onToggle={s => {
                     // Sync display values when toggling
                     if (s === 'imperial' && form.weight_kg > 0) {
@@ -271,7 +271,7 @@ export default function OnboardingPage() {
             {/* STEP 2: Goals */}
             {step === 2 && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold">What&apos;s your goal?</h2>
+                <h2 className="text-2xl font-bold text-foreground">What&apos;s your goal?</h2>
                 <div className="grid gap-3">
                   {[
                     { val: 'cut', icon: Scissors, title: 'Cut', desc: 'Lose body fat while preserving muscle mass' },
@@ -282,7 +282,7 @@ export default function OnboardingPage() {
                     return (
                       <SelectableCard key={g.val} selected={form.goal === g.val} onClick={() => update({ goal: g.val })}>
                         <div className="flex items-center gap-3">
-                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${form.goal === g.val ? 'bg-emerald-500 text-white' : 'bg-zinc-100'}`}>
+                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${form.goal === g.val ? 'bg-emerald-500 text-white' : 'bg-zinc-800'}`}>
                             <Icon className="w-5 h-5" />
                           </div>
                           <div>
@@ -319,8 +319,8 @@ export default function OnboardingPage() {
             {step === 3 && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold">How active are you?</h2>
-                  <p className="text-sm text-amber-600 mt-2 bg-amber-50 rounded-lg p-3">
+                  <h2 className="text-2xl font-bold text-foreground">How active are you?</h2>
+                  <p className="text-sm text-amber-400 mt-2 bg-amber-950/30 rounded-lg p-3">
                     <AlertTriangle className="w-4 h-4 inline mr-1" />
                     It&apos;s better to underestimate than overestimate your activity level. Most people are less active than they think.
                   </p>
@@ -345,7 +345,7 @@ export default function OnboardingPage() {
             {/* STEP 4: Body Fat % */}
             {step === 4 && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold">Estimate your body fat %</h2>
+                <h2 className="text-2xl font-bold text-foreground">Estimate your body fat %</h2>
                 <p className="text-sm text-zinc-500">Select the image that most closely matches your physique, or choose &quot;I&apos;m not sure&quot; below.</p>
 
                 {!form.body_fat_unsure && (
@@ -360,8 +360,8 @@ export default function OnboardingPage() {
                       ).map(bf => (
                         <div
                           key={bf.range}
-                          className={`aspect-[3/4] bg-zinc-100 rounded-lg flex flex-col items-center justify-center cursor-pointer border-2 transition-all text-center p-1 ${
-                            form.body_fat_percentage === bf.val ? 'border-emerald-500 bg-emerald-50' : 'border-transparent hover:border-zinc-300'
+                          className={`aspect-[3/4] bg-zinc-800 rounded-lg flex flex-col items-center justify-center cursor-pointer border-2 transition-all text-center p-1 ${
+                            form.body_fat_percentage === bf.val ? 'border-emerald-500 bg-emerald-950/30' : 'border-transparent hover:border-white/20'
                           }`}
                           onClick={() => update({ body_fat_percentage: bf.val, body_fat_unsure: false })}
                         >
@@ -378,12 +378,12 @@ export default function OnboardingPage() {
                     type="checkbox"
                     checked={form.body_fat_unsure}
                     onChange={e => update({ body_fat_unsure: e.target.checked, body_fat_percentage: undefined })}
-                    className="rounded border-zinc-300"
+                    className="rounded border-zinc-600"
                   />
                   <span className="text-sm">I&apos;m not sure</span>
                 </label>
                 {form.body_fat_unsure && (
-                  <p className="text-sm text-zinc-500 bg-zinc-100 rounded-lg p-3">
+                  <p className="text-sm text-zinc-400 bg-zinc-800 rounded-lg p-3">
                     No problem! We&apos;ll use the Mifflin-St Jeor formula to estimate your caloric needs. You can update this later for more accurate results.
                   </p>
                 )}
@@ -393,7 +393,7 @@ export default function OnboardingPage() {
             {/* STEP 5: Diet Preferences */}
             {step === 5 && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold">Diet preferences</h2>
+                <h2 className="text-2xl font-bold text-foreground">Diet preferences</h2>
 
                 <div>
                   <Label className="mb-2 block">Diet type</Label>
@@ -408,7 +408,7 @@ export default function OnboardingPage() {
                       <Badge
                         key={d.val}
                         variant={form.diet_type === d.val ? 'default' : 'outline'}
-                        className={`cursor-pointer text-xs py-1 px-3 ${form.diet_type === d.val ? 'bg-emerald-600 hover:bg-emerald-700' : 'hover:bg-zinc-100'}`}
+                        className={`cursor-pointer text-xs py-1 px-3 ${form.diet_type === d.val ? 'bg-primary hover:bg-primary/90' : 'hover:bg-zinc-800'}`}
                         onClick={() => update({ diet_type: d.val })}
                       >
                         {d.label}
@@ -430,7 +430,7 @@ export default function OnboardingPage() {
                 <div>
                   <div className="flex justify-between">
                     <Label>Meals per day</Label>
-                    <span className="text-sm font-semibold text-emerald-600">{form.meals_per_day}</span>
+                    <span className="text-sm font-semibold text-primary">{form.meals_per_day}</span>
                   </div>
                   <Slider min={1} max={8} step={1} value={[form.meals_per_day]} onValueChange={([v]) => update({ meals_per_day: v })} className="mt-2" />
                 </div>
@@ -478,7 +478,7 @@ export default function OnboardingPage() {
             {step === 6 && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold">Any injuries or limitations?</h2>
+                  <h2 className="text-2xl font-bold text-foreground">Any injuries or limitations?</h2>
                   <p className="text-sm text-zinc-500 mt-1">This helps us avoid exercises that might aggravate existing issues.</p>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -496,7 +496,7 @@ export default function OnboardingPage() {
                   <Label>Additional notes</Label>
                   <textarea
                     rows={3}
-                    className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none"
+                    className="w-full rounded-lg border border-white/10 bg-zinc-900 text-foreground px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                     placeholder="Describe any injuries, limitations, or health conditions..."
                     value={form.injury_notes}
                     onChange={e => update({ injury_notes: e.target.value })}
@@ -508,7 +508,7 @@ export default function OnboardingPage() {
             {/* STEP 7: Training Preferences */}
             {step === 7 && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold">Training preferences</h2>
+                <h2 className="text-2xl font-bold text-foreground">Training preferences</h2>
 
                 <div>
                   <Label className="mb-2 block">Workout frequency (days/week)</Label>
@@ -557,7 +557,7 @@ export default function OnboardingPage() {
                         <Badge
                           key={eq}
                           variant={form.home_equipment.includes(eq.toLowerCase()) ? 'default' : 'outline'}
-                          className={`cursor-pointer py-1 px-3 ${form.home_equipment.includes(eq.toLowerCase()) ? 'bg-emerald-600' : ''}`}
+                          className={`cursor-pointer py-1 px-3 ${form.home_equipment.includes(eq.toLowerCase()) ? 'bg-primary hover:bg-primary/90' : 'hover:bg-zinc-800'}`}
                           onClick={() => update({ home_equipment: toggleArray(form.home_equipment, eq.toLowerCase()) })}
                         >
                           {eq}
@@ -589,7 +589,7 @@ export default function OnboardingPage() {
                 <div>
                   <div className="flex justify-between">
                     <Label>Time per session (minutes)</Label>
-                    <span className="text-sm font-semibold text-emerald-600">{form.time_per_session} min</span>
+                    <span className="text-sm font-semibold text-primary">{form.time_per_session} min</span>
                   </div>
                   <Slider min={15} max={180} step={5} value={[form.time_per_session]} onValueChange={([v]) => update({ time_per_session: v })} className="mt-2" />
                 </div>
@@ -610,7 +610,7 @@ export default function OnboardingPage() {
             {/* STEP 8: Lifestyle */}
             {step === 8 && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold">Lifestyle</h2>
+                <h2 className="text-2xl font-bold text-foreground">Lifestyle</h2>
 
                 <div>
                   <Label>Average daily steps</Label>
@@ -652,7 +652,7 @@ export default function OnboardingPage() {
             {step === 9 && (
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-2xl font-bold">Choose your plan length</h2>
+                  <h2 className="text-2xl font-bold text-foreground">Choose your plan length</h2>
                   <p className="text-sm text-zinc-500 mt-1">How long do you want your training program to be?</p>
                 </div>
                 <div className="space-y-3">
@@ -664,7 +664,7 @@ export default function OnboardingPage() {
                     <SelectableCard key={p.weeks} selected={form.plan_duration_weeks === p.weeks} onClick={() => update({ plan_duration_weeks: p.weeks })}>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <div className={`w-12 h-12 rounded-lg flex items-center justify-center font-bold ${form.plan_duration_weeks === p.weeks ? 'bg-emerald-500 text-white' : 'bg-zinc-100'}`}>
+                          <div className={`w-12 h-12 rounded-lg flex items-center justify-center font-bold ${form.plan_duration_weeks === p.weeks ? 'bg-emerald-500 text-white' : 'bg-zinc-800'}`}>
                             {p.weeks}w
                           </div>
                           <div>
@@ -672,13 +672,13 @@ export default function OnboardingPage() {
                             <p className="text-xs text-zinc-500">{p.desc}</p>
                           </div>
                         </div>
-                        {p.badge && <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100 text-xs">{p.badge}</Badge>}
+                        {p.badge && <Badge className="bg-emerald-900/30 text-emerald-400 hover:bg-emerald-900/30 text-xs">{p.badge}</Badge>}
                       </div>
                     </SelectableCard>
                   ))}
                 </div>
 
-                <div className="bg-zinc-100 rounded-xl p-4 mt-6">
+                <div className="bg-zinc-800 rounded-xl p-4 mt-6">
                   <p className="text-sm font-medium mb-1 flex items-center gap-1"><Clock className="w-4 h-4" /> Almost done!</p>
                   <p className="text-xs text-zinc-500">After you submit, we&apos;ll calculate your macros and generate your personalized meal plan and training program. This takes about 30-60 seconds.</p>
                 </div>
@@ -690,7 +690,7 @@ export default function OnboardingPage() {
         {/* Navigation */}
         <div className="flex justify-between mt-8 gap-3">
           {step > 1 ? (
-            <Button variant="outline" onClick={goBack} className="flex-1 sm:flex-none">
+            <Button variant="outline" onClick={goBack} className="flex-1 sm:flex-none bg-zinc-800 border-white/10 hover:bg-zinc-700 text-zinc-300">
               <ArrowLeft className="w-4 h-4 mr-1" /> Back
             </Button>
           ) : <div />}
@@ -699,7 +699,7 @@ export default function OnboardingPage() {
             <Button
               onClick={goNext}
               disabled={!canProceed()}
-              className="flex-1 sm:flex-none bg-emerald-600 hover:bg-emerald-700"
+              className="flex-1 sm:flex-none bg-primary hover:bg-primary/90"
             >
               Next <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
@@ -707,7 +707,7 @@ export default function OnboardingPage() {
             <Button
               onClick={handleSubmit}
               disabled={submitting || !canProceed()}
-              className="flex-1 sm:flex-none bg-emerald-600 hover:bg-emerald-700"
+              className="flex-1 sm:flex-none bg-primary hover:bg-primary/90"
             >
               {submitting ? (
                 <><Loader2 className="w-4 h-4 mr-1 animate-spin" /> Submitting...</>
