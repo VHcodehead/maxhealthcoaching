@@ -21,10 +21,10 @@
 
 ### Client Dashboard
 
-- [ ] **DASH-01**: Dashboard layout/sidebar redesign — dark sidebar, emerald active states
-- [ ] **DASH-02**: Overview page redesign — stat cards, macro visualization with charts/rings
-- [ ] **DASH-03**: Meal plan page redesign — dark cards, better macro display, day navigation
-- [ ] **DASH-04**: Training page redesign — dark exercise tables, cardio sections, week tabs
+- [x] **DASH-01**: Dashboard layout/sidebar redesign — dark sidebar, emerald active states
+- [x] **DASH-02**: Overview page redesign — stat cards, macro visualization with charts/rings
+- [x] **DASH-03**: Meal plan page redesign — dark cards, better macro display, day navigation
+- [x] **DASH-04**: Training page redesign — dark exercise tables, cardio sections, week tabs
 - [x] **DASH-05**: Supplements, messages, progress pages — dark themed, consistent with new design
 
 ### Coach Dashboard
@@ -73,10 +73,10 @@ Deferred to future release.
 | PUB-02 | Phase 8 | Complete |
 | PUB-03 | Phase 8 | Complete |
 | PUB-04 | Phase 8 | Complete |
-| DASH-01 | Phase 9 | Pending |
-| DASH-02 | Phase 9 | Pending |
-| DASH-03 | Phase 9 | Pending |
-| DASH-04 | Phase 9 | Pending |
+| DASH-01 | Phase 9 | Complete |
+| DASH-02 | Phase 9 | Complete |
+| DASH-03 | Phase 9 | Complete |
+| DASH-04 | Phase 9 | Complete |
 | DASH-05 | Phase 9 | Complete |
 | COACH-01 | Phase 9 | Complete |
 | COACH-02 | Phase 9 | Complete |
