@@ -26,7 +26,7 @@ type LoginFormData = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-2 border-zinc-200 border-t-zinc-600 rounded-full animate-spin" /></div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-background"><div className="w-8 h-8 border-2 border-border border-t-primary rounded-full animate-spin" /></div>}>
       <LoginContent />
     </Suspense>
   );
@@ -72,14 +72,14 @@ function LoginContent() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4 py-12">
       <div className="w-full max-w-md">
         <div className="mb-8 flex flex-col items-center text-center">
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-600">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/20">
             <Dumbbell className="h-6 w-6 text-white" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">
-            MaxHealth Coaching
+          <h1 className="font-display text-3xl tracking-tight">
+            MAX<span className="text-primary">HEALTH</span>
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Your Personal Training Partner
@@ -88,7 +88,7 @@ function LoginContent() {
 
         <Card>
           <CardHeader className="text-center">
-            <CardTitle className="text-xl">Sign in to your account</CardTitle>
+            <CardTitle className="font-display text-2xl">SIGN IN</CardTitle>
             <CardDescription>
               Enter your email and password to continue
             </CardDescription>
@@ -135,7 +135,7 @@ function LoginContent() {
                 )}
               </div>
 
-              <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700" disabled={isLoading}>
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
                 {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 Sign in
               </Button>
@@ -145,7 +145,7 @@ function LoginContent() {
               Want to work with me?{' '}
               <Link
                 href="/signup"
-                className="font-medium text-foreground hover:underline"
+                className="font-medium text-primary hover:underline"
               >
                 Apply Now
               </Link>
