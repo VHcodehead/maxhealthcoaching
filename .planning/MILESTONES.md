@@ -25,3 +25,18 @@
 - Production Stripe keys
 - End-to-end pipeline testing
 - Rate limiting, security hardening
+
+## v1.0 — Production Launch
+
+**Status:** Complete
+**Phases:** 1-6 (13 plans total)
+
+**What shipped:**
+- Phase 1: Password reset, email verification, rate limiting (Resend + in-memory limiter)
+- Phase 2: Client vetting (application form, pending state, coach approval/reject)
+- Phase 3: Coach editing completeness (add/remove meals, exercise/cardio audit)
+- Phase 4: Email notifications (4 transactional emails, cron reminders) + messaging (per-client threads, unread badges)
+- Phase 5: Stripe webhook hardening, idempotency, production key readiness
+- Phase 6: Pipeline verification (51-point code audit, zero bugs)
+
+**22 requirements delivered. 28/28 integration tests passing.**

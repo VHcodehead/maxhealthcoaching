@@ -1,106 +1,24 @@
----
-gsd_state_version: 1.0
-milestone: v0.9
-milestone_name: milestone
-status: completed
-stopped_at: Completed 06-pipeline-verification 06-02-PLAN.md
-last_updated: "2026-04-01T04:54:44.906Z"
-last_activity: 2026-03-31 — Completed Phase 06 Plan 02 human verification checkpoint
-progress:
-  total_phases: 6
-  completed_phases: 6
-  total_plans: 13
-  completed_plans: 13
-  percent: 100
----
+## Current Position
 
-# Project State
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-04-03 — Milestone v1.1 started
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-31)
+See: .planning/PROJECT.md (updated 2026-04-03)
 
 **Core value:** Clients get a fully personalized coaching experience with weekly accountability and real progress-based adjustments.
-**Current focus:** Phase 1 — Security and Auth (ready to plan)
-
-## Current Position
-
-Phase: 6 of 6 (Pipeline Verification)
-Plan: 2 of 2 (COMPLETE)
-Status: All plans complete
-Last activity: 2026-03-31 — Completed Phase 06 Plan 02 human verification checkpoint
-
-Progress: [██████████] 100%
-
-## Performance Metrics
-
-**Velocity:**
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: —
-
-**By Phase:**
-
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| - | - | - | - |
-
-**Recent Trend:**
-- Last 5 plans: —
-- Trend: —
-
-*Updated after each plan completion*
-| Phase 01-security-and-auth P01 | 12 | 2 tasks | 5 files |
-| Phase 01-security-and-auth P03 | 5 | 2 tasks | 7 files |
-| Phase 01-security-and-auth P02 | 16 | 2 tasks | 6 files |
-| Phase 02-client-vetting P01 | 18 | 2 tasks | 7 files |
-| Phase 02-client-vetting P02 | 3 | 2 tasks | 6 files |
-| Phase 03-coach-editing P01 | 8 | 1 tasks | 1 files |
-| Phase 03-coach-editing P02 | 10 | 2 tasks | 0 files |
-| Phase 04-email-notifications P01 | 15 | 2 tasks | 5 files |
-| Phase 04-email-notifications P02 | 15 | 2 tasks | 4 files |
-| Phase 04-email-notifications P03 | 18 | 2 tasks | 6 files |
-| Phase 05-payment-readiness P01 | 15 | 2 tasks | 2 files |
-| Phase 06-pipeline-verification P01 | 10 | 2 tasks | 1 files |
+**Current focus:** v1.1 Dark Athletic Hybrid Redesign
 
 ## Accumulated Context
 
 ### Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
-
-- Milestone v1.0: Email service needed for NOTIF + AUTH flows — pick Resend or SendGrid before Phase 1 or Phase 4 begins
-- Milestone v1.0: Phases 3 and 4 have no dependency on each other — can run in parallel if desired
-- Milestone v1.0: Phase 4 (Email Notifications) depends on Phase 1 infra (email service already wired), not Phase 2 or 3
-- [Phase 01-security-and-auth]: Used Resend SDK for email service — matches project decision, RESEND_API_KEY must be provisioned before Plans 02/03 work end-to-end
-- [Phase 01-security-and-auth]: In-memory Map for rate limiting (no Redis) — adequate for single-instance Next.js, upgrade path clear
-- [Phase 01-security-and-auth]: Separate PasswordResetToken and EmailVerificationToken models (not polymorphic) for Prisma type safety
-- [Phase 01-security-and-auth]: emailVerified stored as boolean in JWT (coerced with !!) to avoid NextAuth Date type conflict on DefaultUser
-- [Phase 01-security-and-auth]: Email send failure is non-blocking on signup — token stored, error only logged, signup returns success
-- [Phase 01-security-and-auth]: Lazy Resend initialization in email.ts: prevents build-time Error when RESEND_API_KEY is not set
-- [Phase 01-security-and-auth]: Token hashing pattern established: raw token in URL, SHA-256 hash in DB, never store raw tokens
-- [Phase 02-client-vetting]: Application fields stored directly on Profile (not separate table) — simpler schema and enables onboarding pre-fill
-- [Phase 02-client-vetting]: No auto-login after application submit — user sees confirmation, waits for coach approval
-- [Phase 02-client-vetting]: fullName field used from Profile model for email personalization (not name)
-- [Phase 02-client-vetting]: Non-blocking email sends on approve/reject — DB update completes before email attempt; error only logged
-- [Phase 03-coach-editing]: window.confirm used for delete confirmation (no modal) per prior project decision
-- [Phase 03-coach-editing]: Deleting last meal in a day is allowed — day remains with empty meals and zeroed day_totals
-- [Phase 03-coach-editing]: No bugs found in exercise add/remove or cardio editing — existing implementation was correct as-built
-- [Phase 03-coach-editing]: Human verification approved: all four EDIT requirements (EDIT-01 through EDIT-04) confirmed working
-- [Phase 04-email-notifications]: All email sends in route handlers are non-blocking (fire-and-forget .catch()) — API response latency not affected by email delivery
-- [Phase 04-email-notifications]: Cron endpoint uses CRON_SECRET Bearer token auth (not NextAuth session) — cron jobs have no user session context
-- [Phase 04-email-notifications]: Promise.allSettled used in cron endpoint for bulk send — one failure does not abort remaining sends
-- [Phase 04-email-notifications]: Message model uses sender/receiver UUID relations with Cascade delete, consistent with CoachNote pattern
-- [Phase 04-email-notifications]: Unread count endpoint serves two modes: total-only for clients, per-user breakdown for coaches using profile.role check
-- [Phase 04-email-notifications]: ClientMessages uses session.user.id to distinguish coach vs client bubbles without extra profile fetch
-- [Phase 04-email-notifications]: Unread count badge replaces active indicator dot on Messages nav when count > 0
-- [Phase 05-payment-readiness]: Idempotency implemented via DB read before update (not a separate idempotency table) — sufficient for webhook deduplication without schema changes
-- [Phase 05-payment-readiness]: Per-case try/catch in webhook handler returns 200 on handler errors to prevent Stripe retry storms on permanent failures
-- [Phase 05-payment-readiness]: current_period_end accessed via intersection type cast — field exists at runtime but not typed in Stripe SDK Subscription interface
-- [Phase 06-pipeline-verification]: No bugs found in any pipeline — all five prior phases composed correctly into working end-to-end flows
-- [Phase 06-pipeline-verification]: Middleware deprecation warning (middleware → proxy) is cosmetic in Next.js 16, not a runtime issue requiring immediate action
-- [Phase 06-pipeline-verification]: Human walkthrough approved by user trusting code audit — live walkthrough deferred to post-push
+- v1.1 design direction: Dark Athletic Hybrid — dark zinc-950 backgrounds, emerald-500 high-contrast accents, bold condensed typography, glass-effect cards
+- Scope: Full site redesign — every page from landing to dashboards
+- Goal: Transform generic SaaS look into premium fitness platform commanding $499/mo
 
 ### Pending Todos
 
@@ -108,11 +26,4 @@ None yet.
 
 ### Blockers/Concerns
 
-- Email service (Resend or SendGrid) must be selected and API key provisioned before Phase 1 (password reset) or Phase 4 (notifications) can be planned
-- Stripe production keys must be obtained from Stripe dashboard before Phase 5 can be executed
-
-## Session Continuity
-
-Last session: 2026-03-31T00:00:00.000Z
-Stopped at: Completed 06-pipeline-verification 06-02-PLAN.md
-Resume file: None
+None.

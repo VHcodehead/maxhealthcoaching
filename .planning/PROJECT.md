@@ -77,7 +77,22 @@ Clients get a fully personalized coaching experience — macros, meals, training
 | Railway PostgreSQL | Simple managed DB, good free tier | ✓ Good |
 | Stripe subscriptions | Industry standard, handles recurring billing | — Pending (still in test mode) |
 | No application flow at signup | Fast to build initially | ⚠️ Revisit — need vetting before launch |
-| Resend for email service | Modern, Next.js-native, generous free tier (3k/mo), simple API | — Pending (Phase 1) |
+| Resend for email service | Modern, Next.js-native, generous free tier (3k/mo), simple API | ✓ Good — wired in Phase 1 |
+| Application vetting flow | Mini questionnaire + coach approval before access | ✓ Good — built in Phase 2 |
+| Dark Athletic Hybrid design direction | Dark zinc-950 bg, emerald accents, bold typography — premium positioning | — Pending (v1.1) |
+
+## Current Milestone: v1.1 Dark Athletic Hybrid Redesign
+
+**Goal:** Transform the entire site from generic SaaS template to premium fitness coaching platform that commands $499/mo.
+
+**Target features:**
+- Dark theme across all pages (zinc-950 backgrounds, emerald-500 accents)
+- Bold condensed typography (custom font pairing)
+- Glass-effect cards on dark surfaces
+- High-contrast data visualization (charts, progress rings)
+- Redesigned landing page, auth pages, pricing, dashboards, onboarding
+- Consistent animation system
+- Mobile-optimized dark theme
 
 ---
-*Last updated: 2026-03-31 after v1.0 roadmap approved*
+*Last updated: 2026-04-03 after v1.1 milestone started*
