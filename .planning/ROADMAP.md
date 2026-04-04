@@ -1,25 +1,14 @@
 # Roadmap: MaxHealth Coaching
 
-## Overview
+## Milestones
 
-Six phases take the platform from a functional but incomplete v0.9 prototype to a production-ready coaching business. The core product loop already works. This milestone closes every gap between "it mostly works" and "ready to charge real clients": security hardening and password reset, client vetting before anyone gets in, coach editing completeness, email notifications via an integrated email service, Stripe production keys, and a final end-to-end pipeline verification pass.
+- ✅ **v1.0 Production Launch** - Phases 1-6 (shipped 2026-04-01)
+- 🚧 **v1.1 Dark Athletic Hybrid Redesign** - Phases 7-10 (in progress)
 
 ## Phases
 
-**Phase Numbering:**
-- Integer phases (1, 2, 3): Planned milestone work
-- Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
-
-Decimal phases appear between their surrounding integers in numeric order.
-
-- [x] **Phase 1: Security and Auth** - Rate limiting, password reset, and email verification (completed 2026-03-31)
-- [ ] **Phase 2: Client Vetting** - Application flow and coach approval before access is granted
-- [ ] **Phase 3: Coach Editing** - Audit and complete all editing capabilities (meals, exercises, cardio)
-- [x] **Phase 4: Email Notifications** - Email notifications and coach-client messaging (completed 2026-04-01)
-- [x] **Phase 5: Payment Readiness** - Stripe production key configuration and webhook hardening (completed 2026-04-01)
-- [x] **Phase 6: Pipeline Verification** - End-to-end lifecycle testing across all flows (completed 2026-04-01)
-
-## Phase Details
+<details>
+<summary>✅ v1.0 Production Launch (Phases 1-6) - SHIPPED 2026-04-01</summary>
 
 ### Phase 1: Security and Auth
 **Goal**: Users can securely manage their credentials and the platform resists brute-force attacks
@@ -31,10 +20,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Repeated failed login attempts are rejected with rate limiting (not just silently allowed through)
   4. The "Forgot password?" link on the login page navigates to a functional reset flow, not a dead anchor
 **Plans:** 3/3 plans complete
+
 Plans:
-- [ ] 01-01-PLAN.md — Shared infrastructure: Resend email service, rate limiter, Prisma token models, schemas, middleware
-- [ ] 01-02-PLAN.md — Password reset flow: forgot-password and reset-password pages + API routes
-- [ ] 01-03-PLAN.md — Email verification on signup + rate limiting on all auth endpoints
+- [x] 01-01-PLAN.md — Shared infrastructure: Resend email service, rate limiter, Prisma token models, schemas, middleware
+- [x] 01-02-PLAN.md — Password reset flow: forgot-password and reset-password pages + API routes
+- [x] 01-03-PLAN.md — Email verification on signup + rate limiting on all auth endpoints
 
 ### Phase 2: Client Vetting
 **Goal**: New signups cannot access the platform until the coach manually approves them
@@ -44,10 +34,11 @@ Plans:
   1. A newly registered user lands in a "pending" state and cannot access the client dashboard until approved
   2. Coach can see a list of pending applicants in the dashboard and approve or reject each one
   3. The login page displays an "Apply Now" call-to-action that directs visitors to the application flow
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
+
 Plans:
-- [ ] 02-01-PLAN.md — Application form, data model, pending state middleware, and /pending holding page
-- [ ] 02-02-PLAN.md — Coach approve/reject workflow, approval emails, and Apply Now CTAs
+- [x] 02-01-PLAN.md — Application form, data model, pending state middleware, and /pending holding page
+- [x] 02-02-PLAN.md — Coach approve/reject workflow, approval emails, and Apply Now CTAs
 
 ### Phase 3: Coach Editing
 **Goal**: Coach can fully edit every aspect of a client's plan with no gaps in the editing interface
@@ -58,10 +49,11 @@ Plans:
   2. Coach can add and remove individual exercises from any training day
   3. Coach can edit cardio prescriptions per training day (type, duration, frequency) and the changes persist and display correctly to the client
   4. All generated plan content — macros, meals, training, supplements — is editable inline with changes saving and reflecting on the client side
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
+
 Plans:
-- [ ] 03-01-PLAN.md — Add and remove individual meals from client meal plans with day total recalculation
-- [ ] 03-02-PLAN.md — Verify and fix exercise/cardio editing, full editability audit across all content types
+- [x] 03-01-PLAN.md — Add and remove individual meals from client meal plans with day total recalculation
+- [x] 03-02-PLAN.md — Verify and fix exercise/cardio editing, full editability audit across all content types
 
 ### Phase 4: Email Notifications
 **Goal**: Coach and clients receive the right email at the right moment throughout the coaching workflow, and can exchange messages in a per-client thread
@@ -75,10 +67,11 @@ Plans:
   5. Coach and client can exchange messages in a per-client thread
   6. Unread message count badge is visible on coach and client dashboards
 **Plans:** 3/3 plans complete
+
 Plans:
-- [ ] 04-01-PLAN.md — Four notification email send functions and triggers in existing API routes
-- [ ] 04-02-PLAN.md — Message data model (Prisma) and /api/messages endpoint (GET/POST/PATCH)
-- [ ] 04-03-PLAN.md — Message thread UI for coach and client, unread badges on both dashboards
+- [x] 04-01-PLAN.md — Four notification email send functions and triggers in existing API routes
+- [x] 04-02-PLAN.md — Message data model (Prisma) and /api/messages endpoint (GET/POST/PATCH)
+- [x] 04-03-PLAN.md — Message thread UI for coach and client, unread badges on both dashboards
 
 ### Phase 5: Payment Readiness
 **Goal**: The platform can accept real money — Stripe production configuration is verified and webhooks handle all subscription events
@@ -88,8 +81,9 @@ Plans:
   1. Switching to production Stripe keys requires only an environment variable change — no code changes needed
   2. The webhook endpoint correctly handles all relevant Stripe subscription lifecycle events (created, updated, canceled, payment failed) and database state reflects each event accurately
 **Plans:** 1/1 plans complete
+
 Plans:
-- [ ] 05-01-PLAN.md — Audit env-var config for production key swap, harden webhook with idempotency and edge case handling
+- [x] 05-01-PLAN.md — Audit env-var config for production key swap, harden webhook with idempotency and edge case handling
 
 ### Phase 6: Pipeline Verification
 **Goal**: Every critical user flow works end-to-end in a production-like environment before the first real client is onboarded
@@ -100,21 +94,77 @@ Plans:
   2. Stripe checkout completes and subscription status is active and correct in both Stripe and the platform database
   3. All coach editing operations (add/remove meals, add/remove exercises, edit cardio, macro overrides) save correctly and the updated content is visible on the client dashboard
 **Plans:** 2/2 plans complete
+
 Plans:
-- [ ] 06-01-PLAN.md — Code audit of all three pipelines (lifecycle, Stripe, editing), bug fixes, build verification
-- [ ] 06-02-PLAN.md — Human walkthrough of entire product end-to-end before launch
+- [x] 06-01-PLAN.md — Code audit of all three pipelines (lifecycle, Stripe, editing), bug fixes, build verification
+- [x] 06-02-PLAN.md — Human walkthrough of entire product end-to-end before launch
+
+</details>
+
+### v1.1 Dark Athletic Hybrid Redesign (In Progress)
+
+**Milestone Goal:** Transform the entire site from generic SaaS template to premium fitness coaching platform that commands $499/mo — dark zinc-950 theme, emerald accents, bold condensed typography, glass-effect cards, consistent animation system.
+
+#### Phase 7: Design Foundation
+**Goal**: Every page on the site can consume a single source of design truth — color tokens, typography scale, component variants, and animation primitives — that all subsequent phases apply
+**Depends on**: Phase 6
+**Requirements**: THEME-01, THEME-02, THEME-03, THEME-04
+**Success Criteria** (what must be TRUE):
+  1. The site background is zinc-950 globally — no white or light-gray backgrounds appear on any page
+  2. Emerald-500 is the consistent primary accent color for all interactive elements (buttons, active states, focus rings) across the entire app
+  3. A bold condensed heading font and a clean body font are loaded and applied to all headings and body text site-wide
+  4. All buttons, cards, form inputs, and badges have dark-surface variants available as reusable classes or components
+  5. Interactive elements (buttons, links, modals) share a consistent transition/animation behavior — no jarring instant state changes
+**Plans**: TBD
+
+#### Phase 8: Public Pages
+**Goal**: Prospects visiting the site encounter a premium, high-conversion dark-themed experience before ever creating an account
+**Depends on**: Phase 7
+**Requirements**: PUB-01, PUB-02, PUB-03, PUB-04
+**Success Criteria** (what must be TRUE):
+  1. The landing page hero reads immediately as a premium fitness brand — dark background, bold condensed headline, emerald CTA button, above the fold with no light artifacts
+  2. The pricing page presents three tiers on dark cards with emerald highlights, and tier differences are immediately scannable without reading fine print
+  3. Login and Apply pages match the dark brand — no white form panels or light backgrounds visible
+  4. The pending/waiting page communicates brand quality rather than a bare holding message — dark-themed with reassuring copy and styling
+**Plans**: TBD
+
+#### Phase 9: Dashboards
+**Goal**: Both coaches and clients operate inside a cohesive dark athletic interface — every data view, editing surface, and navigation element is on-brand
+**Depends on**: Phase 7
+**Requirements**: DASH-01, DASH-02, DASH-03, DASH-04, DASH-05, COACH-01, COACH-02, COACH-03
+**Success Criteria** (what must be TRUE):
+  1. The client sidebar is dark with emerald active states — no light sidebar or white nav elements appear
+  2. Client macro overview displays stat cards and a macro visualization ring on a dark surface with high-contrast labels
+  3. Meal plan and training plan pages use dark cards with clear macro and exercise data — day/week navigation is visible and styled
+  4. The coach client list shows dark cards with clearly styled status badges and unread message indicators
+  5. The coach client detail page uses dark expandable sections and editing dialogs — editing actions are visually distinct from read state
+**Plans**: TBD
+
+#### Phase 10: Onboarding
+**Goal**: New clients experience a premium, brand-consistent intake flow from first question through plan generation — the quality of the form matches the quality of the coaching
+**Depends on**: Phase 8
+**Requirements**: ONBOARD-01, ONBOARD-02
+**Success Criteria** (what must be TRUE):
+  1. The multi-step onboarding form is fully dark-themed with a visible step progress indicator and dark card-style answer selections
+  2. The plan-generating loading page is dark-themed with a premium animation — no bare spinner or white background visible during the wait
+  3. The visual quality of the onboarding flow matches the landing page — a prospect who signs up after seeing the landing page is not surprised by a style regression
+**Plans**: TBD
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
-Note: Phase 4 depends on Phase 1 only and can begin after Phase 1 completes. Phases 3 and 4 can run in parallel if desired.
+v1.1 phases execute in order: 7 → 8 → 9 → 10
+Note: Phase 9 (Dashboards) depends only on Phase 7 and could theoretically run in parallel with Phase 8, but sequential ordering keeps the design consistent.
 
-| Phase | Plans Complete | Status | Completed |
-|-------|----------------|--------|-----------|
-| 1. Security and Auth | 3/3 | Complete   | 2026-03-31 |
-| 2. Client Vetting | 0/2 | Planning complete | - |
-| 3. Coach Editing | 1/2 | In Progress|  |
-| 4. Email Notifications | 3/3 | Complete   | 2026-04-01 |
-| 5. Payment Readiness | 1/1 | Complete   | 2026-04-01 |
-| 6. Pipeline Verification | 2/2 | Complete   | 2026-04-01 |
+| Phase | Milestone | Plans Complete | Status | Completed |
+|-------|-----------|----------------|--------|-----------|
+| 1. Security and Auth | v1.0 | 3/3 | Complete | 2026-03-31 |
+| 2. Client Vetting | v1.0 | 2/2 | Complete | 2026-04-01 |
+| 3. Coach Editing | v1.0 | 2/2 | Complete | 2026-04-01 |
+| 4. Email Notifications | v1.0 | 3/3 | Complete | 2026-04-01 |
+| 5. Payment Readiness | v1.0 | 1/1 | Complete | 2026-04-01 |
+| 6. Pipeline Verification | v1.0 | 2/2 | Complete | 2026-04-01 |
+| 7. Design Foundation | v1.1 | 0/TBD | Not started | - |
+| 8. Public Pages | v1.1 | 0/TBD | Not started | - |
+| 9. Dashboards | v1.1 | 0/TBD | Not started | - |
+| 10. Onboarding | v1.1 | 0/TBD | Not started | - |

@@ -65,30 +65,30 @@ Deferred to future release.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| THEME-01 | — | Pending |
-| THEME-02 | — | Pending |
-| THEME-03 | — | Pending |
-| THEME-04 | — | Pending |
-| PUB-01 | — | Pending |
-| PUB-02 | — | Pending |
-| PUB-03 | — | Pending |
-| PUB-04 | — | Pending |
-| DASH-01 | — | Pending |
-| DASH-02 | — | Pending |
-| DASH-03 | — | Pending |
-| DASH-04 | — | Pending |
-| DASH-05 | — | Pending |
-| COACH-01 | — | Pending |
-| COACH-02 | — | Pending |
-| COACH-03 | — | Pending |
-| ONBOARD-01 | — | Pending |
-| ONBOARD-02 | — | Pending |
+| THEME-01 | Phase 7 | Pending |
+| THEME-02 | Phase 7 | Pending |
+| THEME-03 | Phase 7 | Pending |
+| THEME-04 | Phase 7 | Pending |
+| PUB-01 | Phase 8 | Pending |
+| PUB-02 | Phase 8 | Pending |
+| PUB-03 | Phase 8 | Pending |
+| PUB-04 | Phase 8 | Pending |
+| DASH-01 | Phase 9 | Pending |
+| DASH-02 | Phase 9 | Pending |
+| DASH-03 | Phase 9 | Pending |
+| DASH-04 | Phase 9 | Pending |
+| DASH-05 | Phase 9 | Pending |
+| COACH-01 | Phase 9 | Pending |
+| COACH-02 | Phase 9 | Pending |
+| COACH-03 | Phase 9 | Pending |
+| ONBOARD-01 | Phase 10 | Pending |
+| ONBOARD-02 | Phase 10 | Pending |
 
 **Coverage:**
 - v1.1 requirements: 18 total
-- Mapped to phases: 0
-- Unmapped: 18
+- Mapped to phases: 18
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-03*
-*Last updated: 2026-04-03 after initial definition*
+*Last updated: 2026-04-03 after roadmap creation (phases 7-10 assigned)*
