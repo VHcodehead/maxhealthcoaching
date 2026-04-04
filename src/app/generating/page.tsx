@@ -72,17 +72,17 @@ export default function GeneratingPage() {
   const allComplete = Object.values(stepStatuses).every((s) => s === 'complete');
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="max-w-lg w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-10"
         >
-          <h1 className="text-3xl font-bold tracking-tight mb-2">
-            {allComplete ? 'Your plans are ready!' : 'Building Your Custom Plans'}
+          <h1 className="text-4xl font-display uppercase tracking-wider text-foreground mb-2">
+            {allComplete ? 'YOUR PLANS ARE READY!' : 'BUILDING YOUR CUSTOM PLANS'}
           </h1>
-          <p className="text-zinc-500">
+          <p className="text-zinc-400">
             {allComplete
               ? 'Redirecting to your dashboard...'
               : 'This usually takes 30–60 seconds. Hang tight.'}
@@ -102,12 +102,12 @@ export default function GeneratingPage() {
                 transition={{ delay: index * 0.1 }}
                 className={`flex items-start gap-4 p-4 rounded-xl border transition-colors ${
                   status === 'loading'
-                    ? 'border-emerald-200 bg-emerald-50'
+                    ? 'border-emerald-500/30 bg-emerald-950/20'
                     : status === 'complete'
-                    ? 'border-emerald-300 bg-emerald-50'
+                    ? 'border-emerald-500/30 bg-emerald-950/20'
                     : status === 'error'
-                    ? 'border-red-200 bg-red-50'
-                    : 'border-zinc-100 bg-zinc-50'
+                    ? 'border-red-500/30 bg-red-950/20'
+                    : 'border-white/10 bg-zinc-900'
                 }`}
               >
                 <div
@@ -115,10 +115,10 @@ export default function GeneratingPage() {
                     status === 'complete'
                       ? 'bg-emerald-500'
                       : status === 'loading'
-                      ? 'bg-emerald-100'
+                      ? 'bg-emerald-900/50'
                       : status === 'error'
-                      ? 'bg-red-100'
-                      : 'bg-zinc-100'
+                      ? 'bg-red-900/50'
+                      : 'bg-zinc-800'
                   }`}
                 >
                   <AnimatePresence mode="wait">
@@ -132,7 +132,7 @@ export default function GeneratingPage() {
                         <CheckCircle className="w-5 h-5 text-white" />
                       </motion.div>
                     ) : status === 'loading' ? (
-                      <Loader2 className="w-5 h-5 text-emerald-600 animate-spin" />
+                      <Loader2 className="w-5 h-5 text-emerald-400 animate-spin" />
                     ) : status === 'error' ? (
                       <Icon className="w-5 h-5 text-red-500" />
                     ) : (
@@ -145,11 +145,11 @@ export default function GeneratingPage() {
                   <p
                     className={`font-medium text-sm ${
                       status === 'complete'
-                        ? 'text-emerald-700'
+                        ? 'text-emerald-400'
                         : status === 'loading'
-                        ? 'text-emerald-700'
+                        ? 'text-emerald-400'
                         : status === 'error'
-                        ? 'text-red-700'
+                        ? 'text-red-400'
                         : 'text-zinc-400'
                     }`}
                   >
@@ -160,7 +160,7 @@ export default function GeneratingPage() {
                     <motion.p
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="text-xs text-emerald-600 mt-1"
+                      className="text-xs text-emerald-400/70 mt-1"
                     >
                       {step.description}
                     </motion.p>
@@ -175,12 +175,12 @@ export default function GeneratingPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl text-center"
+            className="mt-6 p-4 bg-red-950/20 border border-red-500/30 rounded-xl text-center"
           >
-            <p className="text-sm text-red-700 mb-2">{error}</p>
+            <p className="text-sm text-red-400 mb-2">{error}</p>
             <button
               onClick={() => window.location.reload()}
-              className="text-sm text-red-600 underline"
+              className="text-sm text-red-400 underline"
             >
               Try again
             </button>
@@ -193,7 +193,7 @@ export default function GeneratingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="mt-8 text-center"
           >
-            <div className="w-8 h-8 border-2 border-emerald-200 border-t-emerald-600 rounded-full animate-spin mx-auto" />
+            <div className="w-8 h-8 border-2 border-emerald-900 border-t-emerald-400 rounded-full animate-spin mx-auto" />
           </motion.div>
         )}
       </div>
