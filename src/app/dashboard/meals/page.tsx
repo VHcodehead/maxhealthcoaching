@@ -116,17 +116,17 @@ function MealCard({ meal }: { meal: Meal }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="overflow-hidden">
+      <Card className="overflow-hidden bg-card border-white/10">
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1">
               <Badge
                 variant="secondary"
-                className="mb-2 bg-emerald-50 text-emerald-700"
+                className="mb-2 bg-emerald-500/10 text-emerald-400"
               >
                 {meal.meal_name}
               </Badge>
-              <CardTitle className="text-base">{meal.recipe_title}</CardTitle>
+              <CardTitle className="text-base text-foreground">{meal.recipe_title}</CardTitle>
             </div>
             {meal.swap_options && meal.swap_options.length > 0 && (
               <Dialog>
@@ -134,15 +134,15 @@ function MealCard({ meal }: { meal: Meal }) {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="shrink-0 gap-1.5 text-xs"
+                    className="shrink-0 gap-1.5 text-xs border-white/10 hover:bg-zinc-800"
                   >
                     <Repeat2 className="h-3.5 w-3.5" />
                     Swap
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-lg">
+                <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-lg bg-card border-white/10">
                   <DialogHeader>
-                    <DialogTitle>Swap Alternatives</DialogTitle>
+                    <DialogTitle className="text-foreground">Swap Alternatives</DialogTitle>
                     <DialogDescription>
                       Choose an alternative for {meal.meal_name}
                     </DialogDescription>
@@ -151,24 +151,24 @@ function MealCard({ meal }: { meal: Meal }) {
                     {meal.swap_options.map((swap, i) => {
                       const swapIngredients = parseToArray(swap.ingredients)
                       return (
-                        <Card key={i}>
+                        <Card key={i} className="bg-zinc-800 border-white/10">
                           <CardContent className="pt-4">
-                            <p className="font-semibold">{swap.recipe_title}</p>
+                            <p className="font-semibold text-foreground">{swap.recipe_title}</p>
                             <div className="mt-2 flex flex-wrap gap-2">
-                              <Badge variant="outline" className="text-xs">
-                                <Flame className="mr-1 h-3 w-3" />
+                              <Badge variant="outline" className="text-xs border-white/10">
+                                <Flame className="mr-1 h-3 w-3 text-emerald-400" />
                                 {swap.calories} kcal
                               </Badge>
-                              <Badge variant="outline" className="text-xs">
-                                <Beef className="mr-1 h-3 w-3" />
+                              <Badge variant="outline" className="text-xs border-white/10">
+                                <Beef className="mr-1 h-3 w-3 text-blue-400" />
                                 P: {swap.protein}g
                               </Badge>
-                              <Badge variant="outline" className="text-xs">
-                                <Leaf className="mr-1 h-3 w-3" />
+                              <Badge variant="outline" className="text-xs border-white/10">
+                                <Leaf className="mr-1 h-3 w-3 text-amber-400" />
                                 C: {swap.carbs}g
                               </Badge>
-                              <Badge variant="outline" className="text-xs">
-                                <Droplets className="mr-1 h-3 w-3" />
+                              <Badge variant="outline" className="text-xs border-white/10">
+                                <Droplets className="mr-1 h-3 w-3 text-rose-400" />
                                 F: {swap.fat}g
                               </Badge>
                             </div>
@@ -202,20 +202,20 @@ function MealCard({ meal }: { meal: Meal }) {
         <CardContent className="space-y-4">
           {/* Macro badges */}
           <div className="flex flex-wrap gap-2">
-            <Badge variant="outline" className="gap-1 text-xs">
-              <Flame className="h-3 w-3 text-orange-500" />
+            <Badge variant="outline" className="gap-1 text-xs bg-emerald-500/10 text-emerald-400 border-emerald-500/20">
+              <Flame className="h-3 w-3" />
               {meal.calories} kcal
             </Badge>
-            <Badge variant="outline" className="gap-1 text-xs">
-              <Beef className="h-3 w-3 text-blue-500" />
+            <Badge variant="outline" className="gap-1 text-xs bg-blue-500/10 text-blue-400 border-blue-500/20">
+              <Beef className="h-3 w-3" />
               P: {meal.protein}g
             </Badge>
-            <Badge variant="outline" className="gap-1 text-xs">
-              <Leaf className="h-3 w-3 text-amber-500" />
+            <Badge variant="outline" className="gap-1 text-xs bg-amber-500/10 text-amber-400 border-amber-500/20">
+              <Leaf className="h-3 w-3" />
               C: {meal.carbs}g
             </Badge>
-            <Badge variant="outline" className="gap-1 text-xs">
-              <Droplets className="h-3 w-3 text-rose-500" />
+            <Badge variant="outline" className="gap-1 text-xs bg-rose-500/10 text-rose-400 border-rose-500/20">
+              <Droplets className="h-3 w-3" />
               F: {meal.fat}g
             </Badge>
           </div>
@@ -223,7 +223,7 @@ function MealCard({ meal }: { meal: Meal }) {
           {/* Ingredients */}
           {ingredients.length > 0 && (
             <div>
-              <p className="mb-2 text-sm font-semibold">Ingredients</p>
+              <p className="mb-2 text-sm font-semibold text-foreground">Ingredients</p>
               <ul className="space-y-1">
                 {ingredients.map((ing, i) => (
                   <li
@@ -241,14 +241,14 @@ function MealCard({ meal }: { meal: Meal }) {
           {/* Instructions */}
           {instructions.length > 0 && (
             <div>
-              <p className="mb-2 text-sm font-semibold">Instructions</p>
+              <p className="mb-2 text-sm font-semibold text-foreground">Instructions</p>
               <ol className="space-y-2">
                 {instructions.map((step, i) => (
                   <li
                     key={i}
                     className="flex gap-3 text-sm text-muted-foreground"
                   >
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-bold text-emerald-400">
                       {i + 1}
                     </span>
                     {step}
@@ -280,38 +280,38 @@ function DayTotals({ meals }: { meals: Meal[] }) {
       animate={{ opacity: 1 }}
       transition={{ delay: 0.3 }}
     >
-      <Card className="border-emerald-200 bg-emerald-50/50">
+      <Card className="border-emerald-500/20 bg-emerald-900/20">
         <CardContent className="pt-6">
           <div className="flex items-center gap-2 mb-3">
-            <Flame className="h-4 w-4 text-emerald-600" />
-            <p className="text-sm font-semibold text-emerald-900">
+            <Flame className="h-4 w-4 text-emerald-400" />
+            <p className="text-sm font-semibold text-emerald-400">
               Day Totals
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             <div className="text-center">
-              <p className="text-2xl font-bold text-emerald-700">
+              <p className="font-display text-3xl text-emerald-400">
                 {totals.calories}
               </p>
-              <p className="text-xs text-emerald-600/70">Calories</p>
+              <p className="text-xs text-emerald-400/70">Calories</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-blue-600">
+              <p className="font-display text-3xl text-blue-400">
                 {totals.protein}g
               </p>
-              <p className="text-xs text-blue-500/70">Protein</p>
+              <p className="text-xs text-blue-400/70">Protein</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-amber-600">
+              <p className="font-display text-3xl text-amber-400">
                 {totals.carbs}g
               </p>
-              <p className="text-xs text-amber-500/70">Carbs</p>
+              <p className="text-xs text-amber-400/70">Carbs</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-rose-600">
+              <p className="font-display text-3xl text-rose-400">
                 {totals.fat}g
               </p>
-              <p className="text-xs text-rose-500/70">Fat</p>
+              <p className="text-xs text-rose-400/70">Fat</p>
             </div>
           </div>
         </CardContent>
@@ -440,7 +440,7 @@ export default function MealsPage() {
         </div>
         <div className="space-y-4">
           {[...Array(3)].map((_, i) => (
-            <Card key={i}>
+            <Card key={i} className="bg-card">
               <CardContent className="pt-6">
                 <div className="space-y-3">
                   <div className="h-5 w-32 animate-pulse rounded bg-muted" />
@@ -473,18 +473,18 @@ export default function MealsPage() {
   if (error) {
     return (
       <div className="flex h-full items-center justify-center p-6">
-        <Card className="max-w-md">
+        <Card className="max-w-md bg-card">
           <CardContent className="flex flex-col items-center gap-4 pt-6 text-center">
-            <div className="rounded-full bg-red-100 p-3">
-              <AlertCircle className="h-6 w-6 text-red-600" />
+            <div className="rounded-full bg-red-900/20 p-3">
+              <AlertCircle className="h-6 w-6 text-red-400" />
             </div>
             <div>
-              <p className="font-semibold">Failed to load meals</p>
+              <p className="font-semibold text-foreground">Failed to load meals</p>
               <p className="mt-1 text-sm text-muted-foreground">{error}</p>
             </div>
             <Button
               onClick={() => window.location.reload()}
-              className="bg-emerald-600 hover:bg-emerald-700"
+              className="bg-primary hover:bg-primary/90"
             >
               Try again
             </Button>
@@ -502,7 +502,7 @@ export default function MealsPage() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6"
       >
-        <h1 className="text-2xl font-bold tracking-tight lg:text-3xl">
+        <h1 className="font-display text-3xl tracking-wide lg:text-4xl">
           Meal Plan
         </h1>
         <p className="mt-1 text-muted-foreground">
@@ -513,14 +513,14 @@ export default function MealsPage() {
       {/* Day Tabs */}
       <Tabs value={activeDay} onValueChange={setActiveDay}>
         <ScrollArea className="w-full">
-          <TabsList className="mb-6 w-full justify-start">
+          <TabsList className="mb-6 w-full justify-start bg-zinc-800">
             {DAYS.map((day) => {
               const dayMeals = getDayMeals(day)
               return (
                 <TabsTrigger
                   key={day}
                   value={day}
-                  className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
                 >
                   <span className="hidden sm:inline">{day}</span>
                   <span className="sm:hidden">{day.slice(0, 3)}</span>
@@ -547,7 +547,7 @@ export default function MealsPage() {
                   <DayTotals meals={dayMeals} />
                 </div>
               ) : (
-                <Card>
+                <Card className="bg-card border-white/10">
                   <CardContent className="flex flex-col items-center gap-3 py-16 text-center">
                     <UtensilsCrossed className="h-12 w-12 text-muted-foreground/30" />
                     <p className="text-lg font-medium text-muted-foreground">
@@ -573,12 +573,12 @@ export default function MealsPage() {
           className="mt-8"
         >
           <Accordion type="single" collapsible>
-            <AccordionItem value="grocery">
-              <AccordionTrigger className="text-base font-semibold">
+            <AccordionItem value="grocery" className="border-white/10">
+              <AccordionTrigger className="text-base font-semibold text-foreground hover:no-underline">
                 <div className="flex items-center gap-2">
-                  <ShoppingCart className="h-5 w-5 text-emerald-600" />
+                  <ShoppingCart className="h-5 w-5 text-emerald-400" />
                   Grocery List
-                  <Badge variant="secondary" className="ml-2 text-xs">
+                  <Badge variant="secondary" className="ml-2 text-xs bg-zinc-800">
                     {groceryItems.length} items
                   </Badge>
                 </div>
@@ -587,9 +587,9 @@ export default function MealsPage() {
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {Object.entries(groceryByCategory).map(
                     ([category, items]) => (
-                      <Card key={category}>
+                      <Card key={category} className="bg-card border-white/10">
                         <CardHeader className="pb-2">
-                          <CardTitle className="text-sm font-semibold text-emerald-700">
+                          <CardTitle className="text-sm font-semibold text-emerald-400">
                             {category}
                           </CardTitle>
                         </CardHeader>
