@@ -35,7 +35,7 @@
 
 ### Onboarding
 
-- [ ] **ONBOARD-01**: Onboarding flow redesign — dark multi-step form, progress indicator, card selections
+- [x] **ONBOARD-01**: Onboarding flow redesign — dark multi-step form, progress indicator, card selections
 - [ ] **ONBOARD-02**: Generating/loading page redesign — dark themed with premium loading animation
 
 ## v2 Requirements
@@ -81,7 +81,7 @@ Deferred to future release.
 | COACH-01 | Phase 9 | Complete |
 | COACH-02 | Phase 9 | Complete |
 | COACH-03 | Phase 9 | Complete |
-| ONBOARD-01 | Phase 10 | Pending |
+| ONBOARD-01 | Phase 10 | Complete |
 | ONBOARD-02 | Phase 10 | Pending |
 
 **Coverage:**
