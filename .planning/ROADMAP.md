@@ -133,8 +133,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 08-01-PLAN.md — Landing page dark restyle (hero, nav, features, comparison, pricing, FAQ, footer)
-- [ ] 08-02-PLAN.md — Auth pages dark restyle (login, apply, pricing, pending)
+- [x] 08-01-PLAN.md — Landing page dark restyle (hero, nav, features, comparison, pricing, FAQ, footer)
+- [x] 08-02-PLAN.md — Auth pages dark restyle (login, apply, pricing, pending)
 
 #### Phase 9: Dashboards
 **Goal**: Both coaches and clients operate inside a cohesive dark athletic interface — every data view, editing surface, and navigation element is on-brand
@@ -149,10 +149,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 09-01-PLAN.md — Client layout, overview, meals, and training dark restyle
-- [ ] 09-02-PLAN.md — Client supplements, messages, progress, and referral dark restyle
-- [ ] 09-03-PLAN.md — Coach overview, client list, settings, and content dark restyle
-- [ ] 09-04-PLAN.md — Coach client detail page and all coach components dark restyle
+- [x] 09-01-PLAN.md — Client layout, overview, meals, and training dark restyle
+- [x] 09-02-PLAN.md — Client supplements, messages, progress, and referral dark restyle
+- [x] 09-03-PLAN.md — Coach overview, client list, settings, and content dark restyle
+- [x] 09-04-PLAN.md — Coach client detail page and all coach components dark restyle
 
 #### Phase 10: Onboarding
 **Goal**: New clients experience a premium, brand-consistent intake flow from first question through plan generation — the quality of the form matches the quality of the coaching
@@ -165,8 +165,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 08-01-PLAN.md — Landing page dark restyle (hero, nav, features, comparison, pricing, FAQ, footer)
-- [ ] 08-02-PLAN.md — Auth pages dark restyle (login, apply, pricing, pending)
+- [ ] 10-01-PLAN.md — Onboarding multi-step form dark restyle (9 steps, SelectableCards, TagInput, progress bar)
+- [ ] 10-02-PLAN.md — Generating page, check-in page, and success page dark restyle
 
 ## Progress
 
@@ -182,7 +182,7 @@ Note: Phase 9 (Dashboards) depends only on Phase 7 and could theoretically run i
 | 4. Email Notifications | v1.0 | 3/3 | Complete | 2026-04-01 |
 | 5. Payment Readiness | v1.0 | 1/1 | Complete | 2026-04-01 |
 | 6. Pipeline Verification | v1.0 | 2/2 | Complete | 2026-04-01 |
-| 7. Design Foundation | 2/2 | Complete   | 2026-04-04 | - |
-| 8. Public Pages | 2/2 | Complete   | 2026-04-04 | - |
-| 9. Dashboards | 4/4 | Complete   | 2026-04-04 | - |
-| 10. Onboarding | v1.1 | 0/TBD | Not started | - |
+| 7. Design Foundation | v1.1 | 2/2 | Complete | 2026-04-04 |
+| 8. Public Pages | v1.1 | 2/2 | Complete | 2026-04-04 |
+| 9. Dashboards | v1.1 | 4/4 | Complete | 2026-04-04 |
+| 10. Onboarding | v1.1 | 0/2 | Not started | - |
