@@ -104,7 +104,7 @@ function StatCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
     >
-      <Card className="relative overflow-hidden">
+      <Card className="relative overflow-hidden bg-card">
         <div
           className={`absolute inset-y-0 left-0 w-1 ${color}`}
         />
@@ -114,10 +114,10 @@ function StatCard({
               <p className="text-sm font-medium text-muted-foreground">
                 {label}
               </p>
-              <p className="mt-1 text-2xl font-bold tracking-tight">{value}</p>
+              <p className="mt-1 font-display text-3xl tracking-wide">{value}</p>
               <p className="mt-1 text-xs text-muted-foreground">{subtext}</p>
             </div>
-            <div className={`rounded-lg p-2.5 ${color.replace('bg-', 'bg-').replace('-600', '-100')}`}>
+            <div className={`rounded-lg p-2.5 bg-zinc-800`}>
               <Icon className={`h-5 w-5 ${color.replace('bg-', 'text-')}`} />
             </div>
           </div>
@@ -141,12 +141,12 @@ function MacroBar({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between text-sm">
-        <span className="font-medium">{label}</span>
+        <span className="font-medium text-foreground">{label}</span>
         <span className="text-muted-foreground">
           {grams}g ({percentage}%)
         </span>
       </div>
-      <div className="h-3 w-full overflow-hidden rounded-full bg-gray-100">
+      <div className="h-3 w-full overflow-hidden rounded-full bg-zinc-800">
         <motion.div
           className={`h-full rounded-full ${color}`}
           initial={{ width: 0 }}
@@ -334,16 +334,16 @@ export default function DashboardOverview() {
       <div className="flex h-full items-center justify-center p-6">
         <Card className="max-w-md">
           <CardContent className="flex flex-col items-center gap-4 pt-6 text-center">
-            <div className="rounded-full bg-red-100 p-3">
-              <AlertCircle className="h-6 w-6 text-red-600" />
+            <div className="rounded-full bg-red-900/20 p-3">
+              <AlertCircle className="h-6 w-6 text-red-400" />
             </div>
             <div>
-              <p className="font-semibold">Something went wrong</p>
+              <p className="font-semibold text-foreground">Something went wrong</p>
               <p className="mt-1 text-sm text-muted-foreground">{error}</p>
             </div>
             <Button
               onClick={() => window.location.reload()}
-              className="bg-emerald-600 hover:bg-emerald-700"
+              className="bg-primary hover:bg-primary/90"
             >
               Try again
             </Button>
@@ -372,11 +372,11 @@ export default function DashboardOverview() {
     <div className="p-6 lg:p-8">
       {/* Email verification banner */}
       {!emailVerified && (
-        <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4 flex items-center gap-3">
-          <AlertCircle className="h-5 w-5 text-amber-600 shrink-0" />
+        <div className="mb-6 rounded-lg border border-amber-800/40 bg-amber-900/20 p-4 flex items-center gap-3">
+          <AlertCircle className="h-5 w-5 text-amber-400 shrink-0" />
           <div className="flex-1">
-            <p className="text-sm font-medium text-amber-800">Verify your email</p>
-            <p className="text-sm text-amber-700">Check your inbox for a verification link to secure your account.</p>
+            <p className="text-sm font-medium text-amber-400">Verify your email</p>
+            <p className="text-sm text-amber-400/70">Check your inbox for a verification link to secure your account.</p>
           </div>
         </div>
       )}
@@ -388,7 +388,7 @@ export default function DashboardOverview() {
         transition={{ duration: 0.4 }}
         className="mb-8"
       >
-        <h1 className="text-2xl font-bold tracking-tight lg:text-3xl">
+        <h1 className="font-display text-3xl tracking-wide lg:text-4xl">
           Welcome back, {firstName}
         </h1>
         <p className="mt-1 text-muted-foreground">
@@ -403,7 +403,7 @@ export default function DashboardOverview() {
           label="Daily Calories"
           value={macros ? `${macros.calorieTarget.toLocaleString()} kcal` : '--'}
           subtext="Target intake"
-          color="bg-emerald-600"
+          color="bg-emerald-500"
           delay={0.1}
         />
         <StatCard
@@ -411,7 +411,7 @@ export default function DashboardOverview() {
           label="Protein Target"
           value={macros ? `${macros.proteinG}g` : '--'}
           subtext={macros ? `${proteinPct}% of total calories` : ''}
-          color="bg-blue-600"
+          color="bg-blue-500"
           delay={0.2}
         />
         <StatCard
@@ -419,7 +419,7 @@ export default function DashboardOverview() {
           label="Next Check-in"
           value={nextCheckIn || '--'}
           subtext="Weekly progress review"
-          color="bg-violet-600"
+          color="bg-violet-500"
           delay={0.3}
         />
       </div>
@@ -432,11 +432,11 @@ export default function DashboardOverview() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.35 }}
         >
-          <Card>
+          <Card className="bg-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
-                <div className="rounded-md bg-emerald-100 p-1.5">
-                  <Flame className="h-4 w-4 text-emerald-600" />
+                <div className="rounded-md bg-emerald-500/10 p-1.5">
+                  <Flame className="h-4 w-4 text-emerald-400" />
                 </div>
                 Macro Breakdown
               </CardTitle>
@@ -467,8 +467,8 @@ export default function DashboardOverview() {
                   />
                   <Separator />
                   <div className="flex items-center justify-between text-sm font-medium">
-                    <span>Total Daily Calories</span>
-                    <span className="text-lg font-bold text-emerald-600">
+                    <span className="text-foreground">Total Daily Calories</span>
+                    <span className="font-display text-xl text-emerald-400">
                       {macros.calorieTarget.toLocaleString()} kcal
                     </span>
                   </div>
@@ -493,12 +493,12 @@ export default function DashboardOverview() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.45 }}
         >
-          <Card>
+          <Card className="bg-card">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <div className="rounded-md bg-violet-100 p-1.5">
-                    <Dumbbell className="h-4 w-4 text-violet-600" />
+                  <div className="rounded-md bg-violet-500/10 p-1.5">
+                    <Dumbbell className="h-4 w-4 text-violet-400" />
                   </div>
                   This Week&apos;s Training
                 </CardTitle>
@@ -517,20 +517,20 @@ export default function DashboardOverview() {
                   {trainingDays.map((day, i) => (
                     <div
                       key={i}
-                      className="flex items-center justify-between rounded-lg border px-4 py-3 transition-colors hover:bg-muted/50"
+                      className="flex items-center justify-between rounded-lg border border-white/10 px-4 py-3 transition-colors hover:bg-zinc-800"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-violet-50 text-xs font-bold text-violet-600">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-violet-500/10 text-xs font-bold text-violet-400">
                           {day.day_name?.slice(0, 2).toUpperCase() || `D${i + 1}`}
                         </div>
                         <div>
-                          <p className="text-sm font-medium">{day.day_name}</p>
+                          <p className="text-sm font-medium text-foreground">{day.day_name}</p>
                           <p className="text-xs text-muted-foreground">
                             {day.workout_name}
                           </p>
                         </div>
                       </div>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs border-white/10">
                         Scheduled
                       </Badge>
                     </div>
@@ -554,12 +554,12 @@ export default function DashboardOverview() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.55 }}
         >
-          <Card>
+          <Card className="bg-card">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <div className="rounded-md bg-amber-100 p-1.5">
-                    <UtensilsCrossed className="h-4 w-4 text-amber-600" />
+                  <div className="rounded-md bg-amber-500/10 p-1.5">
+                    <UtensilsCrossed className="h-4 w-4 text-amber-400" />
                   </div>
                   Today&apos;s Meal Plan
                 </CardTitle>
@@ -580,17 +580,17 @@ export default function DashboardOverview() {
                   {todayMeals.map((meal, i) => (
                     <div
                       key={i}
-                      className="flex items-center justify-between rounded-lg border px-4 py-3"
+                      className="flex items-center justify-between rounded-lg border border-white/10 px-4 py-3"
                     >
                       <div>
-                        <p className="text-sm font-medium">{meal.meal_name}</p>
+                        <p className="text-sm font-medium text-foreground">{meal.meal_name}</p>
                         <p className="text-xs text-muted-foreground">
                           {meal.recipe_title}
                         </p>
                       </div>
                       <Badge
                         variant="secondary"
-                        className="font-mono text-xs"
+                        className="font-mono text-xs bg-zinc-800"
                       >
                         {meal.calories} kcal
                       </Badge>
@@ -598,8 +598,8 @@ export default function DashboardOverview() {
                   ))}
                   <Separator className="my-3" />
                   <div className="flex items-center justify-between text-sm">
-                    <span className="font-medium">Total</span>
-                    <span className="font-bold text-emerald-600">
+                    <span className="font-medium text-foreground">Total</span>
+                    <span className="font-bold text-emerald-400">
                       {todayMeals.reduce((sum, m) => sum + (m.calories || 0), 0)}{' '}
                       kcal
                     </span>
@@ -623,19 +623,19 @@ export default function DashboardOverview() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.65 }}
         >
-          <Card className="flex h-full flex-col items-center justify-center border-dashed">
+          <Card className="flex h-full flex-col items-center justify-center border-dashed border-primary bg-card">
             <CardContent className="flex flex-col items-center gap-4 pt-6 text-center">
-              <div className="rounded-full bg-emerald-50 p-4">
-                <Download className="h-8 w-8 text-emerald-600" />
+              <div className="rounded-full bg-emerald-500/10 p-4">
+                <Download className="h-8 w-8 text-emerald-400" />
               </div>
               <div>
-                <p className="font-semibold">Download Your Plan</p>
+                <p className="font-semibold text-foreground">Download Your Plan</p>
                 <p className="mt-1 text-sm text-muted-foreground">
                   Get a PDF of your complete meal and training plan.
                 </p>
               </div>
               <Button
-                className="mt-2 gap-2 bg-emerald-600 hover:bg-emerald-700"
+                className="mt-2 gap-2 bg-primary hover:bg-primary/90"
                 onClick={async () => {
                   try {
                     const res = await fetch('/api/generate-pdf')

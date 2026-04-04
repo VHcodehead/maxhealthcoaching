@@ -60,18 +60,18 @@ function SidebarContent({
   unreadCount?: number
 }) {
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-col bg-card">
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-6 py-5">
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600">
           <Activity className="h-5 w-5 text-white" />
         </div>
-        <span className="text-xl font-bold tracking-tight">
-          Max<span className="text-emerald-600">Health</span>
+        <span className="text-xl font-bold tracking-tight text-foreground">
+          Max<span className="text-emerald-500">Health</span>
         </span>
       </div>
 
-      <Separator />
+      <Separator className="border-white/10" />
 
       {/* Navigation */}
       <ScrollArea className="flex-1 px-3 py-4">
@@ -88,26 +88,26 @@ function SidebarContent({
                 onClick={onNavClick}
                 className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
                   isActive
-                    ? 'bg-emerald-50 text-emerald-700 shadow-sm'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                    ? 'bg-primary text-primary-foreground shadow-sm'
+                    : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300'
                 }`}
               >
                 <item.icon
                   className={`h-4.5 w-4.5 transition-colors ${
                     isActive
-                      ? 'text-emerald-600'
-                      : 'text-muted-foreground group-hover:text-foreground'
+                      ? 'text-primary-foreground'
+                      : 'text-zinc-400 group-hover:text-zinc-300'
                   }`}
                 />
                 {item.label}
                 {item.href === '/dashboard/messages' && unreadCount && unreadCount > 0 ? (
-                  <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-600 px-1.5 text-[11px] font-semibold text-white">
+                  <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-500 px-1.5 text-[11px] font-semibold text-white">
                     {unreadCount > 99 ? '99+' : unreadCount}
                   </span>
                 ) : isActive ? (
                   <motion.div
                     layoutId="sidebar-active-indicator"
-                    className="ml-auto h-1.5 w-1.5 rounded-full bg-emerald-600"
+                    className="ml-auto h-1.5 w-1.5 rounded-full bg-primary-foreground"
                     transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                   />
                 ) : null}
@@ -118,10 +118,10 @@ function SidebarContent({
       </ScrollArea>
 
       {/* User section */}
-      <div className="mt-auto border-t p-4">
+      <div className="mt-auto border-t border-white/10 bg-zinc-800 p-4">
         <div className="flex items-center gap-3">
           <Avatar size="default">
-            <AvatarFallback className="bg-emerald-100 text-emerald-700 text-xs font-semibold">
+            <AvatarFallback className="bg-emerald-600 text-white text-xs font-semibold">
               {user?.full_name
                 ? user.full_name
                     .split(' ')
@@ -133,7 +133,7 @@ function SidebarContent({
             </AvatarFallback>
           </Avatar>
           <div className="flex-1 overflow-hidden">
-            <p className="truncate text-sm font-medium">
+            <p className="truncate text-sm font-medium text-foreground">
               {user?.full_name || 'Loading...'}
             </p>
             <p className="truncate text-xs text-muted-foreground">
@@ -144,7 +144,7 @@ function SidebarContent({
         <Button
           variant="ghost"
           size="sm"
-          className="mt-3 w-full justify-start gap-2 text-muted-foreground hover:text-destructive"
+          className="mt-3 w-full justify-start gap-2 text-zinc-400 hover:text-destructive"
           onClick={onSignOut}
         >
           <LogOut className="h-4 w-4" />
@@ -202,9 +202,9 @@ export default function DashboardLayout({
     )?.label || 'Dashboard'
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50/50">
+    <div className="flex h-screen overflow-hidden bg-background">
       {/* Desktop Sidebar */}
-      <aside className="hidden w-64 shrink-0 border-r bg-white lg:flex lg:flex-col">
+      <aside className="hidden w-64 shrink-0 border-r border-white/10 bg-card lg:flex lg:flex-col">
         <SidebarContent
           user={user}
           pathname={pathname}
@@ -216,7 +216,7 @@ export default function DashboardLayout({
       {/* Mobile Header + Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Mobile Header */}
-        <header className="flex h-14 items-center gap-3 border-b bg-white px-4 lg:hidden">
+        <header className="flex h-14 items-center gap-3 border-b border-white/10 bg-background px-4 lg:hidden">
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -224,7 +224,7 @@ export default function DashboardLayout({
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-64 p-0" showCloseButton={false}>
+            <SheetContent side="left" className="w-64 p-0 bg-card border-r border-white/10" showCloseButton={false}>
               <SheetHeader className="sr-only">
                 <SheetTitle>Navigation</SheetTitle>
               </SheetHeader>
@@ -241,8 +241,8 @@ export default function DashboardLayout({
             <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-600">
               <Activity className="h-4 w-4 text-white" />
             </div>
-            <span className="text-sm font-semibold">
-              Max<span className="text-emerald-600">Health</span>
+            <span className="text-sm font-semibold text-foreground">
+              Max<span className="text-emerald-500">Health</span>
             </span>
           </div>
           <span className="ml-auto text-sm text-muted-foreground">
