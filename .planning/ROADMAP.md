@@ -118,8 +118,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 07-01-PLAN.md — Dark palette CSS variables + Bebas Neue font loading
-- [ ] 07-02-PLAN.md — Component overrides for dark surfaces + animation utilities
+- [x] 07-01-PLAN.md — Dark palette CSS variables + Bebas Neue font loading
+- [x] 07-02-PLAN.md — Component overrides for dark surfaces + animation utilities
 
 #### Phase 8: Public Pages
 **Goal**: Prospects visiting the site encounter a premium, high-conversion dark-themed experience before ever creating an account
