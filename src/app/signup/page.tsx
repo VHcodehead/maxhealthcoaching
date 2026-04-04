@@ -86,13 +86,15 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4 py-12">
       <div className="w-full max-w-lg">
         <div className="mb-8 flex flex-col items-center text-center">
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-600">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/20">
             <Dumbbell className="h-6 w-6 text-white" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">MaxHealth Coaching</h1>
+          <h1 className="font-display text-3xl tracking-tight">
+            MAX<span className="text-primary">HEALTH</span>
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">Your Personal Training Partner</p>
         </div>
 
@@ -100,7 +102,7 @@ export default function SignupPage() {
           <Card>
             <CardContent className="pt-8 pb-8 text-center space-y-4">
               <div className="flex justify-center">
-                <CheckCircle className="h-14 w-14 text-emerald-600" />
+                <CheckCircle className="h-14 w-14 text-primary" />
               </div>
               <div>
                 <h2 className="text-xl font-semibold">Application Submitted!</h2>
@@ -111,7 +113,7 @@ export default function SignupPage() {
               </div>
               <Link
                 href="/login"
-                className="inline-block text-sm font-medium text-emerald-600 hover:underline"
+                className="inline-block text-sm font-medium text-primary hover:underline"
               >
                 Back to Login
               </Link>
@@ -120,7 +122,7 @@ export default function SignupPage() {
         ) : (
           <Card>
             <CardHeader className="text-center">
-              <CardTitle className="text-xl">Apply for Coaching</CardTitle>
+              <CardTitle className="font-display text-2xl">APPLY FOR COACHING</CardTitle>
               <CardDescription>
                 Tell us about yourself and your fitness goals
               </CardDescription>
@@ -130,7 +132,7 @@ export default function SignupPage() {
 
                 {/* Personal Info */}
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                  <h3 className="font-display text-sm text-primary uppercase tracking-wide">
                     Personal Info
                   </h3>
 
@@ -179,7 +181,7 @@ export default function SignupPage() {
 
                 {/* Your Goals */}
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                  <h3 className="font-display text-sm text-primary uppercase tracking-wide">
                     Your Goals
                   </h3>
 
@@ -187,7 +189,7 @@ export default function SignupPage() {
                     <Label htmlFor="goal">Primary goal</Label>
                     <select
                       id="goal"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 [&>option]:bg-card [&>option]:text-foreground"
                       defaultValue=""
                       {...register('goal')}
                     >
@@ -205,7 +207,7 @@ export default function SignupPage() {
                     <Label htmlFor="experience">Training experience</Label>
                     <select
                       id="experience"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 [&>option]:bg-card [&>option]:text-foreground"
                       defaultValue=""
                       {...register('experience')}
                     >
@@ -223,7 +225,7 @@ export default function SignupPage() {
                     <Label htmlFor="commitment">Training commitment</Label>
                     <select
                       id="commitment"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 [&>option]:bg-card [&>option]:text-foreground"
                       defaultValue=""
                       {...register('commitment')}
                     >
@@ -240,7 +242,7 @@ export default function SignupPage() {
 
                 {/* About You */}
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                  <h3 className="font-display text-sm text-primary uppercase tracking-wide">
                     About You
                   </h3>
 
@@ -248,7 +250,7 @@ export default function SignupPage() {
                     <Label htmlFor="gender">Gender</Label>
                     <select
                       id="gender"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 [&>option]:bg-card [&>option]:text-foreground"
                       defaultValue=""
                       {...register('gender')}
                     >
@@ -340,7 +342,7 @@ export default function SignupPage() {
 
                 {/* Tell Us More */}
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                  <h3 className="font-display text-sm text-primary uppercase tracking-wide">
                     Tell Us More
                   </h3>
 
@@ -353,7 +355,7 @@ export default function SignupPage() {
                       id="motivation"
                       rows={4}
                       placeholder="Tell us about your goals, challenges, and what coaching means to you..."
-                      className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-none"
+                      className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-none"
                       {...register('motivation')}
                     />
                     {errors.motivation && (
@@ -380,7 +382,7 @@ export default function SignupPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-emerald-600 hover:bg-emerald-700"
+                  className="w-full bg-primary hover:bg-primary/90"
                   disabled={isLoading}
                 >
                   {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
