@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.1
+milestone_name: Dark Athletic Hybrid Redesign
+status: planning
+stopped_at: Completed 07-design-foundation 07-01-PLAN.md
+last_updated: "2026-04-04T05:38:31.169Z"
+last_activity: 2026-04-03 — v1.1 roadmap created (phases 7-10)
+progress:
+  total_phases: 10
+  completed_phases: 6
+  total_plans: 15
+  completed_plans: 14
+  percent: 40
+---
+
 # Project State
 
 ## Project Reference
@@ -34,6 +50,7 @@ Progress: [████████░░░░░░░░░░░░] 40% (v1
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 07-design-foundation P01 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -44,6 +61,8 @@ Progress: [████████░░░░░░░░░░░░] 40% (v1
 - Public pages (Phase 8) before dashboards (Phase 9) — prospects see public pages first, conversion matters
 - Coach and client dashboards combined in Phase 9 — they share a component library and can be executed together
 - Onboarding last (Phase 10) — depends on auth/apply pages from Phase 8 being styled first
+- [Phase 07-design-foundation]: Dark-only mode: removed .dark class block — dark IS the default, emerald-500 primary
+- [Phase 07-design-foundation]: Bebas Neue loaded via next/font/google with --font-display CSS variable for display typography
 
 ### Pending Todos
 
@@ -55,6 +74,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-04-03
-Stopped at: Roadmap created for v1.1. Phase 7 ready to plan.
+Last session: 2026-04-04T05:38:31.167Z
+Stopped at: Completed 07-design-foundation 07-01-PLAN.md
 Resume file: None

@@ -7,8 +7,8 @@
 
 ### Design Foundation
 
-- [ ] **THEME-01**: Global dark theme with zinc-950 base, emerald-500 primary, and consistent color tokens
-- [ ] **THEME-02**: Custom font pairing with bold condensed headings and clean body text
+- [x] **THEME-01**: Global dark theme with zinc-950 base, emerald-500 primary, and consistent color tokens
+- [x] **THEME-02**: Custom font pairing with bold condensed headings and clean body text
 - [ ] **THEME-03**: Redesigned component library (buttons, cards, inputs, badges) for dark surfaces
 - [ ] **THEME-04**: Consistent animation/transition system across all pages
 
@@ -65,8 +65,8 @@ Deferred to future release.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| THEME-01 | Phase 7 | Pending |
-| THEME-02 | Phase 7 | Pending |
+| THEME-01 | Phase 7 | Complete |
+| THEME-02 | Phase 7 | Complete |
 | THEME-03 | Phase 7 | Pending |
 | THEME-04 | Phase 7 | Pending |
 | PUB-01 | Phase 8 | Pending |
