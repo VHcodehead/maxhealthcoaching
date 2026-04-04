@@ -196,7 +196,7 @@ export default function CheckInPage() {
   // Loading state
   if (step === 'loading') {
     return (
-      <div className="min-h-screen bg-zinc-50 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
       </div>
     );
@@ -206,20 +206,20 @@ export default function CheckInPage() {
   if (step === 'window-closed') {
     const nextOpens = getNextWindowOpens();
     return (
-      <div className="min-h-screen bg-zinc-50 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="text-center max-w-md"
         >
-          <div className="w-16 h-16 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-zinc-800 rounded-full flex items-center justify-center mx-auto mb-4">
             <CalendarCheck className="w-8 h-8 text-zinc-400" />
           </div>
           <h2 className="text-2xl font-bold mb-2">Check-In Window Closed</h2>
-          <p className="text-zinc-500 mb-6">
-            Check-ins are accepted from Saturday evening through Tuesday. The next window opens in <span className="font-semibold text-zinc-700">{formatCountdown(nextOpens)}</span>.
+          <p className="text-zinc-400 mb-6">
+            Check-ins are accepted from Saturday evening through Tuesday. The next window opens in <span className="font-semibold text-zinc-300">{formatCountdown(nextOpens)}</span>.
           </p>
-          <Button onClick={() => router.push('/dashboard')} className="bg-emerald-600 hover:bg-emerald-700">
+          <Button onClick={() => router.push('/dashboard')} className="bg-primary hover:bg-primary/90">
             Back to Dashboard
           </Button>
         </motion.div>
@@ -230,20 +230,20 @@ export default function CheckInPage() {
   // Already checked in this week
   if (step === 'already-done') {
     return (
-      <div className="min-h-screen bg-zinc-50 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="text-center max-w-md"
         >
-          <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle className="w-8 h-8 text-emerald-600" />
+          <div className="w-16 h-16 bg-emerald-900/50 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle className="w-8 h-8 text-emerald-400" />
           </div>
           <h2 className="text-2xl font-bold mb-2">Already Checked In</h2>
-          <p className="text-zinc-500 mb-6">
+          <p className="text-zinc-400 mb-6">
             You&apos;ve already submitted your check-in this week. See you next Sunday!
           </p>
-          <Button onClick={() => router.push('/dashboard')} className="bg-emerald-600 hover:bg-emerald-700">
+          <Button onClick={() => router.push('/dashboard')} className="bg-primary hover:bg-primary/90">
             Back to Dashboard
           </Button>
         </motion.div>
@@ -253,41 +253,41 @@ export default function CheckInPage() {
 
   if (step === 'done') {
     return (
-      <div className="min-h-screen bg-zinc-50 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="text-center max-w-md"
         >
-          <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <CheckCircle className="w-8 h-8 text-emerald-600" />
+          <div className="w-16 h-16 bg-emerald-900/50 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle className="w-8 h-8 text-emerald-400" />
           </div>
           <h2 className="text-2xl font-bold mb-2">Check-In Complete!</h2>
 
           {pendingAdjustment ? (
             <>
-              <p className="text-zinc-500 mb-4">
+              <p className="text-zinc-400 mb-4">
                 Your weight change has been logged. Your coach will review your nutrition targets before any changes are applied.
               </p>
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6 text-left">
-                <p className="text-sm font-semibold text-amber-900 mb-1">Macro Adjustment Pending Review</p>
-                <p className="text-sm text-amber-700">
+              <div className="bg-amber-950/20 border border-amber-500/30 rounded-lg p-4 mb-6 text-left">
+                <p className="text-sm font-semibold text-amber-300 mb-1">Macro Adjustment Pending Review</p>
+                <p className="text-sm text-amber-400">
                   Suggested change: {oldCalories} → {newCalories} kcal
                 </p>
-                <p className="text-xs text-amber-600 mt-1">
+                <p className="text-xs text-amber-400/70 mt-1">
                   Your coach will review this and update your targets when ready.
                 </p>
               </div>
-              <Button onClick={() => router.push('/dashboard')} className="w-full bg-emerald-600 hover:bg-emerald-700">
+              <Button onClick={() => router.push('/dashboard')} className="w-full bg-primary hover:bg-primary/90">
                 Back to Dashboard
               </Button>
             </>
           ) : (
             <>
-              <p className="text-zinc-500 mb-6">
+              <p className="text-zinc-400 mb-6">
                 Great job staying consistent. Your coach will review your check-in shortly.
               </p>
-              <Button onClick={() => router.push('/dashboard')} className="bg-emerald-600 hover:bg-emerald-700">
+              <Button onClick={() => router.push('/dashboard')} className="bg-primary hover:bg-primary/90">
                 Back to Dashboard
               </Button>
             </>
@@ -298,16 +298,16 @@ export default function CheckInPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white border-b sticky top-0 z-10">
+      <header className="bg-background border-b border-white/10 sticky top-0 z-10">
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-3">
           <Button variant="ghost" size="sm" onClick={() => router.push('/dashboard')}>
             <ArrowLeft className="w-4 h-4" />
           </Button>
           <div>
             <h1 className="font-semibold">Weekly Check-In</h1>
-            <p className="text-xs text-zinc-500">
+            <p className="text-xs text-zinc-400">
               {step === 'form' ? 'Step 1: Metrics & Notes' : 'Step 2: Progress Photos'}
             </p>
           </div>
@@ -384,7 +384,7 @@ export default function CheckInPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <Label>How well did you follow your plan?</Label>
-                    <span className="text-sm font-semibold text-emerald-600">{adherenceRating}/10</span>
+                    <span className="text-sm font-semibold text-primary">{adherenceRating}/10</span>
                   </div>
                   <Slider
                     min={1}
@@ -445,7 +445,7 @@ export default function CheckInPage() {
                 <textarea
                   {...register('notes')}
                   rows={4}
-                  className="w-full rounded-lg border border-zinc-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none"
+                  className="w-full rounded-lg border border-white/10 bg-zinc-900 text-foreground px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none"
                   placeholder="How was your week? Any challenges, wins, or things to note..."
                 />
               </CardContent>
@@ -453,7 +453,7 @@ export default function CheckInPage() {
 
             <Button
               type="submit"
-              className="w-full bg-emerald-600 hover:bg-emerald-700"
+              className="w-full bg-primary hover:bg-primary/90"
               size="lg"
               disabled={isSubmitting}
             >
@@ -481,7 +481,7 @@ export default function CheckInPage() {
                     className={`block aspect-[3/4] rounded-xl border-2 border-dashed cursor-pointer transition-colors overflow-hidden ${
                       photoPreviews[type]
                         ? 'border-emerald-500'
-                        : 'border-zinc-200 hover:border-zinc-300'
+                        : 'border-white/10 hover:border-white/20'
                     }`}
                   >
                     {photoPreviews[type] ? (
@@ -514,7 +514,7 @@ export default function CheckInPage() {
             <div className="flex gap-3">
               <Button
                 variant="outline"
-                className="flex-1"
+                className="flex-1 border-white/10 hover:bg-zinc-800"
                 onClick={() => {
                   setStep('done');
                 }}
@@ -522,7 +522,7 @@ export default function CheckInPage() {
                 Skip Photos
               </Button>
               <Button
-                className="flex-1 bg-emerald-600 hover:bg-emerald-700"
+                className="flex-1 bg-primary hover:bg-primary/90"
                 onClick={uploadPhotos}
                 disabled={uploading || !Object.values(photos).some(Boolean)}
               >
