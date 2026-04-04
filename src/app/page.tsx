@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import {
-  Calculator, UtensilsCrossed, Dumbbell, TrendingUp, Camera, UserCheck,
+  Calculator, UtensilsCrossed, Dumbbell, TrendingUp, Pill, UserCheck,
   ArrowRight, Check, X, ChevronDown, Star, Menu, X as XIcon, Shield, Zap, Clock
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -85,19 +85,18 @@ export default function HomePage() {
   };
 
   const features = [
-    { icon: Calculator, title: 'Custom Macro Targets', desc: 'Science-based calorie and macro calculations using your body composition, activity, and goals.' },
+    { icon: Calculator, title: 'Personalized Macros', desc: 'Science-based calorie and macro calculations using your body composition, activity, and goals.' },
     { icon: UtensilsCrossed, title: 'Custom Meal Plans', desc: '7-day meal plans with recipes, grocery lists, and swap options — tailored to your diet and preferences.' },
-    { icon: Dumbbell, title: 'Training Programs', desc: 'Periodized workout plans matched to your experience, equipment, injuries, and schedule.' },
-    { icon: TrendingUp, title: 'Progress Tracking', desc: 'Track weight, measurements, adherence, and see your trends over time with visual analytics.' },
-    { icon: Camera, title: 'Photo Comparisons', desc: 'Secure progress photo storage with side-by-side comparisons to see your transformation.' },
-    { icon: UserCheck, title: 'Coach Oversight', desc: 'Your coach reviews every check-in, adjusts your plan, and keeps you accountable.' },
+    { icon: Dumbbell, title: 'Periodized Training', desc: 'Periodized workout plans matched to your experience, equipment, injuries, and schedule.' },
+    { icon: TrendingUp, title: 'Weekly Check-ins', desc: 'Submit weekly data and get coach-reviewed adjustments based on your actual results.' },
+    { icon: Pill, title: 'Supplement Guidance', desc: 'Evidence-based supplement recommendations tailored to your goals, budget, and current stack.' },
+    { icon: UserCheck, title: 'Direct Coaching', desc: 'Your coach reviews every check-in, adjusts your plan, and keeps you accountable week to week.' },
   ];
 
   const steps = [
-    { num: '01', title: 'Choose Your Plan', desc: 'Pick the coaching tier that fits your goals and budget.' },
-    { num: '02', title: 'Complete Your Profile', desc: '5-minute onboarding quiz about your body, goals, diet, training, and lifestyle.' },
-    { num: '03', title: 'Get Your Custom Plans', desc: 'Receive personalized macro targets, a custom meal plan, and training program built for you.' },
-    { num: '04', title: 'Weekly Check-ins', desc: 'Track progress, upload photos, and get plan adjustments based on your results.' },
+    { num: '01', title: 'Apply', desc: 'Fill out a short application so we can understand your goals, history, and lifestyle.' },
+    { num: '02', title: 'Get Your Plan', desc: 'Receive personalized macro targets, a custom meal plan, and a training program built for you.' },
+    { num: '03', title: 'Check In Weekly', desc: 'Submit your weekly data and get coach-reviewed plan adjustments based on your progress.' },
   ];
 
   const faqs = [
@@ -118,36 +117,36 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Sticky Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-lg border-b shadow-sm' : 'bg-transparent'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-zinc-950 backdrop-blur-lg border-b border-border' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <span className="text-xl font-bold tracking-tight">Max<span className="text-emerald-600">Health</span></span>
+          <span className="text-xl font-bold tracking-tight">Max<span className="text-primary">Health</span></span>
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#features" className="text-zinc-600 hover:text-zinc-900 transition-colors">What You Get</a>
-            <a href="#how" className="text-zinc-600 hover:text-zinc-900 transition-colors">How It Works</a>
-            <a href="#results" className="text-zinc-600 hover:text-zinc-900 transition-colors">Results</a>
-            <a href="#pricing" className="text-zinc-600 hover:text-zinc-900 transition-colors">Pricing</a>
-            <a href="#faq" className="text-zinc-600 hover:text-zinc-900 transition-colors">FAQ</a>
+            <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">What You Get</a>
+            <a href="#how" className="text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
+            <a href="#results" className="text-muted-foreground hover:text-foreground transition-colors">Results</a>
+            <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">Pricing</a>
+            <a href="#faq" className="text-muted-foreground hover:text-foreground transition-colors">FAQ</a>
           </nav>
           <div className="hidden md:flex items-center gap-3">
             <Button variant="ghost" size="sm" asChild><Link href="/quiz">Free Assessment</Link></Button>
-            <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700" asChild><Link href="/pricing">Get Started</Link></Button>
+            <Button size="sm" className="bg-primary hover:bg-primary/90" asChild><Link href="/pricing">Get Started</Link></Button>
           </div>
           <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <XIcon className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
         {mobileMenuOpen && (
-          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="md:hidden bg-white border-b px-4 py-4 space-y-3">
-            <a href="#features" className="block text-sm" onClick={() => setMobileMenuOpen(false)}>What You Get</a>
-            <a href="#how" className="block text-sm" onClick={() => setMobileMenuOpen(false)}>How It Works</a>
-            <a href="#results" className="block text-sm" onClick={() => setMobileMenuOpen(false)}>Results</a>
-            <a href="#pricing" className="block text-sm" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
-            <a href="#faq" className="block text-sm" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="md:hidden bg-card border-b border-border px-4 py-4 space-y-3">
+            <a href="#features" className="block text-sm text-foreground" onClick={() => setMobileMenuOpen(false)}>What You Get</a>
+            <a href="#how" className="block text-sm text-foreground" onClick={() => setMobileMenuOpen(false)}>How It Works</a>
+            <a href="#results" className="block text-sm text-foreground" onClick={() => setMobileMenuOpen(false)}>Results</a>
+            <a href="#pricing" className="block text-sm text-foreground" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
+            <a href="#faq" className="block text-sm text-foreground" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
             <div className="flex gap-2 pt-2">
               <Button variant="outline" size="sm" className="flex-1" asChild><Link href="/quiz">Free Assessment</Link></Button>
-              <Button size="sm" className="flex-1 bg-emerald-600 hover:bg-emerald-700" asChild><Link href="/pricing">Get Started</Link></Button>
+              <Button size="sm" className="flex-1 bg-primary hover:bg-primary/90" asChild><Link href="/pricing">Get Started</Link></Button>
             </div>
           </motion.div>
         )}
@@ -155,32 +154,32 @@ export default function HomePage() {
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-emerald-50/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-zinc-900/50" />
         <div className="relative max-w-5xl mx-auto px-4 text-center py-20">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <Badge variant="secondary" className="mb-6 text-xs">Expert Personal Training & Nutrition</Badge>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
-              Transform Your Body<br />
-              <span className="text-emerald-600">With Science-Backed Coaching</span>
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] mb-6">
+              YOUR BODY. YOUR PLAN.<br />
+              YOUR RESULTS.
             </h1>
-            <p className="text-lg md:text-xl text-zinc-500 max-w-2xl mx-auto mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
               Personalized meal plans, custom training programs, and weekly accountability — all tailored to your body, goals, and lifestyle.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-base px-8" asChild>
-                <Link href="/signup">Apply Now <ArrowRight className="w-4 h-4 ml-2" /></Link>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-base px-8" asChild>
+                <Link href="/signup">APPLY NOW <ArrowRight className="w-4 h-4 ml-2" /></Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-base" asChild>
+              <Button size="lg" variant="outline" className="text-base border-border text-foreground hover:bg-card" asChild>
                 <Link href="/quiz">Take Free Assessment</Link>
               </Button>
             </div>
-            <p className="text-sm text-zinc-400">
-              500+ clients transformed &bull; Personalized plans &bull; Cancel anytime
+            <p className="text-sm text-primary">
+              500+ Plans Created &bull; Advanced Protocol Support &bull; NASM Certified
             </p>
           </motion.div>
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <ChevronDown className="w-5 h-5 text-zinc-300" />
+          <ChevronDown className="w-5 h-5 text-muted-foreground" />
         </div>
       </section>
 
@@ -189,21 +188,21 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <AnimatedSection className="text-center mb-16">
             <Badge variant="secondary" className="mb-4">Everything You Need</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">What You Get</h2>
-            <p className="text-zinc-500 max-w-xl mx-auto">A complete system designed to eliminate guesswork and deliver results.</p>
+            <h2 className="font-display text-3xl md:text-5xl tracking-tight mb-4">WHAT YOU GET</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">A complete system designed to eliminate guesswork and deliver results.</p>
           </AnimatedSection>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f, i) => {
               const Icon = f.icon;
               return (
                 <AnimatedSection key={i}>
-                  <Card className="h-full hover:shadow-lg hover:border-emerald-200 transition-all duration-300 group">
+                  <Card className="h-full hover-card-glow transition-all duration-300 group">
                     <CardContent className="p-6">
-                      <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-emerald-500 transition-colors">
-                        <Icon className="w-5 h-5 text-emerald-600 group-hover:text-white transition-colors" />
+                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
+                        <Icon className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
                       </div>
                       <h3 className="font-semibold mb-2">{f.title}</h3>
-                      <p className="text-sm text-zinc-500 leading-relaxed">{f.desc}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
                     </CardContent>
                   </Card>
                 </AnimatedSection>
@@ -214,21 +213,21 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section id="how" className="py-20 md:py-28 bg-zinc-50">
+      <section id="how" className="py-20 md:py-28 bg-card/50">
         <div className="max-w-4xl mx-auto px-4">
           <AnimatedSection className="text-center mb-16">
             <Badge variant="secondary" className="mb-4">Simple Process</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">How It Works</h2>
-            <p className="text-zinc-500">From signup to results in 4 simple steps.</p>
+            <h2 className="font-display text-3xl md:text-5xl tracking-tight mb-4">HOW IT WORKS</h2>
+            <p className="text-muted-foreground">Three steps from application to results.</p>
           </AnimatedSection>
           <div className="space-y-8">
             {steps.map((step, i) => (
               <AnimatedSection key={i}>
                 <div className="flex gap-6 items-start">
-                  <div className="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">{step.num}</div>
+                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">{step.num}</div>
                   <div className="pt-2">
                     <h3 className="text-lg font-semibold mb-1">{step.title}</h3>
-                    <p className="text-zinc-500">{step.desc}</p>
+                    <p className="text-muted-foreground">{step.desc}</p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -241,19 +240,19 @@ export default function HomePage() {
       <section className="py-20 md:py-28">
         <div className="max-w-4xl mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Why Coaching Wins</h2>
-            <p className="text-zinc-500">Stop guessing. Start progressing.</p>
+            <h2 className="font-display text-3xl md:text-4xl tracking-tight mb-4">WHY COACHING WINS</h2>
+            <p className="text-muted-foreground">Stop guessing. Start progressing.</p>
           </AnimatedSection>
           <AnimatedSection>
-            <div className="grid grid-cols-3 gap-0 border rounded-xl overflow-hidden">
-              <div className="p-4 bg-zinc-50 font-medium text-sm">&nbsp;</div>
-              <div className="p-4 bg-zinc-100 text-center font-medium text-sm">Going It Alone</div>
-              <div className="p-4 bg-emerald-600 text-white text-center font-medium text-sm">MaxHealth</div>
+            <div className="grid grid-cols-3 gap-0 border border-border rounded-xl overflow-hidden">
+              <div className="p-4 bg-card font-medium text-sm text-foreground">&nbsp;</div>
+              <div className="p-4 bg-muted text-center font-medium text-sm text-foreground">Going It Alone</div>
+              <div className="p-4 bg-primary text-white text-center font-medium text-sm">MaxHealth</div>
               {['Personalized nutrition', 'Progressive training', 'Weekly accountability', 'Expert adjustments', 'Progress tracking', 'Meal plans & recipes'].map((item, i) => (
                 <div key={i} className="contents">
-                  <div className="p-4 text-sm border-t">{item}</div>
-                  <div className="p-4 text-center border-t"><X className="w-4 h-4 text-zinc-300 mx-auto" /></div>
-                  <div className="p-4 text-center border-t bg-emerald-50"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></div>
+                  <div className="p-4 text-sm border-t border-border text-foreground">{item}</div>
+                  <div className="p-4 text-center border-t border-border"><X className="w-4 h-4 text-muted-foreground/50 mx-auto" /></div>
+                  <div className="p-4 text-center border-t border-border bg-primary/5"><Check className="w-4 h-4 text-primary mx-auto" /></div>
                 </div>
               ))}
             </div>
@@ -262,39 +261,39 @@ export default function HomePage() {
       </section>
 
       {/* Results */}
-      <section id="results" className="py-20 md:py-28 bg-zinc-50">
+      <section id="results" className="py-20 md:py-28 bg-card/50">
         <div className="max-w-6xl mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
             <Badge variant="secondary" className="mb-4">Proven Results</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Hundreds of Clients Transformed</h2>
-            <p className="text-lg text-zinc-500 max-w-2xl mx-auto">
+            <h2 className="font-display text-3xl md:text-5xl tracking-tight mb-4">HUNDREDS TRANSFORMED</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               From fat loss to muscle gain, our science-backed coaching system has helped hundreds of people
               completely transform their bodies and build lasting habits.
             </p>
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-8">
             <AnimatedSection>
-              <div className="text-center p-8 rounded-2xl bg-white border">
-                <p className="text-5xl font-bold text-emerald-600 mb-2">500+</p>
-                <p className="text-zinc-500">Clients Coached</p>
+              <div className="text-center p-8 rounded-2xl bg-card border border-border">
+                <p className="font-display text-5xl text-primary mb-2">500+</p>
+                <p className="text-muted-foreground">Clients Coached</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="text-center p-8 rounded-2xl bg-white border">
-                <p className="text-5xl font-bold text-emerald-600 mb-2">10k+</p>
-                <p className="text-zinc-500">Custom Plans Delivered</p>
+              <div className="text-center p-8 rounded-2xl bg-card border border-border">
+                <p className="font-display text-5xl text-primary mb-2">10k+</p>
+                <p className="text-muted-foreground">Custom Plans Delivered</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="text-center p-8 rounded-2xl bg-white border">
-                <p className="text-5xl font-bold text-emerald-600 mb-2">95%</p>
-                <p className="text-zinc-500">Client Satisfaction</p>
+              <div className="text-center p-8 rounded-2xl bg-card border border-border">
+                <p className="font-display text-5xl text-primary mb-2">95%</p>
+                <p className="text-muted-foreground">Client Satisfaction</p>
               </div>
             </AnimatedSection>
           </div>
-          <p className="text-center text-xs text-zinc-400 mt-8">Results vary. Individual outcomes depend on adherence and starting point.</p>
+          <p className="text-center text-xs text-muted-foreground/70 mt-8">Results vary. Individual outcomes depend on adherence and starting point.</p>
           <div className="text-center mt-6">
-            <Button className="bg-emerald-600 hover:bg-emerald-700" size="lg" asChild>
+            <Button className="bg-primary hover:bg-primary/90" size="lg" asChild>
               <Link href="/pricing">Start Your Transformation <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </div>
@@ -306,8 +305,8 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
             <Badge variant="secondary" className="mb-4">Free Tools</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Free Fitness Calculators</h2>
-            <p className="text-zinc-500">Get a taste of what our full system can do.</p>
+            <h2 className="font-display text-3xl md:text-4xl tracking-tight mb-4">FREE FITNESS CALCULATORS</h2>
+            <p className="text-muted-foreground">Get a taste of what our full system can do.</p>
           </AnimatedSection>
           <div className="grid sm:grid-cols-3 gap-4">
             {[
@@ -319,11 +318,11 @@ export default function HomePage() {
               return (
                 <AnimatedSection key={i}>
                   <Link href="/tools">
-                    <Card className="hover:shadow-md hover:border-emerald-200 transition-all cursor-pointer">
+                    <Card className="hover-card-glow transition-all cursor-pointer">
                       <CardContent className="p-6 text-center">
-                        <Icon className="w-8 h-8 text-emerald-600 mx-auto mb-3" />
+                        <Icon className="w-8 h-8 text-primary mx-auto mb-3" />
                         <h3 className="font-semibold mb-1">{tool.name}</h3>
-                        <p className="text-xs text-zinc-500">{tool.desc}</p>
+                        <p className="text-xs text-muted-foreground">{tool.desc}</p>
                       </CardContent>
                     </Card>
                   </Link>
@@ -335,31 +334,31 @@ export default function HomePage() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-20 md:py-28 bg-zinc-50">
+      <section id="pricing" className="py-20 md:py-28 bg-card/50">
         <div className="max-w-6xl mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
             <Badge variant="secondary" className="mb-4">Pricing</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-zinc-500">No hidden fees. No contracts. Cancel anytime.</p>
+            <h2 className="font-display text-3xl md:text-5xl tracking-tight mb-4">SIMPLE, TRANSPARENT PRICING</h2>
+            <p className="text-muted-foreground">No hidden fees. No contracts. Cancel anytime.</p>
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {plans.map((plan, i) => (
               <AnimatedSection key={i}>
-                <Card className={`relative h-full flex flex-col ${plan.popular ? 'border-emerald-500 border-2 shadow-xl scale-[1.02]' : ''}`}>
+                <Card className={`relative h-full flex flex-col ${plan.popular ? 'border-primary border-2 shadow-xl shadow-primary/10 scale-[1.02]' : ''}`}>
                   {plan.popular && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <Badge className="bg-emerald-500 text-white hover:bg-emerald-500"><Star className="w-3 h-3 mr-1" /> Most Popular</Badge>
+                      <Badge className="bg-primary text-white hover:bg-primary"><Star className="w-3 h-3 mr-1" /> Most Popular</Badge>
                     </div>
                   )}
                   <CardContent className="p-6 flex flex-col flex-1">
                     <h3 className="font-semibold text-lg">{plan.name}</h3>
-                    <div className="mt-2 mb-4"><span className="text-4xl font-bold">${plan.price}</span><span className="text-zinc-500">/mo</span></div>
+                    <div className="mt-2 mb-4"><span className="text-4xl font-bold">${plan.price}</span><span className="text-muted-foreground">/mo</span></div>
                     <ul className="space-y-2 flex-1 mb-6">
                       {plan.features.map((f, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm"><Check className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" /><span className="text-zinc-600">{f}</span></li>
+                        <li key={j} className="flex items-start gap-2 text-sm"><Check className="w-4 h-4 text-primary mt-0.5 shrink-0" /><span className="text-muted-foreground">{f}</span></li>
                       ))}
                     </ul>
-                    <Button className={plan.popular ? 'bg-emerald-600 hover:bg-emerald-700 w-full' : 'w-full'} variant={plan.popular ? 'default' : 'outline'} asChild>
+                    <Button className={plan.popular ? 'bg-primary hover:bg-primary/90 w-full' : 'w-full'} variant={plan.popular ? 'default' : 'outline'} asChild>
                       <Link href="/pricing">Get Started <ArrowRight className="w-3 h-3 ml-1" /></Link>
                     </Button>
                   </CardContent>
@@ -367,7 +366,7 @@ export default function HomePage() {
               </AnimatedSection>
             ))}
           </div>
-          <div className="flex justify-center gap-6 mt-8 text-xs text-zinc-400">
+          <div className="flex justify-center gap-6 mt-8 text-xs text-muted-foreground/70">
             <span className="flex items-center gap-1"><Shield className="w-3 h-3" /> Secure payments</span>
             <span className="flex items-center gap-1"><Zap className="w-3 h-3" /> Instant access</span>
             <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Cancel anytime</span>
@@ -380,14 +379,14 @@ export default function HomePage() {
         <div className="max-w-3xl mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
             <Badge variant="secondary" className="mb-4">FAQ</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Frequently Asked Questions</h2>
+            <h2 className="font-display text-3xl md:text-4xl tracking-tight mb-4">FREQUENTLY ASKED QUESTIONS</h2>
           </AnimatedSection>
           <AnimatedSection>
             <Accordion type="single" collapsible className="space-y-2">
               {faqs.map((faq, i) => (
-                <AccordionItem key={i} value={`faq-${i}`} className="border rounded-lg px-4">
+                <AccordionItem key={i} value={`faq-${i}`} className="border border-border rounded-lg bg-card px-4">
                   <AccordionTrigger className="text-left text-sm font-medium hover:no-underline">{faq.q}</AccordionTrigger>
-                  <AccordionContent className="text-sm text-zinc-500 leading-relaxed">{faq.a}</AccordionContent>
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed">{faq.a}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -396,12 +395,12 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 md:py-28 bg-zinc-900 text-white">
+      <section className="py-20 md:py-28 bg-gradient-to-b from-card to-background">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Ready to Transform?</h2>
-            <p className="text-zinc-400 mb-8 max-w-lg mx-auto">Join hundreds of clients who stopped guessing and started seeing real results.</p>
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-base px-8" asChild>
+            <h2 className="font-display text-3xl md:text-5xl tracking-tight mb-4">READY TO TRANSFORM?</h2>
+            <p className="text-muted-foreground mb-8 max-w-lg mx-auto">Join hundreds of clients who stopped guessing and started seeing real results.</p>
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-base px-8" asChild>
               <Link href="/pricing">Start Your Transformation <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </AnimatedSection>
@@ -409,43 +408,43 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer ref={footerRef} className="border-t py-12 bg-white">
+      <footer ref={footerRef} className="border-t border-border py-12 bg-card">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-2">
-              <span className="text-lg font-bold tracking-tight">Max<span className="text-emerald-600">Health</span> Coaching</span>
-              <p className="text-sm text-zinc-500 mt-2 max-w-sm">Expert personal training and nutrition coaching. Science-backed programs tailored to your goals.</p>
+              <span className="text-lg font-bold tracking-tight">Max<span className="text-primary">Health</span> Coaching</span>
+              <p className="text-sm text-muted-foreground mt-2 max-w-sm">Expert personal training and nutrition coaching. Science-backed programs tailored to your goals.</p>
               <div className="mt-4">
                 {footerSubmitted ? (
-                  <p className="text-sm text-emerald-600">Subscribed!</p>
+                  <p className="text-sm text-primary">Subscribed!</p>
                 ) : (
                   <div className="flex gap-2 max-w-xs">
                     <Input type="email" placeholder="Get fitness tips" value={footerEmail} onChange={(e) => setFooterEmail(e.target.value)} className="text-sm" />
-                    <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 shrink-0" onClick={() => { if (footerEmail) { submitLead(footerEmail, 'footer'); setFooterSubmitted(true); } }}>Subscribe</Button>
+                    <Button size="sm" className="bg-primary hover:bg-primary/90 shrink-0" onClick={() => { if (footerEmail) { submitLead(footerEmail, 'footer'); setFooterSubmitted(true); } }}>Subscribe</Button>
                   </div>
                 )}
               </div>
             </div>
             <div>
               <h4 className="font-semibold text-sm mb-3">Product</h4>
-              <div className="space-y-2 text-sm text-zinc-500">
-                <a href="/pricing" className="block hover:text-zinc-900">Pricing</a>
-                <a href="/tools" className="block hover:text-zinc-900">Free Tools</a>
-                <a href="/quiz" className="block hover:text-zinc-900">Free Assessment</a>
-                <a href="/results" className="block hover:text-zinc-900">Results</a>
-                <a href="/blog" className="block hover:text-zinc-900">Blog</a>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <a href="/pricing" className="block hover:text-foreground">Pricing</a>
+                <a href="/tools" className="block hover:text-foreground">Free Tools</a>
+                <a href="/quiz" className="block hover:text-foreground">Free Assessment</a>
+                <a href="/results" className="block hover:text-foreground">Results</a>
+                <a href="/blog" className="block hover:text-foreground">Blog</a>
               </div>
             </div>
             <div>
               <h4 className="font-semibold text-sm mb-3">Support</h4>
-              <div className="space-y-2 text-sm text-zinc-500">
-                <a href="#faq" className="block hover:text-zinc-900">FAQ</a>
-                <a href="mailto:max@integrativeaisolutions.com" className="block hover:text-zinc-900">Contact</a>
-                <a href="/login" className="block hover:text-zinc-900">Sign In</a>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <a href="#faq" className="block hover:text-foreground">FAQ</a>
+                <a href="mailto:max@integrativeaisolutions.com" className="block hover:text-foreground">Contact</a>
+                <a href="/login" className="block hover:text-foreground">Sign In</a>
               </div>
             </div>
           </div>
-          <div className="border-t pt-6 text-xs text-zinc-400 text-center space-y-2">
+          <div className="border-t border-border pt-6 text-xs text-muted-foreground/70 text-center space-y-2">
             <p>MaxHealth Coaching provides fitness and nutrition guidance. This is not medical advice. Consult your physician before starting any new diet or exercise program.</p>
             <p>&copy; 2024&ndash;{new Date().getFullYear()} MaxHealth Coaching. All rights reserved.</p>
           </div>
@@ -453,8 +452,8 @@ export default function HomePage() {
       </footer>
 
       {/* Mobile Sticky Bottom Bar */}
-      <div className={`fixed bottom-0 left-0 right-0 md:hidden bg-white border-t p-3 transition-transform z-40 ${footerInView ? 'translate-y-full' : 'translate-y-0'}`}>
-        <Button className="w-full bg-emerald-600 hover:bg-emerald-700" asChild>
+      <div className={`fixed bottom-0 left-0 right-0 md:hidden bg-card border-t border-border p-3 transition-transform z-40 ${footerInView ? 'translate-y-full' : 'translate-y-0'}`}>
+        <Button className="w-full bg-primary hover:bg-primary/90" asChild>
           <Link href="/pricing">Get Started &mdash; From $49/mo</Link>
         </Button>
       </div>
@@ -467,16 +466,16 @@ export default function HomePage() {
           </DialogHeader>
           {exitSubmitted ? (
             <div className="text-center py-4">
-              <Check className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
+              <Check className="w-8 h-8 text-primary mx-auto mb-2" />
               <p className="font-medium">Check your inbox!</p>
-              <p className="text-sm text-zinc-500">We&apos;ll send your free macro breakdown shortly.</p>
+              <p className="text-sm text-muted-foreground">We&apos;ll send your free macro breakdown shortly.</p>
             </div>
           ) : (
             <div className="space-y-3">
-              <p className="text-sm text-zinc-500">Enter your email and we&apos;ll send you a free personalized macro estimate based on your goals.</p>
+              <p className="text-sm text-muted-foreground">Enter your email and we&apos;ll send you a free personalized macro estimate based on your goals.</p>
               <Input type="email" placeholder="your@email.com" value={exitEmail} onChange={(e) => setExitEmail(e.target.value)} />
-              <Button className="w-full bg-emerald-600 hover:bg-emerald-700" onClick={() => { if (exitEmail) { submitLead(exitEmail, 'exit_intent'); setExitSubmitted(true); } }}>Send My Free Estimate</Button>
-              <p className="text-xs text-zinc-400 text-center">No spam. Unsubscribe anytime.</p>
+              <Button className="w-full bg-primary hover:bg-primary/90" onClick={() => { if (exitEmail) { submitLead(exitEmail, 'exit_intent'); setExitSubmitted(true); } }}>Send My Free Estimate</Button>
+              <p className="text-xs text-muted-foreground/70 text-center">No spam. Unsubscribe anytime.</p>
             </div>
           )}
         </DialogContent>
