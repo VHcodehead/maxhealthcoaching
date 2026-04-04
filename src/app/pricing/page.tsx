@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Check, Star, ArrowRight, Shield } from 'lucide-react';
+import { Check, Star, ArrowRight, Shield, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -97,14 +97,14 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b">
+      <header className="border-b border-border bg-background">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <a href="/" className="text-xl font-bold tracking-tight">
-            Max<span className="text-emerald-600">Health</span>
+            Max<span className="text-primary">Health</span>
           </a>
-          <a href="/login" className="text-sm text-zinc-500 hover:text-zinc-900">
+          <a href="/login" className="text-sm text-muted-foreground hover:text-foreground">
             Already a member? Sign in
           </a>
         </div>
@@ -114,10 +114,10 @@ export default function PricingPage() {
         {/* Header */}
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4">Simple Pricing</Badge>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            Invest in Your Transformation
+          <h1 className="font-display text-4xl md:text-5xl tracking-tight mb-4">
+            INVEST IN YOUR TRANSFORMATION
           </h1>
-          <p className="text-lg text-zinc-500 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Choose the plan that fits your goals. All plans include personalized meal and training plans,
             tailored to your body and preferences. Cancel anytime.
           </p>
@@ -130,8 +130,8 @@ export default function PricingPage() {
               key={plan.key}
               className={`relative flex flex-col ${
                 plan.popular
-                  ? 'border-emerald-500 border-2 shadow-xl shadow-emerald-500/10 scale-105'
-                  : 'border-zinc-200'
+                  ? 'border-primary border-2 shadow-xl shadow-primary/20 scale-105'
+                  : 'border-border'
               }`}
             >
               {plan.popular && (
@@ -142,28 +142,29 @@ export default function PricingPage() {
                 </div>
               )}
               <CardHeader className="pb-4">
-                <CardTitle className="text-lg font-medium">{plan.name}</CardTitle>
-                <p className="text-sm text-zinc-500">{plan.description}</p>
+                <CardTitle className="font-display text-xl">{plan.name}</CardTitle>
+                <p className="text-sm text-muted-foreground">{plan.description}</p>
                 <div className="mt-4">
-                  <span className="text-4xl font-bold">${plan.price}</span>
-                  <span className="text-zinc-500">/{plan.period}</span>
+                  <span className="font-display text-5xl">${plan.price}</span>
+                  <span className="text-muted-foreground">/{plan.period}</span>
                 </div>
               </CardHeader>
               <CardContent className="flex-1 flex flex-col">
                 <ul className="space-y-3 flex-1">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <Check className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
-                      <span className="text-sm text-zinc-600">{feature}</span>
+                      <Check className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                      <span className="text-sm text-muted-foreground">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 <Button
                   className={`w-full mt-6 ${
                     plan.popular
-                      ? 'bg-emerald-600 hover:bg-emerald-700'
+                      ? 'bg-primary hover:bg-primary/90'
                       : ''
                   }`}
+                  variant={plan.popular ? 'default' : 'outline'}
                   size="lg"
                   onClick={() => handleCheckout(plan.key)}
                   disabled={loading !== null}
@@ -186,25 +187,29 @@ export default function PricingPage() {
 
         {/* Trust Signals */}
         <div className="mt-16 text-center space-y-4">
-          <div className="flex items-center justify-center gap-6 text-sm text-zinc-500">
+          <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground/70">
             <span className="flex items-center gap-1">
-              <Shield className="w-4 h-4" /> Secure payment via Stripe
+              <Shield className="w-4 h-4 text-muted-foreground/50" /> Secure payment
             </span>
-            <span>Cancel anytime</span>
-            <span>30-day money-back guarantee</span>
+            <span className="flex items-center gap-1">
+              <Calendar className="w-4 h-4 text-muted-foreground/50" /> Cancel anytime
+            </span>
+            <span className="flex items-center gap-1">
+              <Shield className="w-4 h-4 text-muted-foreground/50" /> 30-day guarantee
+            </span>
           </div>
         </div>
 
         {/* FAQ Teaser */}
         <div className="mt-20 text-center">
-          <h3 className="text-xl font-semibold mb-2">Have questions?</h3>
-          <p className="text-zinc-500">
+          <h3 className="font-display text-2xl mb-2">HAVE QUESTIONS?</h3>
+          <p className="text-muted-foreground">
             Check our{' '}
-            <a href="/#faq" className="text-emerald-600 underline">
+            <a href="/#faq" className="text-primary underline">
               FAQ section
             </a>{' '}
             or email us at{' '}
-            <a href="mailto:max@integrativeaisolutions.com" className="text-emerald-600 underline">
+            <a href="mailto:max@integrativeaisolutions.com" className="text-primary underline">
               max@integrativeaisolutions.com
             </a>
           </p>
@@ -212,8 +217,8 @@ export default function PricingPage() {
       </div>
 
       {/* Disclaimer */}
-      <footer className="border-t py-8 mt-16">
-        <div className="max-w-4xl mx-auto px-4 text-center text-xs text-zinc-400">
+      <footer className="border-t border-border py-8 mt-16">
+        <div className="max-w-4xl mx-auto px-4 text-center text-xs text-muted-foreground/70">
           <p>
             MaxHealth Coaching provides fitness and nutrition guidance based on the information you provide.
             This is not medical advice. Consult your physician before starting any new diet or exercise program.
