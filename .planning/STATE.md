@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Dark Athletic Hybrid Redesign
 status: planning
-stopped_at: Completed 07-design-foundation 07-02-PLAN.md (all tasks including checkpoint approved)
-last_updated: "2026-04-04T05:49:27.753Z"
+stopped_at: Completed 08-public-pages 08-02-PLAN.md
+last_updated: "2026-04-04T18:07:52.925Z"
 last_activity: 2026-04-03 — v1.1 roadmap created (phases 7-10)
 progress:
   total_phases: 10
   completed_phases: 7
-  total_plans: 15
-  completed_plans: 15
+  total_plans: 17
+  completed_plans: 16
   percent: 40
 ---
 
@@ -52,6 +52,7 @@ Progress: [████████░░░░░░░░░░░░] 40% (v1
 *Updated after each plan completion*
 | Phase 07-design-foundation P01 | 2 | 2 tasks | 2 files |
 | Phase 07-design-foundation P02 | 3 | 2 tasks | 8 files |
+| Phase 08-public-pages P02 | 15 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -67,6 +68,8 @@ Progress: [████████░░░░░░░░░░░░] 40% (v1
 - [Phase 07-design-foundation]: Tabs active state uses primary (emerald) colors for clear visual contrast on dark surfaces
 - [Phase 07-design-foundation]: Dialog overlay upgraded to bg-black/60 backdrop-blur-sm for depth and separation
 - [Phase 07-design-foundation]: Animation utilities (transition-micro, hover-card-glow, etc.) defined as CSS classes to complement Framer Motion for micro-interactions
+- [Phase 08-public-pages]: Pending page removes Card wrapper for full-screen dramatic dark feel
+- [Phase 08-public-pages]: Trust signals restructured to 3 icon+text items on pricing page
 
 ### Pending Todos
 
@@ -78,6 +81,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-04-04T05:45:14.020Z
-Stopped at: Completed 07-design-foundation 07-02-PLAN.md (all tasks including checkpoint approved)
+Last session: 2026-04-04T18:07:52.923Z
+Stopped at: Completed 08-public-pages 08-02-PLAN.md
 Resume file: None

@@ -15,9 +15,9 @@
 ### Public Pages
 
 - [ ] **PUB-01**: Landing page redesign — dark hero, bold typography, social proof, "Apply Now" CTA
-- [ ] **PUB-02**: Login and Apply pages redesign — dark themed, premium feel
-- [ ] **PUB-03**: Pricing page redesign — dark cards with emerald highlights, clear tier differentiation
-- [ ] **PUB-04**: Pending/waiting page redesign — dark themed, branded, reassuring
+- [x] **PUB-02**: Login and Apply pages redesign — dark themed, premium feel
+- [x] **PUB-03**: Pricing page redesign — dark cards with emerald highlights, clear tier differentiation
+- [x] **PUB-04**: Pending/waiting page redesign — dark themed, branded, reassuring
 
 ### Client Dashboard
 
@@ -70,9 +70,9 @@ Deferred to future release.
 | THEME-03 | Phase 7 | Complete |
 | THEME-04 | Phase 7 | Complete |
 | PUB-01 | Phase 8 | Pending |
-| PUB-02 | Phase 8 | Pending |
-| PUB-03 | Phase 8 | Pending |
-| PUB-04 | Phase 8 | Pending |
+| PUB-02 | Phase 8 | Complete |
+| PUB-03 | Phase 8 | Complete |
+| PUB-04 | Phase 8 | Complete |
 | DASH-01 | Phase 9 | Pending |
 | DASH-02 | Phase 9 | Pending |
 | DASH-03 | Phase 9 | Pending |
