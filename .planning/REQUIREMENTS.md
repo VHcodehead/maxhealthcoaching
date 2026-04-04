@@ -1,119 +1,94 @@
-# Requirements: MaxHealth Coaching
+# Requirements: MaxHealth Coaching — v1.1 Dark Athletic Hybrid Redesign
 
-**Defined:** 2026-03-31
-**Core Value:** Clients get a fully personalized coaching experience with weekly accountability and real progress-based adjustments.
+**Defined:** 2026-04-03
+**Core Value:** Transform a functional but generic coaching platform into a premium, high-end fitness brand that commands $499/mo.
 
-## v1.0 Requirements
+## v1.1 Requirements
 
-Requirements for production launch. Each maps to roadmap phases.
+### Design Foundation
 
-### Authentication & Security
+- [ ] **THEME-01**: Global dark theme with zinc-950 base, emerald-500 primary, and consistent color tokens
+- [ ] **THEME-02**: Custom font pairing with bold condensed headings and clean body text
+- [ ] **THEME-03**: Redesigned component library (buttons, cards, inputs, badges) for dark surfaces
+- [ ] **THEME-04**: Consistent animation/transition system across all pages
 
-- [x] **AUTH-01**: User can reset password via email link (token-based)
-- [x] **AUTH-02**: User receives email verification after signup
-- [x] **AUTH-03**: Login and signup endpoints are rate-limited against brute force
-- [x] **AUTH-04**: "Forgot password?" link on login page works end-to-end
+### Public Pages
 
-### Client Vetting
+- [ ] **PUB-01**: Landing page redesign — dark hero, bold typography, social proof, "Apply Now" CTA
+- [ ] **PUB-02**: Login and Apply pages redesign — dark themed, premium feel
+- [ ] **PUB-03**: Pricing page redesign — dark cards with emerald highlights, clear tier differentiation
+- [ ] **PUB-04**: Pending/waiting page redesign — dark themed, branded, reassuring
 
-- [x] **VET-01**: New signups land in "pending" state until coach approves
-- [x] **VET-02**: Coach can view pending applications and approve/reject from dashboard
-- [x] **VET-03**: Login page has "Apply Now" CTA directing to application flow
+### Client Dashboard
 
-### Coach Editing
+- [ ] **DASH-01**: Dashboard layout/sidebar redesign — dark sidebar, emerald active states
+- [ ] **DASH-02**: Overview page redesign — stat cards, macro visualization with charts/rings
+- [ ] **DASH-03**: Meal plan page redesign — dark cards, better macro display, day navigation
+- [ ] **DASH-04**: Training page redesign — dark exercise tables, cardio sections, week tabs
+- [ ] **DASH-05**: Supplements, messages, progress pages — dark themed, consistent with new design
 
-- [x] **EDIT-01**: Coach can add, edit, and remove individual meals from a client's meal plan
-- [x] **EDIT-02**: Coach can add, edit, and remove exercises from training days
-- [x] **EDIT-03**: Coach can edit cardio prescriptions (type, duration, frequency) per training day
-- [x] **EDIT-04**: All generated plan content (macros, meals, training, supplements) is fully editable by coach
+### Coach Dashboard
 
-### Email Notifications
+- [ ] **COACH-01**: Coach overview redesign — dark theme, stat cards, pending applications
+- [ ] **COACH-02**: Client list page redesign — dark cards, status badges, unread indicators
+- [ ] **COACH-03**: Client detail page redesign — dark expandable sections, editing dialogs
 
-- [x] **NOTIF-01**: Client receives email when their plan is generated and ready
-- [x] **NOTIF-02**: Client receives weekly check-in reminder email
-- [x] **NOTIF-03**: Coach receives email when a client submits a check-in
-- [x] **NOTIF-04**: Client receives email when coach approves a macro adjustment
+### Onboarding
 
-### Messaging
-
-- [x] **MSG-01**: Coach and client can exchange messages in a per-client thread
-- [x] **MSG-02**: Unread message count badge visible on coach and client dashboards
-
-### Pipeline Verification
-
-- [x] **PIPE-01**: Full client lifecycle works end-to-end (signup → onboarding → plan generation → check-in → auto-adjust → coach review)
-- [x] **PIPE-02**: Stripe checkout flow completes and subscription activates correctly
-- [x] **PIPE-03**: All coach editing operations save and display correctly to client
-
-### Payment Readiness
-
-- [x] **PAY-01**: Stripe environment supports production key swap (env var config verified)
-- [x] **PAY-02**: Webhook endpoint handles all subscription lifecycle events correctly
+- [ ] **ONBOARD-01**: Onboarding flow redesign — dark multi-step form, progress indicator, card selections
+- [ ] **ONBOARD-02**: Generating/loading page redesign — dark themed with premium loading animation
 
 ## v2 Requirements
 
-Deferred to future release. Tracked but not in current roadmap.
+Deferred to future release.
 
-### Analytics
+### Data Visualization
 
-- **ANALYTICS-01**: Coach can view signup funnel metrics (leads → paying clients)
-- **ANALYTICS-02**: Coach can view client engagement metrics (check-in consistency, adherence trends)
+- **VIZ-01**: Recharts/Chart.js integration for macro donut charts and weight trend lines
+- **VIZ-02**: Sparklines on coach dashboard for client progress at a glance
 
-### Compliance
+### Branding
 
-- **COMP-01**: Privacy policy and Terms of Service acceptance at signup
-- **COMP-02**: Client can export their personal data (GDPR readiness)
-
-### Communication
-
-- **COMM-01**: In-app messaging between coach and client
-- **COMM-02**: Client receives push notifications on mobile browsers
+- **BRAND-01**: Custom illustrations for empty states and onboarding
+- **BRAND-02**: Animated logo/mascot for loading states
 
 ## Out of Scope
 
 | Feature | Reason |
 |---------|--------|
-| Mobile app | Web-first, responsive design sufficient for launch |
-| Real-time chat | Not needed — coach communicates through notes and plan updates |
-| AI/automation branding | Never expose AI to clients — plans are "coach-created" |
-| Multi-coach support | Max is the only coach, not needed until scaling |
-| OAuth/social login | Email/password sufficient for coaching clientele |
-| Automated meal plan regeneration | Coach controls all plan changes manually |
+| Complete component library package | Not distributing components — just redesigning in place |
+| Storybook/component docs | Solo dev, overhead not justified |
+| Light mode toggle | Dark is the brand — no toggle needed |
+| Custom icon set | Lucide icons work, just need better styling on dark |
 
 ## Traceability
 
-Which phases cover which requirements. Updated during roadmap creation.
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | Phase 1 | Complete |
-| AUTH-02 | Phase 1 | Complete |
-| AUTH-03 | Phase 1 | Complete |
-| AUTH-04 | Phase 1 | Complete |
-| VET-01 | Phase 2 | Complete |
-| VET-02 | Phase 2 | Complete |
-| VET-03 | Phase 2 | Complete |
-| EDIT-01 | Phase 3 | Complete |
-| EDIT-02 | Phase 3 | Complete |
-| EDIT-03 | Phase 3 | Complete |
-| EDIT-04 | Phase 3 | Complete |
-| NOTIF-01 | Phase 4 | Complete |
-| NOTIF-02 | Phase 4 | Complete |
-| NOTIF-03 | Phase 4 | Complete |
-| NOTIF-04 | Phase 4 | Complete |
-| MSG-01 | Phase 4 | Complete |
-| MSG-02 | Phase 4 | Complete |
-| PAY-01 | Phase 5 | Complete |
-| PAY-02 | Phase 5 | Complete |
-| PIPE-01 | Phase 6 | Complete |
-| PIPE-02 | Phase 6 | Complete |
-| PIPE-03 | Phase 6 | Complete |
+| THEME-01 | — | Pending |
+| THEME-02 | — | Pending |
+| THEME-03 | — | Pending |
+| THEME-04 | — | Pending |
+| PUB-01 | — | Pending |
+| PUB-02 | — | Pending |
+| PUB-03 | — | Pending |
+| PUB-04 | — | Pending |
+| DASH-01 | — | Pending |
+| DASH-02 | — | Pending |
+| DASH-03 | — | Pending |
+| DASH-04 | — | Pending |
+| DASH-05 | — | Pending |
+| COACH-01 | — | Pending |
+| COACH-02 | — | Pending |
+| COACH-03 | — | Pending |
+| ONBOARD-01 | — | Pending |
+| ONBOARD-02 | — | Pending |
 
 **Coverage:**
-- v1.0 requirements: 22 total
-- Mapped to phases: 22
-- Unmapped: 0
+- v1.1 requirements: 18 total
+- Mapped to phases: 0
+- Unmapped: 18
 
 ---
-*Requirements defined: 2026-03-31*
-*Last updated: 2026-03-31 — traceability filled after roadmap creation*
+*Requirements defined: 2026-04-03*
+*Last updated: 2026-04-03 after initial definition*
