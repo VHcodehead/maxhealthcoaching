@@ -476,9 +476,9 @@ export default function ClientDetailPage() {
   }
 
   const statusColors: Record<string, string> = {
-    active: 'bg-emerald-100 text-emerald-700',
-    overdue: 'bg-amber-100 text-amber-700',
-    pending: 'bg-gray-100 text-gray-700',
+    active: 'bg-emerald-900/30 text-emerald-400',
+    overdue: 'bg-amber-900/30 text-amber-400',
+    pending: 'bg-zinc-800 text-zinc-400',
   }
 
   // Get check-ins with photos for comparison
@@ -505,7 +505,7 @@ export default function ClientDetailPage() {
           <ArrowLeft className="size-5" />
         </Button>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">
+          <h1 className="font-display text-3xl tracking-tight uppercase">
             {profile.full_name}
           </h1>
           <p className="text-muted-foreground">{profile.email}</p>
@@ -517,7 +517,7 @@ export default function ClientDetailPage() {
         <CardContent className="pt-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-4">
-              <div className="flex size-14 items-center justify-center rounded-full bg-emerald-100 text-lg font-semibold text-emerald-700">
+              <div className="flex size-14 items-center justify-center rounded-full bg-emerald-900/40 text-lg font-semibold text-emerald-400">
                 {profile.full_name
                   .split(' ')
                   .map((n) => n[0])
@@ -587,7 +587,7 @@ export default function ClientDetailPage() {
             <CardContent className="space-y-6">
               {/* Personal Info */}
               <div>
-                <h3 className="mb-3 text-sm font-semibold text-emerald-700">
+                <h3 className="mb-3 text-sm font-semibold text-emerald-400">
                   Personal Information
                 </h3>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -602,7 +602,7 @@ export default function ClientDetailPage() {
 
               {/* Goals */}
               <div>
-                <h3 className="mb-3 text-sm font-semibold text-emerald-700">
+                <h3 className="mb-3 text-sm font-semibold text-emerald-400">
                   Goals
                 </h3>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -630,7 +630,7 @@ export default function ClientDetailPage() {
 
               {/* Diet */}
               <div>
-                <h3 className="mb-3 text-sm font-semibold text-emerald-700">
+                <h3 className="mb-3 text-sm font-semibold text-emerald-400">
                   Diet Preferences
                 </h3>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -681,7 +681,7 @@ export default function ClientDetailPage() {
 
               {/* Injuries */}
               <div>
-                <h3 className="mb-3 text-sm font-semibold text-emerald-700">
+                <h3 className="mb-3 text-sm font-semibold text-emerald-400">
                   Injuries &amp; Limitations
                 </h3>
                 <div className="grid gap-3 sm:grid-cols-2">
@@ -704,7 +704,7 @@ export default function ClientDetailPage() {
 
               {/* Training */}
               <div>
-                <h3 className="mb-3 text-sm font-semibold text-emerald-700">
+                <h3 className="mb-3 text-sm font-semibold text-emerald-400">
                   Training Preferences
                 </h3>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -753,7 +753,7 @@ export default function ClientDetailPage() {
 
               {/* Lifestyle */}
               <div>
-                <h3 className="mb-3 text-sm font-semibold text-emerald-700">
+                <h3 className="mb-3 text-sm font-semibold text-emerald-400">
                   Lifestyle
                 </h3>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -818,43 +818,43 @@ export default function ClientDetailPage() {
         {expandedSections.macros && macros && (
           <CardContent>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="rounded-lg border bg-muted/30 p-4 text-center">
+              <div className="rounded-lg border bg-card p-4 text-center">
                 <p className="text-sm text-muted-foreground">BMR</p>
-                <p className="text-2xl font-bold">{Math.round(macros.bmr)}</p>
+                <p className="font-display text-3xl">{Math.round(macros.bmr)}</p>
                 <p className="text-xs text-muted-foreground">kcal/day</p>
               </div>
-              <div className="rounded-lg border bg-muted/30 p-4 text-center">
+              <div className="rounded-lg border bg-card p-4 text-center">
                 <p className="text-sm text-muted-foreground">TDEE</p>
-                <p className="text-2xl font-bold">{Math.round(macros.tdee)}</p>
+                <p className="font-display text-3xl">{Math.round(macros.tdee)}</p>
                 <p className="text-xs text-muted-foreground">kcal/day</p>
               </div>
-              <div className="rounded-lg border bg-emerald-50 p-4 text-center">
-                <p className="text-sm text-emerald-700">Calorie Target</p>
-                <p className="text-2xl font-bold text-emerald-700">
+              <div className="rounded-lg border border-emerald-800/50 bg-emerald-950/30 p-4 text-center">
+                <p className="text-sm text-emerald-400">Calorie Target</p>
+                <p className="font-display text-3xl text-emerald-400">
                   {Math.round(macros.calorie_target)}
                 </p>
-                <p className="text-xs text-emerald-600">kcal/day</p>
+                <p className="text-xs text-emerald-500">kcal/day</p>
               </div>
             </div>
 
             <Separator className="my-4" />
 
             <div className="grid gap-4 sm:grid-cols-3">
-              <div className="rounded-lg border p-4 text-center">
+              <div className="rounded-lg border bg-card p-4 text-center">
                 <p className="text-sm text-muted-foreground">Protein</p>
-                <p className="text-xl font-bold text-blue-600">
+                <p className="font-display text-2xl text-blue-400">
                   {Math.round(macros.protein_g)}g
                 </p>
               </div>
-              <div className="rounded-lg border p-4 text-center">
+              <div className="rounded-lg border bg-card p-4 text-center">
                 <p className="text-sm text-muted-foreground">Carbs</p>
-                <p className="text-xl font-bold text-amber-600">
+                <p className="font-display text-2xl text-amber-400">
                   {Math.round(macros.carbs_g)}g
                 </p>
               </div>
-              <div className="rounded-lg border p-4 text-center">
+              <div className="rounded-lg border bg-card p-4 text-center">
                 <p className="text-sm text-muted-foreground">Fat</p>
-                <p className="text-xl font-bold text-red-500">
+                <p className="font-display text-2xl text-red-400">
                   {Math.round(macros.fat_g)}g
                 </p>
               </div>
@@ -1069,8 +1069,8 @@ export default function ClientDetailPage() {
                 multiline
               />
             </div>
-            <div className="rounded-lg bg-emerald-50 p-3">
-              <Label className="text-xs font-medium text-emerald-700">
+            <div className="rounded-lg bg-emerald-950/30 border border-emerald-800/30 p-3">
+              <Label className="text-xs font-medium text-emerald-400">
                 Progression Rules
               </Label>
               <InlineEditableText
@@ -1078,7 +1078,7 @@ export default function ClientDetailPage() {
                 onSave={(v) => handleSaveProgramField('progression_rules', v)}
                 placeholder="Progression rules"
                 multiline
-                className="text-emerald-600"
+                className="text-emerald-400/80"
               />
             </div>
 
@@ -1212,7 +1212,7 @@ export default function ClientDetailPage() {
                   >
                     <div className="mb-3 flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Badge className="bg-emerald-100 text-emerald-700">
+                        <Badge className="bg-emerald-900/30 text-emerald-400">
                           Week {ci.week_number}
                         </Badge>
                         <span className="text-xs text-muted-foreground">
@@ -1229,7 +1229,7 @@ export default function ClientDetailPage() {
                         }
                         className={
                           ci.adherence_rating >= 7
-                            ? 'bg-emerald-100 text-emerald-700'
+                            ? 'bg-emerald-900/30 text-emerald-400'
                             : ''
                         }
                       >
