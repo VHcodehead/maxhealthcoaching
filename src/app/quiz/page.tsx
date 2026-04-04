@@ -114,7 +114,7 @@ export default function QuizPage() {
 
   if (showResults) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center px-4">
+      <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -127,7 +127,7 @@ export default function QuizPage() {
           <h1 className="text-3xl font-bold tracking-tight mb-4">Your Recommendation</h1>
 
           {result && (
-            <div className="bg-zinc-50 rounded-xl p-6 text-left mb-6">
+            <div className="bg-card rounded-xl p-6 text-left mb-6">
               <div className="mb-4 text-center">
                 <Badge className="bg-emerald-100 text-emerald-700 text-sm px-3 py-1">
                   Recommended: {result.recommendedPlan.charAt(0).toUpperCase() + result.recommendedPlan.slice(1)} Plan
@@ -192,7 +192,7 @@ export default function QuizPage() {
   const StepIcon = step.icon;
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="border-b">
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">

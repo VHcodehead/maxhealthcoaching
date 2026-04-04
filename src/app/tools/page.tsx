@@ -267,8 +267,8 @@ function OneRMCalculator() {
 
 export default function ToolsPage() {
   return (
-    <div className="min-h-screen bg-zinc-50">
-      <header className="bg-white border-b">
+    <div className="min-h-screen bg-background">
+      <header className="bg-card border-b">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <a href="/" className="text-xl font-bold tracking-tight">
             Max<span className="text-emerald-600">Health</span>

@@ -76,7 +76,7 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <header className="border-b">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <a href="/" className="text-xl font-bold tracking-tight">
@@ -95,7 +95,7 @@ export default function BlogPage() {
         </div>
 
         {/* Email signup */}
-        <div className="bg-zinc-50 rounded-xl p-6 mb-12 text-center">
+        <div className="bg-card rounded-xl p-6 mb-12 text-center">
           {subscribed ? (
             <p className="text-emerald-600 font-medium">You&apos;re subscribed! Check your inbox.</p>
           ) : (
