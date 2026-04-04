@@ -9,8 +9,8 @@
 
 - [x] **THEME-01**: Global dark theme with zinc-950 base, emerald-500 primary, and consistent color tokens
 - [x] **THEME-02**: Custom font pairing with bold condensed headings and clean body text
-- [ ] **THEME-03**: Redesigned component library (buttons, cards, inputs, badges) for dark surfaces
-- [ ] **THEME-04**: Consistent animation/transition system across all pages
+- [x] **THEME-03**: Redesigned component library (buttons, cards, inputs, badges) for dark surfaces
+- [x] **THEME-04**: Consistent animation/transition system across all pages
 
 ### Public Pages
 
@@ -67,8 +67,8 @@ Deferred to future release.
 |-------------|-------|--------|
 | THEME-01 | Phase 7 | Complete |
 | THEME-02 | Phase 7 | Complete |
-| THEME-03 | Phase 7 | Pending |
-| THEME-04 | Phase 7 | Pending |
+| THEME-03 | Phase 7 | Complete |
+| THEME-04 | Phase 7 | Complete |
 | PUB-01 | Phase 8 | Pending |
 | PUB-02 | Phase 8 | Pending |
 | PUB-03 | Phase 8 | Pending |
