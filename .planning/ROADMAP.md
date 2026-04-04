@@ -130,7 +130,11 @@ Plans:
   2. The pricing page presents three tiers on dark cards with emerald highlights, and tier differences are immediately scannable without reading fine print
   3. Login and Apply pages match the dark brand — no white form panels or light backgrounds visible
   4. The pending/waiting page communicates brand quality rather than a bare holding message — dark-themed with reassuring copy and styling
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 08-01-PLAN.md — Landing page dark restyle (hero, nav, features, comparison, pricing, FAQ, footer)
+- [ ] 08-02-PLAN.md — Auth pages dark restyle (login, apply, pricing, pending)
 
 #### Phase 9: Dashboards
 **Goal**: Both coaches and clients operate inside a cohesive dark athletic interface — every data view, editing surface, and navigation element is on-brand
@@ -142,7 +146,11 @@ Plans:
   3. Meal plan and training plan pages use dark cards with clear macro and exercise data — day/week navigation is visible and styled
   4. The coach client list shows dark cards with clearly styled status badges and unread message indicators
   5. The coach client detail page uses dark expandable sections and editing dialogs — editing actions are visually distinct from read state
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 08-01-PLAN.md — Landing page dark restyle (hero, nav, features, comparison, pricing, FAQ, footer)
+- [ ] 08-02-PLAN.md — Auth pages dark restyle (login, apply, pricing, pending)
 
 #### Phase 10: Onboarding
 **Goal**: New clients experience a premium, brand-consistent intake flow from first question through plan generation — the quality of the form matches the quality of the coaching
@@ -152,7 +160,11 @@ Plans:
   1. The multi-step onboarding form is fully dark-themed with a visible step progress indicator and dark card-style answer selections
   2. The plan-generating loading page is dark-themed with a premium animation — no bare spinner or white background visible during the wait
   3. The visual quality of the onboarding flow matches the landing page — a prospect who signs up after seeing the landing page is not surprised by a style regression
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 08-01-PLAN.md — Landing page dark restyle (hero, nav, features, comparison, pricing, FAQ, footer)
+- [ ] 08-02-PLAN.md — Auth pages dark restyle (login, apply, pricing, pending)
 
 ## Progress
 
@@ -169,6 +181,6 @@ Note: Phase 9 (Dashboards) depends only on Phase 7 and could theoretically run i
 | 5. Payment Readiness | v1.0 | 1/1 | Complete | 2026-04-01 |
 | 6. Pipeline Verification | v1.0 | 2/2 | Complete | 2026-04-01 |
 | 7. Design Foundation | 2/2 | Complete   | 2026-04-04 | - |
-| 8. Public Pages | v1.1 | 0/TBD | Not started | - |
+| 8. Public Pages | v1.1 | 0/2 | Planned | - |
 | 9. Dashboards | v1.1 | 0/TBD | Not started | - |
 | 10. Onboarding | v1.1 | 0/TBD | Not started | - |
