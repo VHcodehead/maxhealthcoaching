@@ -43,17 +43,17 @@ const statusConfig: Record<string, { label: string; variant: 'default' | 'second
   active: {
     label: 'Active',
     variant: 'default',
-    className: 'bg-emerald-100 text-emerald-700 hover:bg-emerald-100',
+    className: 'bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20 border-emerald-500/30',
   },
   overdue: {
     label: 'Overdue',
     variant: 'destructive',
-    className: 'bg-amber-100 text-amber-700 hover:bg-amber-100',
+    className: 'bg-amber-500/20 text-amber-400 hover:bg-amber-500/20 border-amber-500/30',
   },
   pending: {
     label: 'Pending',
     variant: 'secondary',
-    className: '',
+    className: 'bg-zinc-700/50 text-zinc-400 hover:bg-zinc-700/50',
   },
 }
 
@@ -71,7 +71,7 @@ function SkeletonRow() {
 
 export default function ClientsPage() {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center p-12"><div className="w-8 h-8 border-2 border-zinc-200 border-t-zinc-600 rounded-full animate-spin" /></div>}>
+    <Suspense fallback={<div className="flex items-center justify-center p-12"><div className="w-8 h-8 border-2 border-border border-t-primary rounded-full animate-spin" /></div>}>
       <ClientsContent />
     </Suspense>
   )
@@ -180,17 +180,17 @@ function ClientsContent() {
     <div className="space-y-6">
       {/* Page header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Clients</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Clients</h1>
         <p className="text-muted-foreground">
           Manage and monitor all your coaching clients
         </p>
       </div>
 
-      <Card>
+      <Card className="bg-card">
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <CardTitle className="flex items-center gap-2">
-              <Users className="size-5 text-emerald-600" />
+              <Users className="size-5 text-primary" />
               Client List
             </CardTitle>
 
@@ -223,7 +223,7 @@ function ClientsContent() {
                 onClick={() => setStatusFilter(tab.value)}
                 className={
                   statusFilter === tab.value
-                    ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+                    ? 'bg-primary text-primary-foreground hover:bg-primary/90'
                     : ''
                 }
               >
@@ -236,12 +236,12 @@ function ClientsContent() {
           </div>
         </CardHeader>
 
-        <Separator />
+        <Separator className="border-white/10" />
 
         <CardContent className="p-0">
           <Table>
             <TableHeader>
-              <TableRow>
+              <TableRow className="border-white/10">
                 <TableHead>Name</TableHead>
                 <TableHead>Email</TableHead>
                 <TableHead>Status</TableHead>
@@ -278,21 +278,21 @@ function ClientsContent() {
                   return (
                     <TableRow
                       key={client.user_id}
-                      className="cursor-pointer"
+                      className="cursor-pointer border-white/10"
                       onClick={() =>
                         router.push(`/coach/clients/${client.user_id}`)
                       }
                     >
-                      <TableCell className="font-medium">
+                      <TableCell className="font-medium text-foreground">
                         <span className="flex items-center gap-2">
                           {client.full_name}
                           {client.pending_adjustment_count > 0 && (
-                            <Badge className="bg-amber-100 text-amber-700 hover:bg-amber-100 text-[10px] px-1.5 py-0">
+                            <Badge className="bg-amber-500/20 text-amber-400 hover:bg-amber-500/20 border-amber-500/30 text-[10px] px-1.5 py-0">
                               Macro Review
                             </Badge>
                           )}
                           {unreadByUser[client.user_id] > 0 && (
-                            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-600 px-1.5 text-[11px] font-semibold text-white">
+                            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary text-primary-foreground px-1.5 text-[11px] font-semibold">
                               {unreadByUser[client.user_id] > 99 ? '99+' : unreadByUser[client.user_id]}
                             </span>
                           )}
@@ -309,10 +309,10 @@ function ClientsContent() {
                           {config.label}
                         </Badge>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="text-foreground">
                         {subscriptionLabel(client.subscription_status)}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="text-foreground">
                         {client.last_check_in
                           ? formatDate(client.last_check_in.created_at)
                           : 'Never'}

@@ -145,7 +145,7 @@ export default function CoachOverviewPage() {
   if (loading) {
     return (
       <div className="flex min-h-[400px] items-center justify-center">
-        <Loader2 className="size-8 animate-spin text-emerald-600" />
+        <Loader2 className="size-8 animate-spin text-primary" />
       </div>
     )
   }
@@ -164,7 +164,7 @@ export default function CoachOverviewPage() {
     <div className="space-y-8">
       {/* Page header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Coach Dashboard</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Coach Dashboard</h1>
         <p className="text-muted-foreground">
           Overview of your coaching practice
         </p>
@@ -172,11 +172,11 @@ export default function CoachOverviewPage() {
 
       {/* Pending Applications */}
       {applications.length > 0 && (
-        <Card className="border-l-4 border-l-amber-400">
+        <Card className="bg-card border-l-4 border-l-amber-500">
           <CardHeader>
             <div className="flex items-center gap-3">
               <CardTitle>Pending Applications</CardTitle>
-              <Badge className="bg-amber-100 text-amber-700 hover:bg-amber-100">
+              <Badge className="bg-amber-500/20 text-amber-400 hover:bg-amber-500/20 border-amber-500/30">
                 {applications.length}
               </Badge>
             </div>
@@ -199,10 +199,10 @@ export default function CoachOverviewPage() {
               const motivation = app.application_motivation as string | undefined
 
               return (
-                <div key={id} className="rounded-lg border p-4 space-y-3">
+                <div key={id} className="rounded-lg border border-border p-4 space-y-3 bg-background/50">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="font-semibold text-base">{fullName}</p>
+                      <p className="font-semibold text-base text-foreground">{fullName}</p>
                       {email && <p className="text-sm text-muted-foreground">{email}</p>}
                       {createdAt && (
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -213,7 +213,7 @@ export default function CoachOverviewPage() {
                     <div className="flex gap-2 shrink-0">
                       <Button
                         size="sm"
-                        className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground"
                         onClick={() => handleApplicationAction(id, 'approve')}
                       >
                         <CheckCircle2 className="size-4 mr-1" />
@@ -222,7 +222,7 @@ export default function CoachOverviewPage() {
                       <Button
                         size="sm"
                         variant="outline"
-                        className="border-red-300 text-red-600 hover:bg-red-50 hover:text-red-700"
+                        className="border-red-500/50 text-red-400 hover:bg-red-500/10 hover:text-red-300"
                         onClick={() => handleApplicationAction(id, 'reject')}
                       >
                         <XCircle className="size-4 mr-1" />
@@ -235,25 +235,25 @@ export default function CoachOverviewPage() {
                     {goal && (
                       <div>
                         <p className="text-xs text-muted-foreground">Goal</p>
-                        <p className="font-medium">{goalLabels[goal] ?? goal}</p>
+                        <p className="font-medium text-foreground">{goalLabels[goal] ?? goal}</p>
                       </div>
                     )}
                     {experience && (
                       <div>
                         <p className="text-xs text-muted-foreground">Experience</p>
-                        <p className="font-medium capitalize">{experience}</p>
+                        <p className="font-medium text-foreground capitalize">{experience}</p>
                       </div>
                     )}
                     {commitment && (
                       <div>
                         <p className="text-xs text-muted-foreground">Commitment</p>
-                        <p className="font-medium">{commitment} days/week</p>
+                        <p className="font-medium text-foreground">{commitment} days/week</p>
                       </div>
                     )}
                     {(age || gender) && (
                       <div>
                         <p className="text-xs text-muted-foreground">Demographics</p>
-                        <p className="font-medium">
+                        <p className="font-medium text-foreground">
                           {[age ? `${age}y` : null, gender ? gender.charAt(0).toUpperCase() + gender.slice(1) : null].filter(Boolean).join(', ')}
                         </p>
                       </div>
@@ -261,7 +261,7 @@ export default function CoachOverviewPage() {
                     {(heightFt !== undefined || weightLbs !== undefined) && (
                       <div>
                         <p className="text-xs text-muted-foreground">Body Stats</p>
-                        <p className="font-medium">
+                        <p className="font-medium text-foreground">
                           {[
                             heightFt !== undefined ? `${heightFt}'${heightIn ?? 0}"` : null,
                             weightLbs !== undefined ? `${weightLbs} lbs` : null,
@@ -274,7 +274,7 @@ export default function CoachOverviewPage() {
                   {motivation && (
                     <div>
                       <p className="text-xs text-muted-foreground mb-1">Why now?</p>
-                      <blockquote className="rounded-md bg-amber-50 border-l-2 border-l-amber-400 px-3 py-2 text-sm text-zinc-700 italic">
+                      <blockquote className="rounded-md bg-zinc-800 border-l-2 border-l-amber-500 px-3 py-2 text-sm text-foreground/80 italic">
                         {motivation}
                       </blockquote>
                     </div>
@@ -288,47 +288,47 @@ export default function CoachOverviewPage() {
 
       {/* Stats row */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="bg-card border-l-4 border-l-emerald-500">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardDescription>Total Clients</CardDescription>
             <Users className="size-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalClients}</div>
+            <div className="font-display text-3xl font-bold text-foreground">{totalClients}</div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-card border-l-4 border-l-blue-500">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardDescription>Active</CardDescription>
-            <UserCheck className="size-4 text-emerald-600" />
+            <UserCheck className="size-4 text-blue-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-emerald-600">
+            <div className="font-display text-3xl font-bold text-blue-400">
               {activeClients}
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-card border-l-4 border-l-violet-500">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardDescription>Overdue Check-ins</CardDescription>
-            <AlertTriangle className="size-4 text-amber-500" />
+            <AlertTriangle className="size-4 text-violet-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-amber-500">
+            <div className="font-display text-3xl font-bold text-violet-400">
               {overdueClients}
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-card border-l-4 border-l-amber-500">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardDescription>Pending Macro Reviews</CardDescription>
-            <Target className="size-4 text-amber-500" />
+            <Target className="size-4 text-amber-400" />
           </CardHeader>
           <CardContent>
-            <div className={`text-2xl font-bold ${pendingAdjustmentCount > 0 ? 'text-amber-500' : ''}`}>
+            <div className={`font-display text-3xl font-bold ${pendingAdjustmentCount > 0 ? 'text-amber-400' : 'text-foreground'}`}>
               {pendingAdjustmentCount}
             </div>
             <p className="text-xs text-muted-foreground">Awaiting approval</p>
@@ -338,7 +338,7 @@ export default function CoachOverviewPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Recent activity feed */}
-        <Card>
+        <Card className="bg-card">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
             <CardDescription>
@@ -351,56 +351,54 @@ export default function CoachOverviewPage() {
                 No recent activity yet
               </p>
             ) : (
-              <div className="space-y-4">
+              <div className="divide-y divide-white/10">
                 {recentActivity.map((activity, i) => (
-                  <div key={i}>
-                    <div
-                      className="flex cursor-pointer items-center justify-between rounded-lg p-2 transition-colors hover:bg-muted/50"
-                      onClick={() =>
-                        router.push(`/coach/clients/${activity.clientId}`)
-                      }
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="flex size-9 items-center justify-center rounded-full bg-emerald-100 text-sm font-medium text-emerald-700">
-                          {activity.clientName
-                            .split(' ')
-                            .map((n) => n[0])
-                            .join('')
-                            .slice(0, 2)}
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium">
-                            {activity.clientName}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            Week {activity.weekNumber} check-in
-                          </p>
-                        </div>
+                  <div
+                    key={i}
+                    className="flex cursor-pointer items-center justify-between py-3 px-2 transition-colors hover:bg-muted/50 rounded-lg"
+                    onClick={() =>
+                      router.push(`/coach/clients/${activity.clientId}`)
+                    }
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="flex size-9 items-center justify-center rounded-full bg-primary/20 text-sm font-medium text-primary">
+                        {activity.clientName
+                          .split(' ')
+                          .map((n) => n[0])
+                          .join('')
+                          .slice(0, 2)}
                       </div>
-                      <div className="text-right">
-                        <Badge
-                          variant={
-                            activity.adherenceRating >= 7
-                              ? 'default'
-                              : activity.adherenceRating >= 4
-                              ? 'secondary'
-                              : 'destructive'
-                          }
-                          className={
-                            activity.adherenceRating >= 7
-                              ? 'bg-emerald-100 text-emerald-700'
-                              : ''
-                          }
-                        >
-                          {activity.adherenceRating}/10
-                        </Badge>
-                        <p className="mt-1 text-xs text-muted-foreground">
-                          <Clock className="mr-1 inline size-3" />
-                          {formatDate(activity.createdAt)}
+                      <div>
+                        <p className="text-sm font-medium text-foreground">
+                          {activity.clientName}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          Week {activity.weekNumber} check-in
                         </p>
                       </div>
                     </div>
-                    {i < recentActivity.length - 1 && <Separator />}
+                    <div className="text-right">
+                      <Badge
+                        variant={
+                          activity.adherenceRating >= 7
+                            ? 'default'
+                            : activity.adherenceRating >= 4
+                            ? 'secondary'
+                            : 'destructive'
+                        }
+                        className={
+                          activity.adherenceRating >= 7
+                            ? 'bg-primary/20 text-primary border-primary/30'
+                            : ''
+                        }
+                      >
+                        {activity.adherenceRating}/10
+                      </Badge>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        <Clock className="mr-1 inline size-3" />
+                        {formatDate(activity.createdAt)}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -409,7 +407,7 @@ export default function CoachOverviewPage() {
         </Card>
 
         {/* Quick actions */}
-        <Card>
+        <Card className="bg-card">
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
             <CardDescription>Common coach tasks</CardDescription>
@@ -417,7 +415,7 @@ export default function CoachOverviewPage() {
           <CardContent className="space-y-3">
             <Button
               variant="outline"
-              className="w-full justify-between"
+              className="w-full justify-between hover:border-primary"
               onClick={() => router.push('/coach/clients')}
             >
               <span className="flex items-center gap-2">
@@ -430,7 +428,7 @@ export default function CoachOverviewPage() {
             {pendingAdjustmentCount > 0 && (
               <Button
                 variant="outline"
-                className="w-full justify-between border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 hover:text-amber-800"
+                className="w-full justify-between border-amber-500/40 bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 hover:text-amber-300 hover:border-amber-500"
                 onClick={() => router.push('/coach/clients')}
               >
                 <span className="flex items-center gap-2">
@@ -444,7 +442,7 @@ export default function CoachOverviewPage() {
             {overdueClients > 0 && (
               <Button
                 variant="outline"
-                className="w-full justify-between border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 hover:text-amber-800"
+                className="w-full justify-between border-amber-500/40 bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 hover:text-amber-300 hover:border-amber-500"
                 onClick={() => router.push('/coach/clients?status=overdue')}
               >
                 <span className="flex items-center gap-2">
@@ -458,7 +456,7 @@ export default function CoachOverviewPage() {
 
             <Button
               variant="outline"
-              className="w-full justify-between"
+              className="w-full justify-between hover:border-primary"
               onClick={() => router.push('/coach/leads')}
             >
               <span className="flex items-center gap-2">
@@ -470,7 +468,7 @@ export default function CoachOverviewPage() {
 
             <Button
               variant="outline"
-              className="w-full justify-between"
+              className="w-full justify-between hover:border-primary"
               onClick={() => router.push('/coach/content')}
             >
               <span className="flex items-center gap-2">
