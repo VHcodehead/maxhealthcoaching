@@ -319,7 +319,7 @@ export default function ContentPage() {
   if (loading) {
     return (
       <div className="flex min-h-[400px] items-center justify-center">
-        <Loader2 className="size-8 animate-spin text-emerald-600" />
+        <Loader2 className="size-8 animate-spin text-primary" />
       </div>
     )
   }
@@ -338,7 +338,7 @@ export default function ContentPage() {
     <div className="space-y-6">
       {/* Page header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Content Management</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Content Management</h1>
         <p className="text-muted-foreground">
           Manage blog posts and client transformations
         </p>
@@ -358,7 +358,7 @@ export default function ContentPage() {
 
         {/* Blog Posts Tab */}
         <TabsContent value="blog">
-          <Card>
+          <Card className="bg-card">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
@@ -370,7 +370,7 @@ export default function ContentPage() {
                 <Dialog open={postDialogOpen} onOpenChange={setPostDialogOpen}>
                   <DialogTrigger asChild>
                     <Button
-                      className="bg-emerald-600 hover:bg-emerald-700"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground"
                       onClick={openNewPost}
                     >
                       <Plus className="mr-1 size-4" />
@@ -451,7 +451,7 @@ export default function ContentPage() {
                           }
                           placeholder="Write your article..."
                           rows={12}
-                          className="w-full rounded-md border bg-background px-3 py-2 text-sm shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none"
+                          className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none"
                         />
                       </div>
 
@@ -481,7 +481,7 @@ export default function ContentPage() {
                               published: e.target.checked,
                             }))
                           }
-                          className="size-4 rounded border accent-emerald-600"
+                          className="size-4 rounded border-border accent-primary"
                         />
                         <Label htmlFor="post-published">
                           Publish immediately
@@ -497,7 +497,7 @@ export default function ContentPage() {
                         Cancel
                       </Button>
                       <Button
-                        className="bg-emerald-600 hover:bg-emerald-700"
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground"
                         onClick={handleSavePost}
                         disabled={
                           savingPost || !postForm.title || !postForm.slug
@@ -514,7 +514,7 @@ export default function ContentPage() {
               </div>
             </CardHeader>
 
-            <Separator />
+            <Separator className="border-white/10" />
 
             <CardContent className="p-0">
               {posts.length === 0 ? (
@@ -527,7 +527,7 @@ export default function ContentPage() {
               ) : (
                 <Table>
                   <TableHeader>
-                    <TableRow>
+                    <TableRow className="border-white/10 bg-muted/50">
                       <TableHead>Title</TableHead>
                       <TableHead>Slug</TableHead>
                       <TableHead>Status</TableHead>
@@ -537,8 +537,8 @@ export default function ContentPage() {
                   </TableHeader>
                   <TableBody>
                     {posts.map((post) => (
-                      <TableRow key={post.id}>
-                        <TableCell className="font-medium">
+                      <TableRow key={post.id} className="border-white/10">
+                        <TableCell className="font-medium text-foreground">
                           {post.title}
                         </TableCell>
                         <TableCell className="text-muted-foreground">
@@ -549,14 +549,14 @@ export default function ContentPage() {
                             variant={post.published ? 'default' : 'secondary'}
                             className={
                               post.published
-                                ? 'bg-emerald-100 text-emerald-700'
-                                : ''
+                                ? 'bg-primary/20 text-primary border-primary/30 hover:bg-primary/20'
+                                : 'bg-zinc-700/50 text-zinc-400'
                             }
                           >
                             {post.published ? 'Published' : 'Draft'}
                           </Badge>
                         </TableCell>
-                        <TableCell>{formatDate(post.created_at)}</TableCell>
+                        <TableCell className="text-foreground">{formatDate(post.created_at)}</TableCell>
                         <TableCell className="text-right">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -592,7 +592,7 @@ export default function ContentPage() {
 
         {/* Transformations Tab */}
         <TabsContent value="transformations">
-          <Card>
+          <Card className="bg-card">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
@@ -607,7 +607,7 @@ export default function ContentPage() {
                 >
                   <DialogTrigger asChild>
                     <Button
-                      className="bg-emerald-600 hover:bg-emerald-700"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground"
                       onClick={openNewTransformation}
                     >
                       <Plus className="mr-1 size-4" />
@@ -725,7 +725,7 @@ export default function ContentPage() {
                           }
                           placeholder="What the client said about their experience..."
                           rows={3}
-                          className="w-full rounded-md border bg-background px-3 py-2 text-sm shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none"
+                          className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none"
                         />
                       </div>
 
@@ -740,7 +740,7 @@ export default function ContentPage() {
                               featured: e.target.checked,
                             }))
                           }
-                          className="size-4 rounded border accent-emerald-600"
+                          className="size-4 rounded border-border accent-primary"
                         />
                         <Label htmlFor="transform-featured">
                           Feature on homepage
@@ -756,7 +756,7 @@ export default function ContentPage() {
                         Cancel
                       </Button>
                       <Button
-                        className="bg-emerald-600 hover:bg-emerald-700"
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground"
                         onClick={handleSaveTransformation}
                         disabled={
                           savingTransform || !transformForm.client_name
@@ -773,7 +773,7 @@ export default function ContentPage() {
               </div>
             </CardHeader>
 
-            <Separator />
+            <Separator className="border-white/10" />
 
             <CardContent className="p-0">
               {transformations.length === 0 ? (
@@ -786,7 +786,7 @@ export default function ContentPage() {
               ) : (
                 <Table>
                   <TableHeader>
-                    <TableRow>
+                    <TableRow className="border-white/10 bg-muted/50">
                       <TableHead>Client</TableHead>
                       <TableHead>Weight Lost</TableHead>
                       <TableHead>Duration</TableHead>
@@ -797,22 +797,22 @@ export default function ContentPage() {
                   </TableHeader>
                   <TableBody>
                     {transformations.map((t) => (
-                      <TableRow key={t.id}>
-                        <TableCell className="font-medium">
+                      <TableRow key={t.id} className="border-white/10">
+                        <TableCell className="font-medium text-foreground">
                           {t.client_name}
                         </TableCell>
-                        <TableCell>{t.weight_lost}</TableCell>
-                        <TableCell>{t.duration}</TableCell>
+                        <TableCell className="text-foreground">{t.weight_lost}</TableCell>
+                        <TableCell className="text-foreground">{t.duration}</TableCell>
                         <TableCell>
                           {t.featured ? (
-                            <Badge className="bg-amber-100 text-amber-700">
+                            <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30">
                               Featured
                             </Badge>
                           ) : (
                             <span className="text-muted-foreground">-</span>
                           )}
                         </TableCell>
-                        <TableCell>{formatDate(t.created_at)}</TableCell>
+                        <TableCell className="text-foreground">{formatDate(t.created_at)}</TableCell>
                         <TableCell className="text-right">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>

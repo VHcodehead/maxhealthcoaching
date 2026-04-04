@@ -107,10 +107,13 @@ export default function SettingsPage() {
     }
   }
 
+  // suppress unused variable warning
+  void settings
+
   if (loading) {
     return (
       <div className="flex min-h-[400px] items-center justify-center">
-        <Loader2 className="size-8 animate-spin text-emerald-600" />
+        <Loader2 className="size-8 animate-spin text-primary" />
       </div>
     )
   }
@@ -119,7 +122,7 @@ export default function SettingsPage() {
     <div className="space-y-6">
       {/* Page header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Settings</h1>
         <p className="text-muted-foreground">
           Manage your coaching practice configuration
         </p>
@@ -135,17 +138,17 @@ export default function SettingsPage() {
 
       {/* Success banner */}
       {success && (
-        <div className="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
+        <div className="flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 p-4 text-sm text-primary">
           <CheckCircle className="size-4 shrink-0" />
           Settings saved successfully!
         </div>
       )}
 
       {/* Capacity */}
-      <Card>
+      <Card className="bg-card">
         <CardHeader>
           <div className="flex items-center gap-2">
-            <Settings className="size-5 text-emerald-600" />
+            <Settings className="size-5 text-primary" />
             <CardTitle>Client Capacity</CardTitle>
           </div>
           <CardDescription>
@@ -198,7 +201,7 @@ export default function SettingsPage() {
       </Card>
 
       {/* Promo Settings */}
-      <Card>
+      <Card className="bg-card">
         <CardHeader>
           <CardTitle>Promotional Settings</CardTitle>
           <CardDescription>
@@ -217,7 +220,7 @@ export default function SettingsPage() {
                   promo_active: e.target.checked,
                 }))
               }
-              className="size-4 rounded border accent-emerald-600"
+              className="size-4 rounded border-border accent-primary"
             />
             <Label htmlFor="promo-active">
               Enable promotional pricing
@@ -269,7 +272,7 @@ export default function SettingsPage() {
       </Card>
 
       {/* Welcome Message */}
-      <Card>
+      <Card className="bg-card">
         <CardHeader>
           <CardTitle>Welcome Message</CardTitle>
           <CardDescription>
@@ -287,7 +290,7 @@ export default function SettingsPage() {
             }
             placeholder="Welcome to MaxHealth coaching! I'm excited to work with you on your fitness journey..."
             rows={6}
-            className="w-full rounded-md border bg-background px-3 py-2 text-sm shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none"
+            className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none"
           />
           <p className="mt-1 text-xs text-muted-foreground">
             Supports plain text. Keep it personal and encouraging.
@@ -295,12 +298,12 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      <Separator />
+      <Separator className="border-white/10" />
 
       {/* Save button */}
       <div className="flex justify-end">
         <Button
-          className="bg-emerald-600 hover:bg-emerald-700"
+          className="bg-primary hover:bg-primary/90 text-primary-foreground"
           onClick={handleSave}
           disabled={saving}
         >
