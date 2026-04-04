@@ -31,7 +31,7 @@
 
 - [ ] **COACH-01**: Coach overview redesign — dark theme, stat cards, pending applications
 - [ ] **COACH-02**: Client list page redesign — dark cards, status badges, unread indicators
-- [ ] **COACH-03**: Client detail page redesign — dark expandable sections, editing dialogs
+- [x] **COACH-03**: Client detail page redesign — dark expandable sections, editing dialogs
 
 ### Onboarding
 
@@ -80,7 +80,7 @@ Deferred to future release.
 | DASH-05 | Phase 9 | Pending |
 | COACH-01 | Phase 9 | Pending |
 | COACH-02 | Phase 9 | Pending |
-| COACH-03 | Phase 9 | Pending |
+| COACH-03 | Phase 9 | Complete |
 | ONBOARD-01 | Phase 10 | Pending |
 | ONBOARD-02 | Phase 10 | Pending |
 
