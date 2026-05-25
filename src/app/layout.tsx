@@ -16,6 +16,7 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://maxhealthcoaching.com'),
   title: 'CoachMax — 1:1 Coaching with Max',
   description:
     'Personal weekly oversight from a competitor. Real adjustments to food, training, cardio, and recovery — delivered through My Pocket Coach.',
@@ -25,6 +26,21 @@ export const metadata: Metadata = {
       'Personal weekly oversight from a competitor. Real adjustments. No templates.',
     siteName: 'CoachMax',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'CoachMax — 1:1 coaching',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CoachMax — 1:1 Coaching with Max',
+    description:
+      'Personal weekly oversight from a competitor. Real adjustments. No templates.',
+    images: ['/og-image.png'],
   },
 };
 
