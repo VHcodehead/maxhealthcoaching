@@ -18,12 +18,14 @@ import {
   ChevronRight,
   ClipboardCheck,
   Dumbbell,
+  Flame,
   Heart,
   Instagram,
   Moon,
-  Sparkles,
+  Scale,
   Trophy,
   UtensilsCrossed,
+  X,
 } from 'lucide-react';
 
 import { SmoothScroll } from '@/components/marketing/SmoothScroll';
@@ -68,9 +70,11 @@ export function HomeClient() {
       <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
         <Nav scrolled={scrolled} />
         <Hero />
+        <ProblemSection />
         <PinnedStatement />
         <TransformationReveal />
         <TransformationRevealMobile />
+        <MoatSection />
         <WhoFor />
         <Framework />
         <CoachingDiptych />
@@ -186,7 +190,7 @@ function Hero() {
         className="pointer-events-none absolute -top-32 left-1/2 z-0 h-[720px] w-[820px] -translate-x-1/2 rounded-full opacity-50 blur-[140px]"
         style={{
           background:
-            'radial-gradient(closest-side, oklch(0.696 0.17 162.48 / 0.30), transparent 70%)',
+            'radial-gradient(closest-side, oklch(0.68 0.20 245 / 0.30), transparent 70%)',
         }}
       />
 
@@ -229,10 +233,10 @@ function Hero() {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
-              href="#how"
+              href="#system"
               className="group inline-flex h-12 items-center justify-center gap-1.5 rounded-full border border-border bg-card/40 px-6 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-card/60"
             >
-              How it works
+              Explore My Pocket Coach
               <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </motion.div>
@@ -268,19 +272,29 @@ function Hero() {
 
 const WHO_FOR = [
   {
-    icon: Sparkles,
-    title: 'Physique transformation',
-    body: 'You want to look completely different in 12–24 weeks. Lean, defined, walking around like a different person.',
+    icon: Flame,
+    title: 'Fat loss',
+    body: 'Get lean without losing the muscle you spent years building.',
+  },
+  {
+    icon: Dumbbell,
+    title: 'Muscle gain',
+    body: 'Add real size. Lean, slow, progressive — not a dirty bulk.',
+  },
+  {
+    icon: Scale,
+    title: 'Recomposition',
+    body: 'Lose fat and build muscle at the same time. Tighter inputs, longer game.',
   },
   {
     icon: Trophy,
     title: 'Bodybuilding & contest prep',
-    body: 'Planning a show, in prep, or already competing. You need someone who has been on stage, not someone winging it.',
+    body: 'Stage-ready coaching from someone who has been on stage. Peak week handled.',
   },
   {
     icon: Heart,
     title: 'Reverse & post-show',
-    body: 'Just stepped off stage, or coming back from a rough rebound. You need a slow, intentional return — not another crash diet.',
+    body: 'Slow, intentional return. Not another crash diet.',
   },
 ];
 
@@ -291,14 +305,14 @@ function WhoFor() {
         <SectionHeader
           eyebrow="Who this is for"
           title="Built for people who are done playing."
-          intro="If any of these is you, the application is the next step. If not, the app stands on its own — start there."
+          intro="If any of these is you, the application is the next step."
         />
         <motion.div
-          variants={stagger(0.1)}
+          variants={stagger(0.08)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
         >
           {WHO_FOR.map((item) => {
             const Icon = item.icon;
@@ -324,7 +338,7 @@ function WhoFor() {
                   className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                   style={{
                     background:
-                      'radial-gradient(circle at 50% 0%, oklch(0.696 0.17 162.48 / 0.18), transparent 60%)',
+                      'radial-gradient(circle at 50% 0%, oklch(0.68 0.20 245 / 0.18), transparent 60%)',
                   }}
                 />
                 <div className="relative mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
@@ -335,6 +349,24 @@ function WhoFor() {
               </motion.div>
             );
           })}
+        </motion.div>
+
+        {/* Hard filter — "not for" line */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto mt-10 max-w-3xl"
+        >
+          <div className="relative overflow-hidden rounded-2xl border border-destructive/25 bg-destructive/[0.04] p-5 text-center">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-destructive/80">
+              Not for
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-foreground/90 md:text-base">
+              Shortcuts. People who won&apos;t track. People who want to be told what they want to hear.
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
@@ -351,13 +383,6 @@ const METRICS = [
   { value: 95, suffix: '%', label: 'Client retention' },
 ];
 
-const TRANSFORMATION_PLACEHOLDERS = [
-  { weeks: 12, label: 'Physique transformation' },
-  { weeks: 16, label: 'Contest prep' },
-  { weeks: 20, label: 'Recomposition' },
-  { weeks: 24, label: 'Lean bulk' },
-];
-
 function Results() {
   return (
     <section id="results" className="relative py-24 md:py-32">
@@ -366,7 +391,7 @@ function Results() {
         className="pointer-events-none absolute inset-x-0 top-1/2 -z-0 h-[420px] -translate-y-1/2 opacity-30 blur-[100px]"
         style={{
           background:
-            'radial-gradient(closest-side, oklch(0.696 0.17 162.48 / 0.20), transparent 70%)',
+            'radial-gradient(closest-side, oklch(0.68 0.20 245 / 0.20), transparent 70%)',
         }}
       />
       <div className="relative mx-auto max-w-7xl px-5 md:px-8">
@@ -396,7 +421,7 @@ function Results() {
                   transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
                 },
               }}
-              whileHover={{ y: -4, borderColor: 'oklch(0.696 0.17 162.48 / 0.4)' }}
+              whileHover={{ y: -4, borderColor: 'oklch(0.68 0.20 245 / 0.4)' }}
               transition={{ type: 'spring', stiffness: 280, damping: 24 }}
               className="group relative overflow-hidden rounded-2xl border border-border bg-card/40 p-8 text-center"
             >
@@ -406,36 +431,13 @@ function Results() {
                 className="pointer-events-none absolute inset-x-0 top-1/2 -z-0 h-32 -translate-y-1/2 opacity-0 blur-[60px] transition-opacity duration-500 group-hover:opacity-100"
                 style={{
                   background:
-                    'radial-gradient(closest-side, oklch(0.696 0.17 162.48 / 0.30), transparent 70%)',
+                    'radial-gradient(closest-side, oklch(0.68 0.20 245 / 0.30), transparent 70%)',
                 }}
               />
               <p className="relative font-display text-5xl tracking-tight text-primary md:text-6xl">
                 <AnimatedCounter to={m.value} suffix={m.suffix} />
               </p>
               <p className="relative mt-2 text-sm text-muted-foreground">{m.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Transformation card grid (placeholders) */}
-        <motion.div
-          variants={stagger(0.08)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {TRANSFORMATION_PLACEHOLDERS.map((t, i) => (
-            <motion.div key={i} variants={fadeUp}>
-              <PhotoPlaceholder
-                aspect="4/5"
-                label={`Client transformation · ${t.weeks} weeks`}
-                variant="subtle"
-              />
-              <div className="mt-3 flex items-center justify-between text-xs">
-                <span className="font-medium uppercase tracking-wider text-foreground">{t.label}</span>
-                <span className="text-muted-foreground">{t.weeks} weeks</span>
-              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -461,8 +463,9 @@ const COACHING_TIERS = [
     save: null,
     pitch: 'Try the relationship. Cancel any time.',
     features: [
+      'Adaptive plan that auto-adjusts as you log',
       'Weekly check-in review by Max',
-      'Real adjustments week to week',
+      'Strategic mid-cycle calls (training, prep, cardio)',
       'Direct messaging access',
       'Full specialty coverage',
     ],
@@ -564,7 +567,7 @@ function Pricing() {
                   className="pointer-events-none absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full opacity-60 blur-[70px]"
                   style={{
                     background:
-                      'radial-gradient(closest-side, oklch(0.696 0.17 162.48 / 0.45), transparent 70%)',
+                      'radial-gradient(closest-side, oklch(0.68 0.20 245 / 0.45), transparent 70%)',
                   }}
                 />
               )}
@@ -769,14 +772,14 @@ function About() {
                 I&apos;m Max. I&apos;ve spent years training, competing, and building the system most coaches charge double for.
               </p>
               <p>
-                I built My Pocket Coach to take cookie-cutter out of fitness. The app handles the structure
-                — plans, tracking, daily targets, check-ins. The 1:1 service is me, in your dashboard every
-                week, making the actual calls. Adjusting your macros, your cardio, your training when the data
-                says so.
+                I built My Pocket Coach to take cookie-cutter out of fitness. The app adapts your plan day to
+                day as you log — macros pull back when you overshoot, push when you undershoot, all without
+                you asking. That handles the noise. I handle the signal: weekly check-in review, strategic
+                training calls, prep timing, the stuff the algorithm shouldn&apos;t decide alone.
               </p>
               <p>
-                That&apos;s the value of working with me directly: someone who&apos;s been on stage looking at your data,
-                not a template.
+                That&apos;s the value of working with me directly: an adaptive system underneath, and someone
+                who&apos;s been on stage watching it run.
               </p>
             </motion.div>
             <motion.div
@@ -806,7 +809,11 @@ function About() {
 const FAQS = [
   {
     q: 'What does 1:1 coaching with you actually include?',
-    a: 'Weekly review of your check-ins inside My Pocket Coach by me, personally — not a template, not an algorithm. Real adjustments to your macros, training, cardio, and recovery based on what the data shows. Direct messaging access between check-ins. Full specialty coverage for prep, transformation, and reverse dieting.',
+    a: "The app adapts your macros automatically based on what you actually log — that's the daily loop. I sit on top of that: weekly review of your check-ins, strategic adjustments to training, cardio, prep timing, and the calls the algorithm can't make. Direct messaging access between check-ins. Full specialty coverage for prep, transformation, and reverse dieting.",
+  },
+  {
+    q: 'What does "adaptive" actually mean?',
+    a: "The app sees what you log each day and adjusts your targets for the coming week. Overshoot calories on the weekend? It gently pulls them back next week instead of pretending it didn't happen. Hit a plateau? The system flags it. Then I look at the bigger picture — phase, prep stage, life stress, recovery — and make the calls the automation shouldn't make alone.",
   },
   {
     q: 'Why two charges — the app and the coaching?',
@@ -842,7 +849,7 @@ const FAQS = [
   },
   {
     q: 'What is required of me?',
-    a: 'Honest weekly check-ins. Adherence to the plan — or honesty about why you did not stick to it. Photos when asked. That is the entire deal.',
+    a: 'Log your food and workouts in the app — that is what makes the adaptive layer work. Submit a weekly check-in with weight + photos. Show up to your training. The app sees what you actually do; I see what the app sees. That is the entire deal.',
   },
 ];
 
@@ -914,7 +921,7 @@ function FinalCTA() {
           className="h-full w-full rounded-full"
           style={{
             background:
-              'radial-gradient(closest-side, oklch(0.696 0.17 162.48 / 0.65), transparent 70%)',
+              'radial-gradient(closest-side, oklch(0.68 0.20 245 / 0.65), transparent 70%)',
           }}
         />
       </motion.div>
@@ -987,12 +994,12 @@ function HomeFooter({ forwardRef }: { forwardRef: React.RefObject<HTMLElement | 
           </div>
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <a
-              href="https://instagram.com/coachmax"
+              href="https://instagram.com/coach.madmax"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
             >
-              <Instagram className="h-4 w-4" /> @coachmax
+              <Instagram className="h-4 w-4" /> @coach.madmax
             </a>
             <Link href="/apply" className="transition-colors hover:text-foreground">
               Apply
@@ -1149,20 +1156,22 @@ function PinnedStatement() {
     offset: ['start end', 'end start'],
   });
 
-  const opacityLine1 = useTransform(scrollYProgress, [0.15, 0.25, 0.7, 0.85], [0, 1, 1, 0]);
-  const opacityLine2 = useTransform(scrollYProgress, [0.28, 0.38, 0.7, 0.85], [0, 1, 1, 0]);
-  const opacityLine3 = useTransform(scrollYProgress, [0.42, 0.52, 0.78, 0.92], [0, 1, 1, 0]);
+  // Tightened: all three lines land within first 40% of scroll progress
+  // so the user can't scroll past before the punchline appears.
+  const opacityLine1 = useTransform(scrollYProgress, [0.06, 0.16, 0.78, 0.92], [0, 1, 1, 0]);
+  const opacityLine2 = useTransform(scrollYProgress, [0.16, 0.26, 0.78, 0.92], [0, 1, 1, 0]);
+  const opacityLine3 = useTransform(scrollYProgress, [0.26, 0.36, 0.82, 0.94], [0, 1, 1, 0]);
 
-  const yLine1 = useTransform(scrollYProgress, [0.15, 0.25], [24, 0]);
-  const yLine2 = useTransform(scrollYProgress, [0.28, 0.38], [24, 0]);
-  const yLine3 = useTransform(scrollYProgress, [0.42, 0.52], [32, 0]);
+  const yLine1 = useTransform(scrollYProgress, [0.06, 0.16], [24, 0]);
+  const yLine2 = useTransform(scrollYProgress, [0.16, 0.26], [24, 0]);
+  const yLine3 = useTransform(scrollYProgress, [0.26, 0.36], [32, 0]);
 
-  const accentScale = useTransform(scrollYProgress, [0.42, 0.55, 0.78, 0.92], [0.92, 1.04, 1.04, 0.96]);
-  const glowOpacity = useTransform(scrollYProgress, [0.42, 0.55, 0.78, 0.92], [0, 0.7, 0.7, 0]);
-  const lineWidth = useTransform(scrollYProgress, [0.2, 0.55], ['0%', '60%']);
+  const accentScale = useTransform(scrollYProgress, [0.26, 0.4, 0.82, 0.94], [0.92, 1.04, 1.04, 0.96]);
+  const glowOpacity = useTransform(scrollYProgress, [0.26, 0.4, 0.82, 0.94], [0, 0.7, 0.7, 0]);
+  const lineWidth = useTransform(scrollYProgress, [0.1, 0.45], ['0%', '60%']);
 
   return (
-    <section ref={ref} className="relative h-[200vh]">
+    <section ref={ref} className="relative h-[170vh]">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-background">
         {/* Ambient bg */}
         <div
@@ -1178,7 +1187,7 @@ function PinnedStatement() {
             className="h-full w-full rounded-full"
             style={{
               background:
-                'radial-gradient(closest-side, oklch(0.696 0.17 162.48 / 0.40), transparent 70%)',
+                'radial-gradient(closest-side, oklch(0.68 0.20 245 / 0.40), transparent 70%)',
             }}
           />
         </motion.div>
@@ -1236,20 +1245,21 @@ function TransformationReveal() {
     offset: ['start end', 'end start'],
   });
 
-  // Dark overlay covers the AFTER (right) side initially.
-  // Width retracts from 50% to 0% as user scrolls through the section.
-  const overlayWidthPct = useTransform(scrollYProgress, [0.22, 0.78], [50, 0]);
+  // Dark overlay covers the AFTER (right) side initially. Reveal completes
+  // by 55% scroll progress so the user sees the full transformation early
+  // and the section then holds the result through the rest of the pin.
+  const overlayWidthPct = useTransform(scrollYProgress, [0.12, 0.55], [50, 0]);
   const overlayWidth = useMotionTemplate`${overlayWidthPct}%`;
   // Divider sits at the right edge of the visible portion.
   const dividerRight = useMotionTemplate`${overlayWidthPct}%`;
 
-  const afterLabelOpacity = useTransform(scrollYProgress, [0.45, 0.62], [0, 1]);
-  const beforeLabelOpacity = useTransform(scrollYProgress, [0.2, 0.35, 0.7, 0.88], [0, 1, 1, 0.4]);
+  const afterLabelOpacity = useTransform(scrollYProgress, [0.3, 0.5], [0, 1]);
+  const beforeLabelOpacity = useTransform(scrollYProgress, [0.05, 0.15, 0.55, 0.85], [0, 1, 1, 0.3]);
   const contentY = useTransform(scrollYProgress, [0, 1], [40, -40]);
-  const headerOpacity = useTransform(scrollYProgress, [0.05, 0.18, 0.85, 0.98], [0, 1, 1, 0]);
+  const headerOpacity = useTransform(scrollYProgress, [0.02, 0.12, 0.88, 0.98], [0, 1, 1, 0]);
 
   return (
-    <section ref={ref} className="relative hidden h-[260vh] md:block">
+    <section ref={ref} className="relative hidden h-[220vh] md:block">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-background">
         {/* Ambient glow behind image */}
         <div
@@ -1257,7 +1267,7 @@ function TransformationReveal() {
           className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[920px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-50 blur-[140px]"
           style={{
             background:
-              'radial-gradient(closest-side, oklch(0.696 0.17 162.48 / 0.18), transparent 70%)',
+              'radial-gradient(closest-side, oklch(0.68 0.20 245 / 0.18), transparent 70%)',
           }}
         />
 
@@ -1389,12 +1399,12 @@ function Framework() {
   const inView = useInView(ref, { once: true, margin: '-120px' });
 
   return (
-    <section className="relative py-24 md:py-32">
+    <section id="system" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <SectionHeader
-          eyebrow="The framework"
-          title="Five pieces. One system."
-          intro="No single lever moves the needle alone. The system is the answer — and weekly adjustments are what make it work for you specifically."
+          eyebrow="Powered by My Pocket Coach"
+          title="Five pieces. One adaptive system."
+          intro="No single lever moves the needle alone. The system adapts daily as you log — and weekly, I make the calls the automation shouldn't make alone."
         />
 
         {/* Desktop: horizontal nodes with animated SVG line */}
@@ -1409,10 +1419,10 @@ function Framework() {
           >
             <defs>
               <linearGradient id="frameworkLineGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="oklch(0.696 0.17 162.48 / 0)" />
-                <stop offset="10%" stopColor="oklch(0.696 0.17 162.48 / 0.7)" />
-                <stop offset="90%" stopColor="oklch(0.696 0.17 162.48 / 0.7)" />
-                <stop offset="100%" stopColor="oklch(0.696 0.17 162.48 / 0)" />
+                <stop offset="0%" stopColor="oklch(0.68 0.20 245 / 0)" />
+                <stop offset="10%" stopColor="oklch(0.68 0.20 245 / 0.7)" />
+                <stop offset="90%" stopColor="oklch(0.68 0.20 245 / 0.7)" />
+                <stop offset="100%" stopColor="oklch(0.68 0.20 245 / 0)" />
               </linearGradient>
             </defs>
             <motion.line
@@ -1538,7 +1548,7 @@ const CLIENT_SCREENS: ClientScreen[] = [
     label: 'Coach adjustment + note',
     src: '/images/app/coach-note.png',
     accent: 'What I changed and why — in my own voice.',
-    cropTopPct: 28,
+    cropTopPct: 18,
   },
 ];
 
@@ -1570,7 +1580,7 @@ function CoachingDiptych() {
         className="pointer-events-none absolute -left-32 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full opacity-40 blur-[140px]"
         style={{
           background:
-            'radial-gradient(closest-side, oklch(0.696 0.17 162.48 / 0.20), transparent 70%)',
+            'radial-gradient(closest-side, oklch(0.68 0.20 245 / 0.20), transparent 70%)',
         }}
       />
       <div
@@ -1578,7 +1588,7 @@ function CoachingDiptych() {
         className="pointer-events-none absolute -right-32 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full opacity-30 blur-[140px]"
         style={{
           background:
-            'radial-gradient(closest-side, oklch(0.696 0.17 162.48 / 0.18), transparent 70%)',
+            'radial-gradient(closest-side, oklch(0.68 0.20 245 / 0.18), transparent 70%)',
         }}
       />
 
@@ -1606,7 +1616,7 @@ function CoachingDiptych() {
                 In-app · iOS / Android
               </span>
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="mx-auto grid max-w-[260px] grid-cols-1 gap-6 sm:max-w-none sm:grid-cols-3 sm:gap-3">
               {CLIENT_SCREENS.map((s, i) => (
                 <motion.div
                   key={s.src}
@@ -1622,10 +1632,10 @@ function CoachingDiptych() {
                     floatDelay={i * 0.8}
                     cropTopPct={s.cropTopPct}
                   />
-                  <p className="mt-3 text-center text-[10px] font-medium uppercase tracking-wider text-foreground">
+                  <p className="mt-3 text-center text-xs font-medium uppercase tracking-wider text-foreground sm:text-[10px]">
                     {s.label}
                   </p>
-                  <p className="mt-1 text-center text-[10px] leading-snug text-muted-foreground/70">
+                  <p className="mt-1 text-center text-xs leading-snug text-muted-foreground/80 sm:text-[10px]">
                     {s.accent}
                   </p>
                 </motion.div>
@@ -1768,5 +1778,197 @@ function BrowserMockup({ src, alt, label, floatDelay = 0 }: BrowserMockupProps) 
         />
       )}
     </motion.div>
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// ProblemSection — "You've already tried it all"
+// ───────────────────────────────────────────────────────────────────────────
+
+const PROBLEMS = [
+  { title: 'Cookie-cutter PDFs', body: 'The same 12-week plan as 50 other people.' },
+  { title: 'Plans that never adapt', body: 'Same macros at week 1 and week 12. Body changes. Plan doesn’t.' },
+  { title: 'Coaches who ghost', body: 'Pay $300/mo, hear from them once. Maybe.' },
+  { title: 'Random motivation', body: 'Pep talks instead of plan pivots. Nothing changes.' },
+  { title: 'Guess-work macros', body: 'A free calculator, a hope, and a prayer.' },
+  { title: 'Zero accountability', body: 'Nobody checks if you actually did the work.' },
+];
+
+function ProblemSection() {
+  return (
+    <section className="relative overflow-hidden py-24 md:py-32">
+      {/* Subtle red ambient bg (the noise) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[820px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-20 blur-[160px]"
+        style={{
+          background:
+            'radial-gradient(closest-side, oklch(0.637 0.237 25.331 / 0.30), transparent 70%)',
+        }}
+      />
+
+      <div className="relative mx-auto max-w-6xl px-5 md:px-8">
+        <SectionHeader
+          eyebrow="The noise"
+          title="You've already tried it all."
+          intro="None of it worked. Not because you didn't try — because the inputs were broken."
+        />
+
+        <motion.div
+          variants={stagger(0.08)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {PROBLEMS.map((p) => (
+            <motion.div
+              key={p.title}
+              variants={{
+                hidden: { opacity: 0, x: -16 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
+              className="group flex items-start gap-3.5 rounded-xl border border-border/60 bg-card/30 p-5 transition-all hover:border-destructive/40 hover:bg-card/50"
+            >
+              <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-destructive/15 text-destructive transition-transform group-hover:scale-110">
+                <X className="h-4 w-4" strokeWidth={3} />
+              </span>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold uppercase tracking-wider text-foreground">{p.title}</p>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto mt-14 max-w-2xl text-center text-base text-muted-foreground md:text-lg"
+        >
+          You don&apos;t need more motivation. You need a system that{' '}
+          <span className="font-semibold text-primary">adapts</span> — and someone who&apos;s{' '}
+          <span className="font-semibold text-primary">watching</span>.
+        </motion.p>
+      </div>
+    </section>
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// MoatSection — "I built the system on myself first"
+// ───────────────────────────────────────────────────────────────────────────
+
+function MoatSection() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+
+  // Glow scales with scroll into focus
+  const glowOpacity = useTransform(scrollYProgress, [0.1, 0.4, 0.7, 0.95], [0, 0.55, 0.55, 0]);
+  const glowScale = useTransform(scrollYProgress, [0.1, 0.5, 0.95], [0.8, 1.1, 1.25]);
+
+  return (
+    <section ref={ref} className="relative overflow-hidden py-32 md:py-40">
+      {/* Ambient bg — scroll-reactive emerald-blue */}
+      <motion.div
+        aria-hidden
+        style={{ opacity: glowOpacity, scale: glowScale }}
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[920px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[160px]"
+      >
+        <div
+          className="h-full w-full rounded-full"
+          style={{
+            background:
+              'radial-gradient(closest-side, oklch(0.68 0.20 245 / 0.40), transparent 70%)',
+          }}
+        />
+      </motion.div>
+
+      <div className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-10 text-[11px] font-medium uppercase tracking-[0.32em] text-primary"
+        >
+          The moat
+        </motion.p>
+
+        <h2 className="font-display uppercase leading-[1.05] tracking-tight">
+          <MoatLine
+            text="I built the system"
+            delay={0.1}
+            className="block text-3xl text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
+          />
+          <MoatLine
+            text="on myself first."
+            delay={0.3}
+            className="mt-1 block text-3xl text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
+          />
+          <MoatLine
+            text="Then I used it on clients."
+            delay={0.6}
+            className="mt-6 block text-2xl text-muted-foreground sm:text-3xl md:text-4xl lg:text-5xl"
+          />
+          <MoatLine
+            text="Then it became"
+            delay={0.9}
+            className="mt-6 block text-2xl text-muted-foreground sm:text-3xl md:text-4xl lg:text-5xl"
+          />
+          <MoatLine
+            text="My Pocket Coach."
+            delay={1.05}
+            className="block text-2xl text-muted-foreground sm:text-3xl md:text-4xl lg:text-5xl"
+          />
+          <MoatLine
+            text="That's why this works."
+            delay={1.4}
+            className="mt-10 block text-5xl text-primary sm:text-6xl md:text-7xl lg:text-8xl"
+          />
+        </h2>
+
+        <motion.div
+          initial={{ width: 0, opacity: 0 }}
+          whileInView={{ width: '40%', opacity: 1 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.9, delay: 1.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto mt-12 h-px bg-gradient-to-r from-transparent via-primary to-transparent"
+        />
+      </div>
+    </section>
+  );
+}
+
+function MoatLine({
+  text,
+  delay,
+  className,
+}: {
+  text: string;
+  delay: number;
+  className?: string;
+}) {
+  return (
+    <span className="inline-block overflow-hidden align-bottom">
+      <motion.span
+        initial={{ y: '110%' }}
+        whileInView={{ y: '0%' }}
+        viewport={{ once: true, margin: '-120px' }}
+        transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+        className={cn('inline-block', className)}
+      >
+        {text}
+      </motion.span>
+    </span>
   );
 }

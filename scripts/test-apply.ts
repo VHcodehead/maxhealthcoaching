@@ -43,7 +43,6 @@ const validPayload = {
 
   whyCoach:
     'I want oversight from someone with real competitive experience. I can do the work — I need someone making the calls so I am not guessing at peak week.',
-  honesty: 'yes',
   structure: 'yes',
   seriousness: 'ready_now',
   financialReadiness: 'yes_if_fit',

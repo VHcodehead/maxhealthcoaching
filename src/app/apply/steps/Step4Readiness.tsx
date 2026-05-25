@@ -12,12 +12,6 @@ import {
   type TriAnswer,
 } from '@/lib/coaching/schemas';
 
-const TRI_OPTIONS: { value: TriAnswer; label: string }[] = [
-  { value: 'yes', label: 'Yes' },
-  { value: 'sort_of', label: 'I think so' },
-  { value: 'not_sure', label: 'Not sure' },
-];
-
 export function Step4Readiness() {
   const {
     control,
@@ -33,25 +27,6 @@ export function Step4Readiness() {
         {...register('whyCoach')}
         error={errors.whyCoach?.message}
       />
-
-      <div className="space-y-2">
-        <span className="block text-sm font-medium text-foreground">
-          Ready to be honest with food logs, check-ins, training, and adherence?
-        </span>
-        <Controller
-          control={control}
-          name="honesty"
-          render={({ field }) => (
-            <RadioCardGroup<TriAnswer>
-              name={field.name}
-              options={TRI_OPTIONS}
-              value={field.value}
-              onChange={field.onChange}
-              error={errors.honesty?.message}
-            />
-          )}
-        />
-      </div>
 
       <div className="space-y-2">
         <span className="block text-sm font-medium text-foreground">

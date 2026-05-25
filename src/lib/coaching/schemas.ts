@@ -124,12 +124,11 @@ export const step2Schema = z.object({
 export const step3Schema = z.object({
   struggles: z.array(struggleEnum).min(1, 'Pick at least one'),
   triedBefore: z.string().min(10, 'A short list is fine'),
-  whyFailed: z.string().min(10, 'Be honest — this is the most useful answer'),
+  whyFailed: z.string().min(10, "Why hasn't it worked?"),
 });
 
 export const step4Schema = z.object({
   whyCoach: z.string().min(20, 'Why a coach instead of going alone?'),
-  honesty: triEnum,
   structure: triEnum,
   seriousness: seriousnessEnum,
   financialReadiness: financialEnum,
@@ -199,7 +198,7 @@ export const STEP_FIELDS: ReadonlyArray<ReadonlyArray<keyof ApplicationInput>> =
   ['name', 'email', 'phone', 'socialHandle', 'age', 'timezone'],
   ['goalType', 'goalNarrative', 'motivation', 'timeline'],
   ['struggles', 'triedBefore', 'whyFailed'],
-  ['whyCoach', 'honesty', 'structure', 'seriousness', 'financialReadiness'],
+  ['whyCoach', 'structure', 'seriousness', 'financialReadiness'],
   [
     'trainingExperience',
     'tracksFood',

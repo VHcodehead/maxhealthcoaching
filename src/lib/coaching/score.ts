@@ -59,7 +59,6 @@ export function scoreApplication(a: ApplicationInput): ScoreResult {
   if (a.whyCoach.length >= 100) add('Thoughtful "why coach" answer', 1);
 
   // Soft negatives
-  if (a.honesty === 'not_sure') add('Unsure about honesty', -1);
   if (a.structure === 'not_sure') add('Unsure about structure', -1);
 
   const score = breakdown.reduce((sum, b) => sum + b.points, 0);

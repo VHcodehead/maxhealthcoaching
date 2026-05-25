@@ -39,12 +39,12 @@ export function ConfirmationScreen() {
               <span>
                 Follow{' '}
                 <a
-                  href="https://instagram.com/coachmax"
+                  href="https://instagram.com/coach.madmax"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-foreground underline-offset-4 hover:underline"
                 >
-                  @coachmax
+                  @coach.madmax
                 </a>{' '}
                 — that&apos;s where most of the day-to-day is.
               </span>

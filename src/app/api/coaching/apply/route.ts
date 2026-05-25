@@ -38,7 +38,6 @@ function buildAnswerSummary(data: ApplicationInput) {
     { question: 'What they’ve tried', answer: data.triedBefore },
     { question: 'Why it hasn’t worked', answer: data.whyFailed },
     { question: 'Why want a coach', answer: data.whyCoach },
-    { question: 'Honest with logs/check-ins', answer: data.honesty },
     { question: 'Follow structure when motivation drops', answer: data.structure },
     { question: 'Seriousness', answer: labelFor(SERIOUSNESS_OPTIONS, data.seriousness) },
     {
