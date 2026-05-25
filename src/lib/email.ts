@@ -315,6 +315,53 @@ export async function sendCoachingApplicationNotification(
   });
 }
 
+export interface CoachingApplicationConfirmationPayload {
+  to: string;
+  firstName: string;
+  replyTo: string;
+}
+
+export async function sendCoachingApplicationConfirmation(
+  payload: CoachingApplicationConfirmationPayload,
+): Promise<void> {
+  const { to, firstName, replyTo } = payload;
+  const safeName = escapeHtml(firstName);
+
+  const subject = "Got your application — I'll be in touch within 48 hours";
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Got your application</title>
+</head>
+<body style="margin:0;padding:24px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#111827;font-size:15px;line-height:1.6;">
+  <div style="max-width:560px;margin:0 auto;">
+    <p style="margin:0 0 16px;">Hey ${safeName},</p>
+    <p style="margin:0 0 16px;">Your coaching application just landed. Thanks for taking the time to fill it out properly — the answers in there tell me a lot more about whether we'll work well together than a quick DM ever could.</p>
+    <p style="margin:0 0 12px;">I personally read every application that comes in. <strong>You'll hear from me within 48 hours</strong> with one of two things:</p>
+    <ul style="margin:0 0 16px;padding:0 0 0 22px;">
+      <li style="margin-bottom:4px;">An invite to hop on a short call so we can make sure it's a fit on both sides, or</li>
+      <li>A straight answer if I'm not the right coach for what you're chasing right now</li>
+    </ul>
+    <p style="margin:0 0 16px;">Either way, you get a reply. If 48 hours pass and nothing's landed, just reply to this email and I'll get on it.</p>
+    <p style="margin:24px 0 4px;">Talk soon,</p>
+    <p style="margin:0 0 32px;"><strong>Max</strong><br /><span style="color:#6b7280;font-size:14px;">CoachMax</span></p>
+    <p style="margin:0;font-size:12px;color:#9ca3af;">You're receiving this because you submitted a coaching application at maxhealthcoaching.com.</p>
+  </div>
+</body>
+</html>`;
+
+  await getResend().emails.send({
+    from: FROM_EMAIL,
+    to,
+    replyTo,
+    subject,
+    html,
+  });
+}
+
 export async function sendMacroApprovedEmail(
   to: string,
   name: string,

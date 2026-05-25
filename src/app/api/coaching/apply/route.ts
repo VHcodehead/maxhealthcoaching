@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
-import { sendCoachingApplicationNotification } from '@/lib/email';
+import {
+  sendCoachingApplicationNotification,
+  sendCoachingApplicationConfirmation,
+} from '@/lib/email';
 import {
   GOAL_OPTIONS,
   STRUGGLE_OPTIONS,
@@ -123,9 +126,11 @@ export async function POST(request: Request) {
     );
   }
 
-  // Email notification — fire-and-forget for the response, but log failures.
-  try {
-    await sendCoachingApplicationNotification({
+  // Send coach notification + applicant confirmation in parallel.
+  // Application is already saved, so email failures only get logged.
+  const firstName = data.name.trim().split(/\s+/)[0] || data.name;
+  const [coachResult, confirmResult] = await Promise.allSettled([
+    sendCoachingApplicationNotification({
       to: COACH_EMAIL,
       applicationId: saved.id,
       applicantName: data.name,
@@ -139,10 +144,18 @@ export async function POST(request: Request) {
       priority: scoreResult.priority,
       scoreBreakdown: scoreResult.breakdown,
       answers: buildAnswerSummary(data),
-    });
-  } catch (err) {
-    // Don't fail the request — application is already saved.
-    console.error('[coaching.apply] email failed', err);
+    }),
+    sendCoachingApplicationConfirmation({
+      to: data.email,
+      firstName,
+      replyTo: COACH_EMAIL,
+    }),
+  ]);
+  if (coachResult.status === 'rejected') {
+    console.error('[coaching.apply] coach notification failed', coachResult.reason);
+  }
+  if (confirmResult.status === 'rejected') {
+    console.error('[coaching.apply] applicant confirmation failed', confirmResult.reason);
   }
 
   return NextResponse.json({ ok: true, id: saved.id }, { status: 200 });
