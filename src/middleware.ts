@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 const { auth } = NextAuth(authConfig);
 
-const publicRoutes = ['/', '/login', '/signup', '/pricing', '/quiz', '/tools', '/results', '/blog', '/success', '/pending', '/api/webhooks/stripe', '/api/leads', '/api/quiz', '/forgot-password', '/reset-password', '/verify-email'];
+const publicRoutes = ['/', '/login', '/signup', '/pricing', '/quiz', '/tools', '/results', '/blog', '/success', '/pending', '/apply', '/api/webhooks/stripe', '/api/leads', '/api/quiz', '/api/coaching/apply', '/forgot-password', '/reset-password', '/verify-email'];
 
 export default auth((req) => {
   const path = req.nextUrl.pathname;

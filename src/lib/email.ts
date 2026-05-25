@@ -202,6 +202,119 @@ export async function sendCheckinNotificationEmail(
   await sendEmail(to, `${clientName} submitted their week ${weekNumber} check-in`, html);
 }
 
+export interface CoachingApplicationEmailPayload {
+  to: string;
+  applicationId: string;
+  applicantName: string;
+  applicantEmail: string;
+  applicantPhone?: string | null;
+  applicantSocial?: string | null;
+  applicantAge: number;
+  applicantTimezone: string;
+  goalLabel: string;
+  leadScore: number;
+  priority: boolean;
+  scoreBreakdown: { label: string; points: number }[];
+  answers: { question: string; answer: string }[];
+}
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+export async function sendCoachingApplicationNotification(
+  payload: CoachingApplicationEmailPayload,
+): Promise<void> {
+  const {
+    to,
+    applicationId,
+    applicantName,
+    applicantEmail,
+    applicantPhone,
+    applicantSocial,
+    applicantAge,
+    applicantTimezone,
+    goalLabel,
+    leadScore,
+    priority,
+    scoreBreakdown,
+    answers,
+  } = payload;
+
+  const subject = priority
+    ? `Priority lead: ${applicantName} (score ${leadScore})`
+    : `New coaching application: ${applicantName} (score ${leadScore})`;
+
+  const breakdownRows = scoreBreakdown
+    .map(
+      (b) =>
+        `<tr><td style="padding:4px 12px 4px 0;color:#374151;font-size:13px;">${escapeHtml(b.label)}</td><td style="padding:4px 0;text-align:right;font-size:13px;font-weight:600;color:${b.points >= 0 ? '#059669' : '#dc2626'};">${b.points >= 0 ? '+' : ''}${b.points}</td></tr>`,
+    )
+    .join('');
+
+  const answerRows = answers
+    .map(
+      (a) =>
+        `<tr><td colspan="2" style="padding:14px 0 4px;font-size:11px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;">${escapeHtml(a.question)}</td></tr><tr><td colspan="2" style="padding:0 0 4px;font-size:14px;color:#111827;white-space:pre-wrap;line-height:1.5;">${escapeHtml(a.answer)}</td></tr>`,
+    )
+    .join('');
+
+  const priorityBadge = priority
+    ? `<span style="display:inline-block;padding:3px 10px;background:#059669;color:#fff;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">Priority</span>`
+    : `<span style="display:inline-block;padding:3px 10px;background:#e5e7eb;color:#374151;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;">Standard</span>`;
+
+  const html = `<!DOCTYPE html>
+<html><head><meta charset="UTF-8" /><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#111827;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 0;">
+    <tr><td align="center">
+      <table width="640" cellpadding="0" cellspacing="0" style="max-width:640px;width:100%;background:#fff;border-radius:10px;overflow:hidden;border:1px solid #e5e7eb;">
+        <tr><td style="padding:24px 28px;border-bottom:1px solid #e5e7eb;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">${priorityBadge}<span style="font-size:13px;color:#6b7280;">Score: <strong style="color:#111827;">${leadScore}</strong></span></div>
+          <h1 style="margin:0;font-size:22px;font-weight:700;">${escapeHtml(applicantName)}</h1>
+          <p style="margin:6px 0 0;font-size:13px;color:#6b7280;">Goal: ${escapeHtml(goalLabel)} &middot; Age ${applicantAge} &middot; ${escapeHtml(applicantTimezone)}</p>
+        </td></tr>
+
+        <tr><td style="padding:20px 28px;border-bottom:1px solid #e5e7eb;background:#f9fafb;">
+          <div style="font-size:13px;line-height:1.7;">
+            <div><strong>Email:</strong> <a href="mailto:${encodeURIComponent(applicantEmail)}" style="color:#059669;">${escapeHtml(applicantEmail)}</a></div>
+            ${applicantPhone ? `<div><strong>Phone:</strong> <a href="tel:${escapeHtml(applicantPhone)}" style="color:#059669;">${escapeHtml(applicantPhone)}</a></div>` : ''}
+            ${applicantSocial ? `<div><strong>Social:</strong> ${escapeHtml(applicantSocial)}</div>` : ''}
+          </div>
+        </td></tr>
+
+        <tr><td style="padding:20px 28px;border-bottom:1px solid #e5e7eb;">
+          <h2 style="margin:0 0 12px;font-size:13px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;">Score breakdown</h2>
+          <table cellpadding="0" cellspacing="0" width="100%">${breakdownRows}</table>
+        </td></tr>
+
+        <tr><td style="padding:20px 28px;">
+          <h2 style="margin:0 0 4px;font-size:13px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;">Application</h2>
+          <table cellpadding="0" cellspacing="0" width="100%">${answerRows}</table>
+        </td></tr>
+
+        <tr><td style="padding:16px 28px;border-top:1px solid #e5e7eb;background:#f9fafb;font-size:12px;color:#9ca3af;">
+          Application <code>${escapeHtml(applicationId)}</code> &middot; Reply directly to this email to reach <strong style="color:#374151;">${escapeHtml(applicantName)}</strong>.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  await getResend().emails.send({
+    from: FROM_EMAIL,
+    to,
+    replyTo: applicantEmail,
+    subject,
+    html,
+  });
+}
+
 export async function sendMacroApprovedEmail(
   to: string,
   name: string,

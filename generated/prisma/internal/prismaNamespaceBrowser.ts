@@ -62,6 +62,7 @@ export const ModelName = {
   CheckIn: 'CheckIn',
   ProgressPhoto: 'ProgressPhoto',
   Lead: 'Lead',
+  CoachingApplication: 'CoachingApplication',
   Referral: 'Referral',
   BlogPost: 'BlogPost',
   Transformation: 'Transformation',
@@ -275,6 +276,30 @@ export const LeadScalarFieldEnum = {
 } as const
 
 export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
+
+
+export const CoachingApplicationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  socialHandle: 'socialHandle',
+  age: 'age',
+  timezone: 'timezone',
+  goalType: 'goalType',
+  payload: 'payload',
+  leadScore: 'leadScore',
+  priority: 'priority',
+  scoreVersion: 'scoreVersion',
+  source: 'source',
+  referrer: 'referrer',
+  status: 'status',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CoachingApplicationScalarFieldEnum = (typeof CoachingApplicationScalarFieldEnum)[keyof typeof CoachingApplicationScalarFieldEnum]
 
 
 export const ReferralScalarFieldEnum = {

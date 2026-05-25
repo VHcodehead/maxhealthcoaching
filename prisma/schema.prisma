@@ -230,6 +230,37 @@ model Lead {
   @@map("leads")
 }
 
+model CoachingApplication {
+  id           String   @id @default(uuid())
+  // Contact
+  name         String
+  email        String
+  phone        String?
+  socialHandle String?  @map("social_handle")
+  age          Int
+  timezone     String
+  // Qualifying
+  goalType     String   @map("goal_type")
+  // Full step-by-step answers
+  payload      Json
+  // Computed
+  leadScore    Int      @map("lead_score")
+  priority     Boolean  @default(false)
+  scoreVersion String   @default("v1") @map("score_version")
+  // Attribution
+  source       String?
+  referrer     String?
+  // Ops
+  status       String   @default("new") // new | contacted | client | declined
+  notes        String?
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@index([createdAt])
+  @@index([priority, createdAt])
+  @@map("coaching_applications")
+}
+
 model Referral {
   id              String   @id @default(uuid())
   referrerId      String   @map("referrer_id")

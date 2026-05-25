@@ -16,15 +16,14 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: 'MaxHealth Coaching — Your Personal Training Partner',
+  title: 'CoachMax — 1:1 Coaching with Max',
   description:
-    'Premium personal training and nutrition coaching tailored to your goals. Science-backed programs, expert guidance, and real results with MaxHealth Coaching.',
+    'Personal weekly oversight from a competitor. Real adjustments to food, training, cardio, and recovery — delivered through My Pocket Coach.',
   openGraph: {
-    title: 'MaxHealth Coaching — Your Personal Training Partner',
+    title: 'CoachMax — 1:1 Coaching with Max',
     description:
-      'Premium personal training and nutrition coaching tailored to your goals. Science-backed programs, expert guidance, and real results.',
-    url: 'https://maxhealthcoaching.com',
-    siteName: 'MaxHealth Coaching',
+      'Personal weekly oversight from a competitor. Real adjustments. No templates.',
+    siteName: 'CoachMax',
     type: 'website',
   },
 };

@@ -395,6 +395,7 @@ export const ModelName = {
   CheckIn: 'CheckIn',
   ProgressPhoto: 'ProgressPhoto',
   Lead: 'Lead',
+  CoachingApplication: 'CoachingApplication',
   Referral: 'Referral',
   BlogPost: 'BlogPost',
   Transformation: 'Transformation',
@@ -420,7 +421,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment"
+    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "coachingApplication" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1235,6 +1236,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.LeadCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.LeadCountAggregateOutputType> | number
+        }
+      }
+    }
+    CoachingApplication: {
+      payload: Prisma.$CoachingApplicationPayload<ExtArgs>
+      fields: Prisma.CoachingApplicationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CoachingApplicationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachingApplicationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CoachingApplicationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachingApplicationPayload>
+        }
+        findFirst: {
+          args: Prisma.CoachingApplicationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachingApplicationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CoachingApplicationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachingApplicationPayload>
+        }
+        findMany: {
+          args: Prisma.CoachingApplicationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachingApplicationPayload>[]
+        }
+        create: {
+          args: Prisma.CoachingApplicationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachingApplicationPayload>
+        }
+        createMany: {
+          args: Prisma.CoachingApplicationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CoachingApplicationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachingApplicationPayload>[]
+        }
+        delete: {
+          args: Prisma.CoachingApplicationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachingApplicationPayload>
+        }
+        update: {
+          args: Prisma.CoachingApplicationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachingApplicationPayload>
+        }
+        deleteMany: {
+          args: Prisma.CoachingApplicationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CoachingApplicationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CoachingApplicationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachingApplicationPayload>[]
+        }
+        upsert: {
+          args: Prisma.CoachingApplicationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachingApplicationPayload>
+        }
+        aggregate: {
+          args: Prisma.CoachingApplicationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCoachingApplication>
+        }
+        groupBy: {
+          args: Prisma.CoachingApplicationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CoachingApplicationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CoachingApplicationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CoachingApplicationCountAggregateOutputType> | number
         }
       }
     }
@@ -2204,6 +2279,30 @@ export const LeadScalarFieldEnum = {
 export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
 
 
+export const CoachingApplicationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  socialHandle: 'socialHandle',
+  age: 'age',
+  timezone: 'timezone',
+  goalType: 'goalType',
+  payload: 'payload',
+  leadScore: 'leadScore',
+  priority: 'priority',
+  scoreVersion: 'scoreVersion',
+  source: 'source',
+  referrer: 'referrer',
+  status: 'status',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CoachingApplicationScalarFieldEnum = (typeof CoachingApplicationScalarFieldEnum)[keyof typeof CoachingApplicationScalarFieldEnum]
+
+
 export const ReferralScalarFieldEnum = {
   id: 'id',
   referrerId: 'referrerId',
@@ -2614,6 +2713,7 @@ export type GlobalOmitConfig = {
   checkIn?: Prisma.CheckInOmit
   progressPhoto?: Prisma.ProgressPhotoOmit
   lead?: Prisma.LeadOmit
+  coachingApplication?: Prisma.CoachingApplicationOmit
   referral?: Prisma.ReferralOmit
   blogPost?: Prisma.BlogPostOmit
   transformation?: Prisma.TransformationOmit

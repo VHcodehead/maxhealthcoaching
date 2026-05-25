@@ -73,6 +73,11 @@ export type ProgressPhoto = Prisma.ProgressPhotoModel
  */
 export type Lead = Prisma.LeadModel
 /**
+ * Model CoachingApplication
+ * 
+ */
+export type CoachingApplication = Prisma.CoachingApplicationModel
+/**
  * Model Referral
  * 
  */
