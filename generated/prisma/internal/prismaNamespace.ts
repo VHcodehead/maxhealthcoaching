@@ -405,7 +405,9 @@ export const ModelName = {
   Message: 'Message',
   SupplementRecommendation: 'SupplementRecommendation',
   SupplementCatalog: 'SupplementCatalog',
-  PendingMacroAdjustment: 'PendingMacroAdjustment'
+  PendingMacroAdjustment: 'PendingMacroAdjustment',
+  AppLink: 'AppLink',
+  AppLinkVerification: 'AppLinkVerification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -421,7 +423,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "coachingApplication" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment"
+    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "coachingApplication" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment" | "appLink" | "appLinkVerification"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2053,6 +2055,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AppLink: {
+      payload: Prisma.$AppLinkPayload<ExtArgs>
+      fields: Prisma.AppLinkFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AppLinkFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AppLinkFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        findFirst: {
+          args: Prisma.AppLinkFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AppLinkFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        findMany: {
+          args: Prisma.AppLinkFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>[]
+        }
+        create: {
+          args: Prisma.AppLinkCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        createMany: {
+          args: Prisma.AppLinkCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AppLinkCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>[]
+        }
+        delete: {
+          args: Prisma.AppLinkDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        update: {
+          args: Prisma.AppLinkUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        deleteMany: {
+          args: Prisma.AppLinkDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AppLinkUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AppLinkUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>[]
+        }
+        upsert: {
+          args: Prisma.AppLinkUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        aggregate: {
+          args: Prisma.AppLinkAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAppLink>
+        }
+        groupBy: {
+          args: Prisma.AppLinkGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppLinkGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AppLinkCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppLinkCountAggregateOutputType> | number
+        }
+      }
+    }
+    AppLinkVerification: {
+      payload: Prisma.$AppLinkVerificationPayload<ExtArgs>
+      fields: Prisma.AppLinkVerificationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AppLinkVerificationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AppLinkVerificationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        findFirst: {
+          args: Prisma.AppLinkVerificationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AppLinkVerificationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        findMany: {
+          args: Prisma.AppLinkVerificationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>[]
+        }
+        create: {
+          args: Prisma.AppLinkVerificationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        createMany: {
+          args: Prisma.AppLinkVerificationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AppLinkVerificationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>[]
+        }
+        delete: {
+          args: Prisma.AppLinkVerificationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        update: {
+          args: Prisma.AppLinkVerificationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        deleteMany: {
+          args: Prisma.AppLinkVerificationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AppLinkVerificationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AppLinkVerificationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>[]
+        }
+        upsert: {
+          args: Prisma.AppLinkVerificationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        aggregate: {
+          args: Prisma.AppLinkVerificationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAppLinkVerification>
+        }
+        groupBy: {
+          args: Prisma.AppLinkVerificationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppLinkVerificationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AppLinkVerificationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppLinkVerificationCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2477,6 +2627,37 @@ export const PendingMacroAdjustmentScalarFieldEnum = {
 export type PendingMacroAdjustmentScalarFieldEnum = (typeof PendingMacroAdjustmentScalarFieldEnum)[keyof typeof PendingMacroAdjustmentScalarFieldEnum]
 
 
+export const AppLinkScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  appUserId: 'appUserId',
+  appEmail: 'appEmail',
+  verifiedAt: 'verifiedAt',
+  method: 'method',
+  isPrep: 'isPrep',
+  isEnhanced: 'isEnhanced',
+  sex: 'sex',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AppLinkScalarFieldEnum = (typeof AppLinkScalarFieldEnum)[keyof typeof AppLinkScalarFieldEnum]
+
+
+export const AppLinkVerificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  appUserId: 'appUserId',
+  appEmail: 'appEmail',
+  hashedCode: 'hashedCode',
+  expiresAt: 'expiresAt',
+  attempts: 'attempts',
+  createdAt: 'createdAt'
+} as const
+
+export type AppLinkVerificationScalarFieldEnum = (typeof AppLinkVerificationScalarFieldEnum)[keyof typeof AppLinkVerificationScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2724,6 +2905,8 @@ export type GlobalOmitConfig = {
   supplementRecommendation?: Prisma.SupplementRecommendationOmit
   supplementCatalog?: Prisma.SupplementCatalogOmit
   pendingMacroAdjustment?: Prisma.PendingMacroAdjustmentOmit
+  appLink?: Prisma.AppLinkOmit
+  appLinkVerification?: Prisma.AppLinkVerificationOmit
 }
 
 /* Types for Logging */

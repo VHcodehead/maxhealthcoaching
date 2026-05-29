@@ -36,6 +36,8 @@ model User {
   pendingMacroAdjustments PendingMacroAdjustment[]
   passwordResetTokens     PasswordResetToken[]
   emailVerificationTokens EmailVerificationToken[]
+  appLink                 AppLink?
+  appLinkVerifications    AppLinkVerification[]
 
   @@map("users")
 }
@@ -459,4 +461,50 @@ model PendingMacroAdjustment {
   checkIn CheckIn @relation(fields: [checkInId], references: [id], onDelete: Cascade)
 
   @@map("pending_macro_adjustments")
+}
+
+// ─── Unified Coaching Hub — Phase 0 (ADR 008) ──────────────────────────────
+//
+// Identity bridge mapping a maxhealthcoaching.com (NextAuth) user to their
+// MyPocketCoach app account (Supabase user_id). PED/prep coach flags live here
+// so they are firewalled in training-website's own Postgres, never in the app.
+
+model AppLink {
+  id         String    @id @default(uuid())
+  userId     String    @unique @map("user_id")
+  appUserId  String    @map("app_user_id") // Supabase user_profiles.id (uuid)
+  appEmail   String    @map("app_email")
+  verifiedAt DateTime? @map("verified_at")
+  method     String    @default("email_code") @map("method") // 'email_code' | 'coach_manual'
+
+  // Coach-set flags (independent). Set in Phase 1; defaults are safe.
+  isPrep     Boolean   @default(false) @map("is_prep")
+  isEnhanced Boolean   @default(false) @map("is_enhanced")
+  sex        String?   @map("sex") // 'male' | 'female' | null — enhancement scan is sex-aware
+
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([appUserId])
+  @@map("app_links")
+}
+
+// Short-lived email-code challenge proving the client controls the app-account
+// email before we persist the AppLink. Code is stored hashed; never plaintext.
+model AppLinkVerification {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  appUserId   String   @map("app_user_id")
+  appEmail    String   @map("app_email")
+  hashedCode  String   @map("hashed_code")
+  expiresAt   DateTime @map("expires_at")
+  attempts    Int      @default(0) @map("attempts")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("app_link_verifications")
 }

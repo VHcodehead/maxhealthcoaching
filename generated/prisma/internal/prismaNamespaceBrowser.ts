@@ -72,7 +72,9 @@ export const ModelName = {
   Message: 'Message',
   SupplementRecommendation: 'SupplementRecommendation',
   SupplementCatalog: 'SupplementCatalog',
-  PendingMacroAdjustment: 'PendingMacroAdjustment'
+  PendingMacroAdjustment: 'PendingMacroAdjustment',
+  AppLink: 'AppLink',
+  AppLinkVerification: 'AppLinkVerification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -474,6 +476,37 @@ export const PendingMacroAdjustmentScalarFieldEnum = {
 } as const
 
 export type PendingMacroAdjustmentScalarFieldEnum = (typeof PendingMacroAdjustmentScalarFieldEnum)[keyof typeof PendingMacroAdjustmentScalarFieldEnum]
+
+
+export const AppLinkScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  appUserId: 'appUserId',
+  appEmail: 'appEmail',
+  verifiedAt: 'verifiedAt',
+  method: 'method',
+  isPrep: 'isPrep',
+  isEnhanced: 'isEnhanced',
+  sex: 'sex',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AppLinkScalarFieldEnum = (typeof AppLinkScalarFieldEnum)[keyof typeof AppLinkScalarFieldEnum]
+
+
+export const AppLinkVerificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  appUserId: 'appUserId',
+  appEmail: 'appEmail',
+  hashedCode: 'hashedCode',
+  expiresAt: 'expiresAt',
+  attempts: 'attempts',
+  createdAt: 'createdAt'
+} as const
+
+export type AppLinkVerificationScalarFieldEnum = (typeof AppLinkVerificationScalarFieldEnum)[keyof typeof AppLinkVerificationScalarFieldEnum]
 
 
 export const SortOrder = {

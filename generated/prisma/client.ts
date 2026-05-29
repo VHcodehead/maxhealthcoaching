@@ -149,3 +149,13 @@ export type SupplementCatalog = Prisma.SupplementCatalogModel
  * 
  */
 export type PendingMacroAdjustment = Prisma.PendingMacroAdjustmentModel
+/**
+ * Model AppLink
+ * 
+ */
+export type AppLink = Prisma.AppLinkModel
+/**
+ * Model AppLinkVerification
+ * 
+ */
+export type AppLinkVerification = Prisma.AppLinkVerificationModel
