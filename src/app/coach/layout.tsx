@@ -22,10 +22,12 @@ import {
   LogOut,
   Menu,
   LayoutDashboard,
+  Activity,
 } from 'lucide-react'
 
 const navItems = [
   { label: 'Overview', href: '/coach', icon: LayoutDashboard },
+  { label: 'Coaching Hub', href: '/coach/hub', icon: Activity },
   { label: 'Clients', href: '/coach/clients', icon: Users },
   { label: 'Leads', href: '/coach/leads', icon: UserPlus },
   { label: 'Content', href: '/coach/content', icon: FileText },

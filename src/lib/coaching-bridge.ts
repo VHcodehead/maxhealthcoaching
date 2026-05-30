@@ -14,6 +14,8 @@
 // (Only ever imported from route handlers under src/app/api/, which are
 // server-only by construction.)
 
+import type { CoachingExport } from './coaching-types';
+
 const BACKEND_URL = process.env.COACHING_BACKEND_URL || '';
 const EXPORT_SECRET = process.env.COACHING_EXPORT_SECRET || '';
 
@@ -21,6 +23,23 @@ export interface ResolvedAppUser {
   appUserId: string;
   name: string | null;
   email: string;
+}
+
+export type WeightTrend = 'up' | 'down' | 'flat';
+
+/** Lightweight triage row for the coach hub client list (matches backend). */
+export interface CoachingSnapshot {
+  appUserId: string;
+  name: string | null;
+  goal: string | null;
+  sex: string | null;
+  currentWeightLbs: number | null;
+  status: 'needs_attention' | 'on_track';
+  daysSinceLastCheckin: number;
+  weightTrend7d: WeightTrend;
+  adherencePct7d: number;
+  redFlags: string[];
+  lastCheckinAt: string | null;
 }
 
 /** Thrown when the bridge is misconfigured or the backend errors (not 404). */
@@ -39,15 +58,20 @@ function assertConfigured(): void {
   }
 }
 
-async function bridgeFetch(path: string): Promise<Response> {
+async function bridgeFetch(
+  path: string,
+  init?: { method?: string; body?: unknown },
+): Promise<Response> {
   assertConfigured();
   const base = BACKEND_URL.replace(/\/+$/, '');
   return fetch(`${base}${path}`, {
-    method: 'GET',
+    method: init?.method ?? 'GET',
     headers: {
       'X-Export-Token': EXPORT_SECRET,
       Accept: 'application/json',
+      ...(init?.body !== undefined ? { 'Content-Type': 'application/json' } : {}),
     },
+    body: init?.body !== undefined ? JSON.stringify(init.body) : undefined,
     // App data is read fresh each request; never cache on the Next.js side.
     cache: 'no-store',
   });
@@ -76,17 +100,39 @@ export async function resolveAppUser(email: string): Promise<ResolvedAppUser | n
 
 /**
  * Fetch the full read-only coaching export for a linked app user.
- * Used by the coach hub (Phase 1+). Returns the raw payload; shape is owned by
- * the backend's CoachingExport type.
+ * Used by the coach hub client-detail view (Phase 1+). Returns the raw payload
+ * typed as CoachingExport (shape owned by the backend).
  */
-export async function fetchCoachingExport(appUserId: string): Promise<unknown> {
+export async function fetchCoachingExport(appUserId: string): Promise<CoachingExport> {
   const res = await bridgeFetch(`/coaching-export/${encodeURIComponent(appUserId)}`);
   if (!res.ok) {
     throw new CoachingBridgeError(`export failed (${res.status})`, res.status);
   }
-  const json = (await res.json()) as { success: boolean; data?: unknown };
-  if (!json.success) {
-    throw new CoachingBridgeError('export returned success=false');
+  const json = (await res.json()) as { success: boolean; data?: CoachingExport };
+  if (!json.success || !json.data) {
+    throw new CoachingBridgeError('export returned no data');
+  }
+  return json.data;
+}
+
+/**
+ * Batch triage snapshots for the coach hub client list. One backend call for
+ * the whole roster. Returns [] for an empty roster without hitting the bridge.
+ */
+export async function fetchCoachingSnapshots(
+  appUserIds: string[],
+): Promise<CoachingSnapshot[]> {
+  if (!appUserIds.length) return [];
+  const res = await bridgeFetch('/coaching-export/snapshots', {
+    method: 'POST',
+    body: { appUserIds },
+  });
+  if (!res.ok) {
+    throw new CoachingBridgeError(`snapshots failed (${res.status})`, res.status);
+  }
+  const json = (await res.json()) as { success: boolean; data?: CoachingSnapshot[] };
+  if (!json.success || !json.data) {
+    throw new CoachingBridgeError('snapshots returned no data');
   }
   return json.data;
 }
