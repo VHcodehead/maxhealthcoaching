@@ -10,7 +10,8 @@ import { notFound, redirect } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-import { fetchCoachingExport, CoachingBridgeError } from '@/lib/coaching-bridge';
+import { fetchCoachingExport, fetchWorkoutTemplates, CoachingBridgeError, type WorkoutTemplate } from '@/lib/coaching-bridge';
+import { PushPanel } from '@/components/coaching-hub/push-panel';
 import {
   deriveFlags,
   deriveOneThing,
@@ -227,6 +228,14 @@ export default async function CoachHubClientPage({
   const lifting = deriveLiftingGrid(ex);
   const photos = collectPhotos(ex);
 
+  // Workout templates for the write-back training editor (best-effort).
+  let workouts: WorkoutTemplate[] = [];
+  try {
+    workouts = await fetchWorkoutTemplates(appUserId);
+  } catch {
+    workouts = [];
+  }
+
   const weightLbs = kgToLbs(profile.currentWeightKg);
   const needsReview = (flags.some((f) => f.severity === 'bad') || flags.length >= 2) && !reviewedThisWeek;
 
@@ -301,6 +310,20 @@ export default async function CoachHubClientPage({
         {/* Response composer */}
         <div className="mt-4">
           <ResponseComposer appUserId={appUserId} lastResponse={lastResponse} />
+        </div>
+
+        {/* Write-back: push to app */}
+        <div className="mt-4">
+          <PushPanel
+            appUserId={appUserId}
+            macros={{
+              target_protein: ex.nutrition.macros.target_protein,
+              target_carbs: ex.nutrition.macros.target_carbs,
+              target_fat: ex.nutrition.macros.target_fat,
+              final_calories: ex.nutrition.macros.final_calories,
+            }}
+            workouts={workouts}
+          />
         </div>
 
         <p className="mt-3 text-center text-[11px] text-slate-400">

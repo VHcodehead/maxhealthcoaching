@@ -136,3 +136,42 @@ export async function fetchCoachingSnapshots(
   }
   return json.data;
 }
+
+// ── Phase 5 write-back (server-side; called from coach-gated API routes) ──────
+
+export interface WorkoutTemplate {
+  id: number;
+  workout_name: string | null;
+  week_number: number | null;
+  day_number: number | null;
+  total_exercises: number | null;
+  coach_note: string | null;
+  exercises: Array<Record<string, unknown>>;
+}
+
+export async function fetchWorkoutTemplates(appUserId: string): Promise<WorkoutTemplate[]> {
+  const res = await bridgeFetch(`/coaching-export/${encodeURIComponent(appUserId)}/workouts`);
+  if (!res.ok) throw new CoachingBridgeError(`workouts failed (${res.status})`, res.status);
+  const json = (await res.json()) as { success: boolean; data?: WorkoutTemplate[] };
+  if (!json.success) throw new CoachingBridgeError('workouts returned success=false');
+  return json.data ?? [];
+}
+
+async function bridgePost(path: string, body: unknown): Promise<unknown> {
+  const res = await bridgeFetch(path, { method: 'POST', body });
+  const json = (await res.json().catch(() => ({}))) as { success?: boolean; data?: unknown; error?: string };
+  if (!res.ok || !json.success) {
+    throw new CoachingBridgeError(json.error ?? `push failed (${res.status})`, res.status);
+  }
+  return json.data;
+}
+
+export function pushMacros(body: Record<string, unknown>) {
+  return bridgePost('/coaching-export/push/macros', body);
+}
+export function pushCardio(body: Record<string, unknown>) {
+  return bridgePost('/coaching-export/push/cardio', body);
+}
+export function pushTraining(templateId: number, body: Record<string, unknown>) {
+  return bridgePost(`/coaching-export/push/training/${templateId}`, body);
+}
