@@ -26,6 +26,8 @@ import {
   ComparisonTable,
   DailyGridPanel,
   LiftingGridPanel,
+  DeepCheckinReview,
+  type DeepCheckinView,
 } from '@/components/coaching-hub/panels';
 import { ClientDetailTabs, type HubPhoto } from '@/components/coaching-hub/client-detail-tabs';
 import type { CoachingExport } from '@/lib/coaching-types';
@@ -88,9 +90,44 @@ export default async function CoachHubClientPage({
   // Only linked app users are viewable.
   const link = await prisma.appLink.findFirst({
     where: { appUserId, verifiedAt: { not: null } },
-    select: { id: true, isPrep: true, isEnhanced: true },
+    select: { id: true, userId: true, isPrep: true, isEnhanced: true },
   });
   if (!link) notFound();
+
+  // Portal deep check-ins (prep_checkins) for this linked client — last two.
+  const deepRows = await prisma.prepCheckin.findMany({
+    where: { userId: link.userId },
+    orderBy: { weekOf: 'desc' },
+    take: 2,
+  });
+  const toView = (r: (typeof deepRows)[number] | undefined): DeepCheckinView | null =>
+    r
+      ? {
+          weekOf: new Date(r.weekOf).toISOString().slice(0, 10),
+          weight: r.weight,
+          hunger: r.hunger,
+          stress: r.stress,
+          energyMotivation: r.energyMotivation,
+          sleepDeclined: r.sleepDeclined,
+          sleepDeclinedWhy: r.sleepDeclinedWhy,
+          strengthTrend: r.strengthTrend,
+          exerciseIssues: r.exerciseIssues,
+          digestionIssues: r.digestionIssues,
+          untrackedMeals: r.untrackedMeals,
+          cardioCompleted: r.cardioCompleted,
+          win: r.win,
+          didntGoWell: r.didntGoWell,
+          otherInfo: r.otherInfo,
+          fastedBP: r.fastedBP,
+          fastedGlucose: r.fastedGlucose,
+          waistCircumference: r.waistCircumference,
+          avgSteps: r.avgSteps,
+          avgRestingHR: r.avgRestingHR,
+          menstrualStatus: r.menstrualStatus,
+        }
+      : null;
+  const deepCur = toView(deepRows[0]);
+  const deepPrev = toView(deepRows[1]);
 
   let ex: CoachingExport | null = null;
   let bridgeDown = false;
@@ -179,7 +216,12 @@ export default async function CoachHubClientPage({
         {/* Tabs */}
         <GlassCard className="mt-4 p-5">
           <ClientDetailTabs
-            weeklyReview={<ComparisonTable window={comparison.window} rows={comparison.rows} />}
+            weeklyReview={
+              <div className="space-y-6">
+                <ComparisonTable window={comparison.window} rows={comparison.rows} />
+                <DeepCheckinReview cur={deepCur} prev={deepPrev} />
+              </div>
+            }
             daily={<DailyGridPanel grid={dailyGrid} />}
             lifting={<LiftingGridPanel exercises={lifting} />}
             biometrics={<BiometricsPanel ex={ex} />}

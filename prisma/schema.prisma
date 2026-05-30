@@ -38,6 +38,7 @@ model User {
   emailVerificationTokens EmailVerificationToken[]
   appLink                 AppLink?
   appLinkVerifications    AppLinkVerification[]
+  prepCheckins            PrepCheckin[]
 
   @@map("users")
 }
@@ -489,6 +490,61 @@ model AppLink {
 
   @@index([appUserId])
   @@map("app_links")
+}
+
+// Unified Coaching Hub — Phase 2. Deep weekly check-in for prep/coached
+// clients. Richer than the app's light check-in; lives in training-website
+// Postgres. One row per (user, weekOf).
+model PrepCheckin {
+  id     String   @id @default(uuid())
+  userId String   @map("user_id")
+  weekOf DateTime @map("week_of") @db.Date
+
+  // Body
+  weight              Float?  @map("weight") // LBS
+  waistCircumference  Float?  @map("waist_circumference")
+  caliperSites        String? @map("caliper_sites")
+  avgSteps            Int?    @map("avg_steps")
+
+  // Recovery
+  sleepDeclined   Boolean? @map("sleep_declined")
+  sleepDeclinedWhy String? @map("sleep_declined_why")
+  avgRestingHR    Int?     @map("avg_resting_hr")
+  stress          Int?     @map("stress")            // 1-10
+  energyMotivation Int?    @map("energy_motivation") // 1-10
+
+  // Nutrition & digestion
+  untrackedMeals  String? @map("untracked_meals")
+  hunger          Int?    @map("hunger")             // 1-5
+  digestionIssues String? @map("digestion_issues")
+  fastedGlucose   Float?  @map("fasted_glucose")
+  fastedBP        String? @map("fasted_bp")
+
+  // Training
+  strengthTrend  String?  @map("strength_trend")
+  exerciseIssues String?  @map("exercise_issues")
+  cardioCompleted Boolean? @map("cardio_completed")
+
+  // Reflection
+  menstrualStatus String? @map("menstrual_status")
+  win             String? @map("win")
+  didntGoWell     String? @map("didnt_go_well")
+  otherInfo       String? @map("other_info")
+
+  // Photos (optional URLs; capture added with bloodwork uploads in Phase 3)
+  photoFront String? @map("photo_front")
+  photoSide1 String? @map("photo_side1")
+  photoSide2 String? @map("photo_side2")
+  photoBack  String? @map("photo_back")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, weekOf])
+  @@index([userId])
+  @@map("prep_checkins")
 }
 
 // Short-lived email-code challenge proving the client controls the app-account

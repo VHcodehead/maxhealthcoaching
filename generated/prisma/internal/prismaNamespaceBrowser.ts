@@ -74,6 +74,7 @@ export const ModelName = {
   SupplementCatalog: 'SupplementCatalog',
   PendingMacroAdjustment: 'PendingMacroAdjustment',
   AppLink: 'AppLink',
+  PrepCheckin: 'PrepCheckin',
   AppLinkVerification: 'AppLinkVerification'
 } as const
 
@@ -493,6 +494,42 @@ export const AppLinkScalarFieldEnum = {
 } as const
 
 export type AppLinkScalarFieldEnum = (typeof AppLinkScalarFieldEnum)[keyof typeof AppLinkScalarFieldEnum]
+
+
+export const PrepCheckinScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weekOf: 'weekOf',
+  weight: 'weight',
+  waistCircumference: 'waistCircumference',
+  caliperSites: 'caliperSites',
+  avgSteps: 'avgSteps',
+  sleepDeclined: 'sleepDeclined',
+  sleepDeclinedWhy: 'sleepDeclinedWhy',
+  avgRestingHR: 'avgRestingHR',
+  stress: 'stress',
+  energyMotivation: 'energyMotivation',
+  untrackedMeals: 'untrackedMeals',
+  hunger: 'hunger',
+  digestionIssues: 'digestionIssues',
+  fastedGlucose: 'fastedGlucose',
+  fastedBP: 'fastedBP',
+  strengthTrend: 'strengthTrend',
+  exerciseIssues: 'exerciseIssues',
+  cardioCompleted: 'cardioCompleted',
+  menstrualStatus: 'menstrualStatus',
+  win: 'win',
+  didntGoWell: 'didntGoWell',
+  otherInfo: 'otherInfo',
+  photoFront: 'photoFront',
+  photoSide1: 'photoSide1',
+  photoSide2: 'photoSide2',
+  photoBack: 'photoBack',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PrepCheckinScalarFieldEnum = (typeof PrepCheckinScalarFieldEnum)[keyof typeof PrepCheckinScalarFieldEnum]
 
 
 export const AppLinkVerificationScalarFieldEnum = {

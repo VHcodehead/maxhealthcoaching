@@ -133,6 +133,11 @@ export type PendingMacroAdjustment = Prisma.PendingMacroAdjustmentModel
  */
 export type AppLink = Prisma.AppLinkModel
 /**
+ * Model PrepCheckin
+ * 
+ */
+export type PrepCheckin = Prisma.PrepCheckinModel
+/**
  * Model AppLinkVerification
  * 
  */

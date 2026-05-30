@@ -407,6 +407,7 @@ export const ModelName = {
   SupplementCatalog: 'SupplementCatalog',
   PendingMacroAdjustment: 'PendingMacroAdjustment',
   AppLink: 'AppLink',
+  PrepCheckin: 'PrepCheckin',
   AppLinkVerification: 'AppLinkVerification'
 } as const
 
@@ -423,7 +424,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "coachingApplication" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment" | "appLink" | "appLinkVerification"
+    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "coachingApplication" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment" | "appLink" | "prepCheckin" | "appLinkVerification"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2129,6 +2130,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PrepCheckin: {
+      payload: Prisma.$PrepCheckinPayload<ExtArgs>
+      fields: Prisma.PrepCheckinFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PrepCheckinFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PrepCheckinFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        findFirst: {
+          args: Prisma.PrepCheckinFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PrepCheckinFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        findMany: {
+          args: Prisma.PrepCheckinFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>[]
+        }
+        create: {
+          args: Prisma.PrepCheckinCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        createMany: {
+          args: Prisma.PrepCheckinCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PrepCheckinCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>[]
+        }
+        delete: {
+          args: Prisma.PrepCheckinDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        update: {
+          args: Prisma.PrepCheckinUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        deleteMany: {
+          args: Prisma.PrepCheckinDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PrepCheckinUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PrepCheckinUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>[]
+        }
+        upsert: {
+          args: Prisma.PrepCheckinUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        aggregate: {
+          args: Prisma.PrepCheckinAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePrepCheckin>
+        }
+        groupBy: {
+          args: Prisma.PrepCheckinGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PrepCheckinGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PrepCheckinCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PrepCheckinCountAggregateOutputType> | number
+        }
+      }
+    }
     AppLinkVerification: {
       payload: Prisma.$AppLinkVerificationPayload<ExtArgs>
       fields: Prisma.AppLinkVerificationFieldRefs
@@ -2644,6 +2719,42 @@ export const AppLinkScalarFieldEnum = {
 export type AppLinkScalarFieldEnum = (typeof AppLinkScalarFieldEnum)[keyof typeof AppLinkScalarFieldEnum]
 
 
+export const PrepCheckinScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weekOf: 'weekOf',
+  weight: 'weight',
+  waistCircumference: 'waistCircumference',
+  caliperSites: 'caliperSites',
+  avgSteps: 'avgSteps',
+  sleepDeclined: 'sleepDeclined',
+  sleepDeclinedWhy: 'sleepDeclinedWhy',
+  avgRestingHR: 'avgRestingHR',
+  stress: 'stress',
+  energyMotivation: 'energyMotivation',
+  untrackedMeals: 'untrackedMeals',
+  hunger: 'hunger',
+  digestionIssues: 'digestionIssues',
+  fastedGlucose: 'fastedGlucose',
+  fastedBP: 'fastedBP',
+  strengthTrend: 'strengthTrend',
+  exerciseIssues: 'exerciseIssues',
+  cardioCompleted: 'cardioCompleted',
+  menstrualStatus: 'menstrualStatus',
+  win: 'win',
+  didntGoWell: 'didntGoWell',
+  otherInfo: 'otherInfo',
+  photoFront: 'photoFront',
+  photoSide1: 'photoSide1',
+  photoSide2: 'photoSide2',
+  photoBack: 'photoBack',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PrepCheckinScalarFieldEnum = (typeof PrepCheckinScalarFieldEnum)[keyof typeof PrepCheckinScalarFieldEnum]
+
+
 export const AppLinkVerificationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -2906,6 +3017,7 @@ export type GlobalOmitConfig = {
   supplementCatalog?: Prisma.SupplementCatalogOmit
   pendingMacroAdjustment?: Prisma.PendingMacroAdjustmentOmit
   appLink?: Prisma.AppLinkOmit
+  prepCheckin?: Prisma.PrepCheckinOmit
   appLinkVerification?: Prisma.AppLinkVerificationOmit
 }
 

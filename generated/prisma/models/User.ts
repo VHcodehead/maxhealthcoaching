@@ -206,6 +206,7 @@ export type UserWhereInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenListRelationFilter
   appLink?: Prisma.XOR<Prisma.AppLinkNullableScalarRelationFilter, Prisma.AppLinkWhereInput> | null
   appLinkVerifications?: Prisma.AppLinkVerificationListRelationFilter
+  prepCheckins?: Prisma.PrepCheckinListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -238,6 +239,7 @@ export type UserOrderByWithRelationInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenOrderByRelationAggregateInput
   appLink?: Prisma.AppLinkOrderByWithRelationInput
   appLinkVerifications?: Prisma.AppLinkVerificationOrderByRelationAggregateInput
+  prepCheckins?: Prisma.PrepCheckinOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -273,6 +275,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   emailVerificationTokens?: Prisma.EmailVerificationTokenListRelationFilter
   appLink?: Prisma.XOR<Prisma.AppLinkNullableScalarRelationFilter, Prisma.AppLinkWhereInput> | null
   appLinkVerifications?: Prisma.AppLinkVerificationListRelationFilter
+  prepCheckins?: Prisma.PrepCheckinListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -327,6 +330,7 @@ export type UserCreateInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -359,6 +363,7 @@ export type UserUncheckedCreateInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -391,6 +396,7 @@ export type UserUpdateInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -423,6 +429,7 @@ export type UserUncheckedUpdateInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -821,6 +828,20 @@ export type UserUpdateOneRequiredWithoutAppLinkNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAppLinkInput, Prisma.UserUpdateWithoutAppLinkInput>, Prisma.UserUncheckedUpdateWithoutAppLinkInput>
 }
 
+export type UserCreateNestedOneWithoutPrepCheckinsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPrepCheckinsInput, Prisma.UserUncheckedCreateWithoutPrepCheckinsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrepCheckinsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPrepCheckinsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPrepCheckinsInput, Prisma.UserUncheckedCreateWithoutPrepCheckinsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrepCheckinsInput
+  upsert?: Prisma.UserUpsertWithoutPrepCheckinsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPrepCheckinsInput, Prisma.UserUpdateWithoutPrepCheckinsInput>, Prisma.UserUncheckedUpdateWithoutPrepCheckinsInput>
+}
+
 export type UserCreateNestedOneWithoutAppLinkVerificationsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutAppLinkVerificationsInput, Prisma.UserUncheckedCreateWithoutAppLinkVerificationsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutAppLinkVerificationsInput
@@ -864,6 +885,7 @@ export type UserCreateWithoutPasswordResetTokensInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPasswordResetTokensInput = {
@@ -895,6 +917,7 @@ export type UserUncheckedCreateWithoutPasswordResetTokensInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPasswordResetTokensInput = {
@@ -942,6 +965,7 @@ export type UserUpdateWithoutPasswordResetTokensInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPasswordResetTokensInput = {
@@ -973,6 +997,7 @@ export type UserUncheckedUpdateWithoutPasswordResetTokensInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutEmailVerificationTokensInput = {
@@ -1004,6 +1029,7 @@ export type UserCreateWithoutEmailVerificationTokensInput = {
   passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEmailVerificationTokensInput = {
@@ -1035,6 +1061,7 @@ export type UserUncheckedCreateWithoutEmailVerificationTokensInput = {
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEmailVerificationTokensInput = {
@@ -1082,6 +1109,7 @@ export type UserUpdateWithoutEmailVerificationTokensInput = {
   passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEmailVerificationTokensInput = {
@@ -1113,6 +1141,7 @@ export type UserUncheckedUpdateWithoutEmailVerificationTokensInput = {
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProfileInput = {
@@ -1144,6 +1173,7 @@ export type UserCreateWithoutProfileInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -1175,6 +1205,7 @@ export type UserUncheckedCreateWithoutProfileInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -1222,6 +1253,7 @@ export type UserUpdateWithoutProfileInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -1253,6 +1285,7 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOnboardingResponsesInput = {
@@ -1284,6 +1317,7 @@ export type UserCreateWithoutOnboardingResponsesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOnboardingResponsesInput = {
@@ -1315,6 +1349,7 @@ export type UserUncheckedCreateWithoutOnboardingResponsesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOnboardingResponsesInput = {
@@ -1362,6 +1397,7 @@ export type UserUpdateWithoutOnboardingResponsesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOnboardingResponsesInput = {
@@ -1393,6 +1429,7 @@ export type UserUncheckedUpdateWithoutOnboardingResponsesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMacroTargetsInput = {
@@ -1424,6 +1461,7 @@ export type UserCreateWithoutMacroTargetsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMacroTargetsInput = {
@@ -1455,6 +1493,7 @@ export type UserUncheckedCreateWithoutMacroTargetsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMacroTargetsInput = {
@@ -1502,6 +1541,7 @@ export type UserUpdateWithoutMacroTargetsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMacroTargetsInput = {
@@ -1533,6 +1573,7 @@ export type UserUncheckedUpdateWithoutMacroTargetsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMealPlansInput = {
@@ -1564,6 +1605,7 @@ export type UserCreateWithoutMealPlansInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMealPlansInput = {
@@ -1595,6 +1637,7 @@ export type UserUncheckedCreateWithoutMealPlansInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMealPlansInput = {
@@ -1642,6 +1685,7 @@ export type UserUpdateWithoutMealPlansInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMealPlansInput = {
@@ -1673,6 +1717,7 @@ export type UserUncheckedUpdateWithoutMealPlansInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTrainingPlansInput = {
@@ -1704,6 +1749,7 @@ export type UserCreateWithoutTrainingPlansInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTrainingPlansInput = {
@@ -1735,6 +1781,7 @@ export type UserUncheckedCreateWithoutTrainingPlansInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTrainingPlansInput = {
@@ -1782,6 +1829,7 @@ export type UserUpdateWithoutTrainingPlansInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTrainingPlansInput = {
@@ -1813,6 +1861,7 @@ export type UserUncheckedUpdateWithoutTrainingPlansInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCheckInsInput = {
@@ -1844,6 +1893,7 @@ export type UserCreateWithoutCheckInsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCheckInsInput = {
@@ -1875,6 +1925,7 @@ export type UserUncheckedCreateWithoutCheckInsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCheckInsInput = {
@@ -1922,6 +1973,7 @@ export type UserUpdateWithoutCheckInsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCheckInsInput = {
@@ -1953,6 +2005,7 @@ export type UserUncheckedUpdateWithoutCheckInsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProgressPhotosInput = {
@@ -1984,6 +2037,7 @@ export type UserCreateWithoutProgressPhotosInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProgressPhotosInput = {
@@ -2015,6 +2069,7 @@ export type UserUncheckedCreateWithoutProgressPhotosInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProgressPhotosInput = {
@@ -2062,6 +2117,7 @@ export type UserUpdateWithoutProgressPhotosInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProgressPhotosInput = {
@@ -2093,6 +2149,7 @@ export type UserUncheckedUpdateWithoutProgressPhotosInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReferralsMadeInput = {
@@ -2124,6 +2181,7 @@ export type UserCreateWithoutReferralsMadeInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReferralsMadeInput = {
@@ -2155,6 +2213,7 @@ export type UserUncheckedCreateWithoutReferralsMadeInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReferralsMadeInput = {
@@ -2191,6 +2250,7 @@ export type UserCreateWithoutReferralsReceivedInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReferralsReceivedInput = {
@@ -2222,6 +2282,7 @@ export type UserUncheckedCreateWithoutReferralsReceivedInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReferralsReceivedInput = {
@@ -2269,6 +2330,7 @@ export type UserUpdateWithoutReferralsMadeInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReferralsMadeInput = {
@@ -2300,6 +2362,7 @@ export type UserUncheckedUpdateWithoutReferralsMadeInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutReferralsReceivedInput = {
@@ -2342,6 +2405,7 @@ export type UserUpdateWithoutReferralsReceivedInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReferralsReceivedInput = {
@@ -2373,6 +2437,7 @@ export type UserUncheckedUpdateWithoutReferralsReceivedInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutBlogPostsInput = {
@@ -2404,6 +2469,7 @@ export type UserCreateWithoutBlogPostsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBlogPostsInput = {
@@ -2435,6 +2501,7 @@ export type UserUncheckedCreateWithoutBlogPostsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBlogPostsInput = {
@@ -2482,6 +2549,7 @@ export type UserUpdateWithoutBlogPostsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBlogPostsInput = {
@@ -2513,6 +2581,7 @@ export type UserUncheckedUpdateWithoutBlogPostsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTransformationsInput = {
@@ -2544,6 +2613,7 @@ export type UserCreateWithoutTransformationsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTransformationsInput = {
@@ -2575,6 +2645,7 @@ export type UserUncheckedCreateWithoutTransformationsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTransformationsInput = {
@@ -2622,6 +2693,7 @@ export type UserUpdateWithoutTransformationsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTransformationsInput = {
@@ -2653,6 +2725,7 @@ export type UserUncheckedUpdateWithoutTransformationsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCoachSettingsInput = {
@@ -2684,6 +2757,7 @@ export type UserCreateWithoutCoachSettingsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCoachSettingsInput = {
@@ -2715,6 +2789,7 @@ export type UserUncheckedCreateWithoutCoachSettingsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCoachSettingsInput = {
@@ -2762,6 +2837,7 @@ export type UserUpdateWithoutCoachSettingsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCoachSettingsInput = {
@@ -2793,6 +2869,7 @@ export type UserUncheckedUpdateWithoutCoachSettingsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -2824,6 +2901,7 @@ export type UserCreateWithoutNotificationsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -2855,6 +2933,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -2902,6 +2981,7 @@ export type UserUpdateWithoutNotificationsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -2933,6 +3013,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutClientNotesInput = {
@@ -2964,6 +3045,7 @@ export type UserCreateWithoutClientNotesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutClientNotesInput = {
@@ -2995,6 +3077,7 @@ export type UserUncheckedCreateWithoutClientNotesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutClientNotesInput = {
@@ -3031,6 +3114,7 @@ export type UserCreateWithoutCoachNotesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCoachNotesInput = {
@@ -3062,6 +3146,7 @@ export type UserUncheckedCreateWithoutCoachNotesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCoachNotesInput = {
@@ -3109,6 +3194,7 @@ export type UserUpdateWithoutClientNotesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClientNotesInput = {
@@ -3140,6 +3226,7 @@ export type UserUncheckedUpdateWithoutClientNotesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutCoachNotesInput = {
@@ -3182,6 +3269,7 @@ export type UserUpdateWithoutCoachNotesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCoachNotesInput = {
@@ -3213,6 +3301,7 @@ export type UserUncheckedUpdateWithoutCoachNotesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSentMessagesInput = {
@@ -3244,6 +3333,7 @@ export type UserCreateWithoutSentMessagesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -3275,6 +3365,7 @@ export type UserUncheckedCreateWithoutSentMessagesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -3311,6 +3402,7 @@ export type UserCreateWithoutReceivedMessagesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReceivedMessagesInput = {
@@ -3342,6 +3434,7 @@ export type UserUncheckedCreateWithoutReceivedMessagesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReceivedMessagesInput = {
@@ -3389,6 +3482,7 @@ export type UserUpdateWithoutSentMessagesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -3420,6 +3514,7 @@ export type UserUncheckedUpdateWithoutSentMessagesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutReceivedMessagesInput = {
@@ -3462,6 +3557,7 @@ export type UserUpdateWithoutReceivedMessagesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -3493,6 +3589,7 @@ export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutClientSupplementsInput = {
@@ -3524,6 +3621,7 @@ export type UserCreateWithoutClientSupplementsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutClientSupplementsInput = {
@@ -3555,6 +3653,7 @@ export type UserUncheckedCreateWithoutClientSupplementsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutClientSupplementsInput = {
@@ -3591,6 +3690,7 @@ export type UserCreateWithoutCoachSupplementsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCoachSupplementsInput = {
@@ -3622,6 +3722,7 @@ export type UserUncheckedCreateWithoutCoachSupplementsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCoachSupplementsInput = {
@@ -3669,6 +3770,7 @@ export type UserUpdateWithoutClientSupplementsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClientSupplementsInput = {
@@ -3700,6 +3802,7 @@ export type UserUncheckedUpdateWithoutClientSupplementsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutCoachSupplementsInput = {
@@ -3742,6 +3845,7 @@ export type UserUpdateWithoutCoachSupplementsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCoachSupplementsInput = {
@@ -3773,6 +3877,7 @@ export type UserUncheckedUpdateWithoutCoachSupplementsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPendingMacroAdjustmentsInput = {
@@ -3804,6 +3909,7 @@ export type UserCreateWithoutPendingMacroAdjustmentsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPendingMacroAdjustmentsInput = {
@@ -3835,6 +3941,7 @@ export type UserUncheckedCreateWithoutPendingMacroAdjustmentsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPendingMacroAdjustmentsInput = {
@@ -3882,6 +3989,7 @@ export type UserUpdateWithoutPendingMacroAdjustmentsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPendingMacroAdjustmentsInput = {
@@ -3913,6 +4021,7 @@ export type UserUncheckedUpdateWithoutPendingMacroAdjustmentsInput = {
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAppLinkInput = {
@@ -3944,6 +4053,7 @@ export type UserCreateWithoutAppLinkInput = {
   passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAppLinkInput = {
@@ -3975,6 +4085,7 @@ export type UserUncheckedCreateWithoutAppLinkInput = {
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAppLinkInput = {
@@ -4022,6 +4133,7 @@ export type UserUpdateWithoutAppLinkInput = {
   passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAppLinkInput = {
@@ -4052,6 +4164,151 @@ export type UserUncheckedUpdateWithoutAppLinkInput = {
   pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+  appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPrepCheckinsInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  emailVerified?: boolean
+  createdAt?: Date | string
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  onboardingResponses?: Prisma.OnboardingResponseCreateNestedManyWithoutUserInput
+  macroTargets?: Prisma.MacroTargetCreateNestedManyWithoutUserInput
+  mealPlans?: Prisma.MealPlanCreateNestedManyWithoutUserInput
+  trainingPlans?: Prisma.TrainingPlanCreateNestedManyWithoutUserInput
+  checkIns?: Prisma.CheckInCreateNestedManyWithoutUserInput
+  progressPhotos?: Prisma.ProgressPhotoCreateNestedManyWithoutUserInput
+  referralsMade?: Prisma.ReferralCreateNestedManyWithoutReferrerInput
+  referralsReceived?: Prisma.ReferralCreateNestedManyWithoutReferredInput
+  blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput
+  transformations?: Prisma.TransformationCreateNestedManyWithoutClientInput
+  coachSettings?: Prisma.CoachSettingsCreateNestedOneWithoutCoachInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  clientNotes?: Prisma.CoachNoteCreateNestedManyWithoutUserInput
+  coachNotes?: Prisma.CoachNoteCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageCreateNestedManyWithoutReceiverInput
+  clientSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutUserInput
+  coachSupplements?: Prisma.SupplementRecommendationCreateNestedManyWithoutCoachInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentCreateNestedManyWithoutUserInput
+  passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
+  appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
+  appLinkVerifications?: Prisma.AppLinkVerificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPrepCheckinsInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  emailVerified?: boolean
+  createdAt?: Date | string
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  onboardingResponses?: Prisma.OnboardingResponseUncheckedCreateNestedManyWithoutUserInput
+  macroTargets?: Prisma.MacroTargetUncheckedCreateNestedManyWithoutUserInput
+  mealPlans?: Prisma.MealPlanUncheckedCreateNestedManyWithoutUserInput
+  trainingPlans?: Prisma.TrainingPlanUncheckedCreateNestedManyWithoutUserInput
+  checkIns?: Prisma.CheckInUncheckedCreateNestedManyWithoutUserInput
+  progressPhotos?: Prisma.ProgressPhotoUncheckedCreateNestedManyWithoutUserInput
+  referralsMade?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferrerInput
+  referralsReceived?: Prisma.ReferralUncheckedCreateNestedManyWithoutReferredInput
+  blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput
+  transformations?: Prisma.TransformationUncheckedCreateNestedManyWithoutClientInput
+  coachSettings?: Prisma.CoachSettingsUncheckedCreateNestedOneWithoutCoachInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  clientNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutUserInput
+  coachNotes?: Prisma.CoachNoteUncheckedCreateNestedManyWithoutCoachInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutReceiverInput
+  clientSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutUserInput
+  coachSupplements?: Prisma.SupplementRecommendationUncheckedCreateNestedManyWithoutCoachInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedCreateNestedManyWithoutUserInput
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+  appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
+  appLinkVerifications?: Prisma.AppLinkVerificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPrepCheckinsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPrepCheckinsInput, Prisma.UserUncheckedCreateWithoutPrepCheckinsInput>
+}
+
+export type UserUpsertWithoutPrepCheckinsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPrepCheckinsInput, Prisma.UserUncheckedUpdateWithoutPrepCheckinsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPrepCheckinsInput, Prisma.UserUncheckedCreateWithoutPrepCheckinsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPrepCheckinsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPrepCheckinsInput, Prisma.UserUncheckedUpdateWithoutPrepCheckinsInput>
+}
+
+export type UserUpdateWithoutPrepCheckinsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  onboardingResponses?: Prisma.OnboardingResponseUpdateManyWithoutUserNestedInput
+  macroTargets?: Prisma.MacroTargetUpdateManyWithoutUserNestedInput
+  mealPlans?: Prisma.MealPlanUpdateManyWithoutUserNestedInput
+  trainingPlans?: Prisma.TrainingPlanUpdateManyWithoutUserNestedInput
+  checkIns?: Prisma.CheckInUpdateManyWithoutUserNestedInput
+  progressPhotos?: Prisma.ProgressPhotoUpdateManyWithoutUserNestedInput
+  referralsMade?: Prisma.ReferralUpdateManyWithoutReferrerNestedInput
+  referralsReceived?: Prisma.ReferralUpdateManyWithoutReferredNestedInput
+  blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput
+  transformations?: Prisma.TransformationUpdateManyWithoutClientNestedInput
+  coachSettings?: Prisma.CoachSettingsUpdateOneWithoutCoachNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  clientNotes?: Prisma.CoachNoteUpdateManyWithoutUserNestedInput
+  coachNotes?: Prisma.CoachNoteUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUpdateManyWithoutReceiverNestedInput
+  clientSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutUserNestedInput
+  coachSupplements?: Prisma.SupplementRecommendationUpdateManyWithoutCoachNestedInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUpdateManyWithoutUserNestedInput
+  passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
+  appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
+  appLinkVerifications?: Prisma.AppLinkVerificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPrepCheckinsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  onboardingResponses?: Prisma.OnboardingResponseUncheckedUpdateManyWithoutUserNestedInput
+  macroTargets?: Prisma.MacroTargetUncheckedUpdateManyWithoutUserNestedInput
+  mealPlans?: Prisma.MealPlanUncheckedUpdateManyWithoutUserNestedInput
+  trainingPlans?: Prisma.TrainingPlanUncheckedUpdateManyWithoutUserNestedInput
+  checkIns?: Prisma.CheckInUncheckedUpdateManyWithoutUserNestedInput
+  progressPhotos?: Prisma.ProgressPhotoUncheckedUpdateManyWithoutUserNestedInput
+  referralsMade?: Prisma.ReferralUncheckedUpdateManyWithoutReferrerNestedInput
+  referralsReceived?: Prisma.ReferralUncheckedUpdateManyWithoutReferredNestedInput
+  blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput
+  transformations?: Prisma.TransformationUncheckedUpdateManyWithoutClientNestedInput
+  coachSettings?: Prisma.CoachSettingsUncheckedUpdateOneWithoutCoachNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  clientNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutUserNestedInput
+  coachNotes?: Prisma.CoachNoteUncheckedUpdateManyWithoutCoachNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.MessageUncheckedUpdateManyWithoutReceiverNestedInput
+  clientSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutUserNestedInput
+  coachSupplements?: Prisma.SupplementRecommendationUncheckedUpdateManyWithoutCoachNestedInput
+  pendingMacroAdjustments?: Prisma.PendingMacroAdjustmentUncheckedUpdateManyWithoutUserNestedInput
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+  appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
   appLinkVerifications?: Prisma.AppLinkVerificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -4084,6 +4341,7 @@ export type UserCreateWithoutAppLinkVerificationsInput = {
   passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
   emailVerificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkCreateNestedOneWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAppLinkVerificationsInput = {
@@ -4115,6 +4373,7 @@ export type UserUncheckedCreateWithoutAppLinkVerificationsInput = {
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   appLink?: Prisma.AppLinkUncheckedCreateNestedOneWithoutUserInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAppLinkVerificationsInput = {
@@ -4162,6 +4421,7 @@ export type UserUpdateWithoutAppLinkVerificationsInput = {
   passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
   emailVerificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUpdateOneWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAppLinkVerificationsInput = {
@@ -4193,6 +4453,7 @@ export type UserUncheckedUpdateWithoutAppLinkVerificationsInput = {
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
   emailVerificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   appLink?: Prisma.AppLinkUncheckedUpdateOneWithoutUserNestedInput
+  prepCheckins?: Prisma.PrepCheckinUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -4222,6 +4483,7 @@ export type UserCountOutputType = {
   passwordResetTokens: number
   emailVerificationTokens: number
   appLinkVerifications: number
+  prepCheckins: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4246,6 +4508,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   passwordResetTokens?: boolean | UserCountOutputTypeCountPasswordResetTokensArgs
   emailVerificationTokens?: boolean | UserCountOutputTypeCountEmailVerificationTokensArgs
   appLinkVerifications?: boolean | UserCountOutputTypeCountAppLinkVerificationsArgs
+  prepCheckins?: boolean | UserCountOutputTypeCountPrepCheckinsArgs
 }
 
 /**
@@ -4405,6 +4668,13 @@ export type UserCountOutputTypeCountAppLinkVerificationsArgs<ExtArgs extends run
   where?: Prisma.AppLinkVerificationWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPrepCheckinsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PrepCheckinWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -4436,6 +4706,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   emailVerificationTokens?: boolean | Prisma.User$emailVerificationTokensArgs<ExtArgs>
   appLink?: boolean | Prisma.User$appLinkArgs<ExtArgs>
   appLinkVerifications?: boolean | Prisma.User$appLinkVerificationsArgs<ExtArgs>
+  prepCheckins?: boolean | Prisma.User$prepCheckinsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -4489,6 +4760,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   emailVerificationTokens?: boolean | Prisma.User$emailVerificationTokensArgs<ExtArgs>
   appLink?: boolean | Prisma.User$appLinkArgs<ExtArgs>
   appLinkVerifications?: boolean | Prisma.User$appLinkVerificationsArgs<ExtArgs>
+  prepCheckins?: boolean | Prisma.User$prepCheckinsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -4521,6 +4793,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     emailVerificationTokens: Prisma.$EmailVerificationTokenPayload<ExtArgs>[]
     appLink: Prisma.$AppLinkPayload<ExtArgs> | null
     appLinkVerifications: Prisma.$AppLinkVerificationPayload<ExtArgs>[]
+    prepCheckins: Prisma.$PrepCheckinPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -4946,6 +5219,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   emailVerificationTokens<T extends Prisma.User$emailVerificationTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$emailVerificationTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmailVerificationTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   appLink<T extends Prisma.User$appLinkArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$appLinkArgs<ExtArgs>>): Prisma.Prisma__AppLinkClient<runtime.Types.Result.GetResult<Prisma.$AppLinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   appLinkVerifications<T extends Prisma.User$appLinkVerificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$appLinkVerificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppLinkVerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  prepCheckins<T extends Prisma.User$prepCheckinsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$prepCheckinsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PrepCheckinPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5926,6 +6200,30 @@ export type User$appLinkVerificationsArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.AppLinkVerificationScalarFieldEnum | Prisma.AppLinkVerificationScalarFieldEnum[]
+}
+
+/**
+ * User.prepCheckins
+ */
+export type User$prepCheckinsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PrepCheckin
+   */
+  select?: Prisma.PrepCheckinSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PrepCheckin
+   */
+  omit?: Prisma.PrepCheckinOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PrepCheckinInclude<ExtArgs> | null
+  where?: Prisma.PrepCheckinWhereInput
+  orderBy?: Prisma.PrepCheckinOrderByWithRelationInput | Prisma.PrepCheckinOrderByWithRelationInput[]
+  cursor?: Prisma.PrepCheckinWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PrepCheckinScalarFieldEnum | Prisma.PrepCheckinScalarFieldEnum[]
 }
 
 /**
