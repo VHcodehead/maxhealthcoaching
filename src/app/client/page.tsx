@@ -34,7 +34,7 @@ export default async function ClientHome() {
 
   const link = await prisma.appLink.findFirst({
     where: { userId, verifiedAt: { not: null } },
-    select: { id: true, isPrep: true },
+    select: { id: true, isPrep: true, isEnhanced: true },
   });
 
   if (!link) {
@@ -104,6 +104,16 @@ export default async function ClientHome() {
         <span className="font-semibold">{cur ? 'Update this week’s check-in' : 'Start weekly check-in'}</span>
         <ArrowRight className="size-5" />
       </Link>
+
+      {link.isEnhanced && (
+        <Link
+          href="/client/enhancement"
+          className="mt-3 flex items-center justify-between rounded-2xl border border-white/70 bg-white/60 px-5 py-4 text-slate-800 backdrop-blur-xl hover:bg-white/80"
+        >
+          <span className="font-medium">Enhancement & bloodwork</span>
+          <ArrowRight className="size-5 text-slate-400" />
+        </Link>
+      )}
     </div>
   );
 }

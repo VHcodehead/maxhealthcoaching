@@ -138,6 +138,21 @@ export type AppLink = Prisma.AppLinkModel
  */
 export type PrepCheckin = Prisma.PrepCheckinModel
 /**
+ * Model EnhancementCheckin
+ * 
+ */
+export type EnhancementCheckin = Prisma.EnhancementCheckinModel
+/**
+ * Model EnhancementProtocol
+ * 
+ */
+export type EnhancementProtocol = Prisma.EnhancementProtocolModel
+/**
+ * Model BloodworkUpload
+ * 
+ */
+export type BloodworkUpload = Prisma.BloodworkUploadModel
+/**
  * Model AppLinkVerification
  * 
  */

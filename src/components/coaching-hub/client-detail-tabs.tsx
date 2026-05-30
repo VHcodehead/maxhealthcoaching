@@ -22,12 +22,16 @@ export function ClientDetailTabs({
   lifting,
   biometrics,
   photos,
+  enhancement,
+  labs,
 }: {
   weeklyReview: React.ReactNode;
   daily: React.ReactNode;
   lifting: React.ReactNode;
   biometrics: React.ReactNode;
   photos: HubPhoto[];
+  enhancement?: React.ReactNode;
+  labs?: React.ReactNode;
 }) {
   return (
     <Tabs defaultValue="weekly" className="w-full">
@@ -37,6 +41,8 @@ export function ClientDetailTabs({
         <TabsTrigger value="lifting">Lifting</TabsTrigger>
         <TabsTrigger value="biometrics">Biometrics</TabsTrigger>
         <TabsTrigger value="photos">Photos</TabsTrigger>
+        {enhancement && <TabsTrigger value="enhancement">Enhancement</TabsTrigger>}
+        {labs && <TabsTrigger value="labs">Labs</TabsTrigger>}
       </TabsList>
       <TabsContent value="weekly">{weeklyReview}</TabsContent>
       <TabsContent value="daily">{daily}</TabsContent>
@@ -45,6 +51,8 @@ export function ClientDetailTabs({
       <TabsContent value="photos">
         <PhotoCompare photos={photos} />
       </TabsContent>
+      {enhancement && <TabsContent value="enhancement">{enhancement}</TabsContent>}
+      {labs && <TabsContent value="labs">{labs}</TabsContent>}
     </Tabs>
   );
 }

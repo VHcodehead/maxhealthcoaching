@@ -27,9 +27,14 @@ import {
   DailyGridPanel,
   LiftingGridPanel,
   DeepCheckinReview,
+  EnhancementReview,
+  LabsPanel,
   type DeepCheckinView,
+  type LabUploadView,
+  type LabMarkerView,
 } from '@/components/coaching-hub/panels';
 import { ClientDetailTabs, type HubPhoto } from '@/components/coaching-hub/client-detail-tabs';
+import { buildEnhancementReview } from '@/lib/coaching-enhancement-view';
 import type { CoachingExport } from '@/lib/coaching-types';
 
 export const dynamic = 'force-dynamic';
@@ -90,7 +95,7 @@ export default async function CoachHubClientPage({
   // Only linked app users are viewable.
   const link = await prisma.appLink.findFirst({
     where: { appUserId, verifiedAt: { not: null } },
-    select: { id: true, userId: true, isPrep: true, isEnhanced: true },
+    select: { id: true, userId: true, isPrep: true, isEnhanced: true, sex: true },
   });
   if (!link) notFound();
 
@@ -128,6 +133,50 @@ export default async function CoachHubClientPage({
       : null;
   const deepCur = toView(deepRows[0]);
   const deepPrev = toView(deepRows[1]);
+
+  // Enhancement + labs (only when the client is flagged enhanced).
+  let enhancementNode: React.ReactNode = null;
+  let labsNode: React.ReactNode = null;
+  if (link.isEnhanced) {
+    const [enhRow, protocols, uploads] = await Promise.all([
+      prisma.enhancementCheckin.findFirst({ where: { userId: link.userId }, orderBy: { weekOf: 'desc' } }),
+      prisma.enhancementProtocol.findMany({ where: { userId: link.userId, active: true }, orderBy: { createdAt: 'desc' } }),
+      prisma.bloodworkUpload.findMany({ where: { userId: link.userId }, orderBy: { uploadedAt: 'desc' }, take: 6 }),
+    ]);
+
+    const enhView = buildEnhancementReview(enhRow as Record<string, unknown> | null, link.sex);
+    enhancementNode = (
+      <div className="space-y-5">
+        <EnhancementReview data={enhView} />
+        {protocols.length > 0 && (
+          <div>
+            <h3 className="mb-2 text-sm font-semibold text-slate-700">Protocol</h3>
+            <div className="space-y-2">
+              {protocols.map((p) => (
+                <div key={p.id} className="rounded-xl border border-slate-200 bg-white/50 p-3 text-sm">
+                  <span className="font-medium text-slate-800">{p.name}</span>
+                  <span className="text-xs capitalize text-slate-400"> · {p.category}</span>
+                  <span className="text-slate-500"> — {[p.dose, p.frequency, p.timing].filter(Boolean).join(' · ') || '—'}</span>
+                  {p.coachGuidance && <div className="mt-1 text-xs text-emerald-700"><span className="font-semibold">Guidance:</span> {p.coachGuidance}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+
+    const uploadViews: LabUploadView[] = uploads.map((u) => ({
+      id: u.id,
+      labName: u.labName,
+      testDate: u.testDate ? new Date(u.testDate).toISOString().slice(0, 10) : null,
+      uploadedAt: new Date(u.uploadedAt).toISOString().slice(0, 10),
+      parseStatus: u.parseStatus,
+      outOfRangeCount: u.outOfRangeCount,
+      markers: Array.isArray(u.parsedMarkers) ? (u.parsedMarkers as unknown as LabMarkerView[]) : [],
+    }));
+    labsNode = <LabsPanel uploads={uploadViews} />;
+  }
 
   let ex: CoachingExport | null = null;
   let bridgeDown = false;
@@ -226,6 +275,8 @@ export default async function CoachHubClientPage({
             lifting={<LiftingGridPanel exercises={lifting} />}
             biometrics={<BiometricsPanel ex={ex} />}
             photos={photos}
+            enhancement={enhancementNode}
+            labs={labsNode}
           />
         </GlassCard>
 

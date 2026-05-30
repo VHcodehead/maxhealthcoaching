@@ -252,6 +252,161 @@ export function DailyGridPanel({ grid }: { grid: DailyGrid }) {
   );
 }
 
+// ── Enhancement scan review (coach) ───────────────────────────────────────────
+
+export interface EnhancementReviewData {
+  weekOf: string;
+  // Flattened scan: label → display value + whether it's a positive/abnormal signal.
+  groups: Array<{
+    title: string;
+    items: Array<{ label: string; value: string; flagged: boolean }>;
+  }>;
+  anythingOff: string | null;
+}
+
+export function EnhancementReview({ data }: { data: EnhancementReviewData | null }) {
+  if (!data) return <p className="text-sm text-slate-500">No enhancement scan submitted yet.</p>;
+  const flaggedItems = data.groups.flatMap((g) => g.items.filter((i) => i.flagged).map((i) => ({ ...i, group: g.title })));
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <h3 className="text-sm font-semibold text-slate-700">Enhancement scan</h3>
+        <span className="text-xs text-slate-400">week of {data.weekOf}</span>
+      </div>
+
+      {flaggedItems.length > 0 ? (
+        <div className="rounded-xl border border-rose-200 bg-rose-50/60 p-3">
+          <div className="text-[11px] font-bold uppercase tracking-wide text-rose-600">Flagged signals</div>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {flaggedItems.map((i) => (
+              <span key={`${i.group}-${i.label}`} className="rounded-full border border-rose-200 bg-white/70 px-2.5 py-1 text-xs font-medium text-rose-700">
+                {i.label}: {i.value}
+              </span>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 px-3 py-2 text-sm text-emerald-700">No abnormal signals reported.</div>
+      )}
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        {data.groups.map((g) => (
+          <div key={g.title} className="rounded-xl border border-slate-200 bg-white/50 p-3">
+            <div className="text-[11px] font-bold uppercase tracking-wide text-slate-400">{g.title}</div>
+            <dl className="mt-1.5 space-y-0.5 text-sm">
+              {g.items.map((i) => (
+                <div key={i.label} className="flex justify-between gap-2">
+                  <dt className="text-slate-500">{i.label}</dt>
+                  <dd className={cn('font-medium', i.flagged ? 'text-rose-600' : 'text-slate-800')}>{i.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        ))}
+      </div>
+
+      {data.anythingOff && (
+        <div className="rounded-xl border border-amber-200 bg-amber-50/60 p-3">
+          <div className="text-[11px] font-bold uppercase tracking-wide text-amber-600">Anything off</div>
+          <p className="mt-0.5 text-sm text-slate-800">{data.anythingOff}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Labs panel (coach) — out-of-range floats to top, red ──────────────────────
+
+export interface LabMarkerView {
+  name: string;
+  value: number | null;
+  unit: string | null;
+  refLow: number | null;
+  refHigh: number | null;
+  flag: 'low' | 'high' | 'normal' | 'unknown';
+}
+export interface LabUploadView {
+  id: string;
+  labName: string | null;
+  testDate: string | null;
+  uploadedAt: string;
+  parseStatus: string;
+  outOfRangeCount: number;
+  markers: LabMarkerView[];
+}
+
+export function LabsPanel({ uploads }: { uploads: LabUploadView[] }) {
+  if (!uploads.length) return <p className="text-sm text-slate-500">No bloodwork uploaded yet.</p>;
+  const latest = uploads[0];
+  const range = (m: LabMarkerView) =>
+    m.refLow != null && m.refHigh != null ? `${m.refLow}–${m.refHigh}` : m.refLow != null ? `>${m.refLow}` : m.refHigh != null ? `<${m.refHigh}` : '—';
+  const sorted = [...latest.markers].sort((a, b) => {
+    const oor = (x: LabMarkerView) => (x.flag === 'high' || x.flag === 'low' ? 0 : 1);
+    return oor(a) - oor(b);
+  });
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <h3 className="text-sm font-semibold text-slate-700">
+          Labs — {latest.labName ?? 'Lab'} {latest.testDate ? `· ${latest.testDate}` : ''}
+        </h3>
+        <span className={latest.outOfRangeCount > 0 ? 'text-xs font-semibold text-rose-600' : 'text-xs font-semibold text-emerald-600'}>
+          {latest.parseStatus === 'parsed' ? `${latest.outOfRangeCount} out of range` : latest.parseStatus}
+        </span>
+      </div>
+
+      {sorted.length > 0 ? (
+        <div className="overflow-hidden rounded-xl border border-slate-200/70">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-slate-50/80 text-xs uppercase tracking-wide text-slate-400">
+                <th className="px-3 py-2 text-left font-medium">Marker</th>
+                <th className="px-3 py-2 text-right font-medium">Value</th>
+                <th className="px-3 py-2 text-right font-medium">Range</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sorted.map((m) => {
+                const oor = m.flag === 'low' || m.flag === 'high';
+                return (
+                  <tr key={m.name} className={cn('border-t border-slate-100', oor && 'bg-rose-50/50')}>
+                    <td className="px-3 py-2 text-slate-700">
+                      {oor && <span className="mr-1 text-rose-600">⚠</span>}
+                      {m.name}
+                    </td>
+                    <td className={cn('px-3 py-2 text-right font-medium tabular-nums', oor ? 'text-rose-700' : 'text-slate-800')}>
+                      {m.value ?? '—'} {m.unit && <span className="text-xs text-slate-400">{m.unit}</span>}
+                      {m.flag === 'high' && <span className="ml-1 text-[10px] font-bold text-rose-600">HIGH</span>}
+                      {m.flag === 'low' && <span className="ml-1 text-[10px] font-bold text-rose-600">LOW</span>}
+                    </td>
+                    <td className="px-3 py-2 text-right text-slate-400">{range(m)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p className="text-sm text-slate-400">No parsed markers (file stored for manual review).</p>
+      )}
+
+      {uploads.length > 1 && (
+        <div className="space-y-1.5">
+          <h4 className="text-[11px] font-bold uppercase tracking-wide text-slate-400">History</h4>
+          {uploads.slice(1).map((u) => (
+            <div key={u.id} className="flex items-center justify-between rounded-lg border border-slate-200 bg-white/50 px-3 py-2 text-sm">
+              <span className="text-slate-600">{u.labName ?? 'Lab'} · {u.testDate ?? u.uploadedAt}</span>
+              <span className={u.outOfRangeCount > 0 ? 'text-rose-600' : 'text-emerald-600'}>{u.outOfRangeCount} OOR</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function LiftingGridPanel({ exercises }: { exercises: LiftingExercise[] }) {
   if (!exercises.length) return <p className="text-sm text-slate-500">No logged training sets yet.</p>;
   const trendMark = (t: LiftingExercise['volumeTrend']) =>

@@ -408,6 +408,9 @@ export const ModelName = {
   PendingMacroAdjustment: 'PendingMacroAdjustment',
   AppLink: 'AppLink',
   PrepCheckin: 'PrepCheckin',
+  EnhancementCheckin: 'EnhancementCheckin',
+  EnhancementProtocol: 'EnhancementProtocol',
+  BloodworkUpload: 'BloodworkUpload',
   AppLinkVerification: 'AppLinkVerification'
 } as const
 
@@ -424,7 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "coachingApplication" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment" | "appLink" | "prepCheckin" | "appLinkVerification"
+    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "coachingApplication" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment" | "appLink" | "prepCheckin" | "enhancementCheckin" | "enhancementProtocol" | "bloodworkUpload" | "appLinkVerification"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2204,6 +2207,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    EnhancementCheckin: {
+      payload: Prisma.$EnhancementCheckinPayload<ExtArgs>
+      fields: Prisma.EnhancementCheckinFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EnhancementCheckinFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EnhancementCheckinFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        findFirst: {
+          args: Prisma.EnhancementCheckinFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EnhancementCheckinFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        findMany: {
+          args: Prisma.EnhancementCheckinFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>[]
+        }
+        create: {
+          args: Prisma.EnhancementCheckinCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        createMany: {
+          args: Prisma.EnhancementCheckinCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EnhancementCheckinCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>[]
+        }
+        delete: {
+          args: Prisma.EnhancementCheckinDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        update: {
+          args: Prisma.EnhancementCheckinUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        deleteMany: {
+          args: Prisma.EnhancementCheckinDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EnhancementCheckinUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EnhancementCheckinUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>[]
+        }
+        upsert: {
+          args: Prisma.EnhancementCheckinUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        aggregate: {
+          args: Prisma.EnhancementCheckinAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEnhancementCheckin>
+        }
+        groupBy: {
+          args: Prisma.EnhancementCheckinGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnhancementCheckinGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EnhancementCheckinCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnhancementCheckinCountAggregateOutputType> | number
+        }
+      }
+    }
+    EnhancementProtocol: {
+      payload: Prisma.$EnhancementProtocolPayload<ExtArgs>
+      fields: Prisma.EnhancementProtocolFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EnhancementProtocolFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EnhancementProtocolFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        findFirst: {
+          args: Prisma.EnhancementProtocolFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EnhancementProtocolFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        findMany: {
+          args: Prisma.EnhancementProtocolFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>[]
+        }
+        create: {
+          args: Prisma.EnhancementProtocolCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        createMany: {
+          args: Prisma.EnhancementProtocolCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EnhancementProtocolCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>[]
+        }
+        delete: {
+          args: Prisma.EnhancementProtocolDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        update: {
+          args: Prisma.EnhancementProtocolUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        deleteMany: {
+          args: Prisma.EnhancementProtocolDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EnhancementProtocolUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EnhancementProtocolUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>[]
+        }
+        upsert: {
+          args: Prisma.EnhancementProtocolUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        aggregate: {
+          args: Prisma.EnhancementProtocolAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEnhancementProtocol>
+        }
+        groupBy: {
+          args: Prisma.EnhancementProtocolGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnhancementProtocolGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EnhancementProtocolCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnhancementProtocolCountAggregateOutputType> | number
+        }
+      }
+    }
+    BloodworkUpload: {
+      payload: Prisma.$BloodworkUploadPayload<ExtArgs>
+      fields: Prisma.BloodworkUploadFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BloodworkUploadFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BloodworkUploadFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        findFirst: {
+          args: Prisma.BloodworkUploadFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BloodworkUploadFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        findMany: {
+          args: Prisma.BloodworkUploadFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>[]
+        }
+        create: {
+          args: Prisma.BloodworkUploadCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        createMany: {
+          args: Prisma.BloodworkUploadCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BloodworkUploadCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>[]
+        }
+        delete: {
+          args: Prisma.BloodworkUploadDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        update: {
+          args: Prisma.BloodworkUploadUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        deleteMany: {
+          args: Prisma.BloodworkUploadDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BloodworkUploadUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BloodworkUploadUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>[]
+        }
+        upsert: {
+          args: Prisma.BloodworkUploadUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        aggregate: {
+          args: Prisma.BloodworkUploadAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBloodworkUpload>
+        }
+        groupBy: {
+          args: Prisma.BloodworkUploadGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BloodworkUploadGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BloodworkUploadCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BloodworkUploadCountAggregateOutputType> | number
+        }
+      }
+    }
     AppLinkVerification: {
       payload: Prisma.$AppLinkVerificationPayload<ExtArgs>
       fields: Prisma.AppLinkVerificationFieldRefs
@@ -2755,6 +2980,87 @@ export const PrepCheckinScalarFieldEnum = {
 export type PrepCheckinScalarFieldEnum = (typeof PrepCheckinScalarFieldEnum)[keyof typeof PrepCheckinScalarFieldEnum]
 
 
+export const EnhancementCheckinScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weekOf: 'weekOf',
+  nippleSensitivity: 'nippleSensitivity',
+  waterRetention: 'waterRetention',
+  moodSwings: 'moodSwings',
+  acne: 'acne',
+  hairShedding: 'hairShedding',
+  oilySkin: 'oilySkin',
+  aggression: 'aggression',
+  fastedBP: 'fastedBP',
+  restingHR: 'restingHR',
+  limbSwelling: 'limbSwelling',
+  shortnessOfBreath: 'shortnessOfBreath',
+  nausea: 'nausea',
+  appetiteDrop: 'appetiteDrop',
+  darkUrine: 'darkUrine',
+  ruqDiscomfort: 'ruqDiscomfort',
+  lethargy: 'lethargy',
+  fastedGlucose: 'fastedGlucose',
+  excessiveThirst: 'excessiveThirst',
+  siteSoreness: 'siteSoreness',
+  siteRedness: 'siteRedness',
+  siteLumps: 'siteLumps',
+  fever: 'fever',
+  libido: 'libido',
+  mood: 'mood',
+  anxiety: 'anxiety',
+  sleepQuality: 'sleepQuality',
+  nightSweats: 'nightSweats',
+  voiceChanges: 'voiceChanges',
+  hairGrowth: 'hairGrowth',
+  cycleDisruption: 'cycleDisruption',
+  clitoralChanges: 'clitoralChanges',
+  anythingOff: 'anythingOff',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EnhancementCheckinScalarFieldEnum = (typeof EnhancementCheckinScalarFieldEnum)[keyof typeof EnhancementCheckinScalarFieldEnum]
+
+
+export const EnhancementProtocolScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  category: 'category',
+  dose: 'dose',
+  doseUnit: 'doseUnit',
+  frequency: 'frequency',
+  timing: 'timing',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  clientReported: 'clientReported',
+  coachGuidance: 'coachGuidance',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EnhancementProtocolScalarFieldEnum = (typeof EnhancementProtocolScalarFieldEnum)[keyof typeof EnhancementProtocolScalarFieldEnum]
+
+
+export const BloodworkUploadScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  uploadedAt: 'uploadedAt',
+  labName: 'labName',
+  testDate: 'testDate',
+  filePath: 'filePath',
+  parsedMarkers: 'parsedMarkers',
+  outOfRangeCount: 'outOfRangeCount',
+  parseStatus: 'parseStatus',
+  coachNote: 'coachNote',
+  createdAt: 'createdAt'
+} as const
+
+export type BloodworkUploadScalarFieldEnum = (typeof BloodworkUploadScalarFieldEnum)[keyof typeof BloodworkUploadScalarFieldEnum]
+
+
 export const AppLinkVerificationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -3018,6 +3324,9 @@ export type GlobalOmitConfig = {
   pendingMacroAdjustment?: Prisma.PendingMacroAdjustmentOmit
   appLink?: Prisma.AppLinkOmit
   prepCheckin?: Prisma.PrepCheckinOmit
+  enhancementCheckin?: Prisma.EnhancementCheckinOmit
+  enhancementProtocol?: Prisma.EnhancementProtocolOmit
+  bloodworkUpload?: Prisma.BloodworkUploadOmit
   appLinkVerification?: Prisma.AppLinkVerificationOmit
 }
 
