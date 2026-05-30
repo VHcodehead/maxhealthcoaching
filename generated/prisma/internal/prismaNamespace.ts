@@ -411,6 +411,7 @@ export const ModelName = {
   EnhancementCheckin: 'EnhancementCheckin',
   EnhancementProtocol: 'EnhancementProtocol',
   BloodworkUpload: 'BloodworkUpload',
+  CoachResponse: 'CoachResponse',
   AppLinkVerification: 'AppLinkVerification'
 } as const
 
@@ -427,7 +428,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "coachingApplication" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment" | "appLink" | "prepCheckin" | "enhancementCheckin" | "enhancementProtocol" | "bloodworkUpload" | "appLinkVerification"
+    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "coachingApplication" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment" | "appLink" | "prepCheckin" | "enhancementCheckin" | "enhancementProtocol" | "bloodworkUpload" | "coachResponse" | "appLinkVerification"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2429,6 +2430,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CoachResponse: {
+      payload: Prisma.$CoachResponsePayload<ExtArgs>
+      fields: Prisma.CoachResponseFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CoachResponseFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CoachResponseFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        findFirst: {
+          args: Prisma.CoachResponseFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CoachResponseFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        findMany: {
+          args: Prisma.CoachResponseFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>[]
+        }
+        create: {
+          args: Prisma.CoachResponseCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        createMany: {
+          args: Prisma.CoachResponseCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CoachResponseCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>[]
+        }
+        delete: {
+          args: Prisma.CoachResponseDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        update: {
+          args: Prisma.CoachResponseUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        deleteMany: {
+          args: Prisma.CoachResponseDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CoachResponseUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CoachResponseUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>[]
+        }
+        upsert: {
+          args: Prisma.CoachResponseUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        aggregate: {
+          args: Prisma.CoachResponseAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCoachResponse>
+        }
+        groupBy: {
+          args: Prisma.CoachResponseGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CoachResponseGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CoachResponseCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CoachResponseCountAggregateOutputType> | number
+        }
+      }
+    }
     AppLinkVerification: {
       payload: Prisma.$AppLinkVerificationPayload<ExtArgs>
       fields: Prisma.AppLinkVerificationFieldRefs
@@ -3061,6 +3136,19 @@ export const BloodworkUploadScalarFieldEnum = {
 export type BloodworkUploadScalarFieldEnum = (typeof BloodworkUploadScalarFieldEnum)[keyof typeof BloodworkUploadScalarFieldEnum]
 
 
+export const CoachResponseScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weekOf: 'weekOf',
+  body: 'body',
+  route: 'route',
+  reviewed: 'reviewed',
+  createdAt: 'createdAt'
+} as const
+
+export type CoachResponseScalarFieldEnum = (typeof CoachResponseScalarFieldEnum)[keyof typeof CoachResponseScalarFieldEnum]
+
+
 export const AppLinkVerificationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -3327,6 +3415,7 @@ export type GlobalOmitConfig = {
   enhancementCheckin?: Prisma.EnhancementCheckinOmit
   enhancementProtocol?: Prisma.EnhancementProtocolOmit
   bloodworkUpload?: Prisma.BloodworkUploadOmit
+  coachResponse?: Prisma.CoachResponseOmit
   appLinkVerification?: Prisma.AppLinkVerificationOmit
 }
 

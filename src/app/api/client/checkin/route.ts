@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { rateLimit, type RateLimitConfig } from '@/lib/rate-limit';
+import { sendCoachAlertEmail } from '@/lib/email';
 
 const CHECKIN_LIMIT: RateLimitConfig = { windowMs: 60 * 60 * 1000, maxAttempts: 20 };
 
@@ -60,7 +61,7 @@ export async function POST(request: NextRequest) {
 
     const link = await prisma.appLink.findFirst({
       where: { userId, verifiedAt: { not: null } },
-      select: { id: true },
+      select: { id: true, appUserId: true },
     });
     if (!link) {
       return NextResponse.json(
@@ -91,6 +92,14 @@ export async function POST(request: NextRequest) {
       update: { ...data },
       create: { userId, weekOf, ...data },
     });
+
+    // Notify the coach (best-effort).
+    try {
+      const base = process.env.NEXTAUTH_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? '';
+      await sendCoachAlertEmail(session.user.name || 'A client', 'submitted a weekly check-in', `${base}/coach/hub/${link.appUserId}`);
+    } catch (e) {
+      console.error('[client/checkin] coach alert failed', e);
+    }
 
     return NextResponse.json({ success: true, id: saved.id, weekOf });
   } catch (err) {

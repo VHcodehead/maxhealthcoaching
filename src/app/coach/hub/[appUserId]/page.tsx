@@ -34,8 +34,15 @@ import {
   type LabMarkerView,
 } from '@/components/coaching-hub/panels';
 import { ClientDetailTabs, type HubPhoto } from '@/components/coaching-hub/client-detail-tabs';
+import { ResponseComposer } from '@/components/coaching-hub/response-composer';
 import { buildEnhancementReview } from '@/lib/coaching-enhancement-view';
 import type { CoachingExport } from '@/lib/coaching-types';
+
+function startOfWeekUTC(): Date {
+  const now = new Date();
+  const diffToMonday = (now.getUTCDay() + 6) % 7;
+  return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - diffToMonday));
+}
 
 export const dynamic = 'force-dynamic';
 
@@ -134,6 +141,17 @@ export default async function CoachHubClientPage({
   const deepCur = toView(deepRows[0]);
   const deepPrev = toView(deepRows[1]);
 
+  // Latest coach response (for the composer + reviewed-this-week state).
+  const lastResponseRow = await prisma.coachResponse.findFirst({
+    where: { userId: link.userId },
+    orderBy: { createdAt: 'desc' },
+  });
+  const reviewedThisWeek =
+    !!lastResponseRow && new Date(lastResponseRow.weekOf).getTime() >= startOfWeekUTC().getTime();
+  const lastResponse = lastResponseRow
+    ? { body: lastResponseRow.body, route: lastResponseRow.route, createdAt: lastResponseRow.createdAt.toISOString() }
+    : null;
+
   // Enhancement + labs (only when the client is flagged enhanced).
   let enhancementNode: React.ReactNode = null;
   let labsNode: React.ReactNode = null;
@@ -210,7 +228,7 @@ export default async function CoachHubClientPage({
   const photos = collectPhotos(ex);
 
   const weightLbs = kgToLbs(profile.currentWeightKg);
-  const needsReview = flags.some((f) => f.severity === 'bad') || flags.length >= 2;
+  const needsReview = (flags.some((f) => f.severity === 'bad') || flags.length >= 2) && !reviewedThisWeek;
 
   return (
     <div className="relative min-h-full">
@@ -279,6 +297,11 @@ export default async function CoachHubClientPage({
             labs={labsNode}
           />
         </GlassCard>
+
+        {/* Response composer */}
+        <div className="mt-4">
+          <ResponseComposer appUserId={appUserId} lastResponse={lastResponse} />
+        </div>
 
         <p className="mt-3 text-center text-[11px] text-slate-400">
           Read-only snapshot · generated {new Date(ex.exportMeta.generatedAt).toLocaleString()}

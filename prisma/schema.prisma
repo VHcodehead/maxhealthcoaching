@@ -42,6 +42,7 @@ model User {
   enhancementCheckins     EnhancementCheckin[]
   enhancementProtocols    EnhancementProtocol[]
   bloodworkUploads        BloodworkUpload[]
+  coachResponses          CoachResponse[]
 
   @@map("users")
 }
@@ -653,6 +654,24 @@ model BloodworkUpload {
 
   @@index([userId])
   @@map("bloodwork_uploads")
+}
+
+// Unified Coaching Hub — Phase 4. Coach's weekly response to a client, routed
+// to where the client should act (app plan change / portal note / enhancement).
+// Creating one marks that week reviewed. Pinned on the client's portal home.
+model CoachResponse {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  weekOf    DateTime @map("week_of") @db.Date
+  body      String   @map("body")
+  route     String   @default("portal") @map("route") // app | portal | enhancement
+  reviewed  Boolean  @default(true) @map("reviewed")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("coach_responses")
 }
 
 // Short-lived email-code challenge proving the client controls the app-account

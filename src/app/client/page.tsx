@@ -62,11 +62,10 @@ export default async function ClientHome() {
     );
   }
 
-  const recent = await prisma.prepCheckin.findMany({
-    where: { userId },
-    orderBy: { weekOf: 'desc' },
-    take: 2,
-  });
+  const [recent, coachNote] = await Promise.all([
+    prisma.prepCheckin.findMany({ where: { userId }, orderBy: { weekOf: 'desc' }, take: 2 }),
+    prisma.coachResponse.findFirst({ where: { userId }, orderBy: { createdAt: 'desc' } }),
+  ]);
   const cur = recent[0];
   const prev = recent[1];
 
@@ -79,8 +78,18 @@ export default async function ClientHome() {
         )}
       </div>
 
-      {cur ? (
+      {coachNote && (
         <GlassCard className="mt-6 p-5">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold uppercase tracking-wide text-emerald-600">Coach&rsquo;s note</span>
+            <span className="text-xs text-slate-400">{new Date(coachNote.createdAt).toLocaleDateString()}</span>
+          </div>
+          <p className="mt-1.5 text-sm text-slate-800">{coachNote.body}</p>
+        </GlassCard>
+      )}
+
+      {cur ? (
+        <GlassCard className="mt-4 p-5">
           <div className="mb-3 flex items-center justify-between">
             <h2 className="text-sm font-semibold text-slate-700">Your Week</h2>
             <span className="text-xs text-slate-400">week of {new Date(cur.weekOf).toISOString().slice(0, 10)}</span>

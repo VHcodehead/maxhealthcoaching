@@ -362,6 +362,42 @@ export async function sendCoachingApplicationConfirmation(
   });
 }
 
+// ── Unified Coaching Hub notifications (Phase 4) ──────────────────────────────
+
+const COACH_NOTIFY_EMAIL = process.env.COACH_NOTIFY_EMAIL ?? 'coach@integrativeaisolutions.com';
+
+/** Notify the coach that a client submitted something (check-in / bloodwork). */
+export async function sendCoachAlertEmail(
+  clientName: string,
+  what: string,
+  reviewUrl: string,
+): Promise<void> {
+  const html = buildBrandedHtml({
+    heading: `${escapeHtml(clientName)} — ${escapeHtml(what)}`,
+    name: 'Coach',
+    body: `${escapeHtml(clientName)} just ${escapeHtml(what)}. Open the coaching hub to review.`,
+    ctaText: 'Open hub',
+    ctaUrl: reviewUrl,
+  });
+  await sendEmail(COACH_NOTIFY_EMAIL, `${clientName} — ${what}`, html);
+}
+
+/** Notify a client that their coach posted feedback. */
+export async function sendClientFeedbackEmail(
+  to: string,
+  name: string,
+  portalUrl: string,
+): Promise<void> {
+  const html = buildBrandedHtml({
+    heading: 'Your coach posted feedback',
+    name,
+    body: "Your coach reviewed your week and left feedback. Open your portal to see what's next.",
+    ctaText: 'View feedback',
+    ctaUrl: portalUrl,
+  });
+  await sendEmail(to, 'Your coach posted feedback — MaxHealth Coaching', html);
+}
+
 export async function sendAppLinkCodeEmail(
   to: string,
   name: string,

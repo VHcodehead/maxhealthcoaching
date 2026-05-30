@@ -14,6 +14,7 @@ import { prisma } from '@/lib/db';
 import { rateLimit, type RateLimitConfig } from '@/lib/rate-limit';
 import { saveFile } from '@/lib/storage';
 import { parseBloodworkText, outOfRangeCount } from '@/lib/bloodwork-parser';
+import { sendCoachAlertEmail } from '@/lib/email';
 
 const LIMIT: RateLimitConfig = { windowMs: 60 * 60 * 1000, maxAttempts: 10 };
 const MAX_BYTES = 15 * 1024 * 1024; // 15MB
@@ -26,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     const link = await prisma.appLink.findFirst({
       where: { userId, verifiedAt: { not: null } },
-      select: { isEnhanced: true },
+      select: { isEnhanced: true, appUserId: true },
     });
     if (!link) return NextResponse.json({ error: 'Link your app account first.' }, { status: 403 });
     if (!link.isEnhanced) {
@@ -90,6 +91,14 @@ export async function POST(request: NextRequest) {
         parseStatus,
       },
     });
+
+    try {
+      const base = process.env.NEXTAUTH_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? '';
+      const detail = parseStatus === 'parsed' ? `uploaded bloodwork (${oorCount} out of range)` : 'uploaded bloodwork';
+      await sendCoachAlertEmail(session.user.name || 'A client', detail, `${base}/coach/hub/${link.appUserId}`);
+    } catch (e) {
+      console.error('[client/bloodwork] coach alert failed', e);
+    }
 
     return NextResponse.json({ success: true, id: saved.id, parseStatus, outOfRangeCount: oorCount });
   } catch (err) {

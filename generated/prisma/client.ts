@@ -175,6 +175,11 @@ export type EnhancementProtocol = Prisma.EnhancementProtocolModel
  */
 export type BloodworkUpload = Prisma.BloodworkUploadModel
 /**
+ * Model CoachResponse
+ * 
+ */
+export type CoachResponse = Prisma.CoachResponseModel
+/**
  * Model AppLinkVerification
  * 
  */

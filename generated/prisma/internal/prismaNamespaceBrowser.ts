@@ -78,6 +78,7 @@ export const ModelName = {
   EnhancementCheckin: 'EnhancementCheckin',
   EnhancementProtocol: 'EnhancementProtocol',
   BloodworkUpload: 'BloodworkUpload',
+  CoachResponse: 'CoachResponse',
   AppLinkVerification: 'AppLinkVerification'
 } as const
 
@@ -614,6 +615,19 @@ export const BloodworkUploadScalarFieldEnum = {
 } as const
 
 export type BloodworkUploadScalarFieldEnum = (typeof BloodworkUploadScalarFieldEnum)[keyof typeof BloodworkUploadScalarFieldEnum]
+
+
+export const CoachResponseScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weekOf: 'weekOf',
+  body: 'body',
+  route: 'route',
+  reviewed: 'reviewed',
+  createdAt: 'createdAt'
+} as const
+
+export type CoachResponseScalarFieldEnum = (typeof CoachResponseScalarFieldEnum)[keyof typeof CoachResponseScalarFieldEnum]
 
 
 export const AppLinkVerificationScalarFieldEnum = {
