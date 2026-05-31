@@ -6,8 +6,7 @@
 
 import { redirect } from 'next/navigation';
 import { auth } from '@/lib/auth';
-import { prisma } from '@/lib/db';
-import { fetchCoachingSnapshots, CoachingBridgeError } from '@/lib/coaching-bridge';
+import { fetchCoachingRoster, CoachingBridgeError } from '@/lib/coaching-bridge';
 import { HubBackdrop, GlassCard } from '@/components/coaching-hub/primitives';
 import { TriageList } from '@/components/coaching-hub/triage-list';
 
@@ -18,16 +17,15 @@ export default async function CoachHubPage() {
   if (!session?.user) redirect('/login');
   if (session.user.role !== 'coach') redirect('/dashboard');
 
-  const links = await prisma.appLink.findMany({
-    where: { verifiedAt: { not: null } },
-    select: { appUserId: true },
-  });
-  const appUserIds = links.map((l) => l.appUserId);
+  // Roster = the coach's EXISTING coach_clients links (legacy /admin dashboard).
+  // COACH_ADMIN_EMAIL maps the hub coach to their Supabase admin row when the
+  // maxhealthcoaching login differs from the admin email; falls back to session.
+  const coachEmail = process.env.COACH_ADMIN_EMAIL ?? session.user.email ?? '';
 
   let snapshots = null;
   let bridgeDown = false;
   try {
-    snapshots = await fetchCoachingSnapshots(appUserIds);
+    snapshots = await fetchCoachingRoster(coachEmail);
   } catch (err) {
     if (err instanceof CoachingBridgeError) bridgeDown = true;
     else throw err;
@@ -44,18 +42,18 @@ export default async function CoachHubPage() {
           </p>
         </header>
 
-        {appUserIds.length === 0 ? (
-          <GlassCard className="p-8 text-center">
-            <p className="text-sm text-slate-600">No clients have linked their app account yet.</p>
-            <p className="mt-1 text-xs text-slate-400">
-              Clients link from their portal under “Connect your app account.”
-            </p>
-          </GlassCard>
-        ) : bridgeDown ? (
+        {bridgeDown ? (
           <GlassCard className="p-8 text-center">
             <p className="text-sm text-slate-600">App data is temporarily unavailable.</p>
             <p className="mt-1 text-xs text-slate-400">
               The read bridge didn’t respond. Check COACHING_BACKEND_URL / COACHING_EXPORT_SECRET.
+            </p>
+          </GlassCard>
+        ) : (snapshots ?? []).length === 0 ? (
+          <GlassCard className="p-8 text-center">
+            <p className="text-sm text-slate-600">No active clients found on your roster.</p>
+            <p className="mt-1 text-xs text-slate-400">
+              The hub shows your active coach_clients links. Check COACH_ADMIN_EMAIL maps to your admin account.
             </p>
           </GlassCard>
         ) : (

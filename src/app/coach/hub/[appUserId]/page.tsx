@@ -10,7 +10,7 @@ import { notFound, redirect } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-import { fetchCoachingExport, fetchWorkoutTemplates, CoachingBridgeError, type WorkoutTemplate } from '@/lib/coaching-bridge';
+import { fetchCoachingExport, fetchWorkoutTemplates, coachOwnsClient, CoachingBridgeError, type WorkoutTemplate } from '@/lib/coaching-bridge';
 import { PushPanel } from '@/components/coaching-hub/push-panel';
 import {
   deriveFlags,
@@ -100,19 +100,31 @@ export default async function CoachHubClientPage({
   if (!session?.user) redirect('/login');
   if (session.user.role !== 'coach') redirect('/dashboard');
 
-  // Only linked app users are viewable.
+  // Viewable if EITHER the client linked their portal account (app_link) OR the
+  // coach owns them via the existing coach_clients roster (legacy /admin link).
   const link = await prisma.appLink.findFirst({
     where: { appUserId, verifiedAt: { not: null } },
     select: { id: true, userId: true, isPrep: true, isEnhanced: true, sex: true },
   });
-  if (!link) notFound();
+  if (!link) {
+    const coachEmail = process.env.COACH_ADMIN_EMAIL ?? session.user.email ?? '';
+    const owned = await coachOwnsClient(coachEmail, appUserId);
+    if (!owned) notFound();
+  }
+
+  // Portal data (deep check-in, enhancement, responses) only exists once the
+  // client has linked their portal account. Coach-only (coach_clients) clients
+  // have no training-website userId yet, so those panels stay empty.
+  const twUserId = link?.userId ?? null;
 
   // Portal deep check-ins (prep_checkins) for this linked client — last two.
-  const deepRows = await prisma.prepCheckin.findMany({
-    where: { userId: link.userId },
-    orderBy: { weekOf: 'desc' },
-    take: 2,
-  });
+  const deepRows = twUserId
+    ? await prisma.prepCheckin.findMany({
+        where: { userId: twUserId },
+        orderBy: { weekOf: 'desc' },
+        take: 2,
+      })
+    : [];
   const toView = (r: (typeof deepRows)[number] | undefined): DeepCheckinView | null =>
     r
       ? {
@@ -143,10 +155,12 @@ export default async function CoachHubClientPage({
   const deepPrev = toView(deepRows[1]);
 
   // Latest coach response (for the composer + reviewed-this-week state).
-  const lastResponseRow = await prisma.coachResponse.findFirst({
-    where: { userId: link.userId },
-    orderBy: { createdAt: 'desc' },
-  });
+  const lastResponseRow = twUserId
+    ? await prisma.coachResponse.findFirst({
+        where: { userId: twUserId },
+        orderBy: { createdAt: 'desc' },
+      })
+    : null;
   const reviewedThisWeek =
     !!lastResponseRow && new Date(lastResponseRow.weekOf).getTime() >= startOfWeekUTC().getTime();
   const lastResponse = lastResponseRow
@@ -156,11 +170,11 @@ export default async function CoachHubClientPage({
   // Enhancement + labs (only when the client is flagged enhanced).
   let enhancementNode: React.ReactNode = null;
   let labsNode: React.ReactNode = null;
-  if (link.isEnhanced) {
+  if (link?.isEnhanced && twUserId) {
     const [enhRow, protocols, uploads] = await Promise.all([
-      prisma.enhancementCheckin.findFirst({ where: { userId: link.userId }, orderBy: { weekOf: 'desc' } }),
-      prisma.enhancementProtocol.findMany({ where: { userId: link.userId, active: true }, orderBy: { createdAt: 'desc' } }),
-      prisma.bloodworkUpload.findMany({ where: { userId: link.userId }, orderBy: { uploadedAt: 'desc' }, take: 6 }),
+      prisma.enhancementCheckin.findFirst({ where: { userId: twUserId }, orderBy: { weekOf: 'desc' } }),
+      prisma.enhancementProtocol.findMany({ where: { userId: twUserId, active: true }, orderBy: { createdAt: 'desc' } }),
+      prisma.bloodworkUpload.findMany({ where: { userId: twUserId }, orderBy: { uploadedAt: 'desc' }, take: 6 }),
     ]);
 
     const enhView = buildEnhancementReview(enhRow as Record<string, unknown> | null, link.sex);
@@ -253,8 +267,8 @@ export default async function CoachHubClientPage({
               <p className="mt-0.5 text-sm capitalize text-slate-500">
                 {(profile.goal ?? 'general').replace(/_/g, ' ')}
                 {weightLbs != null && <span className="text-slate-400"> · {weightLbs} lbs</span>}
-                {link.isPrep && <span className="ml-1 rounded-full bg-violet-100 px-2 py-0.5 text-[11px] font-medium text-violet-700">Prep</span>}
-                {link.isEnhanced && <span className="ml-1 rounded-full bg-sky-100 px-2 py-0.5 text-[11px] font-medium text-sky-700">Enhanced</span>}
+                {link?.isPrep && <span className="ml-1 rounded-full bg-violet-100 px-2 py-0.5 text-[11px] font-medium text-violet-700">Prep</span>}
+                {link?.isEnhanced && <span className="ml-1 rounded-full bg-sky-100 px-2 py-0.5 text-[11px] font-medium text-sky-700">Enhanced</span>}
               </p>
             </div>
             <span

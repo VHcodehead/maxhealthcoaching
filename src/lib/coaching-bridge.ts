@@ -137,6 +137,33 @@ export async function fetchCoachingSnapshots(
   return json.data;
 }
 
+/**
+ * The coach's roster from the EXISTING coach_clients links (Phase 56). Lets the
+ * hub show clients already linked in the legacy /admin dashboard without any
+ * new app_link / email-code step. Returns [] if the coach can't be resolved.
+ */
+export async function fetchCoachingRoster(coachEmail: string): Promise<CoachingSnapshot[]> {
+  const res = await bridgeFetch(`/coaching-export/roster?coachEmail=${encodeURIComponent(coachEmail)}`);
+  if (!res.ok) throw new CoachingBridgeError(`roster failed (${res.status})`, res.status);
+  const json = (await res.json()) as { success: boolean; data?: CoachingSnapshot[] };
+  if (!json.success) throw new CoachingBridgeError('roster returned success=false');
+  return json.data ?? [];
+}
+
+/** Does this coach own this client (active coach_clients link)? */
+export async function coachOwnsClient(coachEmail: string, appUserId: string): Promise<boolean> {
+  try {
+    const res = await bridgeFetch(
+      `/coaching-export/owns?coachEmail=${encodeURIComponent(coachEmail)}&appUserId=${encodeURIComponent(appUserId)}`,
+    );
+    if (!res.ok) return false;
+    const json = (await res.json()) as { success: boolean; data?: { owned: boolean } };
+    return !!json.data?.owned;
+  } catch {
+    return false;
+  }
+}
+
 // ── Phase 5 write-back (server-side; called from coach-gated API routes) ──────
 
 export interface WorkoutTemplate {
