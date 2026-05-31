@@ -72,7 +72,14 @@ export const ModelName = {
   Message: 'Message',
   SupplementRecommendation: 'SupplementRecommendation',
   SupplementCatalog: 'SupplementCatalog',
-  PendingMacroAdjustment: 'PendingMacroAdjustment'
+  PendingMacroAdjustment: 'PendingMacroAdjustment',
+  AppLink: 'AppLink',
+  PrepCheckin: 'PrepCheckin',
+  EnhancementCheckin: 'EnhancementCheckin',
+  EnhancementProtocol: 'EnhancementProtocol',
+  BloodworkUpload: 'BloodworkUpload',
+  CoachResponse: 'CoachResponse',
+  AppLinkVerification: 'AppLinkVerification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -474,6 +481,167 @@ export const PendingMacroAdjustmentScalarFieldEnum = {
 } as const
 
 export type PendingMacroAdjustmentScalarFieldEnum = (typeof PendingMacroAdjustmentScalarFieldEnum)[keyof typeof PendingMacroAdjustmentScalarFieldEnum]
+
+
+export const AppLinkScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  appUserId: 'appUserId',
+  appEmail: 'appEmail',
+  verifiedAt: 'verifiedAt',
+  method: 'method',
+  isPrep: 'isPrep',
+  isEnhanced: 'isEnhanced',
+  sex: 'sex',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AppLinkScalarFieldEnum = (typeof AppLinkScalarFieldEnum)[keyof typeof AppLinkScalarFieldEnum]
+
+
+export const PrepCheckinScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weekOf: 'weekOf',
+  weight: 'weight',
+  waistCircumference: 'waistCircumference',
+  caliperSites: 'caliperSites',
+  avgSteps: 'avgSteps',
+  sleepDeclined: 'sleepDeclined',
+  sleepDeclinedWhy: 'sleepDeclinedWhy',
+  avgRestingHR: 'avgRestingHR',
+  stress: 'stress',
+  energyMotivation: 'energyMotivation',
+  untrackedMeals: 'untrackedMeals',
+  hunger: 'hunger',
+  digestionIssues: 'digestionIssues',
+  fastedGlucose: 'fastedGlucose',
+  fastedBP: 'fastedBP',
+  strengthTrend: 'strengthTrend',
+  exerciseIssues: 'exerciseIssues',
+  cardioCompleted: 'cardioCompleted',
+  menstrualStatus: 'menstrualStatus',
+  win: 'win',
+  didntGoWell: 'didntGoWell',
+  otherInfo: 'otherInfo',
+  photoFront: 'photoFront',
+  photoSide1: 'photoSide1',
+  photoSide2: 'photoSide2',
+  photoBack: 'photoBack',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PrepCheckinScalarFieldEnum = (typeof PrepCheckinScalarFieldEnum)[keyof typeof PrepCheckinScalarFieldEnum]
+
+
+export const EnhancementCheckinScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weekOf: 'weekOf',
+  nippleSensitivity: 'nippleSensitivity',
+  waterRetention: 'waterRetention',
+  moodSwings: 'moodSwings',
+  acne: 'acne',
+  hairShedding: 'hairShedding',
+  oilySkin: 'oilySkin',
+  aggression: 'aggression',
+  fastedBP: 'fastedBP',
+  restingHR: 'restingHR',
+  limbSwelling: 'limbSwelling',
+  shortnessOfBreath: 'shortnessOfBreath',
+  nausea: 'nausea',
+  appetiteDrop: 'appetiteDrop',
+  darkUrine: 'darkUrine',
+  ruqDiscomfort: 'ruqDiscomfort',
+  lethargy: 'lethargy',
+  fastedGlucose: 'fastedGlucose',
+  excessiveThirst: 'excessiveThirst',
+  siteSoreness: 'siteSoreness',
+  siteRedness: 'siteRedness',
+  siteLumps: 'siteLumps',
+  fever: 'fever',
+  libido: 'libido',
+  mood: 'mood',
+  anxiety: 'anxiety',
+  sleepQuality: 'sleepQuality',
+  nightSweats: 'nightSweats',
+  voiceChanges: 'voiceChanges',
+  hairGrowth: 'hairGrowth',
+  cycleDisruption: 'cycleDisruption',
+  clitoralChanges: 'clitoralChanges',
+  anythingOff: 'anythingOff',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EnhancementCheckinScalarFieldEnum = (typeof EnhancementCheckinScalarFieldEnum)[keyof typeof EnhancementCheckinScalarFieldEnum]
+
+
+export const EnhancementProtocolScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  category: 'category',
+  dose: 'dose',
+  doseUnit: 'doseUnit',
+  frequency: 'frequency',
+  timing: 'timing',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  clientReported: 'clientReported',
+  coachGuidance: 'coachGuidance',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EnhancementProtocolScalarFieldEnum = (typeof EnhancementProtocolScalarFieldEnum)[keyof typeof EnhancementProtocolScalarFieldEnum]
+
+
+export const BloodworkUploadScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  uploadedAt: 'uploadedAt',
+  labName: 'labName',
+  testDate: 'testDate',
+  filePath: 'filePath',
+  parsedMarkers: 'parsedMarkers',
+  outOfRangeCount: 'outOfRangeCount',
+  parseStatus: 'parseStatus',
+  coachNote: 'coachNote',
+  createdAt: 'createdAt'
+} as const
+
+export type BloodworkUploadScalarFieldEnum = (typeof BloodworkUploadScalarFieldEnum)[keyof typeof BloodworkUploadScalarFieldEnum]
+
+
+export const CoachResponseScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weekOf: 'weekOf',
+  body: 'body',
+  route: 'route',
+  reviewed: 'reviewed',
+  createdAt: 'createdAt'
+} as const
+
+export type CoachResponseScalarFieldEnum = (typeof CoachResponseScalarFieldEnum)[keyof typeof CoachResponseScalarFieldEnum]
+
+
+export const AppLinkVerificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  appUserId: 'appUserId',
+  appEmail: 'appEmail',
+  hashedCode: 'hashedCode',
+  expiresAt: 'expiresAt',
+  attempts: 'attempts',
+  createdAt: 'createdAt'
+} as const
+
+export type AppLinkVerificationScalarFieldEnum = (typeof AppLinkVerificationScalarFieldEnum)[keyof typeof AppLinkVerificationScalarFieldEnum]
 
 
 export const SortOrder = {

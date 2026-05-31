@@ -362,6 +362,85 @@ export async function sendCoachingApplicationConfirmation(
   });
 }
 
+// ── Unified Coaching Hub notifications (Phase 4) ──────────────────────────────
+
+const COACH_NOTIFY_EMAIL = process.env.COACH_NOTIFY_EMAIL ?? 'coach@integrativeaisolutions.com';
+
+/** Notify the coach that a client submitted something (check-in / bloodwork). */
+export async function sendCoachAlertEmail(
+  clientName: string,
+  what: string,
+  reviewUrl: string,
+): Promise<void> {
+  const html = buildBrandedHtml({
+    heading: `${escapeHtml(clientName)} — ${escapeHtml(what)}`,
+    name: 'Coach',
+    body: `${escapeHtml(clientName)} just ${escapeHtml(what)}. Open the coaching hub to review.`,
+    ctaText: 'Open hub',
+    ctaUrl: reviewUrl,
+  });
+  await sendEmail(COACH_NOTIFY_EMAIL, `${clientName} — ${what}`, html);
+}
+
+/** Notify a client that their coach posted feedback. */
+export async function sendClientFeedbackEmail(
+  to: string,
+  name: string,
+  portalUrl: string,
+): Promise<void> {
+  const html = buildBrandedHtml({
+    heading: 'Your coach posted feedback',
+    name,
+    body: "Your coach reviewed your week and left feedback. Open your portal to see what's next.",
+    ctaText: 'View feedback',
+    ctaUrl: portalUrl,
+  });
+  await sendEmail(to, 'Your coach posted feedback — MaxHealth Coaching', html);
+}
+
+export async function sendAppLinkCodeEmail(
+  to: string,
+  name: string,
+  code: string
+): Promise<void> {
+  const safeName = escapeHtml(name || 'there');
+  const safeCode = escapeHtml(code);
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Link your MyPocketCoach account</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f3f4f6;padding:40px 0;">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+        <tr><td style="background-color:#059669;padding:32px 40px;text-align:center;">
+          <p style="margin:0;font-size:22px;font-weight:700;color:#ffffff;letter-spacing:0.5px;">&#127947; MaxHealth Coaching</p>
+        </td></tr>
+        <tr><td style="padding:40px 40px 32px;">
+          <h1 style="margin:0 0 24px;font-size:24px;font-weight:700;color:#111827;">Link your app account</h1>
+          <p style="margin:0 0 16px;font-size:15px;color:#374151;line-height:1.6;">Hey ${safeName},</p>
+          <p style="margin:0 0 24px;font-size:15px;color:#374151;line-height:1.6;">Enter this code on the link page to connect your MyPocketCoach app account so your coach can see your training data. The code expires in 15 minutes.</p>
+          <div style="text-align:center;margin:0 0 24px;">
+            <span style="display:inline-block;padding:16px 32px;font-size:34px;font-weight:700;letter-spacing:10px;color:#059669;background:#ecfdf5;border-radius:8px;border:1px solid #a7f3d0;">${safeCode}</span>
+          </div>
+          <p style="margin:0;font-size:13px;color:#6b7280;line-height:1.5;">If you didn't request this, you can safely ignore this email — no account will be linked.</p>
+        </td></tr>
+        <tr><td style="padding:24px 40px;border-top:1px solid #e5e7eb;text-align:center;">
+          <p style="margin:0;font-size:13px;color:#9ca3af;">MaxHealth Coaching &mdash; Your Personal Training Partner</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+
+  await sendEmail(to, `Your MyPocketCoach link code: ${code}`, html);
+}
+
 export async function sendMacroApprovedEmail(
   to: string,
   name: string,

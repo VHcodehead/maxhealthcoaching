@@ -36,6 +36,13 @@ model User {
   pendingMacroAdjustments PendingMacroAdjustment[]
   passwordResetTokens     PasswordResetToken[]
   emailVerificationTokens EmailVerificationToken[]
+  appLink                 AppLink?
+  appLinkVerifications    AppLinkVerification[]
+  prepCheckins            PrepCheckin[]
+  enhancementCheckins     EnhancementCheckin[]
+  enhancementProtocols    EnhancementProtocol[]
+  bloodworkUploads        BloodworkUpload[]
+  coachResponses          CoachResponse[]
 
   @@map("users")
 }
@@ -459,4 +466,228 @@ model PendingMacroAdjustment {
   checkIn CheckIn @relation(fields: [checkInId], references: [id], onDelete: Cascade)
 
   @@map("pending_macro_adjustments")
+}
+
+// ─── Unified Coaching Hub — Phase 0 (ADR 008) ──────────────────────────────
+//
+// Identity bridge mapping a maxhealthcoaching.com (NextAuth) user to their
+// MyPocketCoach app account (Supabase user_id). PED/prep coach flags live here
+// so they are firewalled in training-website's own Postgres, never in the app.
+
+model AppLink {
+  id         String    @id @default(uuid())
+  userId     String    @unique @map("user_id")
+  appUserId  String    @map("app_user_id") // Supabase user_profiles.id (uuid)
+  appEmail   String    @map("app_email")
+  verifiedAt DateTime? @map("verified_at")
+  method     String    @default("email_code") @map("method") // 'email_code' | 'coach_manual'
+
+  // Coach-set flags (independent). Set in Phase 1; defaults are safe.
+  isPrep     Boolean   @default(false) @map("is_prep")
+  isEnhanced Boolean   @default(false) @map("is_enhanced")
+  sex        String?   @map("sex") // 'male' | 'female' | null — enhancement scan is sex-aware
+
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([appUserId])
+  @@map("app_links")
+}
+
+// Unified Coaching Hub — Phase 2. Deep weekly check-in for prep/coached
+// clients. Richer than the app's light check-in; lives in training-website
+// Postgres. One row per (user, weekOf).
+model PrepCheckin {
+  id     String   @id @default(uuid())
+  userId String   @map("user_id")
+  weekOf DateTime @map("week_of") @db.Date
+
+  // Body
+  weight              Float?  @map("weight") // LBS
+  waistCircumference  Float?  @map("waist_circumference")
+  caliperSites        String? @map("caliper_sites")
+  avgSteps            Int?    @map("avg_steps")
+
+  // Recovery
+  sleepDeclined   Boolean? @map("sleep_declined")
+  sleepDeclinedWhy String? @map("sleep_declined_why")
+  avgRestingHR    Int?     @map("avg_resting_hr")
+  stress          Int?     @map("stress")            // 1-10
+  energyMotivation Int?    @map("energy_motivation") // 1-10
+
+  // Nutrition & digestion
+  untrackedMeals  String? @map("untracked_meals")
+  hunger          Int?    @map("hunger")             // 1-5
+  digestionIssues String? @map("digestion_issues")
+  fastedGlucose   Float?  @map("fasted_glucose")
+  fastedBP        String? @map("fasted_bp")
+
+  // Training
+  strengthTrend  String?  @map("strength_trend")
+  exerciseIssues String?  @map("exercise_issues")
+  cardioCompleted Boolean? @map("cardio_completed")
+
+  // Reflection
+  menstrualStatus String? @map("menstrual_status")
+  win             String? @map("win")
+  didntGoWell     String? @map("didnt_go_well")
+  otherInfo       String? @map("other_info")
+
+  // Photos (optional URLs; capture added with bloodwork uploads in Phase 3)
+  photoFront String? @map("photo_front")
+  photoSide1 String? @map("photo_side1")
+  photoSide2 String? @map("photo_side2")
+  photoBack  String? @map("photo_back")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, weekOf])
+  @@index([userId])
+  @@map("prep_checkins")
+}
+
+// Unified Coaching Hub — Phase 3. Weekly enhancement side-effect surveillance
+// (sex-aware). Categorical fields use 'none'|'mild'|'notable'; yes/no use
+// Boolean. Lives ONLY here (firewalled from the app). Gated by AppLink.isEnhanced.
+model EnhancementCheckin {
+  id     String   @id @default(uuid())
+  userId String   @map("user_id")
+  weekOf DateTime @map("week_of") @db.Date
+
+  // Estrogenic
+  nippleSensitivity String? @map("nipple_sensitivity")
+  waterRetention    String? @map("water_retention")
+  moodSwings        String? @map("mood_swings")
+  // Androgenic
+  acne        String? @map("acne")
+  hairShedding String? @map("hair_shedding")
+  oilySkin    String? @map("oily_skin")
+  aggression  String? @map("aggression")
+  // Cardiovascular
+  fastedBP          String?  @map("fasted_bp")
+  restingHR         Int?     @map("resting_hr")
+  limbSwelling      String?  @map("limb_swelling")
+  shortnessOfBreath Boolean? @map("shortness_of_breath")
+  // Oral / liver
+  nausea       Boolean? @map("nausea")
+  appetiteDrop Boolean? @map("appetite_drop")
+  darkUrine    Boolean? @map("dark_urine")
+  ruqDiscomfort Boolean? @map("ruq_discomfort")
+  lethargy     Boolean? @map("lethargy")
+  // Metabolic
+  fastedGlucose   Float?   @map("fasted_glucose")
+  excessiveThirst Boolean? @map("excessive_thirst")
+  // Injection site
+  siteSoreness String?  @map("site_soreness")
+  siteRedness  Boolean? @map("site_redness")
+  siteLumps    Boolean? @map("site_lumps")
+  fever        Boolean? @map("fever")
+  // Mental / sexual
+  libido       Int?     @map("libido")  // 1-5
+  mood         Int?     @map("mood")     // 1-10
+  anxiety      String?  @map("anxiety")
+  sleepQuality String?  @map("sleep_quality")
+  nightSweats  Boolean? @map("night_sweats")
+  // Female-specific (sex-aware)
+  voiceChanges    Boolean? @map("voice_changes")
+  hairGrowth      Boolean? @map("hair_growth")
+  cycleDisruption Boolean? @map("cycle_disruption")
+  clitoralChanges Boolean? @map("clitoral_changes")
+
+  anythingOff String?  @map("anything_off")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, weekOf])
+  @@index([userId])
+  @@map("enhancement_checkins")
+}
+
+// Client-reported (or coach-set) enhancement protocol items + coach guidance.
+// coachGuidance is portal-only and never leaves training-website.
+model EnhancementProtocol {
+  id        String    @id @default(uuid())
+  userId    String    @map("user_id")
+  name      String    @map("name")
+  category  String    @map("category") // compound | peptide | supplement
+  dose      String?   @map("dose")
+  doseUnit  String?   @map("dose_unit")
+  frequency String?   @map("frequency")
+  timing    String?   @map("timing")
+  startDate DateTime? @map("start_date") @db.Date
+  endDate   DateTime? @map("end_date") @db.Date
+  clientReported Boolean @default(true) @map("client_reported")
+  coachGuidance  String? @map("coach_guidance")
+  active    Boolean   @default(true) @map("active")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("enhancement_protocols")
+}
+
+// Bloodwork upload + parsed markers. parsedMarkers is a JSON array of
+// { name, value, unit, refLow, refHigh, flag }. outOfRangeCount cached for list.
+model BloodworkUpload {
+  id              String   @id @default(uuid())
+  userId          String   @map("user_id")
+  uploadedAt      DateTime @default(now()) @map("uploaded_at")
+  labName         String?  @map("lab_name")
+  testDate        DateTime? @map("test_date") @db.Date
+  filePath        String?  @map("file_path")
+  parsedMarkers   Json?    @map("parsed_markers")
+  outOfRangeCount Int      @default(0) @map("out_of_range_count")
+  parseStatus     String   @default("pending") @map("parse_status") // pending|parsed|failed|manual
+  coachNote       String?  @map("coach_note")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("bloodwork_uploads")
+}
+
+// Unified Coaching Hub — Phase 4. Coach's weekly response to a client, routed
+// to where the client should act (app plan change / portal note / enhancement).
+// Creating one marks that week reviewed. Pinned on the client's portal home.
+model CoachResponse {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  weekOf    DateTime @map("week_of") @db.Date
+  body      String   @map("body")
+  route     String   @default("portal") @map("route") // app | portal | enhancement
+  reviewed  Boolean  @default(true) @map("reviewed")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("coach_responses")
+}
+
+// Short-lived email-code challenge proving the client controls the app-account
+// email before we persist the AppLink. Code is stored hashed; never plaintext.
+model AppLinkVerification {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  appUserId   String   @map("app_user_id")
+  appEmail    String   @map("app_email")
+  hashedCode  String   @map("hashed_code")
+  expiresAt   DateTime @map("expires_at")
+  attempts    Int      @default(0) @map("attempts")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("app_link_verifications")
 }

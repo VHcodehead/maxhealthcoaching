@@ -149,3 +149,38 @@ export type SupplementCatalog = Prisma.SupplementCatalogModel
  * 
  */
 export type PendingMacroAdjustment = Prisma.PendingMacroAdjustmentModel
+/**
+ * Model AppLink
+ * 
+ */
+export type AppLink = Prisma.AppLinkModel
+/**
+ * Model PrepCheckin
+ * 
+ */
+export type PrepCheckin = Prisma.PrepCheckinModel
+/**
+ * Model EnhancementCheckin
+ * 
+ */
+export type EnhancementCheckin = Prisma.EnhancementCheckinModel
+/**
+ * Model EnhancementProtocol
+ * 
+ */
+export type EnhancementProtocol = Prisma.EnhancementProtocolModel
+/**
+ * Model BloodworkUpload
+ * 
+ */
+export type BloodworkUpload = Prisma.BloodworkUploadModel
+/**
+ * Model CoachResponse
+ * 
+ */
+export type CoachResponse = Prisma.CoachResponseModel
+/**
+ * Model AppLinkVerification
+ * 
+ */
+export type AppLinkVerification = Prisma.AppLinkVerificationModel

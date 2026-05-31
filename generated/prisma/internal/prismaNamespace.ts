@@ -405,7 +405,14 @@ export const ModelName = {
   Message: 'Message',
   SupplementRecommendation: 'SupplementRecommendation',
   SupplementCatalog: 'SupplementCatalog',
-  PendingMacroAdjustment: 'PendingMacroAdjustment'
+  PendingMacroAdjustment: 'PendingMacroAdjustment',
+  AppLink: 'AppLink',
+  PrepCheckin: 'PrepCheckin',
+  EnhancementCheckin: 'EnhancementCheckin',
+  EnhancementProtocol: 'EnhancementProtocol',
+  BloodworkUpload: 'BloodworkUpload',
+  CoachResponse: 'CoachResponse',
+  AppLinkVerification: 'AppLinkVerification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -421,7 +428,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "coachingApplication" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment"
+    modelProps: "user" | "passwordResetToken" | "emailVerificationToken" | "profile" | "onboardingResponse" | "macroTarget" | "mealPlan" | "trainingPlan" | "checkIn" | "progressPhoto" | "lead" | "coachingApplication" | "referral" | "blogPost" | "transformation" | "coachSettings" | "notification" | "coachNote" | "message" | "supplementRecommendation" | "supplementCatalog" | "pendingMacroAdjustment" | "appLink" | "prepCheckin" | "enhancementCheckin" | "enhancementProtocol" | "bloodworkUpload" | "coachResponse" | "appLinkVerification"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2053,6 +2060,524 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AppLink: {
+      payload: Prisma.$AppLinkPayload<ExtArgs>
+      fields: Prisma.AppLinkFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AppLinkFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AppLinkFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        findFirst: {
+          args: Prisma.AppLinkFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AppLinkFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        findMany: {
+          args: Prisma.AppLinkFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>[]
+        }
+        create: {
+          args: Prisma.AppLinkCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        createMany: {
+          args: Prisma.AppLinkCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AppLinkCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>[]
+        }
+        delete: {
+          args: Prisma.AppLinkDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        update: {
+          args: Prisma.AppLinkUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        deleteMany: {
+          args: Prisma.AppLinkDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AppLinkUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AppLinkUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>[]
+        }
+        upsert: {
+          args: Prisma.AppLinkUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkPayload>
+        }
+        aggregate: {
+          args: Prisma.AppLinkAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAppLink>
+        }
+        groupBy: {
+          args: Prisma.AppLinkGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppLinkGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AppLinkCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppLinkCountAggregateOutputType> | number
+        }
+      }
+    }
+    PrepCheckin: {
+      payload: Prisma.$PrepCheckinPayload<ExtArgs>
+      fields: Prisma.PrepCheckinFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PrepCheckinFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PrepCheckinFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        findFirst: {
+          args: Prisma.PrepCheckinFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PrepCheckinFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        findMany: {
+          args: Prisma.PrepCheckinFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>[]
+        }
+        create: {
+          args: Prisma.PrepCheckinCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        createMany: {
+          args: Prisma.PrepCheckinCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PrepCheckinCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>[]
+        }
+        delete: {
+          args: Prisma.PrepCheckinDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        update: {
+          args: Prisma.PrepCheckinUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        deleteMany: {
+          args: Prisma.PrepCheckinDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PrepCheckinUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PrepCheckinUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>[]
+        }
+        upsert: {
+          args: Prisma.PrepCheckinUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrepCheckinPayload>
+        }
+        aggregate: {
+          args: Prisma.PrepCheckinAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePrepCheckin>
+        }
+        groupBy: {
+          args: Prisma.PrepCheckinGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PrepCheckinGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PrepCheckinCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PrepCheckinCountAggregateOutputType> | number
+        }
+      }
+    }
+    EnhancementCheckin: {
+      payload: Prisma.$EnhancementCheckinPayload<ExtArgs>
+      fields: Prisma.EnhancementCheckinFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EnhancementCheckinFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EnhancementCheckinFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        findFirst: {
+          args: Prisma.EnhancementCheckinFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EnhancementCheckinFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        findMany: {
+          args: Prisma.EnhancementCheckinFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>[]
+        }
+        create: {
+          args: Prisma.EnhancementCheckinCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        createMany: {
+          args: Prisma.EnhancementCheckinCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EnhancementCheckinCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>[]
+        }
+        delete: {
+          args: Prisma.EnhancementCheckinDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        update: {
+          args: Prisma.EnhancementCheckinUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        deleteMany: {
+          args: Prisma.EnhancementCheckinDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EnhancementCheckinUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EnhancementCheckinUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>[]
+        }
+        upsert: {
+          args: Prisma.EnhancementCheckinUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementCheckinPayload>
+        }
+        aggregate: {
+          args: Prisma.EnhancementCheckinAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEnhancementCheckin>
+        }
+        groupBy: {
+          args: Prisma.EnhancementCheckinGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnhancementCheckinGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EnhancementCheckinCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnhancementCheckinCountAggregateOutputType> | number
+        }
+      }
+    }
+    EnhancementProtocol: {
+      payload: Prisma.$EnhancementProtocolPayload<ExtArgs>
+      fields: Prisma.EnhancementProtocolFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EnhancementProtocolFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EnhancementProtocolFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        findFirst: {
+          args: Prisma.EnhancementProtocolFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EnhancementProtocolFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        findMany: {
+          args: Prisma.EnhancementProtocolFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>[]
+        }
+        create: {
+          args: Prisma.EnhancementProtocolCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        createMany: {
+          args: Prisma.EnhancementProtocolCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EnhancementProtocolCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>[]
+        }
+        delete: {
+          args: Prisma.EnhancementProtocolDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        update: {
+          args: Prisma.EnhancementProtocolUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        deleteMany: {
+          args: Prisma.EnhancementProtocolDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EnhancementProtocolUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EnhancementProtocolUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>[]
+        }
+        upsert: {
+          args: Prisma.EnhancementProtocolUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnhancementProtocolPayload>
+        }
+        aggregate: {
+          args: Prisma.EnhancementProtocolAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEnhancementProtocol>
+        }
+        groupBy: {
+          args: Prisma.EnhancementProtocolGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnhancementProtocolGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EnhancementProtocolCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnhancementProtocolCountAggregateOutputType> | number
+        }
+      }
+    }
+    BloodworkUpload: {
+      payload: Prisma.$BloodworkUploadPayload<ExtArgs>
+      fields: Prisma.BloodworkUploadFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BloodworkUploadFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BloodworkUploadFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        findFirst: {
+          args: Prisma.BloodworkUploadFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BloodworkUploadFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        findMany: {
+          args: Prisma.BloodworkUploadFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>[]
+        }
+        create: {
+          args: Prisma.BloodworkUploadCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        createMany: {
+          args: Prisma.BloodworkUploadCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BloodworkUploadCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>[]
+        }
+        delete: {
+          args: Prisma.BloodworkUploadDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        update: {
+          args: Prisma.BloodworkUploadUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        deleteMany: {
+          args: Prisma.BloodworkUploadDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BloodworkUploadUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BloodworkUploadUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>[]
+        }
+        upsert: {
+          args: Prisma.BloodworkUploadUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BloodworkUploadPayload>
+        }
+        aggregate: {
+          args: Prisma.BloodworkUploadAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBloodworkUpload>
+        }
+        groupBy: {
+          args: Prisma.BloodworkUploadGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BloodworkUploadGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BloodworkUploadCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BloodworkUploadCountAggregateOutputType> | number
+        }
+      }
+    }
+    CoachResponse: {
+      payload: Prisma.$CoachResponsePayload<ExtArgs>
+      fields: Prisma.CoachResponseFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CoachResponseFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CoachResponseFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        findFirst: {
+          args: Prisma.CoachResponseFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CoachResponseFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        findMany: {
+          args: Prisma.CoachResponseFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>[]
+        }
+        create: {
+          args: Prisma.CoachResponseCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        createMany: {
+          args: Prisma.CoachResponseCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CoachResponseCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>[]
+        }
+        delete: {
+          args: Prisma.CoachResponseDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        update: {
+          args: Prisma.CoachResponseUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        deleteMany: {
+          args: Prisma.CoachResponseDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CoachResponseUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CoachResponseUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>[]
+        }
+        upsert: {
+          args: Prisma.CoachResponseUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CoachResponsePayload>
+        }
+        aggregate: {
+          args: Prisma.CoachResponseAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCoachResponse>
+        }
+        groupBy: {
+          args: Prisma.CoachResponseGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CoachResponseGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CoachResponseCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CoachResponseCountAggregateOutputType> | number
+        }
+      }
+    }
+    AppLinkVerification: {
+      payload: Prisma.$AppLinkVerificationPayload<ExtArgs>
+      fields: Prisma.AppLinkVerificationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AppLinkVerificationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AppLinkVerificationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        findFirst: {
+          args: Prisma.AppLinkVerificationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AppLinkVerificationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        findMany: {
+          args: Prisma.AppLinkVerificationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>[]
+        }
+        create: {
+          args: Prisma.AppLinkVerificationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        createMany: {
+          args: Prisma.AppLinkVerificationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AppLinkVerificationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>[]
+        }
+        delete: {
+          args: Prisma.AppLinkVerificationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        update: {
+          args: Prisma.AppLinkVerificationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        deleteMany: {
+          args: Prisma.AppLinkVerificationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AppLinkVerificationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AppLinkVerificationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>[]
+        }
+        upsert: {
+          args: Prisma.AppLinkVerificationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppLinkVerificationPayload>
+        }
+        aggregate: {
+          args: Prisma.AppLinkVerificationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAppLinkVerification>
+        }
+        groupBy: {
+          args: Prisma.AppLinkVerificationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppLinkVerificationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AppLinkVerificationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppLinkVerificationCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2477,6 +3002,167 @@ export const PendingMacroAdjustmentScalarFieldEnum = {
 export type PendingMacroAdjustmentScalarFieldEnum = (typeof PendingMacroAdjustmentScalarFieldEnum)[keyof typeof PendingMacroAdjustmentScalarFieldEnum]
 
 
+export const AppLinkScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  appUserId: 'appUserId',
+  appEmail: 'appEmail',
+  verifiedAt: 'verifiedAt',
+  method: 'method',
+  isPrep: 'isPrep',
+  isEnhanced: 'isEnhanced',
+  sex: 'sex',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AppLinkScalarFieldEnum = (typeof AppLinkScalarFieldEnum)[keyof typeof AppLinkScalarFieldEnum]
+
+
+export const PrepCheckinScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weekOf: 'weekOf',
+  weight: 'weight',
+  waistCircumference: 'waistCircumference',
+  caliperSites: 'caliperSites',
+  avgSteps: 'avgSteps',
+  sleepDeclined: 'sleepDeclined',
+  sleepDeclinedWhy: 'sleepDeclinedWhy',
+  avgRestingHR: 'avgRestingHR',
+  stress: 'stress',
+  energyMotivation: 'energyMotivation',
+  untrackedMeals: 'untrackedMeals',
+  hunger: 'hunger',
+  digestionIssues: 'digestionIssues',
+  fastedGlucose: 'fastedGlucose',
+  fastedBP: 'fastedBP',
+  strengthTrend: 'strengthTrend',
+  exerciseIssues: 'exerciseIssues',
+  cardioCompleted: 'cardioCompleted',
+  menstrualStatus: 'menstrualStatus',
+  win: 'win',
+  didntGoWell: 'didntGoWell',
+  otherInfo: 'otherInfo',
+  photoFront: 'photoFront',
+  photoSide1: 'photoSide1',
+  photoSide2: 'photoSide2',
+  photoBack: 'photoBack',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PrepCheckinScalarFieldEnum = (typeof PrepCheckinScalarFieldEnum)[keyof typeof PrepCheckinScalarFieldEnum]
+
+
+export const EnhancementCheckinScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weekOf: 'weekOf',
+  nippleSensitivity: 'nippleSensitivity',
+  waterRetention: 'waterRetention',
+  moodSwings: 'moodSwings',
+  acne: 'acne',
+  hairShedding: 'hairShedding',
+  oilySkin: 'oilySkin',
+  aggression: 'aggression',
+  fastedBP: 'fastedBP',
+  restingHR: 'restingHR',
+  limbSwelling: 'limbSwelling',
+  shortnessOfBreath: 'shortnessOfBreath',
+  nausea: 'nausea',
+  appetiteDrop: 'appetiteDrop',
+  darkUrine: 'darkUrine',
+  ruqDiscomfort: 'ruqDiscomfort',
+  lethargy: 'lethargy',
+  fastedGlucose: 'fastedGlucose',
+  excessiveThirst: 'excessiveThirst',
+  siteSoreness: 'siteSoreness',
+  siteRedness: 'siteRedness',
+  siteLumps: 'siteLumps',
+  fever: 'fever',
+  libido: 'libido',
+  mood: 'mood',
+  anxiety: 'anxiety',
+  sleepQuality: 'sleepQuality',
+  nightSweats: 'nightSweats',
+  voiceChanges: 'voiceChanges',
+  hairGrowth: 'hairGrowth',
+  cycleDisruption: 'cycleDisruption',
+  clitoralChanges: 'clitoralChanges',
+  anythingOff: 'anythingOff',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EnhancementCheckinScalarFieldEnum = (typeof EnhancementCheckinScalarFieldEnum)[keyof typeof EnhancementCheckinScalarFieldEnum]
+
+
+export const EnhancementProtocolScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  category: 'category',
+  dose: 'dose',
+  doseUnit: 'doseUnit',
+  frequency: 'frequency',
+  timing: 'timing',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  clientReported: 'clientReported',
+  coachGuidance: 'coachGuidance',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EnhancementProtocolScalarFieldEnum = (typeof EnhancementProtocolScalarFieldEnum)[keyof typeof EnhancementProtocolScalarFieldEnum]
+
+
+export const BloodworkUploadScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  uploadedAt: 'uploadedAt',
+  labName: 'labName',
+  testDate: 'testDate',
+  filePath: 'filePath',
+  parsedMarkers: 'parsedMarkers',
+  outOfRangeCount: 'outOfRangeCount',
+  parseStatus: 'parseStatus',
+  coachNote: 'coachNote',
+  createdAt: 'createdAt'
+} as const
+
+export type BloodworkUploadScalarFieldEnum = (typeof BloodworkUploadScalarFieldEnum)[keyof typeof BloodworkUploadScalarFieldEnum]
+
+
+export const CoachResponseScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  weekOf: 'weekOf',
+  body: 'body',
+  route: 'route',
+  reviewed: 'reviewed',
+  createdAt: 'createdAt'
+} as const
+
+export type CoachResponseScalarFieldEnum = (typeof CoachResponseScalarFieldEnum)[keyof typeof CoachResponseScalarFieldEnum]
+
+
+export const AppLinkVerificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  appUserId: 'appUserId',
+  appEmail: 'appEmail',
+  hashedCode: 'hashedCode',
+  expiresAt: 'expiresAt',
+  attempts: 'attempts',
+  createdAt: 'createdAt'
+} as const
+
+export type AppLinkVerificationScalarFieldEnum = (typeof AppLinkVerificationScalarFieldEnum)[keyof typeof AppLinkVerificationScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2724,6 +3410,13 @@ export type GlobalOmitConfig = {
   supplementRecommendation?: Prisma.SupplementRecommendationOmit
   supplementCatalog?: Prisma.SupplementCatalogOmit
   pendingMacroAdjustment?: Prisma.PendingMacroAdjustmentOmit
+  appLink?: Prisma.AppLinkOmit
+  prepCheckin?: Prisma.PrepCheckinOmit
+  enhancementCheckin?: Prisma.EnhancementCheckinOmit
+  enhancementProtocol?: Prisma.EnhancementProtocolOmit
+  bloodworkUpload?: Prisma.BloodworkUploadOmit
+  coachResponse?: Prisma.CoachResponseOmit
+  appLinkVerification?: Prisma.AppLinkVerificationOmit
 }
 
 /* Types for Logging */
